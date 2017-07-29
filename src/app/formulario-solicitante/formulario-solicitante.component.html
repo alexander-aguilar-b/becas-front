@@ -1,0 +1,219 @@
+
+
+<!--#formularioSolicitante="ngForm"-->
+<form  #formularioSolicitante="ngForm"  class="form-horizontal">
+
+  <h3>Creación de Cuenta : Solicitante </h3>
+
+  <h4>Datos de Usuario</h4>
+  <hr class="sep-tt">
+  <div class="container">
+
+
+
+    <!--solicitantes = [{-->
+    <!--id : 1,-->
+    <!--numeroDocumento : "10294337",-->
+    <!--tipoDocumento : { id : 1 , descripcion : "Cedula Ciudadania"},-->
+    <!--nombres : "Alexander",-->
+    <!--apellidos : "Aguilar",-->
+    <!--pais : { id : 1 , nombre : "Colombia"},-->
+    <!--municipio : { id : 1 , descripcion : "Bogota"  },-->
+    <!--direccion : "Calle 23 # 1 ",-->
+    <!--estrato : "4",-->
+    <!--telefono : "2982143",-->
+    <!--correoElectronico : "aguilar.alex@hgtmail.com",-->
+    <!--sexo : { id : 1 , descripcion : "hombre"}-->
+    <!--},-->
+    <!---->
+
+    <!--solicitante.usuario.login-->
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="col-sm-2">Usuario</label>
+        <div class="col-sm-4">
+          <input id="login" required class="form-control" type="text" [(ngModel)]="solicitante.login" name="login" #name="ngModel">
+        </div>
+        <!--<div *ngIf="login.errors && (login.dirty || login.touched)"-->
+             <!--class="alert alert-danger">-->
+          <!--<div [hidden]="!login.errors.required">-->
+            <!--Name is required-->
+          <!--</div>-->
+        <!--</div>-->
+
+
+          <label class="col-sm-2">Correo Electronico</label>
+          <div class="col-sm-4">
+            <input class="form-control" type="text" [(ngModel)]="solicitante.usuario.correoElectronico" name="correoelectronico">
+          </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group">
+        <label class="col-sm-2">Contraseña</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.usuario.contrasenia" name="contrasenia">
+        </div>
+
+        <label class="col-sm-2">Confirmar Contraseña</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text"  name="confirmarcontrasenia">
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <br>
+
+
+    <h4>Datos Solicitante</h4>
+    <hr class="sep-tt">
+
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Número Documento</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.numeroDocumento" name="numeroDocumento">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Tipo Documento</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="tipoDocumento">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nombres</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.nombres" name="nombres">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Apellidos</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.apellidos" name="apellidos">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Dirección</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.direccion" name="direccion">
+        </div>
+
+        <label class="col-sm-2 col-form-label">Teléfono</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.telefono" name="telefono">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Género</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="tipoDocumento">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+        <label class="col-sm-2 col-form-label">Estrato</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" [(ngModel)]="solicitante.estrato" name="estrato">
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tipo Población</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="tipoDocumento">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+        <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+        <div class="col-sm-4">
+
+          <input class="form-control" type="date" [(ngModel)]="solicitante.fechaNacimiento" name="fechaNacimiento">
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Pais Nacimiento</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Departamento  Nacimiento</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Ciudad Nacimiento</label>
+        <div class="col-sm-2">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Pais Residencia</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Departamento  Residencia</label>
+        <div class="col-sm-4">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Ciudad Residencia</label>
+        <div class="col-sm-2">
+          <select class="form-control" [(ngModel)]="selectedValue" name="pais">
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <button type="submit" class="btn btn-primary">Crear</button>
+  <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+
+</form>

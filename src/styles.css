@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.sep-tt {
+  margin: 0;
+  border: none;
+  width: 100%;
+  height: 2px;
+  background:  #363E4C;
+  /*#e4e4e4;*/
+  display: block;
+}
+
+
