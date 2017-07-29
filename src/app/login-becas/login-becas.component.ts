@@ -14,6 +14,8 @@ export class LoginBecasComponent implements OnInit {
   }
 
   login(formValues){
+    //if(this.profileForm.valid)
+    console.log(formValues);
     this.autenticacionService.iniciarSesion(formValues.login, formValues.password);
     this.router.navigate(['listado-solicitante'])
   }
