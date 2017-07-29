@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import {DetalleSolicitanteComponent} from "./detalle-solicitante/detalle-solicitante.component";
 import {FormularioSolicitanteComponent} from "./formulario-solicitante/formulario-solicitante.component";
 import {ListadoSolicitanteComponent} from "./listado-solicitante/listado-solicitante.component";
+import {LoginBecasComponent} from "./login-becas/login-becas.component";
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component : ListadoSolicitanteComponent
-  // },
+  {
+    path: '',
+    component : LoginBecasComponent
+  },
   {
     path: 'listado-solicitante',
     component : ListadoSolicitanteComponent
@@ -16,6 +17,10 @@ const routes: Routes = [
   {
     path: 'formulario-solicitante',
     component : FormularioSolicitanteComponent
+  },
+  {
+    path: 'login',
+    component : LoginBecasComponent
   }
 
   // ,

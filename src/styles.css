@@ -10,4 +10,11 @@
   display: block;
 }
 
+.gr-container {
+  max-width: 1500px;
+  margin: auto;
+
+
+}
+
 

@@ -8,6 +8,9 @@ import { ListadoSolicitanteComponent } from './listado-solicitante/listado-solic
 import { DetalleSolicitanteComponent } from './detalle-solicitante/detalle-solicitante.component';
 import { FormularioSolicitanteComponent } from './formulario-solicitante/formulario-solicitante.component';
 import { LoginBecasComponent } from './login-becas/login-becas.component';
+import { ListadoSolicitanteService } from './listado-solicitante/listado-solicitante.service';
+import  { SolicitanteService } from './services/solicitante.service';
+import { AutenticacionService} from './services/autenticacion.service';
 
 
 @NgModule({
@@ -16,16 +19,17 @@ import { LoginBecasComponent } from './login-becas/login-becas.component';
     ListadoSolicitanteComponent,
     DetalleSolicitanteComponent,
     FormularioSolicitanteComponent,
-    LoginBecasComponent,
-
-
+    LoginBecasComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ListadoSolicitanteService,
+    SolicitanteService,
+    AutenticacionService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
