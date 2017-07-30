@@ -11,6 +11,7 @@ import { LoginBecasComponent } from './login-becas/login-becas.component';
 import { ListadoSolicitanteService } from './listado-solicitante/listado-solicitante.service';
 import  { SolicitanteService } from './services/solicitante.service';
 import { AutenticacionService} from './services/autenticacion.service';
+import { FormularioOferenteComponent } from './formulario-oferente/formulario-oferente.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AutenticacionService} from './services/autenticacion.service';
     ListadoSolicitanteComponent,
     DetalleSolicitanteComponent,
     FormularioSolicitanteComponent,
-    LoginBecasComponent
+    LoginBecasComponent,
+    FormularioOferenteComponent
   ],
   imports: [
     BrowserModule,
