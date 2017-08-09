@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {IOferente} from "../models/oferente.model";
+import {IOferente, Oferente} from "../models/oferente.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-formulario-oferente',
@@ -8,7 +9,9 @@ import {IOferente} from "../models/oferente.model";
 })
 export class FormularioOferenteComponent implements OnInit {
 
-  oferente : IOferente;
+  //oferente : IOferente;
+
+  oferente : Oferente = new Oferente();
 
   valorSeleecionadoPais = 0;
   valorSeleccionadoTipoEntidad = 0;
@@ -55,33 +58,35 @@ export class FormularioOferenteComponent implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(private router : Router  ) {
 
   }
 
   ngOnInit() {
-    this.oferente = {
-      usuario : { id : 0,
-        confirmarPassword : "",
-        login : "",
-        correoElectronico : "",
-        password : ""
-      },
-      id : 0,
-      nit :"",
-      estadoSistema : {
-        id : 0,
-        descripcion : "",
-      },
-      fechaCreacion : new Date(),
-      nombre : "",
-      tipoEntidad : {
-        id : 0,
-        nombre : "",
-        descripcion : ""
-      },
-      descripcion : ""
-    };
+    // this.oferente = {
+    //   usuario : { id : 0,
+    //     confirmarPassword : "",
+    //     login : "",
+    //     correoElectronico : "",
+    //     password : ""
+    //   },
+    //   id : 0,
+    //   nit :"",
+    //   estadoSistema : {
+    //     id : 0,
+    //     descripcion : "",
+    //   },
+    //   fechaCreacion : new Date(),
+    //   nombre : "",
+    //   tipoEntidad : {
+    //     id : 0,
+    //     nombre : "",
+    //     descripcion : ""
+    //   },
+    //   descripcion : ""
+    // };
+
+
   }
 
 }

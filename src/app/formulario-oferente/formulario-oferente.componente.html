@@ -12,7 +12,7 @@
           <div class="form-control alert-danger" *ngIf="formOferente.controls.login?.invalid && (formOferente.controls.login?.touched)">El nombre de usuario es requerido</div>
         </div>
         <label class="col-sm-2">Correo Electrónico</label>
-        <div class="col-sm-4">
+        <div class="col- col-sm-4">
           <input class="form-control" type="email" [(ngModel)]="oferente.correoElectronico" name="correoelectronico" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
           <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.correoelectronico?.invalid && (formSolicitante.controls.correoelectronico.touched)">El correo electrónico es requerido</div>-->
           <div class="md-errors-spacer" [hidden]="formOferente.controls.correoelectronico?.valid || formOferente.controls.correoelectronico?.untouched">
