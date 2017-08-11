@@ -1,17 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import {IOferente, Oferente} from "../models/oferente.model";
+import {IOferente} from "../models/oferente.model";
 import {Router} from "@angular/router";
+import {ServicioOferente} from "../services/oferente.servicio";
 
 @Component({
   selector: 'app-formulario-oferente',
-  templateUrl: './formulario-oferente.component.html',
+  templateUrl: './formulario-oferente.componente.html',
   styles: []
 })
-export class FormularioOferenteComponent implements OnInit {
+export class FormularioOferenteComponente implements OnInit {
 
-  //oferente : IOferente;
+  oferente : IOferente;
 
-  oferente : Oferente = new Oferente();
+  //oferente : Oferente = new Oferente();
+
+
+  constructor(private router : Router , private servicioOferente : ServicioOferente ) {
+  }
+
+  ngOnInit() {
+
+
+
+  }
+
+  crearOferente(){
+    this.servicioOferente.crearOferente(this.oferente);
+  }
+
+
+
+
 
   valorSeleecionadoPais = 0;
   valorSeleccionadoTipoEntidad = 0;
@@ -58,11 +77,9 @@ export class FormularioOferenteComponent implements OnInit {
     }
   ];
 
-  constructor(private router : Router  ) {
 
-  }
 
-  ngOnInit() {
+  //ngOnInit() {
     // this.oferente = {
     //   usuario : { id : 0,
     //     confirmarPassword : "",
@@ -87,6 +104,6 @@ export class FormularioOferenteComponent implements OnInit {
     // };
 
 
-  }
+  //}
 
 }

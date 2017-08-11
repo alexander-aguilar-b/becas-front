@@ -1,7 +1,9 @@
-import {IUsuario} from "./usuario.model";
-import {ITipoEntidad} from "./tipo.entidad.model";
-import {IEstadoSitema} from "./estado.sistema.model";
+import {IUsuario, Usuario} from "./usuario.model";
+import {ITipoEntidad, TipoEntidad} from "./tipo.entidad.model";
+import {EstadoSistema, IEstadoSistema} from "./estado.sistema.model";
 import {Injectable} from "@angular/core";
+import {IRol} from "./rol.model";
+import {IPais} from "./pais.model";
 
 
 /**
@@ -10,11 +12,40 @@ import {Injectable} from "@angular/core";
 export interface IOferente
 {
   id : number,
-  usuario : IUsuario
+  correoElectronico : string,
+  contrasena : string,
+  nombre : string,
+  idEstadoSistema : IEstadoSistema,
+  rol : IRol
+  infoUsuario : {
+    nit : string,
+    descripcion : string,
+    fechaCreacion : Date,
+    tipoEntidad : ITipoEntidad,
+    pais : IPais
+  }
+  //usuario : IUsuario
+
   nit : string,
   descripcion: string,
-  fechaCreacion : Date,
+  //fechaCreacion : Date,
   tipoEntidad : ITipoEntidad,
-  estadoSistema : IEstadoSitema,
-  nombre : string
+  estadoSistema : IEstadoSistema
+  //pais : IPais,
+
+  //ng
 }
+
+// export class Oferente implements  IOferente
+// {
+//   id: number;
+//   //usuario: Usuario;
+//   correoElectronico : string;
+//   contrasena : string;
+//   nit: string;
+//   descripcion: string;
+//   //fechaCreacion: Date;
+//   tipoEntidad: TipoEntidad;
+//   estadoSistema: EstadoSistema;
+//   nombre: string;
+// }

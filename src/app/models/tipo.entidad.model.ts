@@ -7,3 +7,11 @@ export interface ITipoEntidad
   nombre : string,
   descripcion : string
 }
+
+export class TipoEntidad implements ITipoEntidad
+{
+  id: number;
+  nombre: string;
+  descripcion: string;
+}
+

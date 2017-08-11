@@ -3,6 +3,9 @@
  */
 import { Injectable } from '@angular/core'
 import {ISolicitante} from "../models/solicitante.model";
+import { Subject, Observable} from 'rxjs/Rx';
+import {Http, Response} from "@angular/http";
+import {ConfiguracionServicio} from "./configuracion.servicio";
 /**
  * Created by edgaguil on 28/07/2017.
  */
@@ -11,12 +14,24 @@ import {ISolicitante} from "../models/solicitante.model";
 @Injectable()
 export class SolicitanteService {
 
+  constructor(private http : Http, private configuracion : ConfiguracionServicio)
+  {}
+
   obtenerListadoSolicitantes()
   {
     return solicitantes;
-
   };
 
+  obtenerSolicitantes(): Observable<ISolicitante[]> {
+    return this.http.get(this.configuracion.baseUrl +  "applicant/").map((response : Response) => {
+      return <ISolicitante[]> response.json();
+    }).catch(this.manejadorError);
+  };
+
+  private manejadorError(error : Response)
+  {
+      return Observable.throw(error.statusText);
+  }
 }
 
 const solicitantes : ISolicitante[] = [{

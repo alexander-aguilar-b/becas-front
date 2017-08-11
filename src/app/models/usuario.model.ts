@@ -9,3 +9,14 @@ export interface IUsuario
   confirmarPassword : string,
   correoElectronico : string
 }
+
+export class Usuario implements IUsuario
+{
+  id: number;
+  login: string;
+  password: string;
+  confirmarPassword: string;
+  correoElectronico: string;
+
+}
+

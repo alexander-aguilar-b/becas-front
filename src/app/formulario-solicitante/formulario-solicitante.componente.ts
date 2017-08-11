@@ -4,7 +4,7 @@ import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-formulario-solicitante',
-  templateUrl: './formulario-solicitante.component.html',
+  templateUrl: './formulario-solicitante.componente.html',
   styles: [`
     em {float:right; color:#E05C65; padding-left: 10px;}
     .error input {background-color:#E3C3C5;}
@@ -14,7 +14,7 @@ import { Router } from '@angular/router'
     .error :ms-input-placeholder { color: #999; }
   `]
 })
-export class FormularioSolicitanteComponent implements OnInit {
+export class FormularioSolicitanteComponente implements OnInit {
 
   formSolicitante : FormGroup;
   private numeroDocumento : FormControl;

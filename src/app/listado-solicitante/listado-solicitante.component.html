@@ -23,17 +23,17 @@
   </thead>
   <tbody>
   <tr class="table" *ngFor="let solicitante of solicitantes">
-    <td><a [routerLink]="['solicitante/detalle', solicitante.id]">{{ solicitante.numeroDocumento }} </a></td>
-    <td>{{ solicitante.tipoDocumento.descripcion }}</td>
-    <td>{{ solicitante.nombres }}</td>
-    <td>{{ solicitante.apellidos }}</td>
-    <td>{{ solicitante.pais.nombre }}</td>
-    <td>{{ solicitante.municipio.descripcion }}</td>
-    <td>{{ solicitante.direccion }}</td>
-    <td>{{ solicitante.estrato }}</td>
-    <td>{{ solicitante.telefono }}</td>
+    <!--<td><a [routerLink]="['solicitante/detalle', solicitante.id]">{{ solicitante.numeroDocumento }} </a></td>-->
+    <!--<td>{{ solicitante.tipoDocumento.descripcion }}</td>-->
+    <td>{{ solicitante.nombre }}</td>
+    <!--<td>{{ solicitante.apellidos }}</td>-->
+    <!--<td>{{ solicitante.pais.nombre }}</td>-->
+    <!--<td>{{ solicitante.municipio.descripcion }}</td>-->
+    <!--<td>{{ solicitante.direccion }}</td>-->
+    <!--<td>{{ solicitante.estrato }}</td>-->
+    <!--<td>{{ solicitante.telefono }}</td>-->
     <td>{{ solicitante.correoElectronico }}</td>
-    <td>{{ solicitante.sexo.descripcion }}</td>
+    <!--<td>{{ solicitante.sexo.descripcion }}</td>-->
   </tr>
   </tbody>
 </table>
