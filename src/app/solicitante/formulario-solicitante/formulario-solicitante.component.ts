@@ -1,33 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 import { Router } from '@angular/router'
+import {Observable} from "rxjs/Observable";
+import {RequestOptions} from "@angular/http";
+import {SolicitanteService} from "../../services/solicitante.service";
+import {ServicioPais} from "../../services/pais.servicio";
+import {ServicioTipoEntidad} from "../../services/tipo.entidad.servicio";
+import {ISolicitante} from "../../models/solicitante.model";
+import {ServicioTipoDocumento} from "../../services/tipo.documento.servicio";
+import {ServicioGenero} from "../../services/genero.servicio";
+import {ServicioTipoPoblacion} from "../../services/tipo.poblacion.servicio";
 
 @Component({
   selector: 'app-formulario-solicitante',
-  templateUrl: './formulario-solicitante.componente.html',
+  templateUrl: './formulario-solicitante.component.html',
   styles: [`
     em {float:right; color:#E05C65; padding-left: 10px;}
     .error input {background-color:#E3C3C5;}
     .error ::-webkit-input-placeholder { color: #999; }
     .error ::-moz-placeholder { color: #999; }
-    .error :-moz-placeholder { color:#999; }
-    .error :ms-input-placeholder { color: #999; }
+    .error :-moz-placeholder { color:#999; }    
   `]
 })
-export class FormularioSolicitanteComponente implements OnInit {
+export class FormularioSolicitanteComponent implements OnInit {
 
-  formSolicitante : FormGroup;
-  private numeroDocumento : FormControl;
-  private nombres : FormControl;
-  private apellidos : FormControl;
+  // formSolicitante : FormGroup;
+  // private numeroDocumento : FormControl;
+  // private nombres : FormControl;
+  // private apellidos : FormControl;
 
+  tipoDocumentos;
+  generos;
+  tiposPoblacion;
+  paises;
+  departamentos;
 
-
-  constructor(private router : Router) {
-
+  constructor(private router : Router , private servicioSolicitante : SolicitanteService, private servicioPais : ServicioPais
+    , private servicioTipoDocumento : ServicioTipoDocumento, private servicioGenero : ServicioGenero
+    , private servicioTipoPoblacion : ServicioTipoPoblacion ) {
   }
 
-  idPaisColombia = 4;
+  ngOnInit() {
+    this.tipoDocumentos = this.servicioTipoDocumento.obtenerTipoDocumentos();
+    this.generos = this.servicioGenero.obtenerGeneros();
+    this.tiposPoblacion = this.servicioTipoPoblacion.obtenerTipoPoblacion();
+    this.paises = this.servicioPais.obtenerPaises();
+  }
+
+  // registrarSolicitante(formValues)
+  // {
+  //   console.log(formValues);
+  // }
+
+
+
+  crearSolicitante(formValues){
+    console.log(formValues);
+    this.servicioSolicitante.crearSolicitante(formValues)
+    //.finally(() => this.router.navigate(['/oferente/confirmacion-creacion-oferente'])).subscribe();
+      .subscribe(event => { this.router.navigate(['/oferente/confirmacion-creacion-oferente']) })
+  }
+
 
   solicitante = {
     login : "",
@@ -48,173 +81,159 @@ export class FormularioSolicitanteComponente implements OnInit {
   valorSeleccionadoDepartamentoResidencia = 0;
   valorSeleccionadoCiudadResidencia = 0;
 
-  tipoDocumentos = [
-    {
-      id : 0,
-      descripcion : "-- Seleccione --"
-    },
-    {
-    id : 1,
-    descripcion : "Cedula de Ciudadania"
-    },
-    {
-      id : 2,
-      descripcion : "Cedula de Extranjeria"
-    },
-    {
-      id : 3,
-      descripcion : "Tarjeta de identidad"
-    },
+  //idPaisColombia = 4;
 
-    ];
-
-
-  generos = [
-    {
-      id : 0,
-      descripcion : "-- Seleccione --"
-    },
-    {
-      id : 1,
-      descripcion : "Masculino"
-    },
-    {
-      id : 2,
-      descripcion : "Femenino"
-    }
-  ];
-
-  tiposPoblacion = [
-    {
-      id : 0,
-      descripcion : "-- Seleccione --"
-    },
-    {
-      id : 1,
-      descripcion : "Indigena"
-    },
-    {
-      id : 2,
-      descripcion : "Afro-Colombiana"
-    },
-  ];
-
-  paises = [
-    {
-      id : 0,
-      nombre : "-- Seleccione --"
-    },
-    {
-      id : 1,
-      nombre : 'Afganistán'
-
-    },
-    {
-      id : 2,
-      nombre : 'Albania'
-
-    },
-    {
-      id : 3,
-      nombre : 'Argentina'
-    },
-    {
-      id : this.idPaisColombia,
-      nombre : 'Colombia'
-    },
-    {
-      id : 5,
-      nombre : 'España'
-    }
-  ];
+  // tipoDocumentos = [
+  //   {
+  //     id : 0,
+  //     descripcion : "-- Seleccione --"
+  //   },
+  //   {
+  //   id : 1,
+  //   descripcion : "Cedula de Ciudadania"
+  //   },
+  //   {
+  //     id : 2,
+  //     descripcion : "Cedula de Extranjeria"
+  //   },
+  //   {
+  //     id : 3,
+  //     descripcion : "Tarjeta de identidad"
+  //   },
+  //
+  //   ];
 
 
+  // generos = [
+  //   {
+  //     id : 0,
+  //     descripcion : "-- Seleccione --"
+  //   },
+  //   {
+  //     id : 1,
+  //     descripcion : "Masculino"
+  //   },
+  //   {
+  //     id : 2,
+  //     descripcion : "Femenino"
+  //   }
+  // ];
 
-  departamentos = [
-    {
-      id : 0,
-      descripcion : "-- Seleccione --"
-    },
-    {
-      id: 1,
-      idPais: this.idPaisColombia,
-      descripcion : "Antioquia"
-    },
-    {
-      id: 2,
-      idPais: this.idPaisColombia,
-      descripcion : "Bolivar"
-    },
-    {
-      id: 3,
-      idPais: this.idPaisColombia,
-      descripcion : "Cauca"
-    },
-    {
-      id: 4,
-      idPais: this.idPaisColombia,
-      descripcion : "Cundinamarca"
-    },
-  ];
+  // tiposPoblacion = [
+  //   {
+  //     id : 0,
+  //     descripcion : "-- Seleccione --"
+  //   },
+  //   {
+  //     id : 1,
+  //     descripcion : "Indigena"
+  //   },
+  //   {
+  //     id : 2,
+  //     descripcion : "Afro-Colombiana"
+  //   },
+  // ];
 
-  municipios = [
-    {
-      id : 0,
-      descripcion : "-- Seleccione --"
-    },
-    {
-      id : 1,
-      idEstado : 1,
-      descripcion : "Medellin"
-    },
-    {
-      id : 2,
-      idEstado : 2,
-      descripcion : "Cartagena"
-    },
-    {
-      id : 3,
-      idEstado : 3,
-      descripcion : "Popayán"
-    },
-    {
-      id : 4,
-      idEstado : 4,
-      descripcion : "Bogota"
-    }
+  // paises = [
+  //   {
+  //     id : 0,
+  //     nombre : "-- Seleccione --"
+  //   },
+  //   {
+  //     id : 1,
+  //     nombre : 'Afganistán'
+  //
+  //   },
+  //   {
+  //     id : 2,
+  //     nombre : 'Albania'
+  //
+  //   },
+  //   {
+  //     id : 3,
+  //     nombre : 'Argentina'
+  //   },
+  //   {
+  //     id : this.idPaisColombia,
+  //     nombre : 'Colombia'
+  //   },
+  //   {
+  //     id : 5,
+  //     nombre : 'España'
+  //   }
+  // ];
 
-  ];
+  // departamentos = [
+  //   {
+  //     id : 0,
+  //     descripcion : "-- Seleccione --"
+  //   },
+  //   {
+  //     id: 1,
+  //     idPais: this.idPaisColombia,
+  //     descripcion : "Antioquia"
+  //   },
+  //   {
+  //     id: 2,
+  //     idPais: this.idPaisColombia,
+  //     descripcion : "Bolivar"
+  //   },
+  //   {
+  //     id: 3,
+  //     idPais: this.idPaisColombia,
+  //     descripcion : "Cauca"
+  //   },
+  //   {
+  //     id: 4,
+  //     idPais: this.idPaisColombia,
+  //     descripcion : "Cundinamarca"
+  //   },
+  // ];
+  //
+  // municipios = [
+  //   {
+  //     id : 0,
+  //     descripcion : "-- Seleccione --"
+  //   },
+  //   {
+  //     id : 1,
+  //     idEstado : 1,
+  //     descripcion : "Medellin"
+  //   },
+  //   {
+  //     id : 2,
+  //     idEstado : 2,
+  //     descripcion : "Cartagena"
+  //   },
+  //   {
+  //     id : 3,
+  //     idEstado : 3,
+  //     descripcion : "Popayán"
+  //   },
+  //   {
+  //     id : 4,
+  //     idEstado : 4,
+  //     descripcion : "Bogota"
+  //   }
+  //
+  // ];
 
+  // validarNumeroDocumento()
+  // {
+  //   return this.numeroDocumento.valid || this.numeroDocumento.untouched;
+  // }
 
-  ngOnInit() {
-
-    this.numeroDocumento = new FormControl('', Validators.required);
-    this.nombres = new FormControl('', Validators.required);
-    this.apellidos = new FormControl('', Validators.required);
-
-    this.formSolicitante = new FormGroup({
-      numeroDocumento : this.numeroDocumento,
-      nombres : this.nombres,
-      apellidos : this.apellidos
-    })
-  }
-
-  registrarSolicitante(formValues)
-  {
-    console.log(formValues);
-
-    // if(this.formSolicitante.valid)
-    // {
-    //   this.router.navigate(['listado-solicitante']);
-    // }
-  }
-
-  validarNumeroDocumento()
-  {
-    return this.numeroDocumento.valid || this.numeroDocumento.untouched;
-  }
-
-
+  // ngOnInit() {
+  //   this.numeroDocumento = new FormControl('', Validators.required);
+  //   this.nombres = new FormControl('', Validators.required);
+  //   this.apellidos = new FormControl('', Validators.required);
+  //
+  //   this.formSolicitante = new FormGroup({
+  //     numeroDocumento : this.numeroDocumento,
+  //     nombres : this.nombres,
+  //     apellidos : this.apellidos
+  //   })
+  // }
 
 }
 

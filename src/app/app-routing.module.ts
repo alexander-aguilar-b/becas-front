@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {DetalleSolicitanteComponent} from "./detalle-solicitante/detalle-solicitante.component";
-import {FormularioSolicitanteComponente} from "./formulario-solicitante/formulario-solicitante.componente";
-import {FormularioOferenteComponente} from "./formulario-oferente/formulario-oferente.componente";
-import {ListadoSolicitanteComponent} from "./listado-solicitante/listado-solicitante.component";
+import {DetalleSolicitanteComponent} from "./solicitante/detalle-solicitante/detalle-solicitante.component";
+import {FormularioSolicitanteComponent} from "./solicitante/formulario-solicitante/formulario-solicitante.component";
+import {ListadoSolicitanteComponent} from "./solicitante/listado-solicitante/listado-solicitante.component";
 import {LoginBecasComponent} from "./login-becas/login-becas.component";
 import {FormularioOferenteComponent} from "./oferente/formulario-oferente/formulario-oferente.component";
 import {ConfirmacionCreacionOferenteComponent} from "./oferente/confirmacion-creacion-oferente/confirmacion-creacion-oferente.component";
@@ -21,15 +20,11 @@ const routes: Routes = [
   },
   {
     path: 'formulario-solicitante',
-    component : FormularioSolicitanteComponente
+    component : FormularioSolicitanteComponent
   },
   {
     path: 'login',
     component : LoginBecasComponent
-  },
-  {
-    path: 'formulario-oferente',
-    component : FormularioOferenteComponente
   },
   {
     path: 'oferente/formulario-oferente',
@@ -48,20 +43,11 @@ const routes: Routes = [
   {
     path: 'formulario/crear-formulario',
     component : CrearFormularioComponent
+  },
+  {
+    path: 'solicitante/formulario-solicitante',
+    component : FormularioSolicitanteComponent
   }
-  // ,
-  // {
-  //   path: 'book-list',
-  //   component : BookListComponent
-  // },
-  // {
-  //   path: 'book-form',
-  //   component : BookFormComponent
-  // },
-  // {
-  //   path: 'book-detail/:bookId',
-  //   component : BookDetailComponent
-  // }
 ];
 
 @NgModule({

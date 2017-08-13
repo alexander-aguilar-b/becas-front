@@ -112,7 +112,7 @@
           <!--<input type="text" value="{{itemLista?.idTipoControl}}">-->
           <!--<input type="text" value="{{itemLista?.descripcion}}">-->
         <!--</td>-->
-        <td *ngIf="itemLista?.idTipoControl < 4" colspan="2">
+        <td *ngIf="itemLista?.idTipoControl < 4" colspan="3">
           <label>{{itemLista?.descripcion}}</label>
         </td>
         <td *ngIf="itemLista?.idTipoControl >= 4">
@@ -120,7 +120,9 @@
         </td>
         <td>
           <div *ngIf="itemLista?.idTipoControl == 4">
-            <input type="text" name="item_{{i}}_valor">
+
+            <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required>
+            <input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor">
           </div>
           <div *ngIf="itemLista?.idTipoControl == 5">
             <select class="form-control" >
@@ -129,9 +131,16 @@
             </select>
           </div>
           <div *ngIf="itemLista?.idTipoControl == 6">
+            <!--<div class="row" *ngFor="let respuesta of itemLista.listaRespuestas">-->
+              <!--<div class="form-group">-->
+                <!--<label class="col-sm-2"><input type="radio" name="options">{{respuesta.respuesta}}</label>-->
+              <!--</div>-->
+            <!--</div>-->
+
+            <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
             <label *ngFor="let respuesta of itemLista.listaRespuestas">
               <input type="radio" name="options">{{respuesta.respuesta}}</label>
-          </div>
+           </div>
           <div *ngIf="itemLista?.idTipoControl == 7">
             <label *ngFor="let respuesta of itemLista.listaRespuestas">
               <input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>

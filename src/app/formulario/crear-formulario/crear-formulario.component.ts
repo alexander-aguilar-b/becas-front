@@ -9,6 +9,7 @@ import {forEach} from "@angular/router/src/utils/collection";
   templateUrl: './crear-formulario.component.html',
   styles: []
 })
+
 export class CrearFormularioComponent implements OnInit {
 
   definicionItemFormulario : DefincionItemFormulario;
@@ -49,7 +50,6 @@ export class CrearFormularioComponent implements OnInit {
 
   agregarItem2(definicionItemFormulario)
   {
-
     this.numeroItems = this.numeroItems + 1;
 
     console.log(definicionItemFormulario);

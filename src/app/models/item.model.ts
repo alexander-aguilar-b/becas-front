@@ -12,11 +12,7 @@ export class Item
   public listaRespuestas? : Respuesta[];
   public requerido : boolean;
   public tamanoMaximo : number;
-
   constructor(){}
-
-
-
 }
 
 export interface IItem

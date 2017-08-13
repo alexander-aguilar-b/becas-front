@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {SolicitanteService} from "../services/solicitante.service";
-import {ISolicitante} from "../models/solicitante.model";
+import {SolicitanteService} from "../../services/solicitante.service";
+import {ISolicitante} from "../../models/solicitante.model";
 import {Observable} from "rxjs/Observable";
 
 @Component({

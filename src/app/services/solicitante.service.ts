@@ -4,7 +4,7 @@
 import { Injectable } from '@angular/core'
 import {ISolicitante} from "../models/solicitante.model";
 import { Subject, Observable} from 'rxjs/Rx';
-import {Http, Response} from "@angular/http";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 /**
  * Created by edgaguil on 28/07/2017.
@@ -31,6 +31,15 @@ export class SolicitanteService {
   private manejadorError(error : Response)
   {
       return Observable.throw(error.statusText);
+  }
+
+  crearSolicitante(solicitante) : Observable<ISolicitante>
+  {
+    let headers= new Headers({'Content-Type' : 'application/json'});
+    let options = new RequestOptions({ headers : headers});
+    return this.http.post(this.configuracion.baseUrl +  'applicant/', JSON.stringify(solicitante), options).map((response : Response) => {
+      return response.json()
+    }).catch(this.manejadorError);
   }
 }
 
