@@ -26,6 +26,7 @@ const routes: Routes = [
     path: 'login',
     component : LoginBecasComponent
   },
+
   {
     path: 'oferente/formulario-oferente',
     component : FormularioOferenteComponent
