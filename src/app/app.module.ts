@@ -23,6 +23,7 @@ import { CrearFormularioComponent } from './formulario/crear-formulario/crear-fo
 import {ServicioTipoDocumento} from "./services/tipo.documento.servicio";
 import {ServicioGenero} from "./services/genero.servicio";
 import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
+import { GestionarFormularioComponent } from './formulario/gestionar-formulario/gestionar-formulario.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
     FormularioOferenteComponent,
     ConfirmacionCreacionOferenteComponent,
     BuscarOferenteComponent,
-    CrearFormularioComponent
+    CrearFormularioComponent,
+    GestionarFormularioComponent
   ],
   imports: [
     BrowserModule,

@@ -17,12 +17,14 @@ export class Item
 
 export interface IItem
 {
-  id : number,
+  //id : number,
   descripcion : string,
   idTipoControl : number,
-  valor : string;
-  activo : boolean;
-  listaRespuestas? : Respuesta[];
+  valor : string,
+  activo : boolean,
+  listaRespuestas? : Respuesta[],
+  requerido : boolean,
+  tamanoMaximo : number
 
 }
 

@@ -19,9 +19,9 @@ export class FormularioOferenteComponent implements OnInit {
   tipoEntidades;
 
   ngOnInit() {
+
     this.paises = this.servicioPais.obtenerPaises();
     this.tipoEntidades = this.servicioTipoEntidad.obtenerTiposEntidad();
-
     console.log(this.paises);
   }
 

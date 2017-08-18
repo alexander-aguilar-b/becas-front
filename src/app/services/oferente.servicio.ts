@@ -3,6 +3,7 @@ import {IOferente} from "../models/oferente.model";
 import { Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
+import {IRegistroOferente} from "../models/registro.oferente.model";
 
 /**
  * Created by edgaguil on 8/08/2017.
@@ -15,9 +16,9 @@ export class ServicioOferente {
   {
   }
 
-  crearOferente(oferente) : Observable<IOferente>
+  crearOferente(oferente : IRegistroOferente) : Observable<IOferente>
   {
-    let headers= new Headers({'Content-Type' : 'application/json'});
+    let headers : Headers = new Headers({'Content-Type' : 'application/json'});
     let options = new RequestOptions({ headers : headers});
     return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferente), options).map((response : Response) => {
       return response.json()
