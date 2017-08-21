@@ -2,7 +2,7 @@ import {Respuesta} from "./respuesta.model";
 /**
  * Created by edgaguil on 10/08/2017.
  */
-export class Item
+export class Item implements  IItem
 {
   public id : number;
   public descripcion : string;
@@ -25,7 +25,6 @@ export interface IItem
   listaRespuestas? : Respuesta[],
   requerido : boolean,
   tamanoMaximo : number
-
 }
 
 
