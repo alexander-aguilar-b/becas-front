@@ -15,7 +15,6 @@
           <!--<span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.maxlength">-->
                                 <!--El campo excede la longitud máxima.-->
                             <!--</span>-->
-
         <!--</div>-->
       <!--</div>-->
     <!--</div>-->
@@ -39,9 +38,7 @@
               <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.maxlength">El campo excede la longitud máxima.({{itemLista.tamanoMaximo}} caracteres ).</span>
             </div>
           </div>
-
           <!--Caja de Texto-->
-
 
           <!--Lista Desplegable-->
           <div *ngSwitchCase="5">
@@ -90,7 +87,6 @@
           </div>
           <!--Lista Radio Button-->
 
-
           <!--Input File-->
           <div *ngSwitchCase="8">
             <div class="form-control">
@@ -100,16 +96,13 @@
                 <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
               </div>
             </div>
-
           </div>
-          <!--Lista Radio Button-->
+          <!--Input File-->
         </div>
+
       </div>
     </div>
   </div>
-
-
-
 
   <div class="panel panel-default">
     <div class="panel-heading">Gestionar Formulario</div>
