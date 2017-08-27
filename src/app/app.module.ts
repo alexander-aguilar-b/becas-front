@@ -23,6 +23,11 @@ import { CrearFormularioComponent } from './formulario/crear-formulario/crear-fo
 import {ServicioTipoDocumento} from "./services/tipo.documento.servicio";
 import {ServicioGenero} from "./services/genero.servicio";
 import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
+import {ServicioAdministrador} from "./services/administrador.servicio";
+import { CreacionOfertaComponent } from './oferente/creacion-oferta/creacion-oferta.component';
+import {ServicioTipoOferta} from "./services/tipo.oferta.servicio";
+import {ServicioOferta} from "./services/oferta.servicio";
+import { FormularioAdministradorComponent } from './administrador/formulario-administrador/formulario-administrador.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +39,9 @@ import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
     FormularioOferenteComponent,
     ConfirmacionCreacionOferenteComponent,
     BuscarOferenteComponent,
-    CrearFormularioComponent
+    CrearFormularioComponent,
+    FormularioAdministradorComponent,
+    CreacionOfertaComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,11 @@ import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
     ServicioTipoEntidad,
     ServicioTipoDocumento,
     ServicioGenero,
-    ServicioTipoPoblacion
+    ServicioTipoPoblacion,
+    ServicioAdministrador,
+    ServicioTipoDocumento,
+    ServicioTipoOferta,
+    ServicioOferta
   ],
   bootstrap: [AppComponent]
 })

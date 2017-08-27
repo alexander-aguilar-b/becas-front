@@ -8,6 +8,8 @@ import {FormularioOferenteComponent} from "./oferente/formulario-oferente/formul
 import {ConfirmacionCreacionOferenteComponent} from "./oferente/confirmacion-creacion-oferente/confirmacion-creacion-oferente.component";
 import {BuscarOferenteComponent} from "./oferente/buscar-oferente/buscar-oferente.component";
 import {CrearFormularioComponent} from "./formulario/crear-formulario/crear-formulario.component";
+import {FormularioAdministradorComponent} from "./administrador/formulario-administrador/formulario-administrador.component";
+import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-oferta.component";
 
 const routes: Routes = [
   {
@@ -47,6 +49,15 @@ const routes: Routes = [
   {
     path: 'solicitante/formulario-solicitante',
     component : FormularioSolicitanteComponent
+  }
+  ,
+  {
+    path: 'administrador/formulario-administrador',
+    component : FormularioAdministradorComponent
+  },
+  {
+    path: 'oferente/creacion-oferta',
+    component : CreacionOfertaComponent
   }
 ];
 

@@ -1,0 +1,400 @@
+<form #formCrearOferta="ngForm" class="form-horizontal"
+      (ngSubmit)="crearOferta(formCrearOferta.value)">
+  <h3>Crear oferta </h3>
+
+  <ul class="nav nav-tabs" id="tabs">
+    <li class="active"><a data-toggle="tab" href="#informacion_adicional">1. Información básica</a></li>
+    <li><a data-toggle="tab" href="#agregar_etapa">2. Agregar etapa</a></li>
+    <li><a data-toggle="tab" href="#agregar_formulario">3. Agregar formulario (Opcional)</a></li>
+    <li><a data-toggle="tab" href="#finalizar">4. Finalizar</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div id="informacion_adicional" class="tab-pane fade in active">
+      <br>
+      <hr class="sep-tt">
+      <div class="container">
+
+        <br>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Id Oferente</label>
+            <div class="col-sm-4">
+              <input id="id_oferente" (ngModel)="oferta.id_oferente" required class="form-control" type="text"
+                     name="id_oferente">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Nombre</label>
+            <div class="col-sm-4">
+              <input id="nombre" (ngModel)="oferta.nombre" required class="form-control" type="text" name="nombre">
+            </div>
+            <label class="col-sm-2">Descripción</label>
+            <div class="col-sm-4">
+          <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.descripcion" name="descripcion"
+                    required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Fecha inicio</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="date" (ngModel)="oferta.fecha_inicio" name="fecha_inicio" required>
+            </div>
+            <label class="col-sm-2">Fecha fin</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="date" (ngModel)="oferta.fecha_fin" name="fecha_fin" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Tipo de oferta</label>
+            <div class="col-sm-4">
+              <select class="form-control" [ngModel]="valorSeleccionadoTipoOferta" name="id_tipo_convocatoria"
+                      required>
+                <option *ngFor="let tipoOferta of tiposOferta" [ngValue]="tipoOferta.id">{{tipoOferta.nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Requisitos:</label>
+            <div class="col-sm-10">
+        <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.requisitos" name="requisitos"
+                  required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Condiciones:</label>
+            <div class="col-sm-10">
+        <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.condiciones" name="condiciones"
+                  required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Información adicional:</label>
+            <div class="col-sm-10">
+        <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.informacion_adicional"
+                  name="informacion_adicional" required></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" align="right">
+        <br>
+        <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+        <button type="button" class="btn btn-primary" (click)="cambioEtapa()">Agregar Etapa
+        </button>
+      </div>
+
+    </div>
+
+    <div id="agregar_etapa" class="tab-pane fade in active">
+
+      <br>
+      <hr class="sep-tt">
+      <div class="container">
+        <br>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Nombre: </label>
+            <div class="col-sm-4">
+              <input type="text" [(ngModel)]="defincionEtapaFormulario.nombre_etapa" name="nombre_etapa"
+                     id="id_nombre_etapa">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Fecha inicio</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_inicio_etapa"
+                     name="fecha_inicio_etapa" required>
+            </div>
+            <label class="col-sm-2">Fecha fin</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_fin_etapa"
+                     name="fecha_fin_etapa" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Descripción:</label>
+            <div class="col-sm-10">
+        <textarea rows="5" class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.descripcion_etapa"
+                  name="descripcion_etapa"
+                  required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Cantidad a seleccionar</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.cantidad_seleccionar"
+                     name="cantidad_seleccionar"
+                     required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row" align="right">
+          <br>
+          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+          <button type="button" class="btn btn-primary" (click)="cambioFormulario()">Agregar Formulario
+          </button>
+          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)">Terminar Etapa
+          </button>
+        </div>
+
+      </div>
+    </div>
+    <div id="agregar_formulario" class="tab-pane fade in active">
+
+      <br>
+      <hr class="sep-tt">
+
+      <br>
+
+      <div class="container">
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Nombre: </label>
+            <div class="col-sm-4">
+              <input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre">
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Descripción: </label>
+            <div class="col-sm-4">
+              <input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_descripcion"
+                     name="formulario_descripcion">
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="row">
+          <div class="form-group">
+            <!--Formulario Personalizado-->
+            <div class="panel panel-default">
+              <div class="panel-heading">Crear Formulario</div>
+              <div class="panel-body">
+                <table>
+                  <tr>
+                    <td>
+                      Ingrese el item
+                    </td>
+                    <td>
+                      <input type="text" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItemId"
+                             name="nombreItem">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Tipo de respuesta
+                    </td>
+                    <td>
+                      <select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl">
+                        <option value="0">Selecccione</option>
+                        <option value="1">Titulo</option>
+                        <option value="2">Descripción</option>
+                        <option value="3">Comentario</option>
+                        <option value="4">Caja de texto</option>
+                        <option value="5">Lista desplegable</option>
+                        <option value="6">Botón de radio</option>
+                        <option value="7">Selección múltiple</option>
+                        <option value="8">Documento adjunto</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Las opciones se delimitan con :
+                    </td>
+                    <td>
+                      <input type="text" id="tipoDelimitadorId" name="tipoDelimitador"
+                             [(ngModel)]="defincionEtapaFormulario.tipoDelimitador">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Opciones
+                    </td>
+                    <td>
+                      <input type="text" id="opcionesId" name="opciones"
+                             [(ngModel)]="defincionEtapaFormulario.opciones">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Campo Obligatorio
+                    </td>
+                    <td>
+                      <input type="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      Tamaño Máximo
+                    </td>
+                    <td>
+                      <input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="left">
+                      <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">Agregar
+                        Item
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <br/>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">Vista Previa</div>
+              <div class="panel-body">
+                <td *ngIf="numeroItems > 0">
+                  <table>
+                    <tr>
+                      <td>
+                        <br/>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
+                      <td *ngIf="itemLista?.idTipoControl < 4" colspan="2">
+                        <label>{{itemLista?.descripcion}}</label>
+                      </td>
+                      <td *ngIf="itemLista?.idTipoControl >= 4">
+                        <label>{{itemLista?.descripcion}}</label>
+                      </td>
+                      <td>
+                        <div *ngIf="itemLista?.idTipoControl == 4">
+                          <input type="text" name="item_{{i}}_valor">
+                        </div>
+                        <div *ngIf="itemLista?.idTipoControl == 5">
+                          <select class="form-control">
+                            <option>-- Seleccione --</option>
+                            <option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}
+                            </option>
+                          </select>
+                        </div>
+                        <div *ngIf="itemLista?.idTipoControl == 6">
+                          <label *ngFor="let respuesta of itemLista.listaRespuestas">
+                            <input type="radio" name="options">{{respuesta.respuesta}}</label>
+                        </div>
+                        <div *ngIf="itemLista?.idTipoControl == 7">
+                          <label *ngFor="let respuesta of itemLista.listaRespuestas">
+                            <input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>
+                        </div>
+                        <div *ngIf="itemLista?.idTipoControl == 8">
+                          <input type="file">
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Fin formulario-->
+
+        <br>
+
+        <div class="row" align="right">
+          <br>
+          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)">Terminar Etapa
+          </button>
+
+        </div>
+      </div>
+    </div>
+    <div id="finalizar" class="tab-pane fade">
+
+      <br>
+
+      <hr class="sep-tt">
+      <br>
+
+      <div class="container">
+        <h4>Etapas</h4>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <table class="table table-striped">
+              <th>Nombre
+              </th>
+              <th>Descripción
+              </th>
+              <th>Fecha inicio
+              </th>
+              <th>Fecha fin
+              </th>
+              <tr *ngFor="let etapa of oferta.etapas; let i = index" [attr.data-index]="i">
+                <td>
+                  <label>{{etapa.nombre}}</label>
+                </td>
+                <td>
+                  <label>{{etapa.descripcion}}</label>
+                </td>
+                <td>
+                  <label>{{etapa.fecha_inicio}}</label>
+                </td>
+                <td>
+                  <label>{{etapa.fecha_fin}}</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="row" align="right">
+          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+          <button type="button" class="btn btn-primary" (click)="cambioEtapa()">Agregar una nueva etapa
+          </button>
+          <button type="submit" class="btn btn-primary">Finalizar</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</form>
+
+
+
