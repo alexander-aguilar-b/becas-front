@@ -13,7 +13,7 @@ import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-ofert
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login-becas',
     component : LoginBecasComponent
   },
   {

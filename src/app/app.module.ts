@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListadoSolicitanteComponent } from './solicitante/listado-solicitante/listado-solicitante.component';
@@ -28,6 +27,7 @@ import { CreacionOfertaComponent } from './oferente/creacion-oferta/creacion-ofe
 import {ServicioTipoOferta} from "./services/tipo.oferta.servicio";
 import {ServicioOferta} from "./services/oferta.servicio";
 import { FormularioAdministradorComponent } from './administrador/formulario-administrador/formulario-administrador.component';
+import {ServicioMenu} from "./services/menu.servicio";
 
 @NgModule({
   declarations: [
@@ -64,7 +64,8 @@ import { FormularioAdministradorComponent } from './administrador/formulario-adm
     ServicioAdministrador,
     ServicioTipoDocumento,
     ServicioTipoOferta,
-    ServicioOferta
+    ServicioOferta,
+    ServicioMenu
   ],
   bootstrap: [AppComponent]
 })
