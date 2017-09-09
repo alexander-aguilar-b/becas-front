@@ -1,8 +1,9 @@
 import {Injectable} from "@angular/core";
+import {IMenu} from "../models/menu.model";
 @Injectable()
 export class ServicioMenu {
 
-  obtenerMenu(perfil:string): any[] {
+  obtenerMenu(perfil:string): IMenu[] {
     let menu = [];
 
     switch (perfil){
@@ -21,8 +22,8 @@ export class ServicioMenu {
       case "Administrador":
         menu = [
           {
-            ruta: 'administrador/formulario-administrador',
-            nombre_menu : "Crear administrador"
+            nombre_menu: "Crear oferta",
+            ruta: "oferente/creacion-oferta"
           },
         ];
         break;

@@ -28,6 +28,7 @@ import {ServicioTipoOferta} from "./services/tipo.oferta.servicio";
 import {ServicioOferta} from "./services/oferta.servicio";
 import { FormularioAdministradorComponent } from './administrador/formulario-administrador/formulario-administrador.component';
 import {ServicioMenu} from "./services/menu.servicio";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,6 @@ import {ServicioMenu} from "./services/menu.servicio";
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -65,7 +65,8 @@ import {ServicioMenu} from "./services/menu.servicio";
     ServicioTipoDocumento,
     ServicioTipoOferta,
     ServicioOferta,
-    ServicioMenu
+    ServicioMenu,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })
