@@ -15,14 +15,9 @@ import { IAdministrador } from '../../models/administrador.model';
 export class FormularioAdministradorComponent implements OnInit {
 
   tiposDocumento;
-
   administradorForm: FormGroup
   contrasena: FormControl
   confirmarcontrasena: FormControl
-
-  informacionUsuarioForm: FormGroup
-  //userName : FormControl
-  //username: FormControl
   administrador: IAdministrador;
 
   constructor(public formBuilder: FormBuilder, private router: Router, private servicioAdministrador: ServicioAdministrador
@@ -41,7 +36,6 @@ export class FormularioAdministradorComponent implements OnInit {
     this.tiposDocumento = this.servicioTipoDocumento.obtenerTipoDocumentos();
     this.contrasena = new FormControl('', [Validators.required]);
     this.confirmarcontrasena = new FormControl('', [Validators.required]);
-    //this.username = new FormControl('',Validators.required)
   }
 
   valorSeleccionadoTipoDocumento = 0;
@@ -57,12 +51,6 @@ export class FormularioAdministradorComponent implements OnInit {
   }
 
   //#region Validaciones
-  /*
-  validarUserName() {
-    return this.username.valid ||
-      this.username.untouched
-  }
-  */
   validarContrasenia() {
     return this.administradorForm.controls.contrasena.valid ||
       this.administradorForm.controls.contrasena.untouched
