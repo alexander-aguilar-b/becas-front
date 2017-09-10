@@ -2,7 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListadoSolicitanteComponent } from './solicitante/listado-solicitante/listado-solicitante.component';
@@ -24,6 +23,14 @@ import {ServicioTipoDocumento} from "./services/tipo.documento.servicio";
 import {ServicioGenero} from "./services/genero.servicio";
 import {ServicioTipoPoblacion} from "./services/tipo.poblacion.servicio";
 import { GestionarFormularioComponent } from './formulario/gestionar-formulario/gestionar-formulario.component';
+import { JQ_TOKEN} from './comun/jquery.service';
+import {SimpleModalComponent} from "./comun/simple-modal.component";
+import {ModalTriggerDirective} from "./comun/modal.trigger.directive";
+import {FormularioSolicitanteReactivoComponent} from "./solicitante/formulario-solicitante-reactivo/formulario-solicitante-reactivo.component";
+import {ExperienciaLaboralSolicitanteComponent} from "./solicitante/experiencia-laboral-solicitante/experiencia-laboral-solicitante.component";
+
+
+declare let jQuery : Object;
 
 @NgModule({
   declarations: [
@@ -36,7 +43,11 @@ import { GestionarFormularioComponent } from './formulario/gestionar-formulario/
     ConfirmacionCreacionOferenteComponent,
     BuscarOferenteComponent,
     CrearFormularioComponent,
-    GestionarFormularioComponent
+    GestionarFormularioComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective,
+    FormularioSolicitanteReactivoComponent,
+    ExperienciaLaboralSolicitanteComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +66,8 @@ import { GestionarFormularioComponent } from './formulario/gestionar-formulario/
     ServicioTipoEntidad,
     ServicioTipoDocumento,
     ServicioGenero,
-    ServicioTipoPoblacion
+    ServicioTipoPoblacion,
+    { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent]
 })
