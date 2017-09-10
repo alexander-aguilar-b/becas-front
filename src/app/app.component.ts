@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ServicioMenu} from "./services/menu.servicio";
 import {AutenticacionService} from "./services/autenticacion.service";
 import {CookieService} from "angular2-cookie/services";
-import { GlobalEventsManager } from "./GlobalEventsManager ";
+import { GlobalEventsManager } from "./GlobalEventsManager";
 
 
 @Component({

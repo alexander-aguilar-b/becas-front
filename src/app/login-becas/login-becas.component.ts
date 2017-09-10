@@ -3,7 +3,7 @@ import { AutenticacionService } from '../services/autenticacion.service'
 import { Router } from '@angular/router'
 import { CookieService } from "angular2-cookie/core";
 import { Injectable, EventEmitter } from "@angular/core";
-import { GlobalEventsManager } from "../GlobalEventsManager ";
+import { GlobalEventsManager } from "../GlobalEventsManager";
 import { IUsuarioS, UsuarioS } from '../models/usuarios.model'
 import { Subject, Observable } from 'rxjs/Rx';
 

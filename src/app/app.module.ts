@@ -29,9 +29,6 @@ import {SimpleModalComponent} from "./comun/simple-modal.component";
 import {ModalTriggerDirective} from "./comun/modal.trigger.directive";
 import {FormularioSolicitanteReactivoComponent} from "./solicitante/formulario-solicitante-reactivo/formulario-solicitante-reactivo.component";
 import {ExperienciaLaboralSolicitanteComponent} from "./solicitante/experiencia-laboral-solicitante/experiencia-laboral-solicitante.component";
-
-
-declare let jQuery : Object;
 import {ServicioAdministrador} from "./services/administrador.servicio";
 import { CreacionOfertaComponent } from './oferente/creacion-oferta/creacion-oferta.component';
 import {ServicioTipoOferta} from "./services/tipo.oferta.servicio";
@@ -39,7 +36,10 @@ import {ServicioOferta} from "./services/oferta.servicio";
 import { FormularioAdministradorComponent } from './administrador/formulario-administrador/formulario-administrador.component';
 import {ServicioMenu} from "./services/menu.servicio";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
-import { GlobalEventsManager } from "./GlobalEventsManager ";
+import {GlobalEventsManager} from "./GlobalEventsManager";
+
+
+declare let jQuery : Object;
 
 
 @NgModule({
