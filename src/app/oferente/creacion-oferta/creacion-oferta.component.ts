@@ -8,6 +8,7 @@ import {Item} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
 import {Formulario} from "../../models/formulario.model";
 import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario.model";
+import {AutenticacionService} from "../../services/autenticacion.service";
 declare var $: any;
 
 @Component({
@@ -23,10 +24,12 @@ export class CreacionOfertaComponent implements OnInit {
   numeroItems: number;
   listaItems;
 
-  constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta) {
+  constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta
+  ,private autenticacionService: AutenticacionService) {
   }
 
   ngOnInit() {
+    this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
     this.oferta = new Oferta();
     this.oferta.etapas = [];
     this.numeroItems = 0;

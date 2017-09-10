@@ -2,48 +2,66 @@
  * Created by edgaguil on 28/07/2017.
  */
 import { Injectable } from '@angular/core'
-import { IUsuario } from '../models/usuario.model'
-import {CookieService} from "angular2-cookie/core";
+import { IUsuarioS, UsuarioS } from '../models/usuarios.model'
+import { CookieService } from "angular2-cookie/core";
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { ConfiguracionServicio } from './configuracion.servicio';
+import { Subject, Observable } from 'rxjs/Rx';
+import { IMenu } from "../models/menu.model";
+import { ServicioMenu } from "../services/menu.servicio";
+import { Router } from "@angular/router";
+
 
 
 @Injectable()
-export class AutenticacionService
-{
-  usuarioActual: IUsuario
+export class AutenticacionService {
+  //usuarioActual: IUsuario
+  usuario: UsuarioS
+  menuAutorizado: IMenu[];
 
-  constructor(private cookie :CookieService) {
+  constructor(private cookie: CookieService, private http: Http, private configuracion: ConfiguracionServicio
+    , private servicioMenu: ServicioMenu, private router: Router) {
+    this.usuario = new UsuarioS();
   }
 
+  iniciarSesion(login: string, password: string): Observable<IUsuarioS> {
+    let headers = new Headers({ 'Content-Type': 'application/json', 'username': login, 'password': password });
+    let options = new RequestOptions({ headers: headers });
 
-  iniciarSesion(login: string, password: string)
-  {
-    //Servicio autenticación
-
-
-    //Token
-    let perfil = 'Oferente';
-    this.cookie.put('perfil',perfil);
-
-    console.log(this.obtenerCookie('perfil'));
+    return this.http.post(this.configuracion.baseUrl + 'login/', JSON.stringify(''), options).map((response: Response) => {
+      return response.text() ? <IUsuarioS>response.json() : {}
+    }).catch(this.manejadorError);
   }
 
-  obtenerCookie(clave : string) : string {
+  crearCookie(clave: string, valor: string) {
+    this.cookie.put(clave, valor);
+  }
+
+  cerrarSesion() {
+    this.cookie.remove('perfil');
+  }
+
+  obtenerCookie(clave: string): string {
     return this.cookie.get(clave);
   }
 
-  estaAutenticado()
-  {
-
-    return !!this.usuarioActual;
+  borrarCookie(clave: string) {
+    this.cookie.remove(clave);
   }
 
-  private _perfil: string;
-
-  public setPerfil(value: string) {
-    this._perfil = value;
+  validarAutorizacion(menu: string) {
+    let perfil = this.obtenerCookie('perfil');
+    this.menuAutorizado = this.servicioMenu.obtenerMenu(perfil);
+    if (!this.menuAutorizado.some(s => s.ruta === menu)) {
+      this.router.navigate(['login-becas']);
+    }
   }
-  public getPerfil(): string {
-    return this._perfil;
+
+  private manejadorError(error: Response) {
+    console.log(error);
+    return Observable.throw(error.statusText);
   }
 
 }
+
+
