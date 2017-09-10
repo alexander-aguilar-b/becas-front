@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ListadoSolicitanteComponent } from './solicitante/listado-solicitante/listado-solicitante.component';
@@ -31,6 +32,14 @@ import {ExperienciaLaboralSolicitanteComponent} from "./solicitante/experiencia-
 
 
 declare let jQuery : Object;
+import {ServicioAdministrador} from "./services/administrador.servicio";
+import { CreacionOfertaComponent } from './oferente/creacion-oferta/creacion-oferta.component';
+import {ServicioTipoOferta} from "./services/tipo.oferta.servicio";
+import {ServicioOferta} from "./services/oferta.servicio";
+import { FormularioAdministradorComponent } from './administrador/formulario-administrador/formulario-administrador.component';
+import {ServicioMenu} from "./services/menu.servicio";
+import { CookieService } from 'angular2-cookie/services/cookies.service';
+import { GlobalEventsManager } from "./GlobalEventsManager ";
 
 @NgModule({
   declarations: [
@@ -47,11 +56,12 @@ declare let jQuery : Object;
     SimpleModalComponent,
     ModalTriggerDirective,
     FormularioSolicitanteReactivoComponent,
-    ExperienciaLaboralSolicitanteComponent
+    ExperienciaLaboralSolicitanteComponent,
+    FormularioAdministradorComponent,
+    CreacionOfertaComponent,
   ],
   imports: [
     BrowserModule,
-
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
@@ -66,6 +76,14 @@ declare let jQuery : Object;
     ServicioTipoEntidad,
     ServicioTipoDocumento,
     ServicioGenero,
+    ServicioTipoPoblacion,
+    ServicioAdministrador,
+    ServicioTipoDocumento,
+    ServicioTipoOferta,
+    ServicioOferta,
+    ServicioMenu,
+    CookieService,
+    GlobalEventsManager,
     ServicioTipoPoblacion,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],

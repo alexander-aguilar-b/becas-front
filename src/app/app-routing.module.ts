@@ -10,10 +10,12 @@ import {BuscarOferenteComponent} from "./oferente/buscar-oferente/buscar-oferent
 import {CrearFormularioComponent} from "./formulario/crear-formulario/crear-formulario.component";
 import {GestionarFormularioComponent} from "./formulario/gestionar-formulario/gestionar-formulario.component";
 import {FormularioSolicitanteReactivoComponent} from "./solicitante/formulario-solicitante-reactivo/formulario-solicitante-reactivo.component";
+import {FormularioAdministradorComponent} from "./administrador/formulario-administrador/formulario-administrador.component";
+import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-oferta.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login-becas',
     component : LoginBecasComponent
   },
   {
@@ -28,7 +30,6 @@ const routes: Routes = [
     path: 'login',
     component : LoginBecasComponent
   },
-
   {
     path: 'oferente/formulario-oferente',
     component : FormularioOferenteComponent
@@ -59,6 +60,15 @@ const routes: Routes = [
   {
     path: 'solicitante/formulario-solicitante-reactivo',
     component : FormularioSolicitanteReactivoComponent
+  }
+  ,
+  {
+    path: 'administrador/formulario-administrador',
+    component : FormularioAdministradorComponent
+  },
+  {
+    path: 'oferente/creacion-oferta',
+    component : CreacionOfertaComponent
   }
 ];
 
