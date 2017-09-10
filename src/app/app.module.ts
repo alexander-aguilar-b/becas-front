@@ -41,6 +41,7 @@ import {ServicioMenu} from "./services/menu.servicio";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import { GlobalEventsManager } from "./GlobalEventsManager ";
 
+
 @NgModule({
   declarations: [
     AppComponent,
