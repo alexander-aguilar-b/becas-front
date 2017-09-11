@@ -228,6 +228,30 @@
       <button type="button" class="btn btn-primary pull-right" modal-trigger>Agregar Experiencia Laboral</button>
     </div>
 
+
+    <div class="table-responsive top-buffer">
+      <table *ngIf="listadoExperienciaLaboral && listadoExperienciaLaboral.length" class="table">
+        <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Cargo</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let experienciaLaboralSolicitante of listadoExperienciaLaboral'>
+            <td>{{experienciaLaboralSolicitante.nombre_empresa}}</td>
+            <td>{{experienciaLaboralSolicitante.cargo}}</td>
+            <td>{{experienciaLaboralSolicitante.fecha_inicio | date:'shortDate'}}</td>
+            <td>{{experienciaLaboralSolicitante.fecha_fin | date:'shortDate'}}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+    </div>
+
   </div>
 
   <!--<button type="submit" class="btn btn-primary">Crear</button>-->

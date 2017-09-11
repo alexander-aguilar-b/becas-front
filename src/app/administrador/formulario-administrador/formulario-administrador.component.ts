@@ -32,7 +32,7 @@ export class FormularioAdministradorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.autenticacionService.validarAutorizacion('administrador/formulario-administrador');
+    //this.autenticacionService.validarAutorizacion('administrador/formulario-administrador');
     this.tiposDocumento = this.servicioTipoDocumento.obtenerTipoDocumentos();
     this.contrasena = new FormControl('', [Validators.required]);
     this.confirmarcontrasena = new FormControl('', [Validators.required]);

@@ -44,7 +44,7 @@ export class CreacionOfertaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
+    //this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
     this.oferta = new Oferta();
     this.oferta.etapas = [];
     this.numeroItems = 0;

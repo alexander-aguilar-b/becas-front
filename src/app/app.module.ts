@@ -37,9 +37,9 @@ import {ServicioMenu} from "./services/menu.servicio";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {GlobalEventsManager} from "./GlobalEventsManager";
 import {ServicioTipoItem} from "./services/tipo.item.service";
+import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 
 declare let jQuery : Object;
-
 
 @NgModule({
   declarations: [
@@ -59,6 +59,7 @@ declare let jQuery : Object;
     ExperienciaLaboralSolicitanteComponent,
     FormularioAdministradorComponent,
     CreacionOfertaComponent,
+    ConfirmacionCreacionSolicitanteComponent
   ],
   imports: [
     BrowserModule,

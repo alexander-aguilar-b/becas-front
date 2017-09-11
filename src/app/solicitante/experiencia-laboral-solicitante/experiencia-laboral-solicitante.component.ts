@@ -4,6 +4,8 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {IExperienciaLaboral} from "../../models/experiencia.laboral.model";
 
+declare var $: any;
+
 @Component({
   selector: 'experiencia-laboral-modal',
   templateUrl: './experiencia-laboral-solicitante.component.html',
@@ -16,9 +18,23 @@ export class ExperienciaLaboralSolicitanteComponent implements OnInit {
 
   @Output() experienciaLaboralAgregada : EventEmitter<IExperienciaLaboral> = new EventEmitter<IExperienciaLaboral>();
 
+
   agregarExperiencia() : void {
     console.log(this.experienciaLaboral);
-    this.experienciaLaboralAgregada.emit(this.experienciaLaboral)
+
+    this.experienciaLaboralAgregada.emit({
+      nombre_empresa : this.experienciaLaboral.nombre_empresa,
+      cargo : this.experienciaLaboral.cargo,
+      fecha_inicio : this.experienciaLaboral.fecha_inicio,
+      fecha_fin : this.experienciaLaboral.fecha_fin
+    });
+
+    this.experienciaLaboral.nombre_empresa = '';
+    this.experienciaLaboral.cargo = '';
+    this.experienciaLaboral.fecha_fin = new Date();
+    this.experienciaLaboral.fecha_inicio = new Date();
+
+    $('#simple-modal').modal('toggle');
 
   }
 
@@ -28,6 +44,8 @@ export class ExperienciaLaboralSolicitanteComponent implements OnInit {
       cargo : '',
       fecha_fin : new Date(),
       fecha_inicio : new Date()
+      // fecha_fin : '',
+      // fecha_inicio : ''
     };
 
   }
