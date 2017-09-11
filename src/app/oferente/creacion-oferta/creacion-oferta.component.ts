@@ -39,6 +39,7 @@ export class CreacionOfertaComponent implements OnInit {
     listaRadioButton : 9
   }
 
+
   constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta
   ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItem) {
   }
