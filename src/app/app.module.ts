@@ -38,6 +38,7 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {GlobalEventsManager} from "./GlobalEventsManager";
 import {ServicioTipoItem} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
+import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 
 declare let jQuery : Object;
 
@@ -59,7 +60,8 @@ declare let jQuery : Object;
     ExperienciaLaboralSolicitanteComponent,
     FormularioAdministradorComponent,
     CreacionOfertaComponent,
-    ConfirmacionCreacionSolicitanteComponent
+    ConfirmacionCreacionSolicitanteComponent,
+    ConfirmacionCreacionAdministradorComponent
   ],
   imports: [
     BrowserModule,

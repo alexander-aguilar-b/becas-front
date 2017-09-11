@@ -12,6 +12,8 @@ import {GestionarFormularioComponent} from "./formulario/gestionar-formulario/ge
 import {FormularioSolicitanteReactivoComponent} from "./solicitante/formulario-solicitante-reactivo/formulario-solicitante-reactivo.component";
 import {FormularioAdministradorComponent} from "./administrador/formulario-administrador/formulario-administrador.component";
 import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-oferta.component";
+import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
+import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 
 const routes: Routes = [
   {
@@ -49,7 +51,7 @@ const routes: Routes = [
     component : CrearFormularioComponent
   },
   {
-    path: 'solicitante/formulario-solicitante',
+    path: 'solicitante/formulario-solicitante-old',
     component : FormularioSolicitanteComponent
   }
   ,
@@ -58,7 +60,7 @@ const routes: Routes = [
     component : GestionarFormularioComponent
   },
   {
-    path: 'solicitante/formulario-solicitante-reactivo',
+    path: 'solicitante/formulario-solicitante',
     component : FormularioSolicitanteReactivoComponent
   }
   ,
@@ -69,7 +71,15 @@ const routes: Routes = [
   {
     path: 'oferente/creacion-oferta',
     component : CreacionOfertaComponent
-  }
+  },
+  {
+    path: 'solicitante/confirmacion-creacion-solicitante',
+    component : ConfirmacionCreacionSolicitanteComponent
+  },
+  {
+    path: 'administrador/confirmacion-creacion-administrador',
+    component : ConfirmacionCreacionAdministradorComponent
+  },
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ export class FormularioAdministradorComponent implements OnInit {
   contrasena: FormControl
   confirmarcontrasena: FormControl;
   administrador: IAdministrador;
+  valorSeleccionadoTipoDocumento;
 
   constructor(public formBuilder: FormBuilder, private router: Router, private servicioAdministrador: ServicioAdministrador
     , private servicioTipoDocumento: ServicioTipoDocumento, private autenticacionService: AutenticacionService) {
@@ -38,9 +39,8 @@ export class FormularioAdministradorComponent implements OnInit {
     this.servicioTipoDocumento.obtenerTipoDocumentos().subscribe(tiposDocumento => this.tiposDocumento = tiposDocumento);
     this.contrasena = new FormControl('', [Validators.required]);
     this.confirmarcontrasena = new FormControl('', [Validators.required]);
+    this.valorSeleccionadoTipoDocumento = 0;
   }
-
-  valorSeleccionadoTipoDocumento = 0;
 
   crearAdministrador(formValues: IAdministrador) {
     this.administrador = formValues;
@@ -48,7 +48,7 @@ export class FormularioAdministradorComponent implements OnInit {
 
     this.servicioAdministrador.crearAdministrador(this.administrador)
       .subscribe(event => {
-        this.router.navigate(['/oferente/confirmacion-creacion-oferente'])
+        this.router.navigate(['/administrador/confirmacion-creacion-administrador'])
       })
   }
 

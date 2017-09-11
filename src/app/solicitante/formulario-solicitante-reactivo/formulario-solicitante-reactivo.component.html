@@ -14,7 +14,7 @@
         </div>
         <label class="col-sm-2">Correo Electrónico</label>
         <div class="col-sm-4">
-          <input class="form-control" type="email" [(ngModel)]="solicitante.usuario.correoElectronico" name="correoelectronico" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+          <input class="form-control" type="email" [(ngModel)]="solicitante.usuario.correoElectronico" name="correoelectronico" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" placeholder="abc@dominio.com">
           <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.correoelectronico?.invalid && (formSolicitante.controls.correoelectronico.touched)">El correo electrónico es requerido</div>-->
           <div class="md-errors-spacer" [hidden]="formSolicitante.controls.correoelectronico?.valid || formSolicitante.controls.correoelectronico?.untouched">
             <div  *ngIf="formSolicitante.controls.correoelectronico?.errors && formSolicitante.controls.correoelectronico.errors.required">
@@ -28,21 +28,43 @@
       </div>
     </div>
 
+    <!--<div class="row">-->
+      <!--<div class="form-group">-->
+        <!--<label class="col-sm-2">Contraseña</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<input class="form-control" type="text" [(ngModel)]="solicitante.usuario.contrasenia" name="contrasenia" id="contrasenia" required>-->
+          <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.contrasenia?.invalid && (formSolicitante.controls.contrasenia.touched)">La contraseña es requerida</div>-->
+        <!--</div>-->
+
+        <!--<label class="col-sm-2">Confirmar Contraseña</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<input class="form-control" type="text"  name="confirmarcontrasenia" required>-->
+          <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.confirmarcontrasenia?.invalid && (formSolicitante.controls.confirmarcontrasenia.touched)">La confirmacion de la contraseña es requerida</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+
     <div class="row">
-      <div class="form-group">
+      <div class="form-group" [formGroup]="administradorForm">
         <label class="col-sm-2">Contraseña</label>
         <div class="col-sm-4">
-          <input class="form-control" type="text" [(ngModel)]="solicitante.usuario.contrasenia" name="contrasenia" id="contrasenia" required>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.contrasenia?.invalid && (formSolicitante.controls.contrasenia.touched)">La contraseña es requerida</div>
+          <input formControlName="contrasena" class="form-control" type="text" (ngModel)="solicitante.usuario.contrasena" name="contrasena" id="contrasena">
+          <div *ngIf="!validarContrasenia()" class="form-control alert-danger">
+            El campo es requerido
+          </div>
         </div>
-
         <label class="col-sm-2">Confirmar Contraseña</label>
         <div class="col-sm-4">
-          <input class="form-control" type="text"  name="confirmarcontrasenia" required>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.confirmarcontrasenia?.invalid && (formSolicitante.controls.confirmarcontrasenia.touched)">La confirmacion de la contraseña es requerida</div>
+          <input formControlName="confirmarcontrasena" id="confirmarcontrasena" class="form-control" type="text" name="confirmarcontrasena">
+          <div *ngIf="!validarConfirmacionContrasenia() || !validarMismaContrasenia()" class="form-control alert-danger">
+            <div *ngIf="!validarConfirmacionContrasenia()">El campo es requerido</div>
+            <div *ngIf="!validarMismaContrasenia() && validarConfirmacionContrasenia()">
+              Las contraseñas no coinciden</div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 
   <br>

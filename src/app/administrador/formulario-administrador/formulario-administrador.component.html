@@ -31,8 +31,7 @@
       <div class="form-group" [formGroup]="administradorForm">
         <label class="col-sm-2">Contraseña</label>
         <div class="col-sm-4">
-          <input formControlName="contrasena" class="form-control" type="text" (ngModel)="contrasena" name="contrasena" id="contrasena"
-            PLACEHOLDER="Contraseña...">
+          <input formControlName="contrasena" class="form-control" type="text" (ngModel)="contrasena" name="contrasena" id="contrasena">
           <div *ngIf="!validarContrasenia()" class="form-control alert-danger">
             <em>Es requerido</em>
           </div>
@@ -83,7 +82,7 @@
         <div class="col-sm-4">
           <select class="form-control" [ngModel]="valorSeleccionadoTipoDocumento" id="id_tipo_documento"
            name="id_tipo_documento" #selectedTechs="ngModel" required>
-           <option [value]="">Select a school</option>
+           <option [value]="0">-- Selecione --</option>
             <option *ngFor="let tipoDocumento of tiposDocumento" [ngValue]="tipoDocumento.id_tipo_documento">{{tipoDocumento.descripcion}}
             </option>
           </select>
