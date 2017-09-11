@@ -8,7 +8,7 @@
       <div class="form-group">
         <label for="login">Login:</label>
         <!--<em *ngIf="loginForm.controls.login?.invalid && (loginForm.controls.login?.touched || mouseoverLogin)">Required</em>-->
-        <input id="login" type="text" (ngModel)="login" name="login" required class="form-control " placeholder="Login..." />
+        <input id="login" type="text" (ngModel)="login" name="login" (keyup)='onkeypress()' required  class="form-control " placeholder="Login..." />
         <div *ngIf="loginForm.controls.login?.invalid && (loginForm.controls.login?.touched || mouseoverLogin)" class="form-control alert-danger">
           <em>El login es requerido</em>
         </div>

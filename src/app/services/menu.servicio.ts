@@ -19,14 +19,6 @@ export class ServicioMenu {
           },
         ];
         break;
-      case "Administrador":
-        menu = [
-          {
-            nombre_menu: "Crear oferta",
-            ruta: "oferente/creacion-oferta"
-          },
-        ];
-        break;
       case "ADMIN":
         menu = [
           {
