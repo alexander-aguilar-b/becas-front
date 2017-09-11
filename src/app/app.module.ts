@@ -38,7 +38,6 @@ import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {GlobalEventsManager} from "./GlobalEventsManager";
 import {ServicioTipoItem} from "./services/tipo.item.service";
 
-
 declare let jQuery : Object;
 
 

@@ -52,6 +52,7 @@ export class CreacionOfertaComponent implements OnInit {
     this.defincionEtapaFormulario = new DefincionEtapaFormulario();
     this.tiposOferta = this.servicioTipoOferta.obtenerTipoOferta();
     this.servicioTipoItems.obtenerTiposItem().subscribe(tiposItem => this.listaTiposItem = tiposItem);
+    this.defincionEtapaFormulario.tipoControl = "0";
   }
 
   cambioEtapa() {
