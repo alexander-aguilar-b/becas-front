@@ -5,7 +5,6 @@
     <table>
       <tr>
         <td>
-          <!--<input type="hidden" name="cedula" value="1023" />-->
           Ingrese el item
         </td>
         <td>
@@ -18,27 +17,20 @@
         </td>
         <td>
           <select id="tipoControl" name="tipoControl" [(ngModel)]="definicionItemFormulario.tipoControl">
-            <option value="0">Selecccione</option>
-            <option value="1">Titulo</option>
-            <option value="2">Descripción</option>
-            <option value="3">Comentario</option>
-            <option value="4">Caja de texto</option>
-            <option value="5">Lista desplegable</option>
-            <option value="6">Botón de radio</option>
-            <option value="7">Selección múltiple</option>
-            <option value="8">Documento adjunto</option>
+            <option value="0">Seleccione</option>
+            <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}</option>
           </select>
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="(definicionItemFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (definicionItemFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (definicionItemFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
         <td>
-          Las opciones se delimitan con :
+          Las opciones se delimitan con
         </td>
         <td>
           <input type="text" id="tipoDelimitadorId" name="tipoDelimitador" [(ngModel)]="definicionItemFormulario.tipoDelimitador">
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="(definicionItemFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (definicionItemFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (definicionItemFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
         <td>
           Opciones
         </td>
@@ -54,7 +46,7 @@
           <input type="checkbox" name="requerido" [(ngModel)]="definicionItemFormulario.requerido">
         </td>
       </tr>
-      <tr>
+      <tr *ngIf="definicionItemFormulario.tipoControl == tiposItemEnum.textoEntrada">
         <td>
           Tamaño Máximo
         </td>
@@ -64,10 +56,7 @@
       </tr>
       <tr>
         <td colspan="2" align="left">
-          <!--<button type="submit" class="btn btn-primary" name="action:AgregarItem">Guardar Item</button>-->
-          <!--<button type="button" class="btn btn-primary" (click)="agregarItem($event, nombreItem, tipoControl, tipoDelimitador, opciones)" >Agregar Item</button>-->
-          <!--<button type="button" class="btn btn-primary" (click)="agregarItem2($event, definicionItemFormulario)" >Agregar Item</button>-->
-          <button type="button" class="btn btn-primary" (click)="agregarItem2(formCrearFormulario.value)" >Agregar Item</button>
+          <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearFormulario.value)" >Agregar Item</button>
         </td>
       </tr>
       <tr>
@@ -81,23 +70,7 @@
 <div class="panel panel-default">
   <div class="panel-heading">Vista Previa</div>
   <div class="panel-body">
-
-    <!--<select class="form-control"  name="pais" required>-->
-      <!--<option *ngFor="let pais of listaItems" >{{pais.descripcion}}</option>-->
-    <!--</select>-->
-
     <td *ngIf="numeroItems > 0">
-      <!--<table>-->
-      <!--<tr *ngFor="let itemLista of listaItems">-->
-        <!--<td>-->
-          <!--{{itemLista | json}}-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<input type="text" value="{{itemLista.idTipoControl}}">-->
-          <!--<input type="text" value="{{itemLista.descripcion}}">-->
-        <!--</td>-->
-      <!--</tr>-->
-    <!--</table>-->
     <table>
       <tr>
         <td>
@@ -105,47 +78,46 @@
         </td>
       </tr>
       <tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
-        <!--<td>-->
-          <!--{{itemLista}}-->
-        <!--</td>-->
-        <!--<td>-->
-          <!--<input type="text" value="{{itemLista?.idTipoControl}}">-->
-          <!--<input type="text" value="{{itemLista?.descripcion}}">-->
-        <!--</td>-->
-        <td *ngIf="itemLista?.idTipoControl < 4" colspan="3">
+        <td *ngIf="(itemLista?.idTipoControl ==  tiposItemEnum.etiqueta)" colspan="3">
           <label>{{itemLista?.descripcion}}</label>
         </td>
-        <td *ngIf="itemLista?.idTipoControl >= 4">
-          <label>{{itemLista?.descripcion}}</label>
+        <td *ngIf="itemLista?.idTipoControl >= (itemLista?.idTipoControl ==  tiposItemEnum.titulo)">
+          <h3>{{itemLista?.descripcion}}</h3>
         </td>
-        <td>
-          <div *ngIf="itemLista?.idTipoControl == 4">
 
+        <td>
+          <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.textoEntrada">
             <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required>
             <input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor">
           </div>
-          <div *ngIf="itemLista?.idTipoControl == 5">
+
+          <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.entradaNumerica">
+            <input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required>
+            <input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor">
+          </div>
+
+          <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.fecha">
+            <input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required>
+            <input *ngIf="!itemLista?.requerido" type="date" name="item_{{i}}_valor">
+          </div>
+
+          <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaSeleccionable">
             <select class="form-control" >
               <option>-- Seleccione --</option>
               <option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}</option>
             </select>
           </div>
-          <div *ngIf="itemLista?.idTipoControl == 6">
-            <!--<div class="row" *ngFor="let respuesta of itemLista.listaRespuestas">-->
-              <!--<div class="form-group">-->
-                <!--<label class="col-sm-2"><input type="radio" name="options">{{respuesta.respuesta}}</label>-->
-              <!--</div>-->
-            <!--</div>-->
 
-            <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
+          <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaRadioButton">
             <label *ngFor="let respuesta of itemLista.listaRespuestas">
               <input type="radio" name="options">{{respuesta.respuesta}}</label>
            </div>
-          <div *ngIf="itemLista?.idTipoControl == 7">
+
+          <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaSeleccionMultiple">
             <label *ngFor="let respuesta of itemLista.listaRespuestas">
               <input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>
           </div>
-          <div *ngIf="itemLista?.idTipoControl == 8">
+          <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.archivo">
             <input type="file">
           </div>
         </td>

@@ -9,6 +9,8 @@ import {Respuesta} from "../../models/respuesta.model";
 import {Formulario} from "../../models/formulario.model";
 import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario.model";
 import {AutenticacionService} from "../../services/autenticacion.service";
+import {ServicioTipoItem} from "../../services/tipo.item.service";
+import {ITipoItem} from "../../models/tipo.item.model";
 declare var $: any;
 
 @Component({
@@ -23,9 +25,22 @@ export class CreacionOfertaComponent implements OnInit {
   defincionEtapaFormulario: DefincionEtapaFormulario;
   numeroItems: number;
   listaItems;
+  listaTiposItem : ITipoItem[];
+
+  tiposItemEnum  = {
+    textoEntrada :  1,
+    entradaNumerica : 2,
+    fecha : 3,
+    listaSeleccionable : 4,
+    listaSeleccionMultiple : 5,
+    archivo :  6,
+    etiqueta : 7,
+    titulo : 8,
+    listaRadioButton : 9
+  }
 
   constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta
-  ,private autenticacionService: AutenticacionService) {
+  ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItem) {
   }
 
   ngOnInit() {
@@ -36,6 +51,7 @@ export class CreacionOfertaComponent implements OnInit {
     this.listaItems = [];
     this.defincionEtapaFormulario = new DefincionEtapaFormulario();
     this.tiposOferta = this.servicioTipoOferta.obtenerTipoOferta();
+    this.servicioTipoItems.obtenerTiposItem().subscribe(tiposItem => this.listaTiposItem = tiposItem);
   }
 
   cambioEtapa() {

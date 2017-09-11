@@ -3,6 +3,8 @@ import {DefincionItemFormulario, IDefincionItemFormulario} from "../../models/de
 import {Item} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
 import {forEach} from "@angular/router/src/utils/collection";
+import {ITipoItem} from "../../models/tipo.item.model";
+import {ServicioTipoItem} from "../../services/tipo.item.service";
 
 @Component({
   selector: 'app-crear-formulario',
@@ -13,34 +15,33 @@ import {forEach} from "@angular/router/src/utils/collection";
 export class CrearFormularioComponent implements OnInit {
 
   definicionItemFormulario : DefincionItemFormulario;
-
   listaItems;
-
   numeroItems : number;
+  listaTiposItem : ITipoItem[];
 
-  constructor() { }
+  tiposItemEnum  = {
+  textoEntrada :  1, //'INPUT_TEXT',
+  entradaNumerica : 2, // 'INPUT_NUMBER',
+  fecha : 3, //'INPUT_DATE',
+  listaSeleccionable : 4, //'INPUT_SELECT',
+  listaSeleccionMultiple : 5, //'INPUT_MULTISELECT',
+  archivo :  6, //'INPUT_FILE'
+  etiqueta : 7,  //TITULO,
+  titulo : 8,  //TITULO,
+  listaRadioButton : 9
+  }
+
+
+  constructor(private servicioTipoItems : ServicioTipoItem) { }
 
   ngOnInit() {
     this.numeroItems = 0;
     this.listaItems =  [];
     this.definicionItemFormulario = new DefincionItemFormulario();
-    //
-    // this.listaItems = [ {
-    //   idTipoControl : 1,
-    //   descripcion : 'Test 123456',
-    //   listaRespuestas : []
-    // }];
-    //
-    // this.numeroItems = 1;
-  }
+    this.definicionItemFormulario.tipoControl = "0";
+    this.servicioTipoItems.obtenerTiposItem().subscribe(tiposItem => this.listaTiposItem = tiposItem);
 
-  agregarItem(event, nombreItem, tipoControl, tipoDelimitador, opciones)
-  {
-    console.log(event);
-    console.log(nombreItem);
-    console.log(tipoControl);
-    console.log(tipoDelimitador);
-    console.log(opciones);
+    console.log(this.tiposItemEnum.archivo);
   }
 
   crearFormulario(formValues)
@@ -48,15 +49,11 @@ export class CrearFormularioComponent implements OnInit {
 
   }
 
-  agregarItem2(definicionItemFormulario)
+  agregarItem(definicionItemFormulario)
   {
     this.numeroItems = this.numeroItems + 1;
-
     console.log(definicionItemFormulario);
-
-    //console.log(this.definicionItemFormulario);
     let listaItems : Item = new Item();
-
     let item : Item = new Item();
 
     let opciones : string =  definicionItemFormulario.opciones ? definicionItemFormulario.opciones.trim() : '';
