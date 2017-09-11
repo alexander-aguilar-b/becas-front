@@ -6,6 +6,8 @@ import { Injectable, EventEmitter } from "@angular/core";
 import { GlobalEventsManager } from "../GlobalEventsManager";
 import { IUsuarioS, UsuarioS } from '../models/usuarios.model'
 import { Subject, Observable } from 'rxjs/Rx';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { ConfiguracionServicio } from "../services/configuracion.servicio";
 
 
 @Component({
@@ -19,24 +21,56 @@ export class LoginBecasComponent implements OnInit {
 
   usuario: IUsuarioS
   mensajeError: string
+  status:string ='200'
+  error:string;
 
   constructor(private autenticacionService: AutenticacionService, private router: Router
-    , private globalEventsManager: GlobalEventsManager) {
+    , private http: Http, private configuracion: ConfiguracionServicio) {
     this.usuario = new UsuarioS();
   }
 
-  login(formValues) {
-    this.autenticacionService.iniciarSesion(formValues.login, formValues.password).subscribe(usuario => {
-      this.usuario = usuario;
-    });
+  onkeypress()
+  {
+    
+    this.status = '200';
+  }
 
-    this.autenticacionService.crearCookie('perfil', this.usuario.rol);
-    let perfil = this.autenticacionService.obtenerCookie('perfil');
-    console.log(this.usuario.rol);
-    if (this.usuario.rol != null) {
-      this.globalEventsManager.showNavBar.emit();
-      this.router.navigate(['']);
-    }
+
+  login(formValues) {    
+    this.iniciarSesion(formValues.login,formValues.password); 
+    
+  }
+
+  iniciarSesion(login: string, password: string) {
+    let headers= new Headers({'username' : login,'password':password});
+    let options = new RequestOptions({ headers : headers});
+    return this.http.post(this.configuracion.baseUrl +  'login', "", options).map((response : Response) => {
+      return response
+    }).subscribe(res=>this.asignarSesion(res.json(),res.status),error=>this.manejadorError(error));
+  }
+
+  asignarSesion(sesion:JSON,status:number)
+  {
+        
+    let respuesta=sesion;       
+   
+    this.autenticacionService.crearCookie('perfil',sesion['rol']);
+    this.autenticacionService.crearCookie('token',sesion['token']);
+    this.autenticacionService.crearCookie('status',status.toString());
+    
+    this.router.navigate(['']);
+    window.location.reload();   
+    
+  }
+
+  manejadorError(err : any)
+  { let error= JSON.parse(err._body);    
+    this.autenticacionService.crearCookie('status',err.status);
+    this.autenticacionService.crearCookie('error',error['error']);
+    this.status = this.autenticacionService.obtenerCookie('status')
+    this.error=this.autenticacionService.obtenerCookie('error');
+    console.log("error:" +this.autenticacionService.obtenerCookie('error'));
+    
   }
 
   ngOnInit() {
