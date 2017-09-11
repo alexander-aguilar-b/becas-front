@@ -40,6 +40,7 @@ import {ServicioTipoItem} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 
+
 declare let jQuery : Object;
 
 @NgModule({
