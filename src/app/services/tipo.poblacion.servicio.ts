@@ -9,17 +9,25 @@ export  class ServicioTipoPoblacion
 
   obtenerTipoPoblacion() : any[] {
     const tiposPoblacion = [
-      {
+       {
         id : 0,
-        descripcion : "-- Seleccione --"
+         descripcion : "-- Seleccione --"
+       },
+      {
+        id : 13,
+        descripcion : "Blanco"
       },
       {
-        id : 1,
+        id : 14,
+        descripcion : "Negro"
+      },
+      {
+        id : 15,
         descripcion : "Indigena"
       },
       {
-        id : 2,
-        descripcion : "Afro-Colombiana"
+        id : 15,
+        descripcion : "Meztizo"
       },
     ];
     return tiposPoblacion;

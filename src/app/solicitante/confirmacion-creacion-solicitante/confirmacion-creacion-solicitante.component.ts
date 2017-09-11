@@ -17,4 +17,9 @@ declare var $: any;
 
 export class ConfirmacionCreacionSolicitanteComponent implements OnInit {
 
+
+  ngOnInit()
+  {
+
+  }
 }

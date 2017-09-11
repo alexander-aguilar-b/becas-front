@@ -1,5 +1,8 @@
 import {Injectable} from "@angular/core";
 import {IPais} from "../models/pais.model";
+import {Http, Response} from "@angular/http";
+import {ConfiguracionServicio} from "./configuracion.servicio";
+import {Observable} from "rxjs/Observable";
 /**
  * Created by edgaguil on 9/08/2017.
  */
@@ -8,6 +11,21 @@ import {IPais} from "../models/pais.model";
 @Injectable()
 export class ServicioPais{
 
+  constructor(private http : Http, private configuracion : ConfiguracionServicio)
+  {}
+
+  obtenerPaises(): Observable<IPais[]> {
+    return this.http.get(this.configuracion.baseUrl +  "general/countries/").map((response : Response) => {
+      return <IPais[]> response.json();
+    }).catch(this.manejadorError);
+  };
+
+  private manejadorError(error : Response)
+  {
+    return Observable.throw(error.statusText);
+  }
+
+/*
   obtenerPaises() : any[]{
 
     const idPaisColombia  = 4;
@@ -47,4 +65,5 @@ export class ServicioPais{
 
     return paises;
   }
+  */
 }

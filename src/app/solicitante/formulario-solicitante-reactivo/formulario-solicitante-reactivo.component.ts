@@ -15,6 +15,9 @@ import {ServicioGenero} from "../../services/genero.servicio";
 import {ServicioTipoPoblacion} from "../../services/tipo.poblacion.servicio";
 import {IExperienciaLaboral} from "../../models/experiencia.laboral.model";
 import {IRegistroSolicitante} from "../../models/registro.solicitante.model";
+import {IGenero} from "../../models/genero.model";
+import {IPais} from "../../models/pais.model";
+import {ITipoDocumento} from "../../models/tipo.documento.model";
 
 
 @Component({
@@ -47,12 +50,17 @@ import {IRegistroSolicitante} from "../../models/registro.solicitante.model";
 
 export class FormularioSolicitanteReactivoComponent implements OnInit {
 
-  tipoDocumentos;
-  generos;
+  tipoDocumentos : ITipoDocumento[];
+  generos : IGenero[];
   tiposPoblacion;
-  paises;
-  departamentos;
+  paises : IPais[];
   listadoExperienciaLaboral: IExperienciaLaboral[] = [];
+
+  valorSeleccionadoTipoDocumento;
+  valorSeleccionadoGenero;
+  valorSeleccionadoTipoPoblacion;
+  valorSeleccionadoPaisNacimiento;
+  valorSeleccionadoPaisResidencia;
 
   constructor(private router: Router, private servicioSolicitante: SolicitanteService, private servicioPais: ServicioPais
     , private servicioTipoDocumento: ServicioTipoDocumento, private servicioGenero: ServicioGenero
@@ -60,10 +68,19 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tipoDocumentos = this.servicioTipoDocumento.obtenerTipoDocumentos();
-    this.generos = this.servicioGenero.obtenerGeneros();
+    //this.tipoDocumentos = this.servicioTipoDocumento.obtenerTipoDocumentos();
+    //this.generos = this.servicioGenero.obtenerGeneros();
     this.tiposPoblacion = this.servicioTipoPoblacion.obtenerTipoPoblacion();
-    this.paises = this.servicioPais.obtenerPaises();
+    //this.paises = this.servicioPais.obtenerPaises();
+    this.servicioPais.obtenerPaises().subscribe(paises => this.paises = paises);
+    this.servicioTipoDocumento.obtenerTipoDocumentos().subscribe(tipoDocumentos => this.tipoDocumentos = tipoDocumentos);
+    this.servicioGenero.obtenerGeneros().subscribe(generos => this.generos = generos);
+
+    this.valorSeleccionadoTipoDocumento = 0;
+    this.valorSeleccionadoGenero = 0;
+    this.valorSeleccionadoTipoPoblacion = 0;
+    this.valorSeleccionadoPaisNacimiento = 0;
+    this.valorSeleccionadoPaisResidencia = 0;
   }
 
   crearSolicitante(formValues) {
@@ -119,17 +136,6 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     login: "",
     usuario: {}
   };
-
-  valorSeleccionadoTipoDocumento = 0;
-  valorSeleccionadoGenero = 0;
-  valorSeleccionadoTipoPoblacion = 0;
-  valorSeleccionadoPaisNacimiento = 0;
-  valorSeleccionadoDepartamentoNacimiento = 0;
-  valorSeleccionadoCiudadNacimiento = 0;
-
-  valorSeleccionadoPaisResidencia = 0;
-  valorSeleccionadoDepartamentoResidencia = 0;
-  valorSeleccionadoCiudadResidencia = 0;
 
 
 }

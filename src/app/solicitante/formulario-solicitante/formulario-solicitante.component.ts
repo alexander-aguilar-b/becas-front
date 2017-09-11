@@ -10,6 +10,8 @@ import {ISolicitante} from "../../models/solicitante.model";
 import {ServicioTipoDocumento} from "../../services/tipo.documento.servicio";
 import {ServicioGenero} from "../../services/genero.servicio";
 import {ServicioTipoPoblacion} from "../../services/tipo.poblacion.servicio";
+import {IPais} from "../../models/pais.model";
+import {IGenero} from "../../models/genero.model";
 
 @Component({
   selector: 'app-formulario-solicitante',
@@ -30,9 +32,9 @@ export class FormularioSolicitanteComponent implements OnInit {
   // private apellidos : FormControl;
 
   tipoDocumentos;
-  generos;
+  generos : IGenero[];
   tiposPoblacion;
-  paises;
+  paises : IPais[];
   departamentos;
 
   constructor(private router : Router , private servicioSolicitante : SolicitanteService, private servicioPais : ServicioPais
@@ -42,9 +44,11 @@ export class FormularioSolicitanteComponent implements OnInit {
 
   ngOnInit() {
     this.tipoDocumentos = this.servicioTipoDocumento.obtenerTipoDocumentos();
-    this.generos = this.servicioGenero.obtenerGeneros();
+    //this.generos = this.servicioGenero.obtenerGeneros();
     this.tiposPoblacion = this.servicioTipoPoblacion.obtenerTipoPoblacion();
-    this.paises = this.servicioPais.obtenerPaises();
+    //this.paises = this.servicioPais.obtenerPaises();
+    this.servicioPais.obtenerPaises().subscribe(paises => this.paises = paises);
+    this.servicioGenero.obtenerGeneros().subscribe(generos => this.generos = generos);
   }
 
   // registrarSolicitante(formValues)

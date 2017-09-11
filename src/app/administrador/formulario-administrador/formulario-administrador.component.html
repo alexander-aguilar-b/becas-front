@@ -10,7 +10,7 @@
         <label class="col-sm-2">Usuario</label>
         <div class="col-sm-4">
           <input id="username" (ngModel)="username" required class="form-control" type="text" name="username">
-          <div *ngIf="formRegistroAdministrador.controls.username?.invalid 
+          <div *ngIf="formRegistroAdministrador.controls.username?.invalid
             && formRegistroAdministrador.controls.username?.touched" class="form-control alert-danger">
             <em>Es requerido</em>
           </div>
@@ -19,9 +19,9 @@
         <div class="col- col-sm-4">
           <input id="correoElectronico" class="form-control" type="email" [(ngModel)]="correoElectronico" name="correoElectronico"
             required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
-          <div *ngIf="formRegistroAdministrador.controls.correoElectronico?.invalid 
+          <div *ngIf="formRegistroAdministrador.controls.correoElectronico?.invalid
             && formRegistroAdministrador.controls.correoElectronico?.touched" class="form-control alert-danger">
-            <em *ngIf="formRegistroAdministrador.controls.correoElectronico?.invalid 
+            <em *ngIf="formRegistroAdministrador.controls.correoElectronico?.invalid
             && formRegistroAdministrador.controls.correoElectronico?.touched">Debe ingresar un correo</em>
           </div>
         </div>
@@ -61,7 +61,7 @@
         <label class="col-sm-2 col-form-label">Nombre</label>
         <div class="col-sm-4">
           <input class="form-control" type="text" (ngModel)="nombre" name="nombre" id="nombre" required>
-          <div *ngIf="formRegistroAdministrador.controls.nombre?.invalid 
+          <div *ngIf="formRegistroAdministrador.controls.nombre?.invalid
           && formRegistroAdministrador.controls.nombre?.touched" class="form-control alert-danger">
           <em>Es requerido</em>
         </div>
@@ -69,7 +69,7 @@
         <label class="col-sm-2 col-form-label">Apellidos</label>
         <div class="col-sm-4">
           <input class="form-control" type="text" (ngModel)="apellidos" name="apellidos" id="apellidos" required>
-          <div *ngIf="formRegistroAdministrador.controls.apellidos?.invalid 
+          <div *ngIf="formRegistroAdministrador.controls.apellidos?.invalid
           && formRegistroAdministrador.controls.apellidos?.touched" class="form-control alert-danger">
           <em>Es requerido</em>
         </div>
@@ -84,7 +84,7 @@
           <select class="form-control" [ngModel]="valorSeleccionadoTipoDocumento" id="id_tipo_documento"
            name="id_tipo_documento" #selectedTechs="ngModel" required>
            <option [value]="">Select a school</option>
-            <option *ngFor="let tipoDocumento of tiposDocumento" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}
+            <option *ngFor="let tipoDocumento of tiposDocumento" [ngValue]="tipoDocumento.id_tipo_documento">{{tipoDocumento.descripcion}}
             </option>
           </select>
           <div *ngIf="selectedTechs.invalid" class="form-control alert-danger">
@@ -94,7 +94,7 @@
         <label class="col-sm-2 col-form-label">Número de documento</label>
         <div class="col-sm-4">
           <input class="form-control" type="text" (ngModel)="numero_documento" name="numero_documento" id="numero_documento" required>
-          <div *ngIf="formRegistroAdministrador.controls.numero_documento?.invalid 
+          <div *ngIf="formRegistroAdministrador.controls.numero_documento?.invalid
           && formRegistroAdministrador.controls.numero_documento?.touched" class="form-control alert-danger">
           <em>Es requerido</em>
         </div>
@@ -106,7 +106,7 @@
       <label class="col-sm-2 col-form-label">Sede</label>
       <div class="col-sm-4">
         <input class="form-control" type="text" (ngModel)="sede" name="sede" id="sede" required>
-        <div *ngIf="formRegistroAdministrador.controls.sede?.invalid 
+        <div *ngIf="formRegistroAdministrador.controls.sede?.invalid
         && formRegistroAdministrador.controls.sede?.touched" class="form-control alert-danger">
         <em>Es requerido</em>
       </div>
@@ -114,7 +114,7 @@
       <label class="col-sm-2 col-form-label">Cargo</label>
       <div class="col-sm-4">
         <input class="form-control" type="text" (ngModel)="cargo" name="cargo" id="cargo" required>
-        <div *ngIf="formRegistroAdministrador.controls.cargo?.invalid 
+        <div *ngIf="formRegistroAdministrador.controls.cargo?.invalid
         && formRegistroAdministrador.controls.cargo?.touched" class="form-control alert-danger">
         <em>Es requerido</em>
       </div>
@@ -125,7 +125,7 @@
       <label class="col-sm-2 col-form-label">Código Activación</label>
       <div class="col-sm-4">
         <input class="form-control" type="text" (ngModel)="codigo_activacion" name="codigo_activacion" id="codigo_activacion" required>
-        <div *ngIf="formRegistroAdministrador.controls.codigo_activacion?.invalid 
+        <div *ngIf="formRegistroAdministrador.controls.codigo_activacion?.invalid
         && formRegistroAdministrador.controls.codigo_activacion?.touched" class="form-control alert-danger">
         <em>Es requerido</em>
       </div>

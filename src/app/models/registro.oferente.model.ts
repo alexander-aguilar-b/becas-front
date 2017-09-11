@@ -10,5 +10,6 @@ export interface IRegistroOferente
   descripcion: string,
   tipoEntidad : number,
   pais : number,
-  nombre : string
+  nombre : string,
+  username : string
 }

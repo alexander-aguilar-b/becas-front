@@ -66,9 +66,10 @@
         <label class="col-sm-2 col-form-label">Tipo Documento</label>
         <div class="col-sm-4">
           <select class="form-control" [(ngModel)]="valorSeleccionadoTipoDocumento" name="tipoDocumento" required id="tipoDocumento">
-            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id">{{tipoDocumento.descripcion}}</option>
+            <option value="0">-- Seleccione --</option>
+            <option *ngFor="let tipoDocumento of tipoDocumentos" [ngValue]="tipoDocumento.id_tipo_documento">{{tipoDocumento.descripcion}}</option>
           </select>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.tipoDocumento?.invalid && (formSolicitante.controls.tipoDocumento.touched)">El tipo de documento es requerido</div>
+          <div class="form-control alert-danger" *ngIf="(formSolicitante.controls.tipoDocumento?.invalid && (formSolicitante.controls.tipoDocumento?.touched))|| (formSolicitante.controls.tipoDocumento?.touched && valorSeleccionadoTipoDocumento == 0)">El tipo de documento es requerido</div>
         </div>
       </div>
     </div>
@@ -114,8 +115,10 @@
         <label class="col-sm-2 col-form-label">Género</label>
         <div class="col-sm-4">
           <select class="form-control" [(ngModel)]="valorSeleccionadoGenero" name="genero" required>
-            <option *ngFor="let genero of generos" [ngValue]="genero.id">{{genero.descripcion}}</option>
+            <option value="0">-- Seleccione --</option>
+            <option *ngFor="let genero of generos" [ngValue]="genero.id_genero">{{genero.descripcion}}</option>
           </select>
+          <div class="form-control alert-danger" *ngIf="(formSolicitante.controls.genero?.invalid && (formSolicitante.controls.genero?.touched))|| (formSolicitante.controls.genero?.touched && valorSeleccionadoGenero == 0)">El género es requerido</div>
         </div>
         <label class="col-sm-2 col-form-label">Estrato</label>
         <div class="col-sm-4">
@@ -142,6 +145,7 @@
           <select class="form-control" [(ngModel)]="valorSeleccionadoTipoPoblacion" name="tipoPoblacion" required>
             <option *ngFor="let tipoPoblacion of tiposPoblacion" [ngValue]="tipoPoblacion.id">{{tipoPoblacion.descripcion}}</option>
           </select>
+          <div class="form-control alert-danger" *ngIf="(formSolicitante.controls.tipoPoblacion?.invalid && (formSolicitante.controls.tipoPoblacion?.touched))|| (formSolicitante.controls.tipoPoblacion?.touched && valorSeleccionadoTipoPoblacion == 0)">El tipo de población es requerido</div>
         </div>
 
         <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
@@ -158,67 +162,76 @@
         <label class="col-sm-2 col-form-label">Pais Nacimiento</label>
         <div class="col-sm-4">
           <select class="form-control" [(ngModel)]="valorSeleccionadoPaisNacimiento" name="paisNacimiento" required>
-            <option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>
+            <option value="0">-- Seleccione --</option>
+            <option *ngFor="let pais of paises" [ngValue]="pais.id_pais">{{pais.nombre}}</option>
           </select>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.paisNacimiento?.invalid && (formSolicitante.controls.paisNacimiento.touched)">El pais de nacimiento es requerido</div>
+          <div class="form-control alert-danger" *ngIf="(formSolicitante.controls.paisNacimiento?.invalid && (formSolicitante.controls.paisNacimiento.touched)) || (formSolicitante.controls.paisNacimiento?.touched && valorSeleccionadoPaisNacimiento == 0)">El pais de nacimiento es requerido</div>
         </div>
 
-        <label class="col-sm-2 col-form-label">Departamento  Nacimiento</label>
-        <div class="col-sm-4">
-          <select class="form-control" [(ngModel)]="valorSeleccionadoDepartamentoNacimiento" name="departamentoNacimiento" required>
-            <option *ngFor="let departamento of departamentos" [ngValue]="departamento.id">{{departamento.descripcion}}</option>
-          </select>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.departamentoNacimiento?.invalid && (formSolicitante.controls.departamentoNacimiento.touched)">El departamento de nacimiento es requerido</div>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Ciudad Nacimiento</label>
-        <div class="col-sm-4">
-          <select class="form-control" [(ngModel)]="valorSeleccionadoCiudadNacimiento" name="paisResidencia" required>
-            <option *ngFor="let municipio of municipios" [ngValue]="municipio.id">{{municipio.descripcion}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
+        <!--<label class="col-sm-2 col-form-label">Departamento  Nacimiento</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<select class="form-control" [(ngModel)]="valorSeleccionadoDepartamentoNacimiento" name="departamentoNacimiento" required>-->
+            <!--<option *ngFor="let departamento of departamentos" [ngValue]="departamento.id">{{departamento.descripcion}}</option>-->
+          <!--</select>-->
+          <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.departamentoNacimiento?.invalid && (formSolicitante.controls.departamentoNacimiento.touched)">El departamento de nacimiento es requerido</div>-->
+        <!--</div>-->
 
 
-    <div class="row">
-      <div class="form-group row">
         <label class="col-sm-2 col-form-label">Pais Residencia</label>
         <div class="col-sm-4">
           <select class="form-control" [(ngModel)]="valorSeleccionadoPaisResidencia" name="paisResidencia">
-            <option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>
+            <option value="0">-- Seleccione --</option>
+            <option *ngFor="let pais of paises" [ngValue]="pais.id_pais">{{pais.nombre}}</option>
           </select>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.paisResidencia?.invalid && (formSolicitante.controls.paisResidencia.touched)">El pais de residencia es requerido</div>
-        </div>
-
-        <label class="col-sm-2 col-form-label">Departamento  Residencia</label>
-        <div class="col-sm-4">
-          <select class="form-control" [(ngModel)]="valorSeleccionadoDepartamentoResidencia" name="departamentoResidencia">
-            <option *ngFor="let departamento of departamentos" [ngValue]="departamento.id">{{departamento.descripcion}}</option>
-          </select>
-          <div class="form-control alert-danger" *ngIf="formSolicitante.controls.departamentoResidencia?.invalid && (formSolicitante.controls.departamentoResidencia.touched)">El departamento de nacimiento es requerido</div>
+          <div class="form-control alert-danger" *ngIf="(formSolicitante.controls.paisResidencia?.invalid && (formSolicitante.controls.paisResidencia.touched)) || (formSolicitante.controls.paisResidencia?.touched && valorSeleccionadoPaisResidencia == 0)">El pais de residencia es requerido</div>
         </div>
 
       </div>
     </div>
 
-    <div class="row">
-      <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Ciudad Residencia</label>
-        <div class="col-sm-4">
-          <select class="form-control" [(ngModel)]="valorSeleccionadoCiudadResidencia" name="municipioResidencia">
-            <option *ngFor="let municipio of municipios" [ngValue]="municipio.id">{{municipio.descripcion}}</option>
-          </select>
-        </div>
-      </div>
-    </div>
+    <!--<div class="row">-->
+      <!--<div class="form-group row">-->
+        <!--<label class="col-sm-2 col-form-label">Ciudad Nacimiento</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<select class="form-control" [(ngModel)]="valorSeleccionadoCiudadNacimiento" name="paisResidencia" required>-->
+            <!--<option *ngFor="let municipio of municipios" [ngValue]="municipio.id">{{municipio.descripcion}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
+    <!--<div class="row">-->
+      <!--<div class="form-group row">-->
+        <!--<label class="col-sm-2 col-form-label">Pais Residencia</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<select class="form-control" [(ngModel)]="valorSeleccionadoPaisResidencia" name="paisResidencia">-->
+            <!--<option *ngFor="let pais of paises" [ngValue]="pais.id">{{pais.nombre}}</option>-->
+          <!--</select>-->
+          <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.paisResidencia?.invalid && (formSolicitante.controls.paisResidencia.touched)">El pais de residencia es requerido</div>-->
+        <!--</div>-->
+
+        <!--<label class="col-sm-2 col-form-label">Departamento  Residencia</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<select class="form-control" [(ngModel)]="valorSeleccionadoDepartamentoResidencia" name="departamentoResidencia">-->
+            <!--<option *ngFor="let departamento of departamentos" [ngValue]="departamento.id">{{departamento.descripcion}}</option>-->
+          <!--</select>-->
+          <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.departamentoResidencia?.invalid && (formSolicitante.controls.departamentoResidencia.touched)">El departamento de nacimiento es requerido</div>-->
+        <!--</div>-->
+
+      <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="row">-->
+      <!--<div class="form-group row">-->
+        <!--<label class="col-sm-2 col-form-label">Ciudad Residencia</label>-->
+        <!--<div class="col-sm-4">-->
+          <!--<select class="form-control" [(ngModel)]="valorSeleccionadoCiudadResidencia" name="municipioResidencia">-->
+            <!--<option *ngFor="let municipio of municipios" [ngValue]="municipio.id">{{municipio.descripcion}}</option>-->
+          <!--</select>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 
   <h4>Experiencia Laboral</h4>

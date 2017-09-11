@@ -6,6 +6,7 @@ import { ServicioTipoDocumento } from "../../services/tipo.documento.servicio";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
 import { AutenticacionService } from "../../services/autenticacion.service";
 import { IAdministrador } from '../../models/administrador.model';
+import {ITipoDocumento} from "../../models/tipo.documento.model";
 
 @Component({
   selector: 'app-formulario-administrador',
@@ -14,10 +15,10 @@ import { IAdministrador } from '../../models/administrador.model';
 })
 export class FormularioAdministradorComponent implements OnInit {
 
-  tiposDocumento;
-  administradorForm: FormGroup
+  tiposDocumento : ITipoDocumento[];
+  administradorForm: FormGroup;
   contrasena: FormControl
-  confirmarcontrasena: FormControl
+  confirmarcontrasena: FormControl;
   administrador: IAdministrador;
 
   constructor(public formBuilder: FormBuilder, private router: Router, private servicioAdministrador: ServicioAdministrador
@@ -33,7 +34,8 @@ export class FormularioAdministradorComponent implements OnInit {
 
   ngOnInit() {
     //this.autenticacionService.validarAutorizacion('administrador/formulario-administrador');
-    this.tiposDocumento = this.servicioTipoDocumento.obtenerTipoDocumentos();
+    //this.tiposDocumento = this.servicioTipoDocumento.obtenerTipoDocumentos();
+    this.servicioTipoDocumento.obtenerTipoDocumentos().subscribe(tiposDocumento => this.tiposDocumento = tiposDocumento);
     this.contrasena = new FormControl('', [Validators.required]);
     this.confirmarcontrasena = new FormControl('', [Validators.required]);
   }
