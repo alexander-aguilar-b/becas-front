@@ -14,6 +14,7 @@ import {FormularioAdministradorComponent} from "./administrador/formulario-admin
 import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-oferta.component";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
+import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
 
 const routes: Routes = [
   {
@@ -80,6 +81,10 @@ const routes: Routes = [
     path: 'administrador/confirmacion-creacion-administrador',
     component : ConfirmacionCreacionAdministradorComponent
   },
+  {
+    path: 'oferta/confirmacion-creacion-oferta',
+    component : ConfirmacionCreacionOfertaComponent
+  }
 ];
 
 @NgModule({

@@ -4,6 +4,7 @@ import { Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 import {IRegistroOferente} from "../models/registro.oferente.model";
+import {AutenticacionService} from "./autenticacion.service";
 
 /**
  * Created by edgaguil on 8/08/2017.
@@ -12,13 +13,14 @@ import {IRegistroOferente} from "../models/registro.oferente.model";
 @Injectable()
 export class ServicioOferente {
 
-  constructor(private http : Http, private configuracion : ConfiguracionServicio)
+  constructor(private http : Http, private configuracion : ConfiguracionServicio, private autenticacionService : AutenticacionService)
   {
   }
 
   crearOferente(oferente : IRegistroOferente) : Observable<IOferente>
   {
-    let headers : Headers = new Headers({'Content-Type' : 'application/json'});
+    let token = this.autenticacionService.obtenerCookie('token');
+    let headers= new Headers({'Content-Type' : 'application/json','Authorization' : 'Basic ' + token});
     let options = new RequestOptions({ headers : headers});
     return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferente), options).map((response : Response) => {
       return response.json()

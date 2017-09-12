@@ -28,3 +28,26 @@ export interface IItem
 }
 
 
+export class ItemFormulario implements  IItemFormulario
+{
+  public nombre : string;
+  public descripcion : string;
+  public id_tipo_item : number;
+  public tamanio : number;
+  public obligatorio : boolean;
+  public valores_posibles : string[];
+
+  constructor(){}
+}
+
+export interface IItemFormulario
+{
+  //id : number,
+  nombre : string,
+  descripcion : string,
+  id_tipo_item : number,
+  tamanio : number,
+  obligatorio : boolean,
+  valores_posibles : string[]
+}
+
