@@ -39,10 +39,13 @@ import {GlobalEventsManager} from "./GlobalEventsManager";
 import {ServicioTipoItem} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
+import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
+
 
 
 
 declare let jQuery : Object;
+
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ declare let jQuery : Object;
     FormularioAdministradorComponent,
     CreacionOfertaComponent,
     ConfirmacionCreacionSolicitanteComponent,
-    ConfirmacionCreacionAdministradorComponent
+    ConfirmacionCreacionAdministradorComponent,
+    ConfirmacionCreacionOfertaComponent
+
   ],
   imports: [
     BrowserModule,

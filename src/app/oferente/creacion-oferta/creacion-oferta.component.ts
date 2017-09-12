@@ -4,7 +4,7 @@ import {ServicioOferta} from "../../services/oferta.servicio";
 import {ServicioTipoOferta} from "../../services/tipo.oferta.servicio";
 import {Etapa} from "../../models/etapa.model";
 import {Oferta} from "../../models/oferta.model";
-import {Item} from "../../models/item.model";
+import {Item, ItemFormulario} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
 import {Formulario} from "../../models/formulario.model";
 import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario.model";
@@ -45,7 +45,7 @@ export class CreacionOfertaComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
+    //this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
     this.oferta = new Oferta();
     this.oferta.etapas = [];
     this.numeroItems = 0;
@@ -67,27 +67,29 @@ export class CreacionOfertaComponent implements OnInit {
 
     this.numeroItems = this.numeroItems + 1;
 
-    let item: Item = new Item();
+    let item: ItemFormulario = new ItemFormulario();
     let opciones: string = oferta.opciones ? oferta.opciones.trim() : '';
     let tipoDelimitador: string = oferta.tipoDelimitador;
 
     item.descripcion = oferta.nombreItem;
-    item.idTipoControl = parseInt(oferta.tipoControl);
-    item.requerido = oferta.requerido;
-    item.tamanoMaximo = oferta.tamanoMaximo;
+    item.id_tipo_item = parseInt(oferta.tipoControl);
+    item.obligatorio = oferta.requerido;
+    item.tamanio = oferta.tamanoMaximo;
 
     if (opciones.length > 0) {
-      let listaRespuestas: Respuesta[];
+      let listaRespuestas: string[];
       listaRespuestas = [];
       let respuestas: string[];
       respuestas = opciones.split(tipoDelimitador);
-
+      /*
       for (let respuesta of respuestas) {
-        let itemRespuesta: Respuesta = new Respuesta();
-        itemRespuesta.respuesta = respuesta;
+        //let itemRespuesta: Respuesta = new Respuesta();
+        //itemRespuesta.respuesta = respuesta;
         listaRespuestas.push(itemRespuesta);
       }
-      item.listaRespuestas = listaRespuestas;
+      */
+
+      item.valores_posibles = respuestas;
     }
 
     this.listaItems.push(item);
@@ -128,13 +130,15 @@ export class CreacionOfertaComponent implements OnInit {
     this.oferta.informacion_adicional = oferta.informacion_adicional;
 
     console.log(JSON.stringify(this.oferta));
-    this.router.navigate(['/oferente/confirmacion-creacion-oferente']);
+    //this.router.navigate(['/oferente/confirmacion-creacion-oferente']);
 
-    // console.log(this.oferta);
-    // this.servicioOferta.crearOferta(formValues)
-    //   .subscribe(event => {
-    //     this.router.navigate(['/oferente/confirmacion-creacion-oferente'])
-    //   })
+    console.log(this.oferta);
+
+     this.servicioOferta.crearOfertaConvocatoria(this.oferta)
+      .subscribe(event => {
+         this.router.navigate(['/oferta/confirmacion-creacion-oferta'])
+       });
+
   }
 
   borrarEtapa(): void {

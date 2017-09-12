@@ -22,7 +22,6 @@ export class AppComponent implements OnInit{
       this.globalEventsManager.showNavBar.subscribe(() => {
         this.actualizarMenu();
     });
-
   }
 
   ngOnInit() {

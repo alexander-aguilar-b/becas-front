@@ -413,53 +413,53 @@
                       </td>
                     </tr>
                     <tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
-                      <td *ngIf="(itemLista?.idTipoControl ==  tiposItemEnum.etiqueta)" colspan="3">
+                      <td *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" colspan="3">
                         <label class="form-control">{{itemLista?.descripcion}}</label>
                       </td>
-                      <td *ngIf="itemLista?.idTipoControl >= (itemLista?.idTipoControl ==  tiposItemEnum.titulo)">
+                      <td *ngIf="itemLista?.id_tipo_item >= (itemLista?.id_tipo_item ==  tiposItemEnum.titulo)">
                         <h3>{{itemLista?.descripcion}}</h3>
                       </td>
 
                       <td>
-                        <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.textoEntrada">
+                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada">
                           <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required class="form-control">
                           <input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor" class="form-control">
                         </div>
 
-                        <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.entradaNumerica">
+                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.entradaNumerica">
                           <input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required class="form-control">
                           <input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor" class="form-control">
                         </div>
 
-                        <div *ngIf="itemLista?.idTipoControl ==  tiposItemEnum.fecha">
+                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.fecha">
                           <input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required class="form-control">
                           <input *ngIf="!itemLista?.requerido" type="date" name="item_{{i}}_valor" class="form-control">
                         </div>
 
-                        <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaSeleccionable">
+                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionable">
                           <select class="form-control">
                             <option>-- Seleccione --</option>
-                            <option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}</option>
+                            <option *ngFor="let respuesta of itemLista?.valores_posibles">{{respuesta}}</option>
 
                           </select>
                         </div>
 
-                        <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaRadioButton">
-                          <div class="row" *ngFor="let respuesta of itemLista.listaRespuestas">
+                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaRadioButton">
+                          <div class="row" *ngFor="let respuesta of itemLista.valores_posibles">
                             <div class="form-group">
                               <div class="radio">
-                                <label class="control-label"><input type="radio" name="options">{{respuesta.respuesta}}</label>
+                                <label class="control-label"><input type="radio" name="options">{{respuesta}}</label>
                               </div>
                             </div>
                           </div>
 
                         </div>
 
-                        <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.listaSeleccionMultiple">
-                          <label *ngFor="let respuesta of itemLista.listaRespuestas">
-                            <input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>
+                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionMultiple">
+                          <label *ngFor="let respuesta of itemLista.valores_posibles">
+                            <input type="checkbox" name="options">{{respuesta}}</label><br/>
                         </div>
-                        <div *ngIf="itemLista?.idTipoControl == tiposItemEnum.archivo">
+                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.archivo">
                           <input type="file">
                         </div>
                       </td>
