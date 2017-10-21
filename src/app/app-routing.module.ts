@@ -15,6 +15,9 @@ import {CreacionOfertaComponent} from "./oferente/creacion-oferta/creacion-ofert
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
+import {ConsultarOferta} from "./oferta/consultar-oferta/consultar-oferta.component";
+import {DetalleOfertaSolicitanteComponent} from "./oferta/detalle-oferta-solicitante/detalle-oferta-solicitante.component";
+import {EtapasOfertaSolicitanteComponet} from "./oferta/etapas-oferta-solicitante/etapas-oferta-solicitante.component";
 
 const routes: Routes = [
   {
@@ -84,6 +87,18 @@ const routes: Routes = [
   {
     path: 'oferta/confirmacion-creacion-oferta',
     component : ConfirmacionCreacionOfertaComponent
+  },
+  {
+    path: 'oferta/consultar-oferta',
+    component : ConsultarOferta
+  },
+  {
+    path: 'oferta/detalle-oferta-solicitante/:id',
+    component :DetalleOfertaSolicitanteComponent
+  },
+  {
+    path: 'oferta/etapas-oferta-solicitante/:idOferta',
+    component : EtapasOfertaSolicitanteComponet
   }
 ];
 

@@ -61,7 +61,6 @@ export class ServicioMenu {
           },
 
           {
-
             ruta: 'oferente/formulario-oferente',
 
             nombre_menu: "Solicitar cuenta"

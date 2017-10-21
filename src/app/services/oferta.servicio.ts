@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import { Subject, Observable} from 'rxjs/Rx';
+import {Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
-import {IOferta} from "../models/oferta.model";
+import {IOferta, Oferta} from "../models/oferta.model";
 import {AutenticacionService} from "./autenticacion.service";
 
 /**
@@ -12,34 +12,92 @@ import {AutenticacionService} from "./autenticacion.service";
 @Injectable()
 export class ServicioOferta {
 
-  constructor(private http : Http, private configuracion : ConfiguracionServicio, private autenticacionService : AutenticacionService)
-  {
+  constructor(private http: Http, private configuracion: ConfiguracionServicio, private autenticacionService: AutenticacionService) {
   }
 
-  crearOferta(oferta): Observable<IOferta>
-  {
-    let headers= new Headers({'Content-Type' : 'application/json'});
-    let options = new RequestOptions({ headers : headers});
-    return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferta), options).map((response : Response) => {
+  crearOferta(oferta): Observable<IOferta> {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(this.configuracion.baseUrl + 'offerers/', JSON.stringify(oferta), options).map((response: Response) => {
       return response.json()
     }).catch(this.manejadorError);
   }
 
-  crearOfertaConvocatoria(oferta): Observable<IOferta>
-  {
+  crearOfertaConvocatoria(oferta): Observable<IOferta> {
     let token = this.autenticacionService.obtenerCookie('token');
-    let headers= new Headers({'Content-Type' : 'application/json','Authorization' : 'Basic ' + token});
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
 
 
-    let options = new RequestOptions({ headers : headers});
-    return this.http.post(this.configuracion.baseUrl +  'announcements/', JSON.stringify(oferta), options).map((response : Response) => {
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(this.configuracion.baseUrl + 'announcements/', JSON.stringify(oferta), options).map((response: Response) => {
       return response.text() ? response.json() : {}
     }).catch(this.manejadorError);
 
   }
 
-  private manejadorError(error: Response)
-  {
+  /** */
+  consultarOfertas(codigoConvocatoria): IOferta[] {
+    const ofertas = [];
+    let oferta1: IOferta;
+    let oferta2: IOferta;
+
+    oferta1 = {
+      id : 1,
+      id_oferente: 1,
+      nombre: 'Oferta 1',
+      fecha_inicio: '10/10/2017',
+      fecha_fin: '11/11/2017',
+      descripcion: 'Descripción 1',
+      id_tipo_convocatoria: 1,
+      requisitos: 'requisitos1',
+      condiciones: 'condiciones1',
+      informacion_adicional: 'informacion adicional1',
+      etapas : []
+    };
+
+    oferta2 = {
+      id : 2,
+      id_oferente: 2,
+      nombre: 'Oferta 2',
+      fecha_inicio: '11/10/2017',
+      fecha_fin: '12/11/2017',
+      descripcion: 'Descripción 2',
+      id_tipo_convocatoria: 1,
+      requisitos: 'requisitos2',
+      condiciones: 'condiciones2',
+      informacion_adicional: 'informacion adicional2',
+      etapas : []
+    };
+
+    ofertas.push(oferta1);
+    ofertas.push(oferta2);
+
+    return ofertas;
+
+  }
+
+  consultarOferta(idOferta): IOferta {
+    let oferta1: IOferta;
+
+    oferta1 = {
+      id : 1,
+      id_oferente: 1,
+      nombre: 'Oferta 1',
+      fecha_inicio: '10/10/2017',
+      fecha_fin: '11/11/2017',
+      descripcion: 'Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1',
+      id_tipo_convocatoria: 1,
+      requisitos: 'requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1',
+      condiciones: 'condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1 condiciones1',
+      informacion_adicional: 'informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1 informacion adicional1',
+      etapas : []
+    };
+
+    return oferta1;
+
+  }
+
+  private manejadorError(error: Response) {
     console.log(error);
     return Observable.throw(error.statusText);
   }

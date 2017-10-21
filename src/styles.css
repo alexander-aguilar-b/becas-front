@@ -15,9 +15,31 @@
   margin: auto;
 }
 
+.padding-right-m{
+  padding-right: 20px;
+}
+
+.padding-bottom-m{
+  padding-bottom: 20px;
+}
+
+.padding-bottom-l{
+  padding-bottom: 40px;
+}
+
+.padding-right-s{
+  padding-left: 5px;
+}
+
+
+
 .top-buffer { margin-top:20px; }
 
 
 .top-buffer-sm{
   margin-top:5px;
+}
+
+.font-bold {
+  font-weight: bold;
 }

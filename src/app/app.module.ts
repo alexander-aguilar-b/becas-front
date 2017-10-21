@@ -40,12 +40,13 @@ import {ServicioTipoItem} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
-
-
-
+import {ConsultarOferta} from "./oferta/consultar-oferta/consultar-oferta.component";
+import {DetalleOfertaSolicitanteComponent} from "./oferta/detalle-oferta-solicitante/detalle-oferta-solicitante.component";
+import {EtapasOfertaComponent} from "./oferta/etapas-oferta/etapas-oferta.component";
+import {EtapasOfertaSolicitanteComponet} from "./oferta/etapas-oferta-solicitante/etapas-oferta-solicitante.component";
+import {ServicioEtapasOferta} from "./services/etapas.oferta.servicio";
 
 declare let jQuery : Object;
-
 
 @NgModule({
   declarations: [
@@ -67,8 +68,11 @@ declare let jQuery : Object;
     CreacionOfertaComponent,
     ConfirmacionCreacionSolicitanteComponent,
     ConfirmacionCreacionAdministradorComponent,
-    ConfirmacionCreacionOfertaComponent
-
+    ConfirmacionCreacionOfertaComponent,
+    ConsultarOferta,
+    DetalleOfertaSolicitanteComponent,
+    EtapasOfertaComponent,
+    EtapasOfertaSolicitanteComponet
   ],
   imports: [
     BrowserModule,
@@ -96,8 +100,11 @@ declare let jQuery : Object;
     GlobalEventsManager,
     ServicioTipoPoblacion,
     ServicioTipoItem,
+    ServicioEtapasOferta,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
+

@@ -5,6 +5,7 @@ import {Etapa} from "./etapa.model";
 
 export class Oferta
 {
+  id: number;
   id_oferente: number;
   nombre: string;
   fecha_inicio: string;
@@ -21,6 +22,7 @@ export class Oferta
 
 export interface IOferta
 {
+  id: number;
   id_oferente: number;
   nombre: string;
   fecha_inicio: string;
