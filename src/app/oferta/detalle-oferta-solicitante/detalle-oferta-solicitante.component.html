@@ -2,63 +2,65 @@
       <!--(ngSubmit)="consultarOfertas(formConsultarOferta.value)">-->
 <form #formDetalleOfertaSolicitante="ngForm" class="form-horizontal">
 
-  <h3>Detalle de la Oferta</h3>
+  <!--<h3>Detalle de la Oferta</h3>-->
 
-  <div class="panel panel-default">
-    <div class="panel-heading font-bold"><span class="glyphicon glyphicon-info-sign"></span> Información Básica de la Oferta</div>
-    <div class="panel-body">
-      <div class="row">
-        <label class="col-sm-2">Nombre:</label>
-        <label class="col-sm-3">{{detalleOferta.nombre}}</label>
-        <label class="col-sm-2">Tipo Oferta:</label>
-        <label class="col-sm-3">{{detalleOferta.id_tipo_convocatoria}}</label>
-      </div>
-      <div class="row">
-        <label class="col-sm-2">Fecha Inicio:</label>
-        <label class="col-sm-3">{{detalleOferta.fecha_inicio | date:'shortDate'}}</label>
-        <label class="col-sm-2">Fecha Fin:</label>
-        <label class="col-sm-3">{{detalleOferta.fecha_fin | date:'shortDate'}}</label>
-      </div>
-    </div>
-  </div>
+  <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading font-bold"><span class="glyphicon glyphicon-info-sign"></span> Información Básica de la Oferta</div>-->
+    <!--<div class="panel-body">-->
+      <!--<div class="row">-->
+        <!--<label class="col-sm-2">Nombre:</label>-->
+        <!--<label class="col-sm-3">{{detalleOferta.nombre}}</label>-->
+        <!--<label class="col-sm-2">Tipo Oferta:</label>-->
+        <!--<label class="col-sm-3">{{detalleOferta.id_tipo_convocatoria}}</label>-->
+      <!--</div>-->
+      <!--<div class="row">-->
+        <!--<label class="col-sm-2">Fecha Inicio:</label>-->
+        <!--<label class="col-sm-3">{{detalleOferta.fecha_inicio | date:'shortDate'}}</label>-->
+        <!--<label class="col-sm-2">Fecha Fin:</label>-->
+        <!--<label class="col-sm-3">{{detalleOferta.fecha_fin | date:'shortDate'}}</label>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
 
-    <hr class="sep-tt">
-    <div class="panel panel-default top-buffer">
-      <div class="panel-heading font-bold"><span class="glyphicon glyphicon-list"></span> Descripción</div>
-      <div class="panel-body">
-        <span class="col-sm-10">{{detalleOferta.descripcion}}</span>
-      </div>
-    </div>
+    <!--<hr class="sep-tt">-->
+    <!--<div class="panel panel-default top-buffer">-->
+      <!--<div class="panel-heading font-bold"><span class="glyphicon glyphicon-list"></span> Descripción</div>-->
+      <!--<div class="panel-body">-->
+        <!--<span class="col-sm-10">{{detalleOferta.descripcion}}</span>-->
+      <!--</div>-->
+    <!--</div>-->
 
-  <div class="panel panel-default top-buffer">
-    <div class="panel-heading font-bold"><span class="glyphicon glyphicon-check"></span> Requisitos</div>
-    <div class="panel-body">
-      <span class="col-sm-10">{{detalleOferta.requisitos}}</span>
-    </div>
-  </div>
+  <!--<div class="panel panel-default top-buffer">-->
+    <!--<div class="panel-heading font-bold"><span class="glyphicon glyphicon-check"></span> Requisitos</div>-->
+    <!--<div class="panel-body">-->
+      <!--<span class="col-sm-10">{{detalleOferta.requisitos}}</span>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="panel panel-default top-buffer">
-    <div class="panel-heading font-bold"><span class="glyphicon glyphicon-list-alt"></span> Condiciones</div>
-    <div class="panel-body">
-      <span class="col-sm-10">{{detalleOferta.condiciones}}</span>
-    </div>
-  </div>
+  <!--<div class="panel panel-default top-buffer">-->
+    <!--<div class="panel-heading font-bold"><span class="glyphicon glyphicon-list-alt"></span> Condiciones</div>-->
+    <!--<div class="panel-body">-->
+      <!--<span class="col-sm-10">{{detalleOferta.condiciones}}</span>-->
+    <!--</div>-->
+  <!--</div>-->
 
-  <div class="panel panel-default top-buffer">
-    <div class="panel-heading font-bold"><span class="glyphicon glyphicon-plus"></span> Información Adicional</div>
-    <div class="panel-body">
-      <span class="col-sm-10">{{detalleOferta.informacion_adicional}}</span>
-    </div>
-  </div>
+  <!--<div class="panel panel-default top-buffer">-->
+    <!--<div class="panel-heading font-bold"><span class="glyphicon glyphicon-plus"></span> Información Adicional</div>-->
+    <!--<div class="panel-body">-->
+      <!--<span class="col-sm-10">{{detalleOferta.informacion_adicional}}</span>-->
+    <!--</div>-->
+  <!--</div>-->
+
+
+
+  <app-detalle-oferta [detalleOferta]="detalleOferta" ></app-detalle-oferta>
 
   <div class="top-buffer">
-    <!--<div class="top-buffer padding-right-m padding-bottom-l">-->
     <button class="btn btn-primary" (click)="consultarEtapasOferta(detalleOferta.id)">
       <span class="glyphicon glyphicon-search"></span> Ver Etapas
     </button>
   </div>
-
 
   <hr class="sep-tt top-buffer">
 
