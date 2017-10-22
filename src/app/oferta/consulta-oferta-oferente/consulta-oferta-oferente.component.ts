@@ -46,7 +46,6 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
 
   /** Consulta el detalle de la oferta */
   consultarDetalleOferta(idOferta){
-    this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ])
-
+    this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ]);
   }
 }

@@ -123,11 +123,11 @@ const routes: Routes = [
     component : FormularioEtapaComponent
   },
   {
-    path: 'oferta/consultar-oferta-solicitante',
+    path: 'oferta/consulta-oferta-solicitante',
     component : ConsultarOfertaSolicitanteComponent
   },
   {
-    path: 'oferta/consultar-oferta-oferente',
+    path: 'oferta/consulta-oferta-oferente',
     component : ConsultarOfertaOferenteComponent
   },
 ];

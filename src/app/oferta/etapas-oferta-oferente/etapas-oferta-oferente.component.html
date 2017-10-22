@@ -18,16 +18,13 @@
   <tr *ngFor='let etapaOferta of etapasOferta'>
     <td>{{etapaOferta.nombre}}</td>
     <td>{{etapaOferta.descripcion}}</td>
-    <td>{{etapaOferta.fecha_inicio | date:'shortDate'}}</td>
-    <td>{{etapaOferta.fecha_fin | date:'shortDate'}}</td>
-    <td>{{etapaOferta.cantidad_a_seleccionar}}</td>
+    <td>{{etapaOferta.fechaInicio | date:'shortDate'}}</td>
+    <td>{{etapaOferta.fechaFin | date:'shortDate'}}</td>
+    <td>{{etapaOferta.cantidadASeleccionar}}</td>
     <td>
       <div class="dropdown">
         <button class="btn" data-toggle="dropdown">Acciones <span class="caret"></span></button>
         <ul class="dropdown-menu">
-          <!--<li>-->
-            <!--<a href="#" tabindex="-1">Ver Formulario</a>-->
-          <!--</li>-->
           <li>
             <a href="#" tabindex="-1" (click)="editarEtapaOferta($event, etapaOferta.id)">Editar</a>
           </li>

@@ -37,10 +37,9 @@ export class ConsultarOferta implements OnInit {
   /** Consulta de las ofertas*/
   consultarOfertas(filtroBusqueda){
     console.log(filtroBusqueda);
-
     //this.ofertas = this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria);
 
-    this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
+    this.servicioOferta.consultarOfertasSolicitante(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
       this.ofertas = ofertas;
       console.log(ofertas);
     });

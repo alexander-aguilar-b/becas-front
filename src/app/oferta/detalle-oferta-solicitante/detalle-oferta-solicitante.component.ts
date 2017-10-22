@@ -16,30 +16,30 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class DetalleOfertaSolicitanteComponent implements OnInit {
 
   //detalleOferta : IOferta;
-  detalleOferta : IOfertaConsulta;
+  detalleOferta: IOfertaConsulta;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private activatedRouter : ActivatedRoute, private router : Router, private servicioOferta : ServicioOferta){
+  constructor(private activatedRouter: ActivatedRoute, private router: Router, private servicioOferta: ServicioOferta) {
   }
 
   /***Metodo de Inicialización del componente */
-  ngOnInit(){
-    let idOferta : string;
+  ngOnInit() {
+    let idOferta: string;
     idOferta = this.activatedRouter.snapshot.paramMap.get('id');
     //this.detalleOferta = this.servicioOferta.consultarOferta(idOferta);
-    this.servicioOferta.consultarOferta(idOferta).subscribe(detalleOferta =>{
+    this.servicioOferta.consultarOferta(idOferta).subscribe(detalleOferta => {
       this.detalleOferta = detalleOferta;
       console.log(detalleOferta);
-    }
-    );
+    });
+
     console.log(this.detalleOferta);
   }
 
-  aplicarOferta(){
+  aplicarOferta() {
 
   }
 
-  consultarEtapasOferta(idOferta){
+  consultarEtapasOferta(idOferta) {
     this.router.navigate(['/oferta/etapas-oferta-solicitante', idOferta]);
   }
 

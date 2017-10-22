@@ -33,8 +33,8 @@ export class EtapasOfertaOferenteComponent{
       this.etapasOferta = etapas;
       console.log(etapas)
     });
-
   }
+
 
   eliminarEtapa(e, idEtapa)
   {

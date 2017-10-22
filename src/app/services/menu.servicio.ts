@@ -24,6 +24,10 @@ export class ServicioMenu {
             nombre_menu: "Consultar Oferta",
             ruta: "oferta/consultar-oferta-solicitante"
           },
+          {
+            ruta: 'oferta/consulta-oferta-oferente',
+            nombre_menu: "Consultar Ofertas oferente"
+          },
         ];
 
         break;
@@ -48,6 +52,10 @@ export class ServicioMenu {
           {
             ruta: 'oferente/formulario-oferente',
             nombre_menu: "Solicitar cuenta"
+          },
+          {
+            ruta: 'oferta/consulta-oferta-oferente',
+            nombre_menu: "Consultar Ofertas"
           },
         ];
 
