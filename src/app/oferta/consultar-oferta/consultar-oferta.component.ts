@@ -41,8 +41,12 @@ export class ConsultarOferta implements OnInit {
   /** Consulta el detalle de la oferta */
   consultarDetalleOferta(idOferta){
     //TODO: validar el role y direccionar adecuadamente
-    //let codigoConvocatoria = idOferta;
-    this.router.navigate(['/oferta/detalle-oferta-solicitante', idOferta ])
+
+    //Redireccion a solicitante
+    //this.router.navigate(['/oferta/detalle-oferta-solicitante', idOferta ])
+
+    //Redireccion a oferente
+    this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ])
 
   }
 }

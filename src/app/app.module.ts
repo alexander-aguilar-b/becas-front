@@ -46,6 +46,11 @@ import {EtapasOfertaComponent} from "./oferta/etapas-oferta/etapas-oferta.compon
 import {EtapasOfertaSolicitanteComponet} from "./oferta/etapas-oferta-solicitante/etapas-oferta-solicitante.component";
 import {ServicioEtapasOferta} from "./services/etapas.oferta.servicio";
 import {DetalleOfertaComponent} from "./oferta/detalle-oferta/detalle-oferta.component";
+import {DetalleOfertaOferenteComponent} from "./oferta/detalle-oferta-oferente/detalle-oferta-oferente.component";
+import {EtapasOfertaOferenteComponent} from "./oferta/etapas-oferta-oferente/etapas-oferta-oferente.component";
+import {EditarEtapaOfertaComponent} from "./oferta/editar-etapa-oferta/editar-etapa-oferta.component";
+import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-etapa.component";
+
 
 declare let jQuery : Object;
 
@@ -74,7 +79,11 @@ declare let jQuery : Object;
     DetalleOfertaSolicitanteComponent,
     EtapasOfertaComponent,
     EtapasOfertaSolicitanteComponet,
-    DetalleOfertaComponent
+    DetalleOfertaComponent,
+    DetalleOfertaOferenteComponent,
+    EtapasOfertaOferenteComponent,
+    EditarEtapaOfertaComponent,
+    FormularioEtapaComponent
   ],
   imports: [
     BrowserModule,

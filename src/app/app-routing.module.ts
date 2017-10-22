@@ -18,6 +18,10 @@ import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creac
 import {ConsultarOferta} from "./oferta/consultar-oferta/consultar-oferta.component";
 import {DetalleOfertaSolicitanteComponent} from "./oferta/detalle-oferta-solicitante/detalle-oferta-solicitante.component";
 import {EtapasOfertaSolicitanteComponet} from "./oferta/etapas-oferta-solicitante/etapas-oferta-solicitante.component";
+import {DetalleOfertaOferenteComponent} from "./oferta/detalle-oferta-oferente/detalle-oferta-oferente.component";
+import {EtapasOfertaOferenteComponent} from "./oferta/etapas-oferta-oferente/etapas-oferta-oferente.component";
+import {EditarEtapaOfertaComponent} from "./oferta/editar-etapa-oferta/editar-etapa-oferta.component";
+import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-etapa.component";
 
 const routes: Routes = [
   {
@@ -99,7 +103,23 @@ const routes: Routes = [
   {
     path: 'oferta/etapas-oferta-solicitante/:idOferta',
     component : EtapasOfertaSolicitanteComponet
-  }
+  },
+  {
+    path: 'oferta/detalle-oferta-oferente/:id',
+    component : DetalleOfertaOferenteComponent
+  },
+  {
+    path: 'oferta/etapas-oferta-oferente/:idOferta',
+    component : EtapasOfertaOferenteComponent
+  },
+  {
+    path: 'oferta/editar-etapa-oferta/:idOferta/:idEtapa',
+    component : EditarEtapaOfertaComponent
+  },
+  {
+    path: 'oferta/formulario-etapa/:idFormulario',
+    component : FormularioEtapaComponent
+  },
 ];
 
 @NgModule({

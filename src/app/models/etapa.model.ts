@@ -6,6 +6,7 @@ import {Formulario, IFormultario} from "./formulario.model";
 
 export class Etapa
 {
+  id : number;
   nombre : string;
   fecha_inicio : Date;
   fecha_fin : Date;
@@ -18,6 +19,7 @@ export class Etapa
 
 export interface IEtapa
 {
+  id : number;
   nombre : string;
   fecha_inicio : Date;
   fecha_fin : Date;

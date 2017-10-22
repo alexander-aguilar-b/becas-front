@@ -1,0 +1,48 @@
+
+<h4>Etapas de la Oferta</h4>
+
+<hr class="sep-tt top-buffer">
+
+<table class="table table striped table-bordered top-buffer">
+  <thead class="thead-inverse">
+  <tr>
+    <th>Nombre</th>
+    <th>Descripción</th>
+    <th>Fecha Inicio</th>
+    <th>Fecha Fin</th>
+    <th>Cantidad a Selecccionar</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor='let etapaOferta of etapasOferta'>
+    <td>{{etapaOferta.nombre}}</td>
+    <td>{{etapaOferta.descripcion}}</td>
+    <td>{{etapaOferta.fecha_inicio | date:'shortDate'}}</td>
+    <td>{{etapaOferta.fecha_fin | date:'shortDate'}}</td>
+    <td>{{etapaOferta.cantidad_a_seleccionar}}</td>
+    <td>
+      <div class="dropdown">
+        <button class="btn" data-toggle="dropdown">Acciones <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+          <!--<li>-->
+            <!--<a href="#" tabindex="-1">Ver Formulario</a>-->
+          <!--</li>-->
+          <li>
+            <a href="#" tabindex="-1" (click)="editarEtapaOferta($event, etapaOferta.id)">Editar</a>
+          </li>
+          <li>
+            <a href="#" tabindex="-1" (click)="eliminarEtapa($event, etapaOferta.id)" >Eliminar</a>
+          </li>
+        </ul>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+<div>
+
+  <!--<experiencia-laboral-modal (experienciaLaboralAgregada)="agregarExperienciaLaboral($event)"></experiencia-laboral-modal>-->
+</div>

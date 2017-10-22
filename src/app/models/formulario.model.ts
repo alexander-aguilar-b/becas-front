@@ -4,6 +4,7 @@ import {IItem, Item} from "./item.model";
  */
 export class Formulario
 {
+  id: number;
   nombre: string;
   descripcion: string;
   items: Item[];
@@ -13,6 +14,7 @@ export class Formulario
 
 export interface IFormultario
 {
+  id: number;
   nombre: string;
   descripcion: string;
   items: IItem[];

@@ -1,19 +1,18 @@
 /**
- * Created by edgaguil on 18/10/2017.
+ * Created by edgaguil on 21/10/2017.
  */
-
-import {Component, OnInit} from "@angular/core";
-import {ServicioOferta} from "../../services/oferta.servicio";
+import {Component} from "@angular/core";
 import {IOferta} from "../../models/oferta.model";
 import {ActivatedRoute, Router} from "@angular/router";
+import {ServicioOferta} from "../../services/oferta.servicio";
 
 @Component({
-  selector: 'app-detalle-oferta-solicitante',
-  templateUrl: './detalle-oferta-solicitante.component.html',
+  selector: 'app-detalle-oferta-oferente',
+  templateUrl: './detalle-oferta-oferente.component.html',
   styles: []
 })
 
-export class DetalleOfertaSolicitanteComponent implements OnInit {
+export class DetalleOfertaOferenteComponent{
 
   detalleOferta : IOferta;
 
@@ -26,16 +25,13 @@ export class DetalleOfertaSolicitanteComponent implements OnInit {
     let idOferta : string;
     idOferta = this.activatedRouter.snapshot.paramMap.get('id');
     this.detalleOferta = this.servicioOferta.consultarOferta(idOferta);
-    console.log(this.detalleOferta);
-    //console.log("idOferta :" + this.activatedRouter.snapshot.paramMap.get('id'));
   }
 
-  aplicarOferta(){
+  eliminarOferta(){
 
   }
 
   consultarEtapasOferta(idOferta){
-    this.router.navigate(['/oferta/etapas-oferta-solicitante', idOferta]);
+    this.router.navigate(['/oferta/etapas-oferta-oferente', idOferta]);
   }
-
 }
