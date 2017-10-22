@@ -12,66 +12,46 @@ export class ServicioMenu {
 
     let menu = [];
 
-
-
     switch (perfil) {
 
       case "SOLICITANTE":
-
         menu = [
-
           {
-
             nombre_menu: "Crear cuenta",
-
             ruta: "formulario-solicitante"
-
           },
-
+          {
+            nombre_menu: "Consultar Oferta",
+            ruta: "oferta/consultar-oferta-solicitante"
+          },
         ];
 
         break;
 
       case "ADMIN":
-
         menu = [
 
           {
-
             ruta: 'administrador/formulario-administrador',
-
             nombre_menu: "Crear administrador"
-
           },
-
         ];
 
         break;
 
       case "OFERENTE":
-
         menu = [
-
           {
-
             nombre_menu: "Crear oferta",
-
             ruta: "oferente/creacion-oferta"
-
           },
-
           {
             ruta: 'oferente/formulario-oferente',
-
             nombre_menu: "Solicitar cuenta"
-
           },
-
         ];
 
         break;
-
-
     }
 
     return menu;

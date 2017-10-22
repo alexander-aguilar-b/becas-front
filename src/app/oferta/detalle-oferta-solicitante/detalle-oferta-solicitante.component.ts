@@ -4,7 +4,7 @@
 
 import {Component, OnInit} from "@angular/core";
 import {ServicioOferta} from "../../services/oferta.servicio";
-import {IOferta} from "../../models/oferta.model";
+import {IOferta, IOfertaConsulta} from "../../models/oferta.model";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
@@ -15,7 +15,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 
 export class DetalleOfertaSolicitanteComponent implements OnInit {
 
-  detalleOferta : IOferta;
+  //detalleOferta : IOferta;
+  detalleOferta : IOfertaConsulta;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
   constructor(private activatedRouter : ActivatedRoute, private router : Router, private servicioOferta : ServicioOferta){
@@ -25,9 +26,13 @@ export class DetalleOfertaSolicitanteComponent implements OnInit {
   ngOnInit(){
     let idOferta : string;
     idOferta = this.activatedRouter.snapshot.paramMap.get('id');
-    this.detalleOferta = this.servicioOferta.consultarOferta(idOferta);
+    //this.detalleOferta = this.servicioOferta.consultarOferta(idOferta);
+    this.servicioOferta.consultarOferta(idOferta).subscribe(detalleOferta =>{
+      this.detalleOferta = detalleOferta;
+      console.log(detalleOferta);
+    }
+    );
     console.log(this.detalleOferta);
-    //console.log("idOferta :" + this.activatedRouter.snapshot.paramMap.get('id'));
   }
 
   aplicarOferta(){

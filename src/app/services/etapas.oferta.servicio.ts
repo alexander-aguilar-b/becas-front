@@ -73,7 +73,7 @@ export class ServicioEtapasOferta extends ServicioBase {
       fecha_inicio: new Date(),
       fecha_fin: new Date(),
       cantidad_a_seleccionar: 5,
-      formulario: null
+      formulario: formulario
     };
 
     return etapa5;

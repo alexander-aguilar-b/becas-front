@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
-import {IOferta, Oferta} from "../models/oferta.model";
+import {IOferta, IOfertaConsulta, Oferta} from "../models/oferta.model";
 import {AutenticacionService} from "./autenticacion.service";
 
 /**
@@ -36,7 +36,38 @@ export class ServicioOferta {
   }
 
   /** */
-  consultarOfertas(codigoConvocatoria): IOferta[] {
+  consultarOfertasSolicitante(codigoConvocatoria): Observable<IOfertaConsulta[]> {
+
+    let token = this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
+    let options = new RequestOptions({headers: headers});
+
+    if(codigoConvocatoria > 0)
+    {
+      return this.http.get(this.configuracion.baseUrl +  "announcements/" + codigoConvocatoria, options).map((response : Response) => {
+        return <IOfertaConsulta[]> response.json();
+      }).catch(this.manejadorError);
+    }
+
+    else{
+      return this.http.get(this.configuracion.baseUrl +  "announcements/", options).map((response : Response) => {
+        return <IOfertaConsulta[]> response.json();
+      }).catch(this.manejadorError);
+    }
+  }
+
+  consultarOferta(idOferta): Observable<IOfertaConsulta> {
+    let token = this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.get(this.configuracion.baseUrl +  "announcements/" + idOferta, options).map((response : Response) => {
+      return <IOfertaConsulta[]> response.json();
+    }).catch(this.manejadorError);
+  }
+
+
+  consultarOfertasBK(codigoConvocatoria): IOferta[] {
     const ofertas = [];
     let oferta1: IOferta;
     let oferta2: IOferta;
@@ -45,8 +76,8 @@ export class ServicioOferta {
       id : 1,
       id_oferente: 1,
       nombre: 'Oferta 1',
-      fecha_inicio: '10/10/2017',
-      fecha_fin: '11/11/2017',
+      fecha_inicio: new Date(),
+      fecha_fin: new Date(),
       descripcion: 'Descripción 1',
       id_tipo_convocatoria: 1,
       requisitos: 'requisitos1',
@@ -59,8 +90,8 @@ export class ServicioOferta {
       id : 2,
       id_oferente: 2,
       nombre: 'Oferta 2',
-      fecha_inicio: '11/10/2017',
-      fecha_fin: '12/11/2017',
+      fecha_inicio: new Date(),
+      fecha_fin: new Date(),
       descripcion: 'Descripción 2',
       id_tipo_convocatoria: 1,
       requisitos: 'requisitos2',
@@ -73,18 +104,17 @@ export class ServicioOferta {
     ofertas.push(oferta2);
 
     return ofertas;
-
   }
 
-  consultarOferta(idOferta): IOferta {
+  consultarOfertaBK(idOferta): IOferta {
     let oferta1: IOferta;
 
     oferta1 = {
       id : 1,
       id_oferente: 1,
       nombre: 'Oferta 1',
-      fecha_inicio: '10/10/2017',
-      fecha_fin: '11/11/2017',
+      fecha_inicio: new Date(),
+      fecha_fin: new Date(),
       descripcion: 'Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1 Descripción 1',
       id_tipo_convocatoria: 1,
       requisitos: 'requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1 requisitos1',

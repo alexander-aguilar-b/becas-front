@@ -50,9 +50,12 @@ import {DetalleOfertaOferenteComponent} from "./oferta/detalle-oferta-oferente/d
 import {EtapasOfertaOferenteComponent} from "./oferta/etapas-oferta-oferente/etapas-oferta-oferente.component";
 import {EditarEtapaOfertaComponent} from "./oferta/editar-etapa-oferta/editar-etapa-oferta.component";
 import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-etapa.component";
-
+import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferente/consulta-oferta-oferente.component";
+import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-solicitante/consulta-oferta-solicitante.component";
 
 declare let jQuery : Object;
+
+
 
 @NgModule({
   declarations: [
@@ -83,7 +86,9 @@ declare let jQuery : Object;
     DetalleOfertaOferenteComponent,
     EtapasOfertaOferenteComponent,
     EditarEtapaOfertaComponent,
-    FormularioEtapaComponent
+    FormularioEtapaComponent,
+    ConsultarOfertaOferenteComponent,
+    ConsultarOfertaSolicitanteComponent
   ],
   imports: [
     BrowserModule,

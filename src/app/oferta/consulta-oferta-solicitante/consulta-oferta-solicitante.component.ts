@@ -1,37 +1,33 @@
 /**
- * Created by edgaguil on 17/10/2017.
+ * Created by edgaguil on 22/10/2017.
  */
 
 import {Component, OnInit} from "@angular/core";
-import {ServicioOferente} from "../../services/oferente.servicio";
 import {ServicioOferta} from "../../services/oferta.servicio";
-import {IOferta, IOfertaConsulta} from "../../models/oferta.model";
+import {IOfertaConsulta} from "../../models/oferta.model";
 import {Router} from "@angular/router";
 import {AutenticacionService} from "../../services/autenticacion.service";
 
 @Component({
-  selector: 'app-consultar-oferta',
-  templateUrl: './consultar-oferta.component.html',
+  selector: 'app-consulta-oferta-solicitante',
+  templateUrl: './consulta-oferta-solicitante.component.html',
   styles: []
 })
 
-
-export class ConsultarOferta implements OnInit {
+export class ConsultarOfertaSolicitanteComponent implements OnInit {
   /** Declaraciones */
   valorSeleccionadoCriterioBusqueda : number;
   //ofertas : IOferta[];
   ofertas : IOfertaConsulta[];
-  perfil : string;
 
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private router : Router, private servicioOferta : ServicioOferta, private servicioAutenticacion : AutenticacionService){
+  constructor(private router : Router, private servicioOferta : ServicioOferta){
   }
 
   /***Metodo de Inicialización del componente */
   ngOnInit(){
     this.valorSeleccionadoCriterioBusqueda = 0;
-    this.perfil = this.servicioAutenticacion.obtenerCookie('perfil');
   }
 
   /** Consulta de las ofertas*/
@@ -40,7 +36,7 @@ export class ConsultarOferta implements OnInit {
 
     //this.ofertas = this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria);
 
-    this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
+    this.servicioOferta.consultarOfertasSolicitante(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
       this.ofertas = ofertas;
       console.log(ofertas);
     });
@@ -51,13 +47,6 @@ export class ConsultarOferta implements OnInit {
 
   /** Consulta el detalle de la oferta */
   consultarDetalleOferta(idOferta){
-    //TODO: validar el role y direccionar adecuadamente
-
-    //Redireccion a solicitante
-    //this.router.navigate(['/oferta/detalle-oferta-solicitante', idOferta ])
-
-    //Redireccion a oferente
-    this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ])
-
+    this.router.navigate(['/oferta/detalle-oferta-solicitante', idOferta ]);
   }
 }
