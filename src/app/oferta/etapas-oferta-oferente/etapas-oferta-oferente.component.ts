@@ -3,7 +3,7 @@
  */
 
 import {Component, Input} from "@angular/core";
-import {IEtapa} from "../../models/etapa.model";
+import {IEtapa, IEtapaConsulta} from "../../models/etapa.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 
@@ -16,7 +16,8 @@ import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 
 export class EtapasOfertaOferenteComponent{
 
-  etapasOferta : IEtapa[];
+  //etapasOferta : IEtapa[];
+  etapasOferta : IEtapaConsulta[];
   idOferta : string;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
@@ -27,7 +28,11 @@ export class EtapasOfertaOferenteComponent{
 
     this.idOferta = this.activatedRouter.snapshot.paramMap.get('idOferta');
     console.log(this.idOferta);
-    this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);
+    //this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);
+    this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta).subscribe(etapas =>{
+      this.etapasOferta = etapas;
+      console.log(etapas)
+    });
 
   }
 

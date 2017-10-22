@@ -2,7 +2,7 @@
  * Created by edgaguil on 20/10/2017.
  */
 import {Component, OnInit} from "@angular/core";
-import {IEtapa} from "../../models/etapa.model";
+import {IEtapa, IEtapaConsulta} from "../../models/etapa.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 
@@ -14,7 +14,8 @@ import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 
 export class EtapasOfertaSolicitanteComponet implements OnInit {
 
-  etapasOferta : IEtapa[];
+  //etapasOferta : IEtapa[];
+  etapasOferta : IEtapaConsulta[];
   idOferta : string;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
@@ -26,7 +27,12 @@ export class EtapasOfertaSolicitanteComponet implements OnInit {
     //let idOferta : string;
     this.idOferta = this.activatedRouter.snapshot.paramMap.get('idOferta');
     console.log(this.idOferta);
-    this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);
+    //this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);
+    this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta).subscribe(etapas =>{
+      this.etapasOferta = etapas;
+      console.log(etapas)
+    });
+
     console.log(this.etapasOferta);
   }
 }

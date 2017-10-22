@@ -1,17 +1,39 @@
 import {Injectable} from "@angular/core";
-import {ServicioBase} from "./base.servicio";
-import {IEtapa} from "../models/etapa.model";
+import {IEtapa, IEtapaConsulta} from "../models/etapa.model";
 import {IFormultario} from "../models/formulario.model";
+import {Http, Response, Headers, RequestOptions} from "@angular/http";
+
+import {ConfiguracionServicio} from "./configuracion.servicio";
+import {AutenticacionService} from "./autenticacion.service";
+import { Observable} from 'rxjs/Rx';
+
+
+
+
+
 /**
  * Created by edgaguil on 20/10/2017.
  */
 
 
 @Injectable()
-export class ServicioEtapasOferta extends ServicioBase {
+export class ServicioEtapasOferta {
+
+  constructor(private http : Http, private configuracion : ConfiguracionServicio, private autenticacionService: AutenticacionService)
+  {}
 
   //obtenerEtapasOferta(idOferta) : IEtapa[] {
-  obtenerEtapasOferta(idOferta): any[] {
+  obtenerEtapasOferta(idOferta): Observable<IEtapaConsulta[]> {
+    let token =  this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
+    let options = new RequestOptions({headers: headers});
+
+    return this.http.get(this.configuracion.baseUrl +  "phase/applicantforms/" + idOferta, options).map((response : Response) => {
+      return <IEtapaConsulta[]> response.json();
+    }).catch(this.manejadorError);
+  }
+
+  obtenerEtapasOfertaBK(idOferta): any[] {
 
     const etapasOferta = [];
     let etapa1: IEtapa;
@@ -77,6 +99,12 @@ export class ServicioEtapasOferta extends ServicioBase {
     };
 
     return etapa5;
+  }
+
+  private manejadorError(error : Response)
+  {
+    console.log(error);
+    return Observable.throw(error.statusText);
   }
 
 }

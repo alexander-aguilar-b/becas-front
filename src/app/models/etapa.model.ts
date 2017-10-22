@@ -27,3 +27,14 @@ export interface IEtapa
   descripcion : string;
   formulario : IFormultario;
 }
+
+export interface IEtapaConsulta
+{
+  id : number;
+  idConvocatoria : number;
+  nombre : string;
+  descripcion : string;
+  fechaInicio : Date;
+  fechaFin : Date;
+  cantidadASeleccionar : number;
+}

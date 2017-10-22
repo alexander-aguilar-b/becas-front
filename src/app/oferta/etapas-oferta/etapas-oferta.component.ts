@@ -2,7 +2,7 @@
  * Created by edgaguil on 20/10/2017.
  */
 import {Component, Input, OnInit} from "@angular/core";
-import {IEtapa} from "../../models/etapa.model";
+import {IEtapa, IEtapaConsulta} from "../../models/etapa.model";
 
 @Component({
   selector: 'app-etapas-oferta',
@@ -12,7 +12,8 @@ import {IEtapa} from "../../models/etapa.model";
 
 
 export class EtapasOfertaComponent implements OnInit {
-   @Input() etapasOferta : IEtapa[];
+   //@Input() etapasOferta : IEtapa[];
+  @Input() etapasOferta : IEtapaConsulta[];
 
   ngOnInit(){
 
