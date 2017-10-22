@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {Router,ActivatedRoute,Params} from "@angular/router";
 import {ServicioOferta} from "../../services/oferta.servicio";
 import {ServicioTipoOferta} from "../../services/tipo.oferta.servicio";
 import {Etapa} from "../../models/etapa.model";
@@ -11,6 +11,9 @@ import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario
 import {AutenticacionService} from "../../services/autenticacion.service";
 import {ServicioTipoItem} from "../../services/tipo.item.service";
 import {ITipoItem} from "../../models/tipo.item.model";
+import { CookieService } from "angular2-cookie/core";
+import {ServicioOfertaConsultaMock} from "../../services/oferta.mock.consulta";
+
 declare var $: any;
 
 @Component({
@@ -19,13 +22,19 @@ declare var $: any;
   styles: []
 })
 export class CreacionOfertaComponent implements OnInit {
-
+  idOferta;
   oferta: Oferta;
   tiposOferta;
   defincionEtapaFormulario: DefincionEtapaFormulario;
   numeroItems: number;
   listaItems;
+  indexSeleccionado;
   listaTiposItem : ITipoItem[];
+  rol;
+  //Seleccionado
+  listaItemsSeleccionado;
+  nombreFormularioSeleccionado;
+  descripcionFormularioSeleccionado;
 
   tiposItemEnum  = {
     textoEntrada :  1,
@@ -41,15 +50,33 @@ export class CreacionOfertaComponent implements OnInit {
 
 
   constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta
-  ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItem) {
+  ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItem,private cookie: CookieService
+  ,private servicioOfertaConsultaMock: ServicioOfertaConsultaMock,private activatedRoute: ActivatedRoute) {
+
+
   }
 
   ngOnInit() {
     //this.autenticacionService.validarAutorizacion('oferente/creacion-oferta');
+    //this.activatedRoute.params.subscribe((params:Params)=>{ this.idOferta = params['IdOferta'];
+    //});
     this.oferta = new Oferta();
     this.oferta.etapas = [];
+    this.rol = this.cookie.get('perfil');
+
+    //VALIDA CONSULTA DE OFERTA
+    this.idOferta = 1;
+
+    if(this.idOferta != null)
+    {
+      this.oferta = this.servicioOfertaConsultaMock.obtenerOferta();
+    }
+    //
+
+    console.log(this.oferta);
     this.numeroItems = 0;
     this.listaItems = [];
+    this.listaItemsSeleccionado = []; 
     this.defincionEtapaFormulario = new DefincionEtapaFormulario();
     this.tiposOferta = this.servicioTipoOferta.obtenerTipoOferta();
     this.servicioTipoItems.obtenerTiposItem().subscribe(tiposItem => this.listaTiposItem = tiposItem);
@@ -133,12 +160,12 @@ export class CreacionOfertaComponent implements OnInit {
     //this.router.navigate(['/oferente/confirmacion-creacion-oferente']);
 
     console.log(this.oferta);
-
+/*
      this.servicioOferta.crearOfertaConvocatoria(this.oferta)
       .subscribe(event => {
          this.router.navigate(['/oferta/confirmacion-creacion-oferta'])
        });
-
+*/
   }
 
   borrarEtapa(): void {
@@ -164,7 +191,23 @@ export class CreacionOfertaComponent implements OnInit {
     }
   }
 
-  valorSeleccionadoTipoOferta = 0;
+  eliminarEtapa(indexEtapa) {
+    this.oferta.etapas.splice(indexEtapa,1);  
+  }
+
+  verFormulario(indexEtapa) {    
+      this.indexSeleccionado = indexEtapa;
+      this.listaItemsSeleccionado = this.oferta.etapas[indexEtapa].formulario.items;
+      this.nombreFormularioSeleccionado = this.oferta.etapas[indexEtapa].formulario.nombre;
+      this.descripcionFormularioSeleccionado = this.oferta.etapas[indexEtapa].formulario.descripcion;
+      
+  }
+
+  eliminarFormulario() {
+    this.oferta.etapas[this.indexSeleccionado].formulario.items = [];
+  }
+
+  valorSeleccionadoTipoOferta =0;
 
 }
 

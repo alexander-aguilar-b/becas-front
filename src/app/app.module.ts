@@ -40,6 +40,7 @@ import {ServicioTipoItem} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
+import {ServicioOfertaConsultaMock} from "./services/oferta.mock.consulta";
 
 
 
@@ -50,8 +51,11 @@ declare let jQuery : Object;
 @NgModule({
   declarations: [
     AppComponent,
+    
     ListadoSolicitanteComponent,
+    
     DetalleSolicitanteComponent,
+    
     FormularioSolicitanteComponent,
     LoginBecasComponent,
     FormularioOferenteComponent,
@@ -96,6 +100,7 @@ declare let jQuery : Object;
     GlobalEventsManager,
     ServicioTipoPoblacion,
     ServicioTipoItem,
+    ServicioOfertaConsultaMock,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent]

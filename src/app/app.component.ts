@@ -37,6 +37,11 @@ export class AppComponent implements OnInit{
 
   actualizarMenu(){
     this.perfil = this.autenticacionService.obtenerCookie('perfil');
+    if(this.perfil == null){
+       this.autenticacionService.actualizarCookie('perfil','USUARIO');
+       this.perfil = this.autenticacionService.obtenerCookie('perfil');
+    }
+    console.log(this.perfil);
     this.menus = this.servicioMenu.obtenerMenu(this.perfil);
   }
 }

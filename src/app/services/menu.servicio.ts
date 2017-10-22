@@ -19,12 +19,26 @@ export class ServicioMenu {
       case "SOLICITANTE":
 
         menu = [
-
           {
 
-            nombre_menu: "Crear cuenta",
+            nombre_menu: "Ver oferta",
 
-            ruta: "formulario-solicitante"
+            ruta: "oferente/creacion-oferta"
+
+          },
+
+        ];
+
+        break;
+
+      case "USUARIO":
+
+        menu = [
+          {
+
+            nombre_menu: "Ver oferta",
+
+            ruta: "oferente/creacion-oferta"
 
           },
 
@@ -43,6 +57,13 @@ export class ServicioMenu {
             nombre_menu: "Crear administrador"
 
           },
+          {
+
+            ruta: 'oferente/formulario-oferente',
+
+            nombre_menu: "Crear oferente"
+
+          },
 
         ];
 
@@ -59,12 +80,11 @@ export class ServicioMenu {
             ruta: "oferente/creacion-oferta"
 
           },
-
           {
 
-            ruta: 'oferente/formulario-oferente',
+            nombre_menu: "Ver oferta",
 
-            nombre_menu: "Solicitar cuenta"
+            ruta: "oferente/creacion-oferta"
 
           },
 

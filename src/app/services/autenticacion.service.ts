@@ -46,6 +46,11 @@ export class AutenticacionService {
     return this.cookie.get(clave);
   }
 
+  actualizarCookie(clave: string, valor: string) {
+    this.cookie.remove(clave);
+    this.cookie.put(clave, valor);
+  }
+
   borrarCookie(clave: string) {
     this.cookie.remove(clave);
   }
