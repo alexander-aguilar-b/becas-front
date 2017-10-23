@@ -6,6 +6,7 @@ import {Component, OnInit} from "@angular/core";
 import {ServicioOferta} from "../../services/oferta.servicio";
 import {IOfertaConsulta} from "../../models/oferta.model";
 import {Router} from "@angular/router";
+import {TipoCriterioBusquedaOferta} from "../../enums/criterio.busqueda.oferta.enum";
 
 
 @Component({
@@ -31,11 +32,14 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
     this.valorSeleccionadoCriterioBusqueda = 0;
   }
 
+
   /** Consulta de las ofertas*/
   consultarOfertas(filtroBusqueda){
     console.log(filtroBusqueda);
     //this.ofertas = this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria);
-    this.servicioOferta.consultarOfertasSolicitante(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
+    filtroBusqueda.codigoConvocatoria = filtroBusqueda.tipoCriterioBusquedaOferta == TipoCriterioBusquedaOferta.todas ?  0 : filtroBusqueda.codigoConvocatoria;
+
+    this.servicioOferta.consultarOfertasOferente(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
       this.ofertas = ofertas;
       console.log(ofertas);
     });

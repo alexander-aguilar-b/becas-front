@@ -24,6 +24,7 @@ import {EditarEtapaOfertaComponent} from "./oferta/editar-etapa-oferta/editar-et
 import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-etapa.component";
 import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-solicitante/consulta-oferta-solicitante.component";
 import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferente/consulta-oferta-oferente.component";
+import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
 
 const routes: Routes = [
   {
@@ -130,6 +131,10 @@ const routes: Routes = [
     path: 'oferta/consulta-oferta-oferente',
     component : ConsultarOfertaOferenteComponent
   },
+  {
+    path: 'oferta/agregar-etapa-oferta/:idOferta',
+    component : AgregarEtapaOfertaComponent
+  }
 ];
 
 @NgModule({

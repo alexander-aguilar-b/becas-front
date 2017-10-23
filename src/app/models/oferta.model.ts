@@ -1,4 +1,5 @@
 import {Etapa} from "./etapa.model";
+import {ITipoOferta} from "./tipo.oferta.model";
 /**
  * Created by user on 19/08/2017.
  */
@@ -45,6 +46,7 @@ export interface IOfertaConsulta
   requisitos: string;
   condiciones: string;
   informacionAdicional: string;
+  tipoOferta : ITipoOferta
 }
 
 

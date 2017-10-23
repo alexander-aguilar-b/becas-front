@@ -19,6 +19,7 @@ export class EtapasOfertaOferenteComponent{
   //etapasOferta : IEtapa[];
   etapasOferta : IEtapaConsulta[];
   idOferta : string;
+  etapaEliminadaCorectamente : boolean = false;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
   constructor(private activatedRouter : ActivatedRoute, private router : Router, private servicioEtapasOferta : ServicioEtapasOferta){
@@ -42,6 +43,17 @@ export class EtapasOfertaOferenteComponent{
     console.log(e);
     if(confirm('Esta seguro de que desea eliminar la etapa?')){
       console.log("Eliminar etapa:" + idEtapa);
+      this.servicioEtapasOferta.eliminarEtapaOferta(idEtapa).subscribe(etapaEliminadaCorectamente => {
+        this.etapaEliminadaCorectamente = etapaEliminadaCorectamente
+        if(etapaEliminadaCorectamente){
+          console.log('Etapa eliminada');
+          this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta).subscribe(etapas =>{
+            this.etapasOferta = etapas;
+            console.log('Etapa eliminada - Consultado etapas');
+            console.log(etapas)
+          });
+        }
+      });
     }
   }
   editarEtapaOferta(e, idEtapa){
@@ -50,6 +62,7 @@ export class EtapasOfertaOferenteComponent{
     this.router.navigate(['/oferta/editar-etapa-oferta',  this.idOferta, idEtapa]);
   }
 
-
-
+  agregarEtapaOferta(){
+    this.router.navigate(['/oferta/agregar-etapa-oferta',  this.idOferta]);
+  }
 }

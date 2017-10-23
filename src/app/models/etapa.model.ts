@@ -6,26 +6,27 @@ import {Formulario, IFormultario} from "./formulario.model";
 
 export class Etapa
 {
-  id : number;
+  //id : number;
+  id_convocatoria: number;
   nombre : string;
   fecha_inicio : Date;
   fecha_fin : Date;
   cantidad_a_seleccionar : number;
   descripcion : string;
-  formulario : Formulario;
-
+  formulario? : Formulario;
   constructor(){}
 }
 
 export interface IEtapa
 {
-  id : number;
+  //id : number;
+  id_convocatoria: number;
   nombre : string;
   fecha_inicio : Date;
   fecha_fin : Date;
   cantidad_a_seleccionar : number;
   descripcion : string;
-  formulario : IFormultario;
+  formulario? : IFormultario;
 }
 
 export interface IEtapaConsulta

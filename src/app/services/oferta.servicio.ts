@@ -4,6 +4,7 @@ import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 import {IOferta, IOfertaConsulta, Oferta} from "../models/oferta.model";
 import {AutenticacionService} from "./autenticacion.service";
+import {IFiltroConsultarOferta} from "../models/filtro.consultar.oferta.model";
 
 /**
  * Created by edgaguil on 8/08/2017.
@@ -55,6 +56,21 @@ export class ServicioOferta {
       }).catch(this.manejadorError);
     }
   }
+
+  consultarOfertasOferente(codigoConvocatoria) : Observable<IOfertaConsulta[]> {
+    let token = this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
+    let options = new RequestOptions({headers: headers});
+    //let idOferente = this.autenticacionService.obtenerCookie('id');
+    let idOferente = 1;
+
+
+
+    return this.http.get(this.configuracion.baseUrl +  "announcements/offerers/" + idOferente +  "/" + codigoConvocatoria, options).map((response : Response) => {
+      return <IOfertaConsulta[]> response.json();
+    }).catch(this.manejadorError);
+  }
+
 
   consultarOferta(idOferta): Observable<IOfertaConsulta> {
     let token = this.autenticacionService.obtenerCookie('token');
