@@ -4,7 +4,7 @@ import {Item} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
 import {forEach} from "@angular/router/src/utils/collection";
 import {ITipoItem} from "../../models/tipo.item.model";
-import {ServicioTipoItem} from "../../services/tipo.item.service";
+import {ServicioTipoItemFormulario} from "../../services/tipo.item.service";
 
 @Component({
   selector: 'app-crear-formulario',
@@ -32,7 +32,7 @@ export class CrearFormularioComponent implements OnInit {
   }
 
 
-  constructor(private servicioTipoItems : ServicioTipoItem) { }
+  constructor(private servicioTipoItems : ServicioTipoItemFormulario) { }
 
   ngOnInit() {
     this.numeroItems = 0;

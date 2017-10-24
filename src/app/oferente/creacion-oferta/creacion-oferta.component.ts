@@ -9,7 +9,7 @@ import {Respuesta} from "../../models/respuesta.model";
 import {Formulario} from "../../models/formulario.model";
 import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario.model";
 import {AutenticacionService} from "../../services/autenticacion.service";
-import {ServicioTipoItem} from "../../services/tipo.item.service";
+import { ServicioTipoItemFormulario} from "../../services/tipo.item.service";
 import {ITipoItem} from "../../models/tipo.item.model";
 declare var $: any;
 
@@ -41,7 +41,7 @@ export class CreacionOfertaComponent implements OnInit {
 
 
   constructor(private router: Router, private servicioOferta: ServicioOferta, private servicioTipoOferta: ServicioTipoOferta
-  ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItem) {
+  ,private autenticacionService: AutenticacionService, private servicioTipoItems : ServicioTipoItemFormulario) {
   }
 
   ngOnInit() {

@@ -6,6 +6,8 @@ import {Http, Response} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 import {Observable} from "rxjs/Observable";
 import {ITipoItem} from "../models/tipo.item.model";
+import {ServicioBase} from "./base.servicio";
+import {AutenticacionService} from "./autenticacion.service";
 
 
 /**
@@ -14,20 +16,17 @@ import {ITipoItem} from "../models/tipo.item.model";
 
 
 @Injectable()
-export class ServicioTipoItem{
+export class ServicioTipoItemFormulario extends ServicioBase {
+  //Servicio renombrado de ServicioTipoItem a ServicioTipoItemFormulario (validar funcionalidades ciclo1)
 
-  constructor(private http : Http, private configuracion : ConfiguracionServicio)
-  {}
+  constructor(private http: Http, private configuracion: ConfiguracionServicio, servicioAutenticacion: AutenticacionService) {
+    super(servicioAutenticacion);
+  }
 
   obtenerTiposItem(): Observable<ITipoItem[]> {
-    return this.http.get(this.configuracion.baseUrl +  "general/itemtypes/ ").map((response : Response) => {
+    return this.http.get(this.configuracion.baseUrl + "general/itemtypes/ ", this.obtenerOpcionesPeticion()).map((response: Response) => {
       return <ITipoItem[]> response.json();
     }).catch(this.manejadorError);
   };
-
-  private manejadorError(error : Response)
-  {
-    return Observable.throw(error.statusText);
-  }
 }
 

@@ -120,7 +120,7 @@ const routes: Routes = [
     component : EditarEtapaOfertaComponent
   },
   {
-    path: 'oferta/formulario-etapa/:idFormulario',
+    path: 'oferta/formulario-etapa/:idOferta/:idEtapa/:idFormulario',
     component : FormularioEtapaComponent
   },
   {

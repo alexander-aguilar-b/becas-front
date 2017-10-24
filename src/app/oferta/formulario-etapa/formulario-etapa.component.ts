@@ -4,10 +4,13 @@
 import {Component, OnInit} from "@angular/core";
 import {ITipoItem} from "../../models/tipo.item.model";
 import {DefincionItemFormulario} from "../../models/definicion.item.formulario.model";
-import {Item} from "../../models/item.model";
+import {IItemFormulario, IItemFormularioConsulta, Item, ItemFormulario} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
-import {ServicioTipoItem} from "../../services/tipo.item.service";
+import {ServicioTipoItemFormulario} from "../../services/tipo.item.service";
 import {ActivatedRoute} from "@angular/router";
+import {IFormularioConsulta, IFormultario} from "../../models/formulario.model";
+import {ServicioFormularioEtapa} from "../../services/formulario.etapa.servicio";
+import {isNullOrUndefined} from "util";
 
 @Component({
   selector: 'app-formulario-etapa',
@@ -17,8 +20,15 @@ import {ActivatedRoute} from "@angular/router";
 
 export class FormularioEtapaComponent implements OnInit {
 
+  idOferta : number;
+  idFormulario : number;
+  idEtapaOferta : number;
+
+  datosFormulario : IFormularioConsulta;
+  datosItemsFormulario : IItemFormularioConsulta[];
+
   definicionItemFormulario : DefincionItemFormulario;
-  listaItems;
+  listaItems : IItemFormulario[];
   numeroItems : number;
   listaTiposItem : ITipoItem[];
   titulo : string;
@@ -35,22 +45,58 @@ export class FormularioEtapaComponent implements OnInit {
     listaRadioButton : 9
   }
 
-  idFormulario : string;
 
-  constructor(private activatedRouter : ActivatedRoute, private servicioTipoItems : ServicioTipoItem) {
+
+  constructor(private activatedRouter : ActivatedRoute, private servicioTipoItems : ServicioTipoItemFormulario, private servicioFormularioEtapa : ServicioFormularioEtapa) {
   }
 
   ngOnInit() {
-    this.idFormulario = this.activatedRouter.snapshot.paramMap.get('idFormulario');
-    if(this.idFormulario == "0")
+
+    this.datosFormulario = {
+      id : 0,
+      idEtapa : 0,
+      nombre : '',
+      descripcion : ''
+    };
+
+    this.datosItemsFormulario = [];
+
+    this.idFormulario = Number(this.activatedRouter.snapshot.paramMap.get('idFormulario'));
+    this.idEtapaOferta = Number(this.activatedRouter.snapshot.paramMap.get('idEtapa'));
+    this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
+    this.datosFormulario.idEtapa = this.idEtapaOferta;
+
+    if(this.idFormulario == 0)
     {
       this.titulo = "Crear Formulario"
       this.numeroItems = 0;
       this.listaItems =  [];
+
     }
     else{
       this.titulo = "Editar Formulario";
-      //Consultar servicio para obtener los items
+      this.servicioFormularioEtapa.obtenerFormulario(this.idFormulario).subscribe(datosFormulario => {
+        this.datosFormulario = datosFormulario;
+        console.log(datosFormulario);
+      });
+
+
+      //this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => this.datosItemsFormulario = datosItemsFormulario);
+
+      this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => {
+        this.listaItems =  [];
+        for (let itemFormulario of datosItemsFormulario) {
+          let item: ItemFormulario = new ItemFormulario();
+          item.descripcion = itemFormulario.descripcion;
+          item.id_tipo_item = itemFormulario.tipoItem.id;
+          item.obligatorio = itemFormulario.obligatorio;
+          item.tamanio = itemFormulario.tamanio;
+          item.valores_posibles = itemFormulario.valoresPosibles;
+          this.listaItems.push(item);
+        }
+        console.log(this.listaItems);
+
+      });
     }
 
     this.definicionItemFormulario = new DefincionItemFormulario();
@@ -64,31 +110,23 @@ export class FormularioEtapaComponent implements OnInit {
   {
     this.numeroItems = this.numeroItems + 1;
     console.log(definicionItemFormulario);
-    let listaItems : Item = new Item();
-    let item : Item = new Item();
+
+    let item: ItemFormulario = new ItemFormulario();
 
     let opciones : string =  definicionItemFormulario.opciones ? definicionItemFormulario.opciones.trim() : '';
     let tipoDelimitador : string = definicionItemFormulario.tipoDelimitador;
 
     item.descripcion = definicionItemFormulario.nombreItem;
-    item.idTipoControl = parseInt(definicionItemFormulario.tipoControl);
-    item.requerido = definicionItemFormulario.requerido;
-    item.tamanoMaximo = definicionItemFormulario.tamanoMaximo;
+    item.id_tipo_item = parseInt(definicionItemFormulario.tipoControl);
+    item.obligatorio = isNullOrUndefined(definicionItemFormulario.requerido) ? false : definicionItemFormulario.requerido;
+    item.tamanio = definicionItemFormulario.tamanoMaximo;
 
     if(opciones.length > 0){
-      let listaRespuestas : Respuesta[];
-      listaRespuestas = [];
       let respuestas : string[];
+      console.log(opciones);
       respuestas = opciones.split(tipoDelimitador);
-
-      for(let respuesta of respuestas)
-      {
-        let itemRespuesta : Respuesta = new Respuesta();
-        itemRespuesta.respuesta = respuesta;
-        listaRespuestas.push(itemRespuesta);
-      }
-
-      item.listaRespuestas = listaRespuestas;
+      console.log(respuestas);
+      item.valores_posibles = respuestas;
     }
 
     this.listaItems.push(item);
@@ -104,6 +142,8 @@ export class FormularioEtapaComponent implements OnInit {
       this.definicionItemFormulario.tipoDelimitador = "";
       this.definicionItemFormulario.nombreItem = "";
       this.definicionItemFormulario.opciones = "";
+
+      this.listaItems = [];
     }
   }
 
@@ -112,5 +152,32 @@ export class FormularioEtapaComponent implements OnInit {
     if(indiceItem > -1){
       this.listaItems.splice(indiceItem, 1);
     }
+  }
+
+  actualizarFormulario(){
+    console.log("this.listaItems");
+    console.log(this.listaItems);
+    console.log("this.datosFormulario");
+    console.log(this.datosFormulario);
+  }
+
+  crearFormulario(){
+    console.log(this.listaItems);
+    console.log(this.datosFormulario);
+    let nuevoFormulario : IFormultario;
+    let formularioCreado : IFormularioConsulta;
+
+    nuevoFormulario = {
+      id_etapa : this.datosFormulario.idEtapa,
+      nombre : this.datosFormulario.nombre,
+      descripcion : this.datosFormulario.descripcion,
+      items : this.listaItems
+    };
+
+    this.servicioFormularioEtapa.registrarFormularioEtapa(nuevoFormulario).subscribe(formularioCreado => {
+        if(formularioCreado.id != 0){
+          alert('El formulario ha sido registrado correctamente');
+        }
+    });
   }
 }

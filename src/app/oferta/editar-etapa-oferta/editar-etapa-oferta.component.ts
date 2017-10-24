@@ -3,9 +3,13 @@ import {IEtapa, IEtapaConsulta} from "../../models/etapa.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 import {JQ_TOKEN} from "../../comun/jquery.service";
+import {IFormularioConsulta} from "../../models/formulario.model";
+import {ServicioFormularioEtapa} from "../../services/formulario.etapa.servicio";
 /**
  * Created by edgaguil on 21/10/2017.
  */
+
+
 
 @Component({
   selector: 'app-editar-etapa-oferta',
@@ -19,27 +23,42 @@ export class EditarEtapaOfertaComponent implements OnInit {
   //etapaOferta : IEtapa;
   etapaOferta : IEtapaConsulta;
   idOferta : number;
+  formulariosEtapa : IFormularioConsulta[];
+  idEtapaOferta : number;
 
-  datosDisponibles : boolean = false;
+
+  datosEtapaDisponibles : boolean = false;
+  datosFormulariosDisponibles : boolean = false;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private activatedRouter : ActivatedRoute, private router : Router,  private servicioEtapasOferta : ServicioEtapasOferta, @Inject(JQ_TOKEN) private $ : any){
+  constructor(private activatedRouter : ActivatedRoute, private router : Router,  private servicioEtapasOferta : ServicioEtapasOferta, private servicioFormularioEtapa : ServicioFormularioEtapa,  @Inject(JQ_TOKEN) private $ : any){
     this.$('#msgActualizacionEtapa').on("close.bs.alert", function(){ this.$('#msgActualizacionEtapa').hide(); return false; } );
   }
 
   ngOnInit(){
-    let idEtapaOferta = this.activatedRouter.snapshot.paramMap.get('idEtapa');
+    this.idEtapaOferta = Number(this.activatedRouter.snapshot.paramMap.get('idEtapa'));
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
     //this.etapaOferta = this.servicioEtapasOferta.obtenerEtapaOferta(idEtapaOferta);
-    this.servicioEtapasOferta.obtenerEtapaOferta(idEtapaOferta).subscribe(etapaOferta =>  {
+
+    this.servicioEtapasOferta.obtenerEtapaOferta(this.idEtapaOferta).subscribe(etapaOferta =>  {
       this.etapaOferta = etapaOferta;
       console.log(etapaOferta);
-      this.datosDisponibles = true;
+      this.datosEtapaDisponibles = true;
     });
+
+    this.cargarFormulariosEtapa(this.idEtapaOferta);
 
     this.$('#msgActualizacionEtapa').on("close.bs.alert", function(){ return false; } );
   }
 
+
+  cargarFormulariosEtapa(idEtapaOferta){
+    this.servicioFormularioEtapa.obtenerFormulariosEtapa(idEtapaOferta).subscribe(formulariosEtapa =>{
+      this.formulariosEtapa = formulariosEtapa;
+      this.datosFormulariosDisponibles = true;
+      console.log(formulariosEtapa);
+    });
+  }
 
   ocultarMensaje(){
     console.log('adasdasda');
@@ -67,22 +86,32 @@ export class EditarEtapaOfertaComponent implements OnInit {
     //this.$('#msgActualizacionEtapa').show();
   }
 
-  eliminarFormulario(e, idFormulario){
+  eliminarFormulario(e, idFormulario, idEtapaOferta){
+    console.log("eliminarFormulario");
+    console.log(idFormulario);
+    console.log(idEtapaOferta);
     e.preventDefault();
-    console.log(e);
+
     if(confirm('Esta seguro de que desea eliminar el formulario?')){
       console.log("Eliminar Formulario:" + idFormulario);
+      this.servicioFormularioEtapa.eliminarFormularioEtapa(idFormulario).subscribe(formularioEliminadoCorrectamente => {
+        if(formularioEliminadoCorrectamente){
+          this.cargarFormulariosEtapa(idEtapaOferta);
+        }
+      });
     }
   }
 
   agregarFormulario(e){
     e.preventDefault();
-    this.router.navigate(['/oferta/formulario-etapa', 0 ]);
+    //this.router.navigate(['/oferta/formulario-etapa/' + this.idEtapaOferta + '/0']);
+    this.router.navigate(['/oferta/formulario-etapa' , this.idOferta, this.idEtapaOferta, 0]);
   }
 
   editarFormulario(e, idFormulario){
     e.preventDefault();
-    this.router.navigate(['/oferta/formulario-etapa', idFormulario]);
+    //this.router.navigate(['/oferta/formulario-etapa/' + this.idEtapaOferta + '/' + idFormulario]);
+    this.router.navigate(['/oferta/formulario-etapa',  this.idOferta, this.idEtapaOferta, idFormulario]);
   }
 
 

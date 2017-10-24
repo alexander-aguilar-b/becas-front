@@ -36,7 +36,7 @@ import { FormularioAdministradorComponent } from './administrador/formulario-adm
 import {ServicioMenu} from "./services/menu.servicio";
 import { CookieService } from 'angular2-cookie/services/cookies.service';
 import {GlobalEventsManager} from "./GlobalEventsManager";
-import {ServicioTipoItem} from "./services/tipo.item.service";
+import {ServicioTipoItemFormulario} from "./services/tipo.item.service";
 import {ConfirmacionCreacionSolicitanteComponent} from "./solicitante/confirmacion-creacion-solicitante/confirmacion-creacion-solicitante.component";
 import {ConfirmacionCreacionAdministradorComponent} from "./administrador/confirmacion-creacion-administrador/confirmacion-creacion-administrador.component";
 import {ConfirmacionCreacionOfertaComponent} from "./oferente/confirmacion-creacion-oferta/confirmacion-creacion-oferta.component";
@@ -53,6 +53,7 @@ import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-eta
 import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferente/consulta-oferta-oferente.component";
 import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-solicitante/consulta-oferta-solicitante.component";
 import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
+import {ServicioFormularioEtapa} from "./services/formulario.etapa.servicio";
 
 declare let jQuery : Object;
 
@@ -115,8 +116,9 @@ declare let jQuery : Object;
     CookieService,
     GlobalEventsManager,
     ServicioTipoPoblacion,
-    ServicioTipoItem,
+    ServicioTipoItemFormulario,
     ServicioEtapasOferta,
+    ServicioFormularioEtapa,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent]

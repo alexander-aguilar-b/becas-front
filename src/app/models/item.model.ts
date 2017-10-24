@@ -1,4 +1,5 @@
 import {Respuesta} from "./respuesta.model";
+import {ITipoItem} from "./tipo.item.model";
 /**
  * Created by edgaguil on 10/08/2017.
  */
@@ -49,5 +50,16 @@ export interface IItemFormulario
   tamanio : number,
   obligatorio : boolean,
   valores_posibles : string[]
+}
+
+export interface IItemFormularioConsulta{
+  id: number;
+  idFormulario: number;
+  nombre : string,
+  descripcion : string;
+  tamanio : number;
+  obligatorio : boolean;
+  valoresPosibles : string[];
+  tipoItem :ITipoItem;
 }
 
