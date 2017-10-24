@@ -47,5 +47,4 @@ export  class ServicioFormularioEtapa extends ServicioBase {
       return <IFormularioConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
-
 }
