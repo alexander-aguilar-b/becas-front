@@ -12,7 +12,6 @@ import {ServicioBase} from "./base.servicio";
  * Created by edgaguil on 20/10/2017.
  */
 
-
 @Injectable()
 export class ServicioEtapasOferta extends ServicioBase {
 
@@ -120,11 +119,5 @@ export class ServicioEtapasOferta extends ServicioBase {
     };
 
     return etapa5;
-  }
-
-
-  private manejadorError(error: Response) {
-    console.log(error);
-    return Observable.throw(error.statusText);
   }
 }

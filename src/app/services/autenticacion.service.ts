@@ -40,6 +40,7 @@ export class AutenticacionService {
   cerrarSesion() {
     this.cookie.remove('perfil');
     this.cookie.remove('token');
+    this.cookie.remove('idUsuario');
   }
 
   obtenerCookie(clave: string): string {

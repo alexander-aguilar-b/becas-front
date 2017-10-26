@@ -31,14 +31,14 @@ export class LoginBecasComponent implements OnInit {
 
   onkeypress()
   {
-    
+
     this.status = '200';
   }
 
 
-  login(formValues) {    
-    this.iniciarSesion(formValues.login,formValues.password); 
-    
+  login(formValues) {
+    this.iniciarSesion(formValues.login,formValues.password);
+
   }
 
   iniciarSesion(login: string, password: string) {
@@ -51,26 +51,27 @@ export class LoginBecasComponent implements OnInit {
 
   asignarSesion(sesion:JSON,status:number)
   {
-        
-    let respuesta=sesion;       
-   
+
+    let respuesta=sesion;
+
     this.autenticacionService.crearCookie('perfil',sesion['rol']);
     this.autenticacionService.crearCookie('token',sesion['token']);
+    this.autenticacionService.crearCookie('idUsuario',sesion['idUsuario']);
     this.autenticacionService.crearCookie('status',status.toString());
-    
+
     this.router.navigate(['']);
-    window.location.reload();   
-    
+    window.location.reload();
+
   }
 
   manejadorError(err : any)
-  { let error= JSON.parse(err._body);    
+  { let error= JSON.parse(err._body);
     this.autenticacionService.crearCookie('status',err.status);
     this.autenticacionService.crearCookie('error',error['error']);
     this.status = this.autenticacionService.obtenerCookie('status')
     this.error=this.autenticacionService.obtenerCookie('error');
     console.log("error:" +this.autenticacionService.obtenerCookie('error'));
-    
+
   }
 
   ngOnInit() {

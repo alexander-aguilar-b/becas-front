@@ -54,8 +54,11 @@ import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferent
 import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-solicitante/consulta-oferta-solicitante.component";
 import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
 import {ServicioFormularioEtapa} from "./services/formulario.etapa.servicio";
+import {InformacionAcademicaBasicaComponent} from "./solicitante/informacion-academica-basica/informacion-academica-basica.component";
+import {InformacionAcademicaSuperiorComponent} from "./solicitante/informacion-academica-superior/informacion-academica-superior.component";
 
 declare let jQuery : Object;
+
 
 @NgModule({
   declarations: [
@@ -89,7 +92,9 @@ declare let jQuery : Object;
     FormularioEtapaComponent,
     ConsultarOfertaOferenteComponent,
     ConsultarOfertaSolicitanteComponent,
-    AgregarEtapaOfertaComponent
+    AgregarEtapaOfertaComponent,
+    InformacionAcademicaBasicaComponent,
+    InformacionAcademicaSuperiorComponent,
   ],
   imports: [
     BrowserModule,

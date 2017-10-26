@@ -11,7 +11,7 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class ServicioBase {
 
-  constructor(private autenticacionService : AutenticacionService){
+  constructor(protected autenticacionService : AutenticacionService){
   }
 
   protected obtenerOpcionesPeticion() : RequestOptions

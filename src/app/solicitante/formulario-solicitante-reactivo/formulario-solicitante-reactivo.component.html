@@ -255,16 +255,95 @@
       <!--</div>-->
     <!--</div>-->
   </div>
+  <h4>Información Académica Básica</h4>
+  <hr class="sep-tt">
+  <div class="container">
+    <div class="row top-buffer" >
+      <div class="col-sm-offset-8 col-sm-4">
+        <button type="button" class="btn btn-primary btn-block" modal-trigger="informacionAcademicaBasica"><span class="glyphicon glyphicon-plus"></span> Agregar Información Académica Básica</button>
+      </div>
+    </div>
+    <div  class="table-responsive top-buffer">
+      <table *ngIf="listadoInformacionAcademicaBasica && listadoInformacionAcademicaBasica.length" class="table table-bordered">
+        <thead>
+        <tr class="info">
+        <!--<tr>-->
+          <th>Institución</th>
+          <th>Año Inicio</th>
+          <th>Año Fin</th>
+          <th>Fecha Grado</th>
+          <th>Último Grado Escolar</th>
+          <th>Prueba Saber</th>
+          <th>Calificación Prueba Saber</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let informacionAcademicaBasica of listadoInformacionAcademicaBasica'>
+          <td></td>
+          <td>{{informacionAcademicaBasica.ano_inicio}}</td>
+          <td>{{informacionAcademicaBasica.ano_fin }}</td>
+          <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
+          <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
+          <td>{{informacionAcademicaBasica.pruebas_saber }}</td>
+          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h4>Información Académica Superior</h4>
+  <hr class="sep-tt">
+  <div class="container">
+    <div class="row top-buffer" >
+      <div class="col-sm-offset-8 col-sm-4">
+        <button type="button" class="btn btn-primary btn-block" modal-trigger="informacionAcademicaSuperior"><span class="glyphicon glyphicon-plus"></span> Agregar Información Académica Superior</button>
+      </div>
+    </div>
+    <div  class="table-responsive top-buffer">
+      <table *ngIf="listadoInformacionAcademicaBasica && listadoInformacionAcademicaBasica.length" class="table table-bordered">
+        <thead>
+        <tr class="info">
+          <!--<tr>-->
+          <th>Institución</th>
+          <th>Año Inicio</th>
+          <th>Año Fin</th>
+          <th>Fecha Grado</th>
+          <th>Programa</th>
+          <th>Último Grado Escolar</th>
+          <th>Prueba Saber</th>
+          <th>Calificación Prueba Saber</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let informacionAcademicaBasica of listadoInformacionAcademicaBasica'>
+          <td></td>
+          <td>{{informacionAcademicaBasica.ano_inicio}}</td>
+          <td>{{informacionAcademicaBasica.ano_fin }}</td>
+          <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
+          <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
+          <td>{{informacionAcademicaBasica.pruebas_saber }}</td>
+          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
 
   <h4>Experiencia Laboral</h4>
   <hr class="sep-tt">
   <div class="container">
-    <div class="row top-buffer" >
-      <button type="button" class="btn btn-primary pull-right" modal-trigger>Agregar Experiencia Laboral</button>
+    <div class="row top-buffer">
+      <div class="col-sm-offset-8 col-sm-4">
+        <button type="button" class="btn btn-primary btn-block" modal-trigger="experienciaLaboral"><span class="glyphicon glyphicon-plus"></span> Agregar Experiencia Laboral</button>
+      </div>
+
     </div>
 
-    <div  class="table-responsive top-buffer">
-      <table *ngIf="listadoExperienciaLaboral && listadoExperienciaLaboral.length" class="table">
+    <div  class="top-buffer table-responsive">
+      <table *ngIf="listadoExperienciaLaboral && listadoExperienciaLaboral.length" class="table table-bordered">
         <thead>
         <tr>
           <th>Empresa</th>
@@ -294,6 +373,14 @@
 
   <div>
     <experiencia-laboral-modal (experienciaLaboralAgregada)="agregarExperienciaLaboral($event)"></experiencia-laboral-modal>
+  </div>
+
+  <div>
+    <informacion-academica-basica-modal (informacionAcademicaBasicaAgregada)="agregarInformacionAcademicaBasica($event)"></informacion-academica-basica-modal>
+  </div>
+
+  <div>
+    <informacion-academica-superior-modal (informacionAcademicaBasicaAgregada)="agregarInformacionAcademicaSuperior($event)"></informacion-academica-superior-modal>
   </div>
 
 </form>

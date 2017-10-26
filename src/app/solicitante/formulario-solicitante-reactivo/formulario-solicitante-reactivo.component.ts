@@ -4,12 +4,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Form, FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router'
-import {Observable} from "rxjs/Observable";
-import {RequestOptions} from "@angular/http";
 import {SolicitanteService} from "../../services/solicitante.service";
 import {ServicioPais} from "../../services/pais.servicio";
-import {ServicioTipoEntidad} from "../../services/tipo.entidad.servicio";
-import {ISolicitante} from "../../models/solicitante.model";
 import {ServicioTipoDocumento} from "../../services/tipo.documento.servicio";
 import {ServicioGenero} from "../../services/genero.servicio";
 import {ServicioTipoPoblacion} from "../../services/tipo.poblacion.servicio";
@@ -18,6 +14,9 @@ import {IRegistroSolicitante} from "../../models/registro.solicitante.model";
 import {IGenero} from "../../models/genero.model";
 import {IPais} from "../../models/pais.model";
 import {ITipoDocumento} from "../../models/tipo.documento.model";
+import {IInformacionAcademicaBasica} from "../../models/informacion.academica.basica.model";
+import {IInformacionAcademicaSuperior} from "../../models/informacion.academica.superior.model";
+import {IInformacionNivelIdioma} from "../../models/informacion.nivel.idioma.model";
 
 
 @Component({
@@ -55,6 +54,9 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
   tiposPoblacion;
   paises : IPais[];
   listadoExperienciaLaboral: IExperienciaLaboral[] = [];
+  listadoInformacionAcademicaBasica : IInformacionAcademicaBasica[] = [];
+  listadoInformacionAcademicaSuperior : IInformacionAcademicaSuperior[] = [];
+  listadoInformacionNivelIdioma : IInformacionNivelIdioma[] = [];
 
   valorSeleccionadoTipoDocumento;
   valorSeleccionadoGenero;
@@ -63,7 +65,7 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
   valorSeleccionadoPaisResidencia;
 
   administradorForm: FormGroup;
-  contrasena: FormControl
+  contrasena: FormControl;
   confirmarcontrasena: FormControl;
 
   constructor(public formBuilder: FormBuilder, private router: Router, private servicioSolicitante: SolicitanteService, private servicioPais: ServicioPais
@@ -147,6 +149,18 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     this.listadoExperienciaLaboral.push(experienciaLaboral);
   }
 
+  agregarInformacionAcademicaBasica(informacionAcademicaBasica : IInformacionAcademicaBasica){
+     this.listadoInformacionAcademicaBasica.push(informacionAcademicaBasica);
+  }
+
+  agregarInformacionAcademicaSuperior(informacionAcademicaSuperior : IInformacionAcademicaSuperior){
+    this.listadoInformacionAcademicaSuperior.push(informacionAcademicaSuperior);
+  }
+
+  agregarInformacionNivelIdioma(informacionNivelIdioma : IInformacionNivelIdioma){
+    this.listadoInformacionNivelIdioma.push(informacionNivelIdioma);
+  }
+
   solicitante = {
     login: "",
     usuario: {}
@@ -173,8 +187,6 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
       : { 'confirmarContrasenia': 'La contraseña no coincide' }
   }
   //#endregion  Validaciones
-
-
 }
 
 

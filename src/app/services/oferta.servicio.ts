@@ -5,84 +5,63 @@ import {ConfiguracionServicio} from "./configuracion.servicio";
 import {IOferta, IOfertaConsulta, Oferta} from "../models/oferta.model";
 import {AutenticacionService} from "./autenticacion.service";
 import {IFiltroConsultarOferta} from "../models/filtro.consultar.oferta.model";
+import {ServicioBase} from "./base.servicio";
 
 /**
  * Created by edgaguil on 8/08/2017.
  */
 
 @Injectable()
-export class ServicioOferta {
+export class ServicioOferta extends ServicioBase {
 
-  constructor(private http: Http, private configuracion: ConfiguracionServicio, private autenticacionService: AutenticacionService) {
+  constructor(private http: Http, private configuracion: ConfiguracionServicio, autenticacionService: AutenticacionService) {
+    super(autenticacionService);
   }
 
   crearOferta(oferta): Observable<IOferta> {
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
-    return this.http.post(this.configuracion.baseUrl + 'offerers/', JSON.stringify(oferta), options).map((response: Response) => {
+    return this.http.post(this.configuracion.baseUrl + 'offerers/', JSON.stringify(oferta), this.obtenerOpcionesPeticion()).map((response: Response) => {
       return response.json()
     }).catch(this.manejadorError);
   }
 
   crearOfertaConvocatoria(oferta): Observable<IOferta> {
-    let token = this.autenticacionService.obtenerCookie('token');
-    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
-
-
-    let options = new RequestOptions({headers: headers});
-    return this.http.post(this.configuracion.baseUrl + 'announcements/', JSON.stringify(oferta), options).map((response: Response) => {
+    return this.http.post(this.configuracion.baseUrl + 'announcements/', JSON.stringify(oferta), this.obtenerOpcionesPeticion()).map((response: Response) => {
       return response.text() ? response.json() : {}
     }).catch(this.manejadorError);
-
   }
 
   /** */
   consultarOfertasSolicitante(codigoConvocatoria): Observable<IOfertaConsulta[]> {
-
-    let token = this.autenticacionService.obtenerCookie('token');
-    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
-    let options = new RequestOptions({headers: headers});
-
     if(codigoConvocatoria > 0)
     {
-      return this.http.get(this.configuracion.baseUrl +  "announcements/" + codigoConvocatoria, options).map((response : Response) => {
+      return this.http.get(this.configuracion.baseUrl +  "announcements/" + codigoConvocatoria, this.obtenerOpcionesPeticion()).map((response : Response) => {
         return <IOfertaConsulta[]> response.json();
       }).catch(this.manejadorError);
     }
-
     else{
-      return this.http.get(this.configuracion.baseUrl +  "announcements/", options).map((response : Response) => {
+      return this.http.get(this.configuracion.baseUrl +  "announcements/", this.obtenerOpcionesPeticion()).map((response : Response) => {
         return <IOfertaConsulta[]> response.json();
       }).catch(this.manejadorError);
     }
   }
 
   consultarOfertasOferente(codigoConvocatoria) : Observable<IOfertaConsulta[]> {
-    let token = this.autenticacionService.obtenerCookie('token');
-    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
-    let options = new RequestOptions({headers: headers});
-    //let idOferente = this.autenticacionService.obtenerCookie('id');
-    let idOferente = 1;
-
-
-
-    return this.http.get(this.configuracion.baseUrl +  "announcements/offerers/" + idOferente +  "/" + codigoConvocatoria, options).map((response : Response) => {
+    let idOferente = this.autenticacionService.obtenerCookie('idUsuario');
+    console.log(idOferente);
+    return this.http.get(this.configuracion.baseUrl +  "announcements/offerers/" + idOferente +  "/" + codigoConvocatoria, this.obtenerOpcionesPeticion()).map((response : Response) => {
       return <IOfertaConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
 
 
   consultarOferta(idOferta): Observable<IOfertaConsulta> {
-    let token = this.autenticacionService.obtenerCookie('token');
-    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
-    let options = new RequestOptions({headers: headers});
-
-    return this.http.get(this.configuracion.baseUrl +  "announcements/" + idOferta, options).map((response : Response) => {
+    return this.http.get(this.configuracion.baseUrl +  "announcements/" + idOferta, this.obtenerOpcionesPeticion()).map((response : Response) => {
       return <IOfertaConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
 
 
+  /*
   consultarOfertasBK(codigoConvocatoria): IOferta[] {
     const ofertas = [];
     let oferta1: IOferta;
@@ -142,11 +121,7 @@ export class ServicioOferta {
     return oferta1;
 
   }
-
-  private manejadorError(error: Response) {
-    console.log(error);
-    return Observable.throw(error.statusText);
-  }
+  */
 }
 
 

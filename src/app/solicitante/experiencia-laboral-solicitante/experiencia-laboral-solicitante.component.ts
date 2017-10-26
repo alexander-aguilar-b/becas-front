@@ -34,8 +34,8 @@ export class ExperienciaLaboralSolicitanteComponent implements OnInit {
     this.experienciaLaboral.fecha_fin = new Date();
     this.experienciaLaboral.fecha_inicio = new Date();
 
-    $('#simple-modal').modal('toggle');
-
+    //$('#simple-modal').modal('toggle');
+    $('#experienciaLaboral').modal('toggle');
   }
 
   ngOnInit() {

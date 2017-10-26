@@ -1,7 +1,8 @@
 /**
  * Created by edgaguil on 2/09/2017.
  */
-import {Component, Input} from '@angular/core';
+import {Component, Inject, Input, ViewChild} from '@angular/core';
+import {JQ_TOKEN} from "./jquery.service";
 
 @Component({
   selector: 'simple-modal',
@@ -12,7 +13,9 @@ import {Component, Input} from '@angular/core';
 export class SimpleModalComponent{
 
   @Input() title : string;
+  @Input() elementId: string;
+  //@ViewChild('modalcontainer') containerEl: ElementRef;
 
-
-
+  constructor(@Inject(JQ_TOKEN) private $: any) {
+  }
 }
