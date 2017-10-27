@@ -71,7 +71,7 @@ export class InformacionAcademicaSuperiorComponent implements OnInit {
       id_institucion_academica_superior: 0,
       ano_inicio: null,
       ano_fin: null,
-      fecha_grado: new Date(),
+      fecha_grado: null,
       nombre_programa: null,
       semestres_programa: null,
       semestres_cursados: null,

@@ -64,7 +64,7 @@ export class InformacionAcademicaBasicaComponent implements OnInit {
     this.informacionAcademicaBasica = {
       ano_inicio  : null,
       ano_fin : null,
-      fecha_grado : new Date(),
+      fecha_grado : null,
       ultimo_grado_escolar : null,
       pruebas_saber : false,
       calificacion_pruebas_saber : null,

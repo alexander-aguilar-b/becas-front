@@ -172,7 +172,8 @@
 
         <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
         <div class="col-sm-4">
-          <input class="form-control" type="date" [(ngModel)]="solicitante.fechaNacimiento" name="fechaNacimiento" required>
+          <!--<input class="form-control" type="date" [(ngModel)]="solicitante.fechaNacimiento" name="fechaNacimiento" required>-->
+          <input class="form-control" type="text" [(ngModel)]="solicitante.fechaNacimiento" name="fechaNacimiento" required bsDatepicker placeholder="Seleccione una fecha...">
           <div class="form-control alert-danger" *ngIf="formSolicitante.controls.fechaNacimiento?.invalid && (formSolicitante.controls.fechaNacimiento.touched)">La fecha de nacimiento es requerida</div>
         </div>
       </div>
@@ -399,7 +400,7 @@
 
   <!--<button type="submit" class="btn btn-primary">Crear</button>-->
   <!--<span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" [disabled]="formSolicitante.invalid" >Crear</button></span>-->
-  <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary">Crear</button></span>
+  <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" [disabled]="formSolicitante.invalid">Crear</button></span>
   <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
 
   <div>

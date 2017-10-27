@@ -31,8 +31,8 @@ export class ExperienciaLaboralSolicitanteComponent implements OnInit {
 
     this.experienciaLaboral.nombre_empresa = '';
     this.experienciaLaboral.cargo = '';
-    this.experienciaLaboral.fecha_fin = new Date();
-    this.experienciaLaboral.fecha_inicio = new Date();
+    this.experienciaLaboral.fecha_fin = null;
+    this.experienciaLaboral.fecha_inicio = null;
 
     //$('#simple-modal').modal('toggle');
     $('#experienciaLaboral').modal('toggle');
@@ -42,8 +42,8 @@ export class ExperienciaLaboralSolicitanteComponent implements OnInit {
     this.experienciaLaboral = {
       nombre_empresa : '',
       cargo : '',
-      fecha_fin : new Date(),
-      fecha_inicio : new Date()
+      fecha_fin : null,
+      fecha_inicio : null
       // fecha_fin : '',
       // fecha_inicio : ''
     };
