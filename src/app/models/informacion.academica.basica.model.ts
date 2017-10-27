@@ -1,3 +1,4 @@
+import {IInstitucionEducacionBasica} from "./institucion.educacion.basica.model";
 /**
  * Created by edgaguil on 25/10/2017.
  */
@@ -9,4 +10,5 @@ export interface IInformacionAcademicaBasica {
   pruebas_saber : boolean;
   calificacion_pruebas_saber : number;
   id_institucion_academica_basica : number;
+  institucionAcademicaBasica? : IInstitucionEducacionBasica;
 }

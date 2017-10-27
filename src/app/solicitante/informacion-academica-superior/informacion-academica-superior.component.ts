@@ -3,6 +3,8 @@
  */
 import {Component, EventEmitter, OnInit, Output} from "@angular/core";
 import {IInformacionAcademicaSuperior} from "../../models/informacion.academica.superior.model";
+import {IInstitucionEducacionSuperior} from "../../models/institucion.educacion.superior";
+import {ServicioInstitucionEducacionSuperior} from "../../services/institucion.educacion.superior.servicio";
 /**
  * Created by edgaguil on 25/10/2017.
  */
@@ -18,9 +20,12 @@ declare var $: any;
 export class InformacionAcademicaSuperiorComponent implements OnInit {
 
   informacionAcademicaSuperior: IInformacionAcademicaSuperior;
+  institucionesEducacionSuperior : IInstitucionEducacionSuperior[] = [];
 
   @Output() informacionAcademicaSuperiorAgregada: EventEmitter<IInformacionAcademicaSuperior> = new EventEmitter<IInformacionAcademicaSuperior>();
 
+  constructor(private servicioInstitucionEducacionSuperior : ServicioInstitucionEducacionSuperior){
+  }
 
   agregarInformacionAcademicaSuperior(): void {
     console.log(this.informacionAcademicaSuperior);
@@ -36,7 +41,8 @@ export class InformacionAcademicaSuperiorComponent implements OnInit {
       titulo_obtenido: this.informacionAcademicaSuperior.titulo_obtenido,
       cantidad_creditos: this.informacionAcademicaSuperior.cantidad_creditos,
       registro_calificado: this.informacionAcademicaSuperior.registro_calificado,
-      tipo_programa: this.informacionAcademicaSuperior.tipo_programa
+      tipo_programa: this.informacionAcademicaSuperior.tipo_programa,
+      institucionAcademicaSuperior : this.institucionesEducacionSuperior.filter(x => x.id == this.informacionAcademicaSuperior.id_institucion_academica_superior)[0]
     });
 
     this.informacionAcademicaSuperior.id_institucion_academica_superior = null;
@@ -50,14 +56,19 @@ export class InformacionAcademicaSuperiorComponent implements OnInit {
     this.informacionAcademicaSuperior.cantidad_creditos = null;
     this.informacionAcademicaSuperior.registro_calificado = null;
     this.informacionAcademicaSuperior.tipo_programa = null;
+    this.informacionAcademicaSuperior.institucionAcademicaSuperior = null;
 
     $('#informacionAcademicaSuperior').modal('toggle');
-
   }
 
   ngOnInit() {
+
+    this.servicioInstitucionEducacionSuperior.obtenerInstitucionesEducacionSuperior().subscribe(institucionesEducacionSuperior =>
+      this.institucionesEducacionSuperior = institucionesEducacionSuperior
+    );
+
     this.informacionAcademicaSuperior = {
-      id_institucion_academica_superior: null,
+      id_institucion_academica_superior: 0,
       ano_inicio: null,
       ano_fin: null,
       fecha_grado: new Date(),
@@ -67,7 +78,8 @@ export class InformacionAcademicaSuperiorComponent implements OnInit {
       titulo_obtenido: null,
       cantidad_creditos: null,
       registro_calificado: null,
-      tipo_programa: null
+      tipo_programa: null,
+      institucionAcademicaSuperior : null
     };
   }
 }

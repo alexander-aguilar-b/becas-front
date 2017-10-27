@@ -6,6 +6,11 @@
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Nombre Institución</label>
             <div class="col-sm-5">
+              <select class="form-control" [(ngModel)]="informacionAcademicaBasica.id_institucion_academica_basica" name="institucionEducacionBasica" required id="institucionEducacionBasica">
+                <option value="0">-- Seleccione --</option>
+                <option *ngFor="let institucionEducacionBasica of  institucionesEducacionBasica" [ngValue]="institucionEducacionBasica.id">{{institucionEducacionBasica.nombre}}</option>
+              </select>
+
               <!--<input  class="form-control" type="text" [(ngModel)]=" experienciaLaboral.nombre_empresa" required>-->
               <!--<div class="form-control alert-danger" *ngIf="formSolicitante.controls.experienciaLaboral?.invalid && (formSolicitante.controls.experienciaLaboral?.touched)">El nombre de empresa usuario es requerido</div>-->
 

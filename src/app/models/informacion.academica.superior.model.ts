@@ -1,3 +1,4 @@
+import {IInstitucionEducacionSuperior} from "./institucion.educacion.superior";
 /**
  * Created by edgaguil on 25/10/2017.
  */
@@ -13,4 +14,5 @@ export interface IInformacionAcademicaSuperior {
   cantidad_creditos : number;
   registro_calificado : boolean;
   tipo_programa : string;
+  institucionAcademicaSuperior? : IInstitucionEducacionSuperior;
 }

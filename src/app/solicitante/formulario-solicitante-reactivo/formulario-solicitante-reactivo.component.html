@@ -266,8 +266,8 @@
     <div  class="table-responsive top-buffer">
       <table *ngIf="listadoInformacionAcademicaBasica && listadoInformacionAcademicaBasica.length" class="table table-bordered">
         <thead>
-        <tr class="info">
-        <!--<tr>-->
+        <!--<tr class="info">-->
+        <tr>
           <th>Institución</th>
           <th>Año Inicio</th>
           <th>Año Fin</th>
@@ -279,13 +279,13 @@
         </thead>
         <tbody>
         <tr *ngFor='let informacionAcademicaBasica of listadoInformacionAcademicaBasica'>
-          <td></td>
+          <td>{{ informacionAcademicaBasica?.institucionAcademicaBasica.nombre}}</td>
           <td>{{informacionAcademicaBasica.ano_inicio}}</td>
           <td>{{informacionAcademicaBasica.ano_fin }}</td>
           <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
           <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
           <td>{{informacionAcademicaBasica.pruebas_saber }}</td>
-          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber }}</td>
+          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber == true ? 'Si': 'No' }}</td>
         </tr>
         </tbody>
       </table>
@@ -301,7 +301,7 @@
       </div>
     </div>
     <div  class="table-responsive top-buffer">
-      <table *ngIf="listadoInformacionAcademicaBasica && listadoInformacionAcademicaBasica.length" class="table table-bordered">
+      <table *ngIf="listadoInformacionAcademicaSuperior && listadoInformacionAcademicaSuperior.length" class="table table-bordered">
         <thead>
         <tr class="info">
           <!--<tr>-->
@@ -310,20 +310,26 @@
           <th>Año Fin</th>
           <th>Fecha Grado</th>
           <th>Programa</th>
-          <th>Último Grado Escolar</th>
-          <th>Prueba Saber</th>
-          <th>Calificación Prueba Saber</th>
+          <th>Título Obtenido</th>
+          <th>Semestres Programa</th>
+          <th>Semestres Cursados</th>
+          <th>Créditos</th>
+          <th>Registro Calificado</th>
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor='let informacionAcademicaBasica of listadoInformacionAcademicaBasica'>
+        <tr *ngFor='let informacionAcademicaSuperior of listadoInformacionAcademicaSuperior'>
           <td></td>
-          <td>{{informacionAcademicaBasica.ano_inicio}}</td>
-          <td>{{informacionAcademicaBasica.ano_fin }}</td>
-          <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
-          <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
-          <td>{{informacionAcademicaBasica.pruebas_saber }}</td>
-          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber }}</td>
+          <td>{{informacionAcademicaSuperior.institucionAcademicaSuperior?.nombre}}</td>
+          <td>{{informacionAcademicaSuperior.ano_inicio }}</td>
+          <td>{{informacionAcademicaSuperior.ano_fin }}</td>
+          <td>{{informacionAcademicaSuperior.fecha_grado | date:'shortDate'}}</td>
+          <td>{{informacionAcademicaSuperior.nombre_programa }}</td>
+          <td>{{informacionAcademicaSuperior.titulo_obtenido }}</td>
+          <td>{{informacionAcademicaSuperior.semestres_programa }}</td>
+          <td>{{informacionAcademicaSuperior.semestres_cursados }}</td>
+          <td>{{informacionAcademicaSuperior.cantidad_creditos }}</td>
+          <td>{{informacionAcademicaSuperior.registro_calificado == true ? 'Si': 'No' }}</td>
         </tr>
         </tbody>
       </table>
@@ -331,6 +337,32 @@
   </div>
 
 
+  <h4>Información Idiomas</h4>
+  <hr class="sep-tt">
+  <div class="container">
+    <div class="row top-buffer" >
+      <div class="col-sm-offset-8 col-sm-4">
+        <button type="button" class="btn btn-primary btn-block" modal-trigger="informacionNivelIdioma"><span class="glyphicon glyphicon-plus"></span> Agregar Información Idioma</button>
+      </div>
+    </div>
+    <div  class="table-responsive top-buffer">
+      <table *ngIf="listadoInformacionNivelIdioma && listadoInformacionNivelIdioma.length" class="table table-bordered">
+        <thead>
+        <tr>
+          <th>Idioma</th>
+          <th>Nivel</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor='let informacionNivelIdioma of listadoInformacionNivelIdioma'>
+          <td></td>
+          <td>{{informacionNivelIdioma?.idioma.descripcion}}</td>
+          <td>{{informacionNivelIdioma?.nivelIdioma.descripcion }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <h4>Experiencia Laboral</h4>
   <hr class="sep-tt">
@@ -381,6 +413,10 @@
 
   <div>
     <informacion-academica-superior-modal (informacionAcademicaBasicaAgregada)="agregarInformacionAcademicaSuperior($event)"></informacion-academica-superior-modal>
+  </div>
+
+  <div>
+    <informacion-idioma-modal (informacionIdiomaAgregada)="agregarInformacionIdioma($event)"></informacion-idioma-modal>
   </div>
 
 </form>

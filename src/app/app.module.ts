@@ -56,8 +56,15 @@ import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar
 import {ServicioFormularioEtapa} from "./services/formulario.etapa.servicio";
 import {InformacionAcademicaBasicaComponent} from "./solicitante/informacion-academica-basica/informacion-academica-basica.component";
 import {InformacionAcademicaSuperiorComponent} from "./solicitante/informacion-academica-superior/informacion-academica-superior.component";
+import {ServicioIdioma} from "./services/idioma.servicio";
+import {ServicioInstitucionEducacionBasica} from "./services/institucion.educacion.basica.servicio";
+import {ServicioInstitucionEducacionSuperior} from "./services/institucion.educacion.superior.servicio";
+import {ServicioNivelIdioma} from "./services/nivel.idioma.service";
+import {InformacionIdiomaComponent} from "./solicitante/informacion-idioma/informacion-idioma.component";
 
 declare let jQuery : Object;
+
+
 
 
 @NgModule({
@@ -95,6 +102,7 @@ declare let jQuery : Object;
     AgregarEtapaOfertaComponent,
     InformacionAcademicaBasicaComponent,
     InformacionAcademicaSuperiorComponent,
+    InformacionIdiomaComponent
   ],
   imports: [
     BrowserModule,
@@ -124,6 +132,10 @@ declare let jQuery : Object;
     ServicioTipoItemFormulario,
     ServicioEtapasOferta,
     ServicioFormularioEtapa,
+    ServicioIdioma,
+    ServicioInstitucionEducacionBasica,
+    ServicioInstitucionEducacionSuperior,
+    ServicioNivelIdioma,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent]
