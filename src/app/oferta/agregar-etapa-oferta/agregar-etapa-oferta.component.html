@@ -30,11 +30,17 @@
         <div class="form-group">
           <label class="col-sm-2">Fecha Inicio:</label>
           <div class="col-sm-4">
-            <input class="form-control" type="date" (ngModel)="etapaOferta.fechaInicio" name="fechaInicio" required>
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaInicio" name="fechaInicio" required bsDatepicker placeholder="Seleccione una fecha...">
+            <input [ngModel]="etapaOferta.fechaInicio | date:'shortDate'"
+                   (ngModelChange)="etapaOferta.fechaInicio=$event" name="fechaInicio" type="hidden" />
+            <!--<input class="form-control" type="date" (ngModel)="etapaOferta.fechaInicio" name="fechaInicio" required>-->
           </div>
           <label class="col-sm-2">Fecha Fin:</label>
           <div class="col-sm-4">
-            <input class="form-control" type="date" (ngModel)="etapaOferta.fechaFin" name="fechaFin" required>
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaFin" name="fechaFin" required bsDatepicker placeholder="Seleccione una fecha...">
+            <input [ngModel]="etapaOferta.fechaFin | date:'shortDate'"
+                   (ngModelChange)="etapaOferta.fechaFin=$event" name="fechaFin" type="hidden" />
+            <!--<input class="form-control" type="date" (ngModel)="etapaOferta.fechaFin" name="fechaFin" required>-->
           </div>
         </div>
       </div>
@@ -97,4 +103,4 @@
 </div>
 
 
-{{ etapaOferta | json}}
+<!--{{ etapaOferta | json}}-->

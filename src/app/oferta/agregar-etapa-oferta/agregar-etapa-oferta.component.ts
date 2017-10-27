@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 import {JQ_TOKEN} from "../../comun/jquery.service";
 import {IEtapa} from "../../models/etapa.model";
+import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 /**
  * Created by edgaguil on 22/10/2017.
  */
@@ -17,6 +18,8 @@ export class AgregarEtapaOfertaComponent implements OnInit{
 
   idOferta : number;
   etapaOferta : IEtapa;
+  bsConfig: Partial<BsDatepickerConfig>;
+  colorTheme : 'theme-blue';
 
   /** Constructor- Se inyectan las dependencias requeridas*/
   constructor(private activatedRouter : ActivatedRoute, private router : Router,  private servicioEtapasOferta : ServicioEtapasOferta, @Inject(JQ_TOKEN) private $ : any){
@@ -24,7 +27,18 @@ export class AgregarEtapaOfertaComponent implements OnInit{
   }
 
   ngOnInit(){
+
+    this.bsConfig = Object.assign({}, {containerClass: this.colorTheme});
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
+    this.etapaOferta = {
+      nombre : '',
+      formulario : null,
+      fecha_fin : new Date(),
+      fecha_inicio : new Date(),
+      id_convocatoria : this.idOferta,
+      cantidad_a_seleccionar : null,
+      descripcion : ''
+    };
   }
 
 
@@ -44,6 +58,15 @@ export class AgregarEtapaOfertaComponent implements OnInit{
         alert('La etapa se ha agregado exitosamente a la oferta');
         this.router.navigate(['/oferta/etapas-oferta-oferente/', this.idOferta]);
       });
+
+    this.etapaOferta = {
+      id_convocatoria : this.idOferta,
+      nombre : '',
+      descripcion : '',
+      fecha_inicio : null,
+      fecha_fin : null,
+      cantidad_a_seleccionar : null
+    };
 
   }
 }
