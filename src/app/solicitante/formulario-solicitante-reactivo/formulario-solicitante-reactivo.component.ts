@@ -47,16 +47,22 @@ import {IInformacionNivelIdioma} from "../../models/informacion.nivel.idioma.mod
   `]
 })
 
+
+
 export class FormularioSolicitanteReactivoComponent implements OnInit {
 
-  tipoDocumentos : ITipoDocumento[];
-  generos : IGenero[];
+  tipoDocumentos: ITipoDocumento[];
+  generos: IGenero[];
   tiposPoblacion;
-  paises : IPais[];
+  paises: IPais[];
   listadoExperienciaLaboral: IExperienciaLaboral[] = [];
-  listadoInformacionAcademicaBasica : IInformacionAcademicaBasica[] = [];
-  listadoInformacionAcademicaSuperior : IInformacionAcademicaSuperior[] = [];
-  listadoInformacionNivelIdioma : IInformacionNivelIdioma[] = [];
+  listadoInformacionAcademicaBasica: IInformacionAcademicaBasica[] = [];
+  listadoInformacionAcademicaSuperior: IInformacionAcademicaSuperior[] = [];
+  listadoInformacionNivelIdioma: IInformacionNivelIdioma[] = [];
+
+  listadoInformacionAcademicaBasicaServicio: IInformacionAcademicaBasica[] = [];
+  listadoInformacionAcademicaSuperiorServicio: IInformacionAcademicaSuperior[] = [];
+  listadoInformacionNivelIdiomaServicio: IInformacionNivelIdioma[] = [];
 
   valorSeleccionadoTipoDocumento;
   valorSeleccionadoGenero;
@@ -103,6 +109,8 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
   crearSolicitante(formValues) {
     console.log("Datos Formulario");
     console.log(formValues);
+    console.log("Info Basica");
+    console.log(this.listadoInformacionAcademicaBasicaServicio);
 
     let datosSolicitante: IRegistroSolicitante;
     datosSolicitante = {
@@ -125,18 +133,23 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
       departamento_residencia: 1,
       municipio_nacimiento: 1,
       municipio_residencia: 1,
-      workExperienceList: this.listadoExperienciaLaboral
+      workExperienceList: this.listadoExperienciaLaboral,
+      basicAcademicInfoList : this.listadoInformacionAcademicaBasicaServicio,
+      higherAcademicInfoList : this.listadoInformacionAcademicaSuperiorServicio,
+      languageLevelList : this.listadoInformacionNivelIdiomaServicio
     }
 
 
     console.log("Datos Servicio");
     console.log(datosSolicitante);
 
-    this.servicioSolicitante.crearSolicitante(datosSolicitante)
-    //.finally(() => this.router.navigate(['/oferente/confirmacion-creacion-oferente'])).subscribe();
-      .subscribe(event => {
-        this.router.navigate(['/solicitante/confirmacion-creacion-solicitante'])
-      })
+
+     this.servicioSolicitante.crearSolicitante(datosSolicitante)
+     //.finally(() => this.router.navigate(['/oferente/confirmacion-creacion-oferente'])).subscribe();
+     .subscribe(event => {
+     this.router.navigate(['/solicitante/confirmacion-creacion-solicitante'])
+     });
+
   }
 
   agregarExperienciaLaboral(experienciaLaboral: IExperienciaLaboral): void {
@@ -149,15 +162,46 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     this.listadoExperienciaLaboral.push(experienciaLaboral);
   }
 
-  agregarInformacionAcademicaBasica(informacionAcademicaBasica : IInformacionAcademicaBasica){
-     this.listadoInformacionAcademicaBasica.push(informacionAcademicaBasica);
+  agregarInformacionAcademicaBasica(informacionAcademicaBasica: IInformacionAcademicaBasica) {
+    let informacionAcademicaBasicaBase: IInformacionAcademicaBasica = {
+      id_institucion_academica_basica : informacionAcademicaBasica.id_institucion_academica_basica,
+      ano_inicio: informacionAcademicaBasica.ano_inicio,
+      ano_fin: informacionAcademicaBasica.ano_fin,
+      fecha_grado: informacionAcademicaBasica.fecha_grado,
+      ultimo_grado_escolar: informacionAcademicaBasica.ultimo_grado_escolar,
+      pruebas_saber: informacionAcademicaBasica.pruebas_saber,
+      calificacion_pruebas_saber: informacionAcademicaBasica.calificacion_pruebas_saber
+    };
+
+    this.listadoInformacionAcademicaBasicaServicio.push(informacionAcademicaBasicaBase);
+    this.listadoInformacionAcademicaBasica.push(informacionAcademicaBasica);
   }
 
-  agregarInformacionAcademicaSuperior(informacionAcademicaSuperior : IInformacionAcademicaSuperior){
+  agregarInformacionAcademicaSuperior(informacionAcademicaSuperior: IInformacionAcademicaSuperior) {
+    let informacionAcademicaSuperiorBase: IInformacionAcademicaSuperior = {
+      ano_inicio : informacionAcademicaSuperior.ano_inicio,
+      ano_fin : informacionAcademicaSuperior.ano_fin,
+      fecha_grado : informacionAcademicaSuperior.fecha_grado,
+      nombre_programa : informacionAcademicaSuperior.nombre_programa,
+      semestres_cursados : informacionAcademicaSuperior.semestres_cursados,
+      semestres_programa : informacionAcademicaSuperior.semestres_programa,
+      titulo_obtenido : informacionAcademicaSuperior.titulo_obtenido,
+      cantidad_creditos : informacionAcademicaSuperior.cantidad_creditos,
+      registro_calificado : informacionAcademicaSuperior.registro_calificado,
+      tipo_programa : informacionAcademicaSuperior.tipo_programa,
+      id_institucion_academica_superior : informacionAcademicaSuperior.id_institucion_academica_superior
+    };
+
+    this.listadoInformacionAcademicaSuperiorServicio.push(informacionAcademicaSuperiorBase);
     this.listadoInformacionAcademicaSuperior.push(informacionAcademicaSuperior);
   }
 
-  agregarInformacionIdioma(informacionNivelIdioma : IInformacionNivelIdioma){
+  agregarInformacionIdioma(informacionNivelIdioma: IInformacionNivelIdioma) {
+    let informacionNivelIdiomaBase : IInformacionNivelIdioma = {
+      id_idioma : informacionNivelIdioma.id_idioma,
+      id_nivel_idioma : informacionNivelIdioma.id_nivel_idioma
+    };
+    this.listadoInformacionNivelIdiomaServicio.push(informacionNivelIdiomaBase);
     this.listadoInformacionNivelIdioma.push(informacionNivelIdioma);
   }
 
@@ -171,21 +215,25 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     return this.administradorForm.controls.contrasena.valid ||
       this.administradorForm.controls.contrasena.untouched
   }
+
   validarConfirmacionContrasenia() {
     return (this.administradorForm.controls.confirmarcontrasena.valid)
       || this.administradorForm.controls.confirmarcontrasena.untouched;
   }
+
   validarMismaContrasenia() {
     return (this.administradorForm.valid && this.administradorForm.controls.confirmarcontrasena.valid)
       || this.administradorForm.controls.confirmarcontrasena.untouched;
   }
+
   private confirmarContrasenia(group: FormGroup): { [key: string]: any } {
     let contrasenia = group.controls.contrasena.value
     let confirmarcontrasenia = group.controls.confirmarcontrasena.value
     return contrasenia === confirmarcontrasenia
       ? null
-      : { 'confirmarContrasenia': 'La contraseña no coincide' }
+      : {'confirmarContrasenia': 'La contraseña no coincide'}
   }
+
   //#endregion  Validaciones
 }
 

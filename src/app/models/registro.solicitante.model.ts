@@ -2,9 +2,13 @@
  * Created by edgaguil on 13/08/2017.
  */
 import {IExperienciaLaboral} from "./experiencia.laboral.model";
+import {IInformacionAcademicaBasica} from "./informacion.academica.basica.model";
+import {IInformacionAcademicaSuperior} from "./informacion.academica.superior.model";
+import {IInformacionNivelIdioma} from "./informacion.nivel.idioma.model";
 /**
  * Created by edgaguil on 28/07/2017.
  */
+
 export interface IRegistroSolicitante
 {
   id : number,
@@ -26,5 +30,8 @@ export interface IRegistroSolicitante
   departamento_residencia: number,
   municipio_nacimiento: number,
   municipio_residencia: number,
-  workExperienceList : IExperienciaLaboral[]
+  workExperienceList : IExperienciaLaboral[],
+  higherAcademicInfoList : IInformacionAcademicaSuperior[],
+  basicAcademicInfoList : IInformacionAcademicaBasica[],
+  languageLevelList : IInformacionNivelIdioma[]
 }

@@ -13,6 +13,18 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="top-buffer-sm">
+            <label class="col-sm-4 col-form-label">Tipo Programa</label>
+            <!--<label class="col-sm-4 col-form-label" >Fecha Inicio</label>-->
+            <div class="col-sm-5">
+              <input class="form-control" type="text" [(ngModel)]="informacionAcademicaSuperior.tipo_programa">
+              <!--<div class="form-control alert-danger" *ngIf="formOferente.controls.nombre?.invalid && (formOferente.controls.nombre?.touched)">El nombre es requerido</div>-->
+            </div>
+          </div>
+        </div>
+
         <div class="row">
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Año Inicio</label>
@@ -23,16 +35,18 @@
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Año Fin</label>
             <div class="col-sm-5">
-              <input class="form-control" type="number"  [(ngModel)]="informacionAcademicaSuperior.ano_fin">
+              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaSuperior.ano_fin">
               <!--<input class="form-control" type="date" >-->
               <!--<div class="form-control alert-danger" *ngIf="formOferente.controls.nombre?.invalid && (formOferente.controls.nombre?.touched)">El nombre es requerido</div>-->
             </div>
           </div>
         </div>
+
         <div class="row">
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Fecha Graduación</label>
@@ -57,7 +71,7 @@
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Semestres Programa</label>
             <div class="col-sm-5 checkbox">
-              <input type="text" [(ngModel)]="informacionAcademicaSuperior.semestres_programa">
+              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaSuperior.semestres_programa">
               <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
             </div>
           </div>
@@ -68,7 +82,18 @@
             <label class="col-sm-4 col-form-label">Semestres Cursados
             </label>
             <div class="col-sm-5">
-              <input class="form-control" type="text" [(ngModel)]="informacionAcademicaSuperior.semestres_cursados">
+              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaSuperior.semestres_cursados">
+              <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="top-buffer-sm">
+            <label class="col-sm-4 col-form-label">Créditos
+            </label>
+            <div class="col-sm-5">
+              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaSuperior.cantidad_creditos">
               <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
             </div>
           </div>
@@ -78,7 +103,7 @@
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Titulo Obtenido</label>
             <div class="col-sm-5 checkbox">
-              <input type="text" [(ngModel)]="informacionAcademicaSuperior.titulo_obtenido">
+              <input class="form-control" type="text" [(ngModel)]="informacionAcademicaSuperior.titulo_obtenido">
               <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
             </div>
           </div>

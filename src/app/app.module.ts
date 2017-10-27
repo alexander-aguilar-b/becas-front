@@ -65,8 +65,6 @@ import {InformacionIdiomaComponent} from "./solicitante/informacion-idioma/infor
 declare let jQuery : Object;
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
