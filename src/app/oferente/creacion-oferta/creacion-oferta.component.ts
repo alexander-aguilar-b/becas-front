@@ -119,7 +119,9 @@ export class CreacionOfertaComponent implements OnInit {
 
   crearOferta(oferta) {
 
-    this.oferta.id_oferente = oferta.id_oferente;
+    let idOferente = this.autenticacionService.obtenerCookie('idUsuario');
+    this.oferta.id_oferente = Number(idOferente);
+    //this.oferta.id_oferente = oferta.id_oferente;
     this.oferta.nombre = oferta.nombre;
     this.oferta.fecha_inicio = oferta.fecha_inicio;
     this.oferta.fecha_fin = oferta.fecha_fin;

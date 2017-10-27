@@ -17,37 +17,43 @@
 
         <br>
 
+        <!--<div class="row">-->
+        <!--<div class="form-group">-->
+        <!--<label class="col-sm-2">Id Oferente</label>-->
+        <!--<div class="col-sm-4">-->
+        <!--<input id="id_oferente" (ngModel)="oferta.id_oferente" required class="form-control" type="text"-->
+        <!--name="id_oferente">-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
         <div class="row">
           <div class="form-group">
-            <label class="col-sm-2">Id Oferente</label>
-            <div class="col-sm-4">
-              <input id="id_oferente" (ngModel)="oferta.id_oferente" required class="form-control" type="text"
-                     name="id_oferente">
+            <label class="col-sm-2">Nombre</label>
+            <div class="col-sm-10">
+              <input id="nombre" (ngModel)="oferta.nombre" required class="form-control" type="text" name="nombre">
             </div>
           </div>
         </div>
 
         <div class="row">
           <div class="form-group">
-            <label class="col-sm-2">Nombre</label>
-            <div class="col-sm-4">
-              <input id="nombre" (ngModel)="oferta.nombre" required class="form-control" type="text" name="nombre">
-            </div>
             <label class="col-sm-2">Descripción</label>
-            <div class="col-sm-4">
+            <div class="col-sm-10">
           <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.descripcion" name="descripcion"
                     required></textarea>
             </div>
           </div>
         </div>
 
+
         <div class="row">
           <div class="form-group">
-            <label class="col-sm-2">Fecha inicio</label>
+            <label class="col-sm-2">Fecha Inicio</label>
             <div class="col-sm-4">
               <input class="form-control" type="date" (ngModel)="oferta.fecha_inicio" name="fecha_inicio" required>
             </div>
-            <label class="col-sm-2">Fecha fin</label>
+            <label class="col-sm-2">Fecha Fin</label>
             <div class="col-sm-4">
               <input class="form-control" type="date" (ngModel)="oferta.fecha_fin" name="fecha_fin" required>
             </div>
@@ -56,7 +62,7 @@
 
         <div class="row">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tipo de oferta</label>
+            <label class="col-sm-2 col-form-label">Tipo de Oferta</label>
             <div class="col-sm-4">
               <select class="form-control" [ngModel]="valorSeleccionadoTipoOferta" name="id_tipo_convocatoria"
                       required>
@@ -69,7 +75,7 @@
 
         <div class="row">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Requisitos:</label>
+            <label class="col-sm-2 col-form-label">Requisitos</label>
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.requisitos" name="requisitos"
                   required></textarea>
@@ -79,7 +85,7 @@
 
         <div class="row">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Condiciones:</label>
+            <label class="col-sm-2 col-form-label">Condiciones</label>
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.condiciones" name="condiciones"
                   required></textarea>
@@ -89,7 +95,7 @@
 
         <div class="row">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Información adicional:</label>
+            <label class="col-sm-2 col-form-label">Información Adicional</label>
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.informacion_adicional"
                   name="informacion_adicional" required></textarea>
@@ -98,11 +104,12 @@
         </div>
       </div>
 
-      <div class="row" align="right">
-        <br>
-        <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
-        <button type="button" class="btn btn-primary" (click)="cambioEtapa()">Agregar Etapa
+      <div class="row top-buffer" align="right">
+        <button type="button" class="btn btn-primary" (click)="cambioEtapa()"><span
+          class="glyphicon glyphicon-plus"></span> Agregar Etapa
         </button>
+        <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span
+          class="glyphicon glyphicon-remove"></span> Cancelar</a>
       </div>
 
     </div>
@@ -115,32 +122,18 @@
 
         <div class="row">
           <div class="form-group">
-            <label class="col-sm-2">Nombre: </label>
-            <div class="col-sm-4">
-              <input type="text" [(ngModel)]="defincionEtapaFormulario.nombre_etapa" name="nombre_etapa"
+            <label class="col-sm-2">Nombre</label>
+            <div class="col-sm-10">
+              <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.nombre_etapa"
+                     name="nombre_etapa"
                      id="id_nombre_etapa">
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="form-group">
-            <label class="col-sm-2">Fecha inicio</label>
-            <div class="col-sm-4">
-              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_inicio_etapa"
-                     name="fecha_inicio_etapa" required>
-            </div>
-            <label class="col-sm-2">Fecha fin</label>
-            <div class="col-sm-4">
-              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_fin_etapa"
-                     name="fecha_fin_etapa" required>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Descripción:</label>
+            <label class="col-sm-2 col-form-label">Descripción</label>
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.descripcion_etapa"
                   name="descripcion_etapa"
@@ -149,23 +142,42 @@
           </div>
         </div>
 
+
         <div class="row">
           <div class="form-group">
-            <label class="col-sm-2">Cantidad a seleccionar</label>
+            <label class="col-sm-2">Fecha Inicio</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.cantidad_seleccionar"
+              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_inicio_etapa"
+                     name="fecha_inicio_etapa" required>
+            </div>
+            <label class="col-sm-2">Fecha Fin</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_fin_etapa"
+                     name="fecha_fin_etapa" required>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="form-group">
+            <label class="col-sm-2">Cantidad a Seleccionar:</label>
+            <div class="col-sm-4">
+              <input class="form-control" type="number" [(ngModel)]="defincionEtapaFormulario.cantidad_seleccionar"
                      name="cantidad_seleccionar"
                      required>
             </div>
           </div>
         </div>
 
-        <div class="row" align="right">
-          <br>
-          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
-          <button type="button" class="btn btn-primary" (click)="cambioFormulario()">Agregar Formulario
+        <div class="row top-buffer" align="right">
+          <button type="button" class="btn btn-primary" (click)="cambioFormulario()"><span
+            class="glyphicon glyphicon-plus"></span> Agregar Formulario
           </button>
-          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)">Terminar Etapa
+          <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span
+            class="glyphicon glyphicon-remove"></span> Cancelar</a>
+          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)"><span
+            class="glyphicon glyphicon-ok"></span> Terminar Etapa
           </button>
         </div>
 
@@ -206,79 +218,79 @@
               <div class="panel-heading">Crear Formulario</div>
               <div class="panel-body">
                 <!--<table>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Ingrese el item-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<input type="text" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItemId"-->
-                             <!--name="nombreItem">-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Tipo de respuesta-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl">-->
-                        <!--<option value="0">Selecccione</option>-->
-                        <!--<option value="1">Titulo</option>-->
-                        <!--<option value="2">Descripción</option>-->
-                        <!--<option value="3">Comentario</option>-->
-                        <!--<option value="4">Caja de texto</option>-->
-                        <!--<option value="5">Lista desplegable</option>-->
-                        <!--<option value="6">Botón de radio</option>-->
-                        <!--<option value="7">Selección múltiple</option>-->
-                        <!--<option value="8">Documento adjunto</option>-->
-                      <!--</select>-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Las opciones se delimitan con :-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<input type="text" id="tipoDelimitadorId" name="tipoDelimitador"-->
-                             <!--[(ngModel)]="defincionEtapaFormulario.tipoDelimitador">-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Opciones-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<input type="text" id="opcionesId" name="opciones"-->
-                             <!--[(ngModel)]="defincionEtapaFormulario.opciones">-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Campo Obligatorio-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<input type="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--Tamaño Máximo-->
-                    <!--</td>-->
-                    <!--<td>-->
-                      <!--<input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo">-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td colspan="2" align="left">-->
-                      <!--<button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">Agregar-->
-                        <!--Item-->
-                      <!--</button>-->
-                    <!--</td>-->
-                  <!--</tr>-->
-                  <!--<tr>-->
-                    <!--<td>-->
-                      <!--<br/>-->
-                    <!--</td>-->
-                  <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Ingrese el item-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<input type="text" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItemId"-->
+                <!--name="nombreItem">-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Tipo de respuesta-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl">-->
+                <!--<option value="0">Selecccione</option>-->
+                <!--<option value="1">Titulo</option>-->
+                <!--<option value="2">Descripción</option>-->
+                <!--<option value="3">Comentario</option>-->
+                <!--<option value="4">Caja de texto</option>-->
+                <!--<option value="5">Lista desplegable</option>-->
+                <!--<option value="6">Botón de radio</option>-->
+                <!--<option value="7">Selección múltiple</option>-->
+                <!--<option value="8">Documento adjunto</option>-->
+                <!--</select>-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Las opciones se delimitan con :-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<input type="text" id="tipoDelimitadorId" name="tipoDelimitador"-->
+                <!--[(ngModel)]="defincionEtapaFormulario.tipoDelimitador">-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Opciones-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<input type="text" id="opcionesId" name="opciones"-->
+                <!--[(ngModel)]="defincionEtapaFormulario.opciones">-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Campo Obligatorio-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<input type="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--Tamaño Máximo-->
+                <!--</td>-->
+                <!--<td>-->
+                <!--<input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo">-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td colspan="2" align="left">-->
+                <!--<button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">Agregar-->
+                <!--Item-->
+                <!--</button>-->
+                <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                <!--<td>-->
+                <!--<br/>-->
+                <!--</td>-->
+                <!--</tr>-->
                 <!--</table>-->
 
                 <!--Alex refactor-->
@@ -291,7 +303,8 @@
                     </td>
                     <td>
                       <div class="top-buffer-sm">
-                        <input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItemId" name="nombreItem">
+                        <input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem"
+                               id="nombreItemId" name="nombreItem">
                       </div>
                     </td>
                   </tr>
@@ -303,28 +316,34 @@
                     </td>
                     <td>
                       <div class="top-buffer-sm">
-                        <select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl" class="form-control">
+                        <select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl"
+                                class="form-control">
                           <option value="0">Seleccione</option>
-                          <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}</option>
+                          <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}
+                          </option>
                         </select>
                       </div>
                     </td>
                   </tr>
-                  <tr *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
+                  <tr
+                    *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
                     <td>
                       Las opciones se delimitan con
                     </td>
                     <td>
-                      <input type="text" id="tipoDelimitadorId" name="tipoDelimitador" [(ngModel)]="defincionEtapaFormulario.tipoDelimitador" class="form-control">
+                      <input type="text" id="tipoDelimitadorId" name="tipoDelimitador"
+                             [(ngModel)]="defincionEtapaFormulario.tipoDelimitador" class="form-control">
 
                     </td>
                   </tr>
-                  <tr *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
+                  <tr
+                    *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
                     <td>
                       Opciones
                     </td>
                     <td>
-                      <input type="text" id="opcionesId" name="opciones" [(ngModel)]="defincionEtapaFormulario.opciones" class="form-control">
+                      <input type="text" id="opcionesId" name="opciones" [(ngModel)]="defincionEtapaFormulario.opciones"
+                             class="form-control">
 
                     </td>
                   </tr>
@@ -333,7 +352,8 @@
                       Campo Obligatorio
                     </td>
                     <td>
-                      <input type="checkbox" class="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">
+                      <input type="checkbox" class="checkbox" name="requerido"
+                             [(ngModel)]="defincionEtapaFormulario.requerido">
                     </td>
                   </tr>
                   <tr *ngIf="defincionEtapaFormulario.tipoControl == tiposItemEnum.textoEntrada">
@@ -341,20 +361,23 @@
                       Tamaño Máximo
                     </td>
                     <td>
-                      <input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo" class="form-control">
+                      <input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo"
+                             class="form-control">
                     </td>
                   </tr>
                   <tr>
                     <td colspan="2" align="left">
                       <div class="top-buffer">
-                        <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)" >Agregar Item</button>
+                        <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">
+                          Agregar Item
+                        </button>
                       </div>
 
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <br />
+                      <br/>
                     </td>
                   </tr>
                 </table>
@@ -367,49 +390,49 @@
               <div class="panel-body">
                 <td *ngIf="numeroItems > 0">
                   <!--<table>-->
-                    <!--<tr>-->
-                      <!--<td>-->
-                        <!--<br/>-->
-                      <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">-->
-                      <!--<td *ngIf="itemLista?.idTipoControl < 4" colspan="2">-->
-                        <!--<label>{{itemLista?.descripcion}}</label>-->
-                      <!--</td>-->
-                      <!--<td *ngIf="itemLista?.idTipoControl >= 4">-->
-                        <!--<label>{{itemLista?.descripcion}}</label>-->
-                      <!--</td>-->
-                      <!--<td>-->
-                        <!--<div *ngIf="itemLista?.idTipoControl == 4">-->
-                          <!--<input type="text" name="item_{{i}}_valor">-->
-                        <!--</div>-->
-                        <!--<div *ngIf="itemLista?.idTipoControl == 5">-->
-                          <!--<select class="form-control">-->
-                            <!--<option>&#45;&#45; Seleccione &#45;&#45;</option>-->
-                            <!--<option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}-->
-                            <!--</option>-->
-                          <!--</select>-->
-                        <!--</div>-->
-                        <!--<div *ngIf="itemLista?.idTipoControl == 6">-->
-                          <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
-                            <!--<input type="radio" name="options">{{respuesta.respuesta}}</label>-->
-                        <!--</div>-->
-                        <!--<div *ngIf="itemLista?.idTipoControl == 7">-->
-                          <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
-                            <!--<input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>-->
-                        <!--</div>-->
-                        <!--<div *ngIf="itemLista?.idTipoControl == 8">-->
-                          <!--<input type="file">-->
-                        <!--</div>-->
-                      <!--</td>-->
-                    <!--</tr>-->
+                  <!--<tr>-->
+                  <!--<td>-->
+                  <!--<br/>-->
+                  <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">-->
+                  <!--<td *ngIf="itemLista?.idTipoControl < 4" colspan="2">-->
+                  <!--<label>{{itemLista?.descripcion}}</label>-->
+                  <!--</td>-->
+                  <!--<td *ngIf="itemLista?.idTipoControl >= 4">-->
+                  <!--<label>{{itemLista?.descripcion}}</label>-->
+                  <!--</td>-->
+                  <!--<td>-->
+                  <!--<div *ngIf="itemLista?.idTipoControl == 4">-->
+                  <!--<input type="text" name="item_{{i}}_valor">-->
+                  <!--</div>-->
+                  <!--<div *ngIf="itemLista?.idTipoControl == 5">-->
+                  <!--<select class="form-control">-->
+                  <!--<option>&#45;&#45; Seleccione &#45;&#45;</option>-->
+                  <!--<option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}-->
+                  <!--</option>-->
+                  <!--</select>-->
+                  <!--</div>-->
+                  <!--<div *ngIf="itemLista?.idTipoControl == 6">-->
+                  <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
+                  <!--<input type="radio" name="options">{{respuesta.respuesta}}</label>-->
+                  <!--</div>-->
+                  <!--<div *ngIf="itemLista?.idTipoControl == 7">-->
+                  <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
+                  <!--<input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>-->
+                  <!--</div>-->
+                  <!--<div *ngIf="itemLista?.idTipoControl == 8">-->
+                  <!--<input type="file">-->
+                  <!--</div>-->
+                  <!--</td>-->
+                  <!--</tr>-->
                   <!--</table>-->
 
-                <!--Alex refactor-->
+                  <!--Alex refactor-->
                   <table>
                     <tr>
                       <td>
-                        <br />
+                        <br/>
                       </td>
                     </tr>
                     <tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
@@ -422,17 +445,21 @@
 
                       <td>
                         <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada">
-                          <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required class="form-control">
+                          <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required
+                                 class="form-control">
                           <input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor" class="form-control">
                         </div>
 
                         <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.entradaNumerica">
-                          <input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required class="form-control">
-                          <input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor" class="form-control">
+                          <input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required
+                                 class="form-control">
+                          <input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor"
+                                 class="form-control">
                         </div>
 
                         <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.fecha">
-                          <input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required class="form-control">
+                          <input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required
+                                 class="form-control">
                           <input *ngIf="!itemLista?.requerido" type="date" name="item_{{i}}_valor" class="form-control">
                         </div>
 
@@ -496,14 +523,10 @@
         <div class="panel panel-default">
           <div class="panel-body">
             <table class="table table-striped">
-              <th>Nombre
-              </th>
-              <th>Descripción
-              </th>
-              <th>Fecha inicio
-              </th>
-              <th>Fecha fin
-              </th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
               <tr *ngFor="let etapa of oferta.etapas; let i = index" [attr.data-index]="i">
                 <td>
                   <label>{{etapa.nombre}}</label>
@@ -524,11 +547,11 @@
 
         <br>
 
-        <div class="row" align="right">
-          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
-          <button type="button" class="btn btn-primary" (click)="cambioEtapa()">Agregar una nueva etapa
+        <div class="row top-buffer" align="right">
+          <button type="button" class="btn btn-primary" (click)="cambioEtapa()"><span class="glyphicon glyphicon-plus"></span> Agregar una nueva etapa
           </button>
-          <button type="submit" class="btn btn-primary">Finalizar</button>
+          <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
+          <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Finalizar</button>
         </div>
 
       </div>

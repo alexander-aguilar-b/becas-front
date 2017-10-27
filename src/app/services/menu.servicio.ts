@@ -22,12 +22,8 @@ export class ServicioMenu {
           },
           {
             nombre_menu: "Consultar Oferta",
-            ruta: "oferta/consultar-oferta-solicitante"
-          },
-          {
-            ruta: 'oferta/consulta-oferta-oferente',
-            nombre_menu: "Consultar Ofertas oferente"
-          },
+            ruta: "oferta/consulta-oferta-solicitante"
+          }
         ];
 
         break;
