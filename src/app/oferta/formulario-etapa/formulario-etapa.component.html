@@ -8,7 +8,11 @@
           <div class="form-group">
             <label class="col-sm-2">Nombre:</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" [(ngModel)]="datosFormulario.nombre" name="formularioNombre">
+              <input class="form-control" type="text" [(ngModel)]="datosFormulario.nombre" name="formularioNombre" required>
+              <div class="form-control alert-danger"
+                   *ngIf="formCrearFormulario.controls.formularioNombre?.invalid && (formCrearFormulario.controls.formularioNombre?.touched)">
+                El nombre del formulario es requerido
+              </div>
             </div>
           </div>
         </div>
@@ -17,7 +21,11 @@
           <div class="form-group">
             <label class="col-sm-2">Descripción</label>
             <div class="col-sm-4">
-              <input class="form-control" type="text" [(ngModel)]="datosFormulario.descripcion" name="formularioDescripcion">
+              <input class="form-control" type="text" [(ngModel)]="datosFormulario.descripcion" name="formularioDescripcion" required>
+              <div class="form-control alert-danger"
+                   *ngIf="formCrearFormulario.controls.formularioDescripcion?.invalid && (formCrearFormulario.controls.formularioDescripcion?.touched)">
+                Lsa descripción del formulario es requerida
+              </div>
             </div>
           </div>
         </div>
@@ -104,7 +112,7 @@
           <div class="form-group">
             <div class="col-sm-2">
               <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearFormulario.value)"
-                      [disabled]="(formCrearFormulario.invalid)  || (definicionItemFormulario.tipoControl == 0)"><span
+                      [disabled]="!(definicionItemFormulario.nombreItem != ''   && definicionItemFormulario.tipoControl != 0)"><span
                 class="glyphicon glyphicon-plus"></span> Agregar
                 Item
               </button>
@@ -193,7 +201,7 @@
     </div>
   </div>
 
-  <button *ngIf="idFormulario == 0" type="button" class="btn btn-primary" (click)="crearFormulario()"><span class="glyphicon glyphicon-ok"></span> Crear Formulario
+  <button *ngIf="idFormulario == 0" type="button" class="btn btn-primary" (click)="crearFormulario()" [disabled]="!(!formCrearFormulario.invalid && listaItems && listaItems.length)"><span class="glyphicon glyphicon-ok"></span> Crear Formulario
   </button>
   <button *ngIf="idFormulario > 0" type="button" class="btn btn-primary" (click)="actualizarFormulario()"><span class="glyphicon glyphicon-ok"></span> Actualizar
     Formulario
