@@ -190,324 +190,401 @@
 
       <br>
 
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-info-sign"></span> Información Básica</div>
+        <div class="panel-body">
+          <div class="container">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2">Nombre:</label>
+                <div class="col-sm-4">
+                  <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2">Descripción</label>
+                <div class="col-sm-4">
+                  <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.formulario_descripcion" name="formulario_descripcion">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--Todo-->
+      <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-wrench"></span> Definición Elementos Formulario</div>
+        <div class="panel-body">
+          <div class="container">
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2">Nombre Item</label>
+                <div class="col-sm-4">
+                  <input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItem"
+                         name="nombreItem" required>
+                  <!--<div class="form-control alert-danger"-->
+                       <!--*ngIf="formCrearFormulario.controls.nombreItem?.invalid && (formCrearFormulario.controls.nombreItem?.touched)">-->
+                    <!--El nombre del item es requerido-->
+                  <!--</div>-->
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2">Tipo de Item (Control)</label>
+                <div class="col-sm-4">
+                  <select id="tipoControl" class="form-control" name="tipoControl"
+                          [(ngModel)]="defincionEtapaFormulario.tipoControl" required>
+                    <option value="0">-- Seleccione --</option>
+                    <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}</option>
+                  </select>
+                  <!--<div class="form-control alert-danger"-->
+                       <!--*ngIf="(formCrearFormulario.controls.tipoControl?.invalid && formCrearFormulario.controls.tipoControl.touched) || (formCrearFormulario.controls.tipoControl?.touched && definicionItemFormulario.tipoControl == 0)">-->
+                    <!--El criterio de búsqueda es requerido-->
+                  <!--</div>-->
+                </div>
+              </div>
+            </div>
+            <div class="row"
+                 *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
+              <div class="form-group">
+                <label class="col-sm-2">Delimitador Opciones</label>
+                <div class="col-sm-4">
+                  <input class="form-control" type="text" id="tipoDelimitadorId" name="tipoDelimitador"
+                         [(ngModel)]="defincionEtapaFormulario.tipoDelimitador">
+                </div>
+              </div>
+            </div>
+
+            <div class="row"
+                 *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
+              <div class="form-group">
+                <label class="col-sm-2">Opciones</label>
+                <div class="col-sm-4">
+                  <input class="form-control" type="text" id="opcionesId" name="opciones"
+                         [(ngModel)]="defincionEtapaFormulario.opciones">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <label class="col-sm-2">Campo Obligatorio (Si/No)</label>
+                <div class="col-sm-4">
+                  <input type="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="defincionEtapaFormulario.tipoControl == tiposItemEnum.textoEntrada">
+              <div class="form-group">
+                <label class="col-sm-2">Tamaño Máximo</label>
+                <div class="col-sm-4">
+                  <input class="form-control" type="number" name="tamanoMaximo"
+                         [(ngModel)]="defincionEtapaFormulario.tamanoMaximo">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group">
+                <div class="col-sm-2">
+                  <!--<button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)"-->
+                          <!--[disabled]="(formCrearFormulario.invalid)  || (defincionEtapaFormulario.tipoControl == 0)"><span-->
+                    <!--class="glyphicon glyphicon-plus"></span> Agregar-->
+                    <!--Item-->
+                  <!--</button>-->
+                  <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)"><span class="glyphicon glyphicon-plus"></span> Agregar Item</button>
+
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!--TOdo-->
+
+      <!--todo-->
+
+      <div class="panel panel-default" *ngIf="listaItems && listaItems.length">
+        <div class="panel-heading"><span class="glyphicon glyphicon-sunglasses"></span> Vista Previa</div>
+        <div class="panel-body">
+          <div class="container">
+            <div class="row" *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
+              <div class="form-group">
+                <label *ngIf="(itemLista?.id_tipo_item !=  tiposItemEnum.titulo)" class="col-sm-2">
+                  {{itemLista?.descripcion}}
+                </label>
+
+                <h3 *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.titulo)" class="col-sm-5">
+                  {{itemLista?.descripcion}}
+                </h3>
+
+                <div *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.titulo)" class="col-sm-1">
+                </div>
+
+                <div *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" class="col-sm-4">
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada" class="col-sm-4">
+                  <input class="form-control" *ngIf="itemLista?.obligatorio" type="text" name="item_{{i}}_valor" required>
+                  <input class="form-control" *ngIf="!itemLista?.obligatorio" type="text" name="item_{{i}}_valor">
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.entradaNumerica" class="col-sm-4">
+                  <input class="form-control" *ngIf="itemLista?.obligatorio" type="number" name="item_{{i}}_valor" required>
+                  <input class="form-control" *ngIf="!itemLista?.obligatorio" type="number" name="item_{{i}}_valor">
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.fecha" class="col-sm-4">
+                  <input class="form-control" *ngIf="itemLista?.obligatorio" type="date" name="item_{{i}}_valor" required>
+                  <input class="form-control" *ngIf="!itemLista?.obligatorio" type="date" name="item_{{i}}_valor">
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionable" class="col-sm-4">
+                  <select class="form-control">
+                    <option>-- Seleccione --</option>
+                    <option *ngFor="let respuesta of itemLista?.valores_posibles">{{respuesta}}</option>
+                  </select>
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaRadioButton" class="col-sm-4">
+                  <div class="radio" *ngFor="let respuesta of itemLista.valores_posibles">
+                    <label><input type="radio" name="options">{{respuesta}}</label>
+                  </div>
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionMultiple" class="col-sm-4">
+                  <div class="checkbox" *ngFor="let respuesta of itemLista.valores_posibles">
+                    <label><input type="checkbox" name="options">{{respuesta}}</label>
+                  </div>
+
+                </div>
+
+                <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.archivo" class="col-sm-4">
+                  <input class="form-control" type="file">
+                </div>
+
+                <div class="col-sm-1">
+                  <button (click)="removerItemLista($event, i)" class="btn"><span
+                    class="glyphicon glyphicon-remove"></span></button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--todo-->
+
+
       <div class="container">
-        <div class="row">
-          <div class="form-group">
-            <label class="col-sm-2">Nombre: </label>
-            <div class="col-sm-4">
-              <input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre">
-            </div>
-          </div>
-        </div>
+        <!--<div class="row">-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-sm-2">Nombre: </label>-->
+            <!--<div class="col-sm-4">-->
+              <!--<input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
 
-        <div class="row">
-          <div class="form-group">
-            <label class="col-sm-2">Descripción: </label>
-            <div class="col-sm-4">
-              <input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_descripcion"
-                     name="formulario_descripcion">
-            </div>
-          </div>
-        </div>
-        <br>
+        <!--<div class="row">-->
+          <!--<div class="form-group">-->
+            <!--<label class="col-sm-2">Descripción: </label>-->
+            <!--<div class="col-sm-4">-->
+              <!--<input type="text" [(ngModel)]="defincionEtapaFormulario.formulario_descripcion"-->
+                     <!--name="formulario_descripcion">-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<br>-->
 
-        <div class="row">
-          <div class="form-group">
-            <!--Formulario Personalizado-->
-            <div class="panel panel-default">
-              <div class="panel-heading">Crear Formulario</div>
-              <div class="panel-body">
+
+        <!--<div class="row">-->
+          <!--<div class="form-group">-->
+            <!--&lt;!&ndash;Formulario Personalizado&ndash;&gt;-->
+            <!--<div class="panel panel-default">-->
+              <!--<div class="panel-heading">Crear Formulario</div>-->
+              <!--<div class="panel-body">      -->
+                <!--&lt;!&ndash;Alex refactor&ndash;&gt;-->
                 <!--<table>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Ingrese el item-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="text" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItemId"-->
-                <!--name="nombreItem">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Tipo de respuesta-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl">-->
-                <!--<option value="0">Selecccione</option>-->
-                <!--<option value="1">Titulo</option>-->
-                <!--<option value="2">Descripción</option>-->
-                <!--<option value="3">Comentario</option>-->
-                <!--<option value="4">Caja de texto</option>-->
-                <!--<option value="5">Lista desplegable</option>-->
-                <!--<option value="6">Botón de radio</option>-->
-                <!--<option value="7">Selección múltiple</option>-->
-                <!--<option value="8">Documento adjunto</option>-->
-                <!--</select>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Las opciones se delimitan con :-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="text" id="tipoDelimitadorId" name="tipoDelimitador"-->
-                <!--[(ngModel)]="defincionEtapaFormulario.tipoDelimitador">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Opciones-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="text" id="opcionesId" name="opciones"-->
-                <!--[(ngModel)]="defincionEtapaFormulario.opciones">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Campo Obligatorio-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="checkbox" name="requerido" [(ngModel)]="defincionEtapaFormulario.requerido">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--Tamaño Máximo-->
-                <!--</td>-->
-                <!--<td>-->
-                <!--<input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo">-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td colspan="2" align="left">-->
-                <!--<button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">Agregar-->
-                <!--Item-->
-                <!--</button>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--<tr>-->
-                <!--<td>-->
-                <!--<br/>-->
-                <!--</td>-->
-                <!--</tr>-->
-                <!--</table>-->
-
-                <!--Alex refactor-->
-                <table>
-                  <tr>
-                    <td>
-                      <div class="top-buffer-sm">
-                        Ingrese el item
-                      </div>
-                    </td>
-                    <td>
-                      <div class="top-buffer-sm">
-                        <input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem"
-                               id="nombreItemId" name="nombreItem">
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="top-buffer-sm">
-                        Tipo de respuesta
-                      </div>
-                    </td>
-                    <td>
-                      <div class="top-buffer-sm">
-                        <select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl"
-                                class="form-control">
-                          <option value="0">Seleccione</option>
-                          <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}
-                          </option>
-                        </select>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr
-                    *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
-                    <td>
-                      Las opciones se delimitan con
-                    </td>
-                    <td>
-                      <input type="text" id="tipoDelimitadorId" name="tipoDelimitador"
-                             [(ngModel)]="defincionEtapaFormulario.tipoDelimitador" class="form-control">
-
-                    </td>
-                  </tr>
-                  <tr
-                    *ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">
-                    <td>
-                      Opciones
-                    </td>
-                    <td>
-                      <input type="text" id="opcionesId" name="opciones" [(ngModel)]="defincionEtapaFormulario.opciones"
-                             class="form-control">
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Campo Obligatorio
-                    </td>
-                    <td>
-                      <input type="checkbox" class="checkbox" name="requerido"
-                             [(ngModel)]="defincionEtapaFormulario.requerido">
-                    </td>
-                  </tr>
-                  <tr *ngIf="defincionEtapaFormulario.tipoControl == tiposItemEnum.textoEntrada">
-                    <td>
-                      Tamaño Máximo
-                    </td>
-                    <td>
-                      <input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo"
-                             class="form-control">
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colspan="2" align="left">
-                      <div class="top-buffer">
-                        <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">
-                          Agregar Item
-                        </button>
-                      </div>
-
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <br/>
-                    </td>
-                  </tr>
-                </table>
-                <!--Alex refactor-->
-
-              </div>
-            </div>
-            <div class="panel panel-default">
-              <div class="panel-heading">Vista Previa</div>
-              <div class="panel-body">
-                <td *ngIf="numeroItems > 0">
-                  <!--<table>-->
                   <!--<tr>-->
-                  <!--<td>-->
-                  <!--<br/>-->
-                  <!--</td>-->
+                    <!--<td>-->
+                      <!--<div class="top-buffer-sm">-->
+                        <!--Ingrese el item-->
+                      <!--</div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<div class="top-buffer-sm">-->
+                        <!--<input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem"-->
+                               <!--id="nombreItemId" name="nombreItem">-->
+                      <!--</div>-->
+                    <!--</td>-->
                   <!--</tr>-->
-                  <!--<tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">-->
-                  <!--<td *ngIf="itemLista?.idTipoControl < 4" colspan="2">-->
-                  <!--<label>{{itemLista?.descripcion}}</label>-->
-                  <!--</td>-->
-                  <!--<td *ngIf="itemLista?.idTipoControl >= 4">-->
-                  <!--<label>{{itemLista?.descripcion}}</label>-->
-                  <!--</td>-->
-                  <!--<td>-->
-                  <!--<div *ngIf="itemLista?.idTipoControl == 4">-->
-                  <!--<input type="text" name="item_{{i}}_valor">-->
-                  <!--</div>-->
-                  <!--<div *ngIf="itemLista?.idTipoControl == 5">-->
-                  <!--<select class="form-control">-->
-                  <!--<option>&#45;&#45; Seleccione &#45;&#45;</option>-->
-                  <!--<option *ngFor="let respuesta of itemLista?.listaRespuestas">{{respuesta.respuesta}}-->
-                  <!--</option>-->
-                  <!--</select>-->
-                  <!--</div>-->
-                  <!--<div *ngIf="itemLista?.idTipoControl == 6">-->
-                  <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
-                  <!--<input type="radio" name="options">{{respuesta.respuesta}}</label>-->
-                  <!--</div>-->
-                  <!--<div *ngIf="itemLista?.idTipoControl == 7">-->
-                  <!--<label *ngFor="let respuesta of itemLista.listaRespuestas">-->
-                  <!--<input type="checkbox" name="options">{{respuesta.respuesta}}</label><br/>-->
-                  <!--</div>-->
-                  <!--<div *ngIf="itemLista?.idTipoControl == 8">-->
-                  <!--<input type="file">-->
-                  <!--</div>-->
-                  <!--</td>-->
+                  <!--<tr>-->
+                    <!--<td>-->
+                      <!--<div class="top-buffer-sm">-->
+                        <!--Tipo de respuesta-->
+                      <!--</div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<div class="top-buffer-sm">-->
+                        <!--<select id="tipoControl" name="tipoControl" [(ngModel)]="defincionEtapaFormulario.tipoControl"-->
+                                <!--class="form-control">-->
+                          <!--<option value="0">Seleccione</option>-->
+                          <!--<option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}-->
+                          <!--</option>-->
+                        <!--</select>-->
+                      <!--</div>-->
+                    <!--</td>-->
                   <!--</tr>-->
+                  <!--<tr-->
+                    <!--*ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">-->
+                    <!--<td>-->
+                      <!--Las opciones se delimitan con-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<input type="text" id="tipoDelimitadorId" name="tipoDelimitador"-->
+                             <!--[(ngModel)]="defincionEtapaFormulario.tipoDelimitador" class="form-control">-->
+
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr-->
+                    <!--*ngIf="(defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionable) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaSeleccionMultiple) || (defincionEtapaFormulario.tipoControl == tiposItemEnum.listaRadioButton)">-->
+                    <!--<td>-->
+                      <!--Opciones-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<input type="text" id="opcionesId" name="opciones" [(ngModel)]="defincionEtapaFormulario.opciones"-->
+                             <!--class="form-control">-->
+
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td>-->
+                      <!--Campo Obligatorio-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<input type="checkbox" class="checkbox" name="requerido"-->
+                             <!--[(ngModel)]="defincionEtapaFormulario.requerido">-->
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr *ngIf="defincionEtapaFormulario.tipoControl == tiposItemEnum.textoEntrada">-->
+                    <!--<td>-->
+                      <!--Tamaño Máximo-->
+                    <!--</td>-->
+                    <!--<td>-->
+                      <!--<input type="number" name="tamanoMaximo" [(ngModel)]="defincionEtapaFormulario.tamanoMaximo"-->
+                             <!--class="form-control">-->
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td colspan="2" align="left">-->
+                      <!--<div class="top-buffer">-->
+                        <!--<button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)">-->
+                          <!--Agregar Item-->
+                        <!--</button>-->
+                      <!--</div>-->
+
+                    <!--</td>-->
+                  <!--</tr>-->
+                  <!--<tr>-->
+                    <!--<td>-->
+                      <!--<br/>-->
+                    <!--</td>-->
+                  <!--</tr>-->
+                <!--</table>-->
+                <!--&lt;!&ndash;Alex refactor&ndash;&gt;-->
+
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="panel panel-default">-->
+              <!--<div class="panel-heading">Vista Previa</div>-->
+              <!--<div class="panel-body">-->
+                <!--<td *ngIf="numeroItems > 0">        -->
+                  <!--&lt;!&ndash;Alex refactor&ndash;&gt;-->
+                  <!--<table>-->
+                    <!--<tr>-->
+                      <!--<td>-->
+                        <!--<br/>-->
+                      <!--</td>-->
+                    <!--</tr>-->
+                    <!--<tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">-->
+                      <!--<td *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" colspan="3">-->
+                        <!--<label class="form-control">{{itemLista?.descripcion}}</label>-->
+                      <!--</td>-->
+                      <!--<td *ngIf="itemLista?.id_tipo_item >= (itemLista?.id_tipo_item ==  tiposItemEnum.titulo)">-->
+                        <!--<h3>{{itemLista?.descripcion}}</h3>-->
+                      <!--</td>-->
+
+                      <!--<td>-->
+                        <!--<div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada">-->
+                          <!--<input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required-->
+                                 <!--class="form-control">-->
+                          <!--<input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor" class="form-control">-->
+                        <!--</div>-->
+
+                        <!--<div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.entradaNumerica">-->
+                          <!--<input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required-->
+                                 <!--class="form-control">-->
+                          <!--<input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor"-->
+                                 <!--class="form-control">-->
+                        <!--</div>-->
+
+                        <!--<div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.fecha">-->
+                          <!--<input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required-->
+                                 <!--class="form-control">-->
+                          <!--<input *ngIf="!itemLista?.requerido" type="date" name="item_{{i}}_valor" class="form-control">-->
+                        <!--</div>-->
+
+                        <!--<div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionable">-->
+                          <!--<select class="form-control">-->
+                            <!--<option>&#45;&#45; Seleccione &#45;&#45;</option>-->
+                            <!--<option *ngFor="let respuesta of itemLista?.valores_posibles">{{respuesta}}</option>-->
+
+                          <!--</select>-->
+                        <!--</div>-->
+
+                        <!--<div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaRadioButton">-->
+                          <!--<div class="row" *ngFor="let respuesta of itemLista.valores_posibles">-->
+                            <!--<div class="form-group">-->
+                              <!--<div class="radio">-->
+                                <!--<label class="control-label"><input type="radio" name="options">{{respuesta}}</label>-->
+                              <!--</div>-->
+                            <!--</div>-->
+                          <!--</div>-->
+
+                        <!--</div>-->
+
+                        <!--<div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionMultiple">-->
+                          <!--<label *ngFor="let respuesta of itemLista.valores_posibles">-->
+                            <!--<input type="checkbox" name="options">{{respuesta}}</label><br/>-->
+                        <!--</div>-->
+                        <!--<div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.archivo">-->
+                          <!--<input type="file">-->
+                        <!--</div>-->
+                      <!--</td>-->
+                    <!--</tr>-->
                   <!--</table>-->
+                  <!--&lt;!&ndash;Alex refactor&ndash;&gt;-->
 
-                  <!--Alex refactor-->
-                  <table>
-                    <tr>
-                      <td>
-                        <br/>
-                      </td>
-                    </tr>
-                    <tr *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
-                      <td *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" colspan="3">
-                        <label class="form-control">{{itemLista?.descripcion}}</label>
-                      </td>
-                      <td *ngIf="itemLista?.id_tipo_item >= (itemLista?.id_tipo_item ==  tiposItemEnum.titulo)">
-                        <h3>{{itemLista?.descripcion}}</h3>
-                      </td>
-
-                      <td>
-                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada">
-                          <input *ngIf="itemLista?.requerido" type="text" name="item_{{i}}_valor" required
-                                 class="form-control">
-                          <input *ngIf="!itemLista?.requerido" type="text" name="item_{{i}}_valor" class="form-control">
-                        </div>
-
-                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.entradaNumerica">
-                          <input *ngIf="itemLista?.requerido" type="number" name="item_{{i}}_valor" required
-                                 class="form-control">
-                          <input *ngIf="!itemLista?.requerido" type="number" name="item_{{i}}_valor"
-                                 class="form-control">
-                        </div>
-
-                        <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.fecha">
-                          <input *ngIf="itemLista?.requerido" type="date" name="item_{{i}}_valor" required
-                                 class="form-control">
-                          <input *ngIf="!itemLista?.requerido" type="date" name="item_{{i}}_valor" class="form-control">
-                        </div>
-
-                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionable">
-                          <select class="form-control">
-                            <option>-- Seleccione --</option>
-                            <option *ngFor="let respuesta of itemLista?.valores_posibles">{{respuesta}}</option>
-
-                          </select>
-                        </div>
-
-                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaRadioButton">
-                          <div class="row" *ngFor="let respuesta of itemLista.valores_posibles">
-                            <div class="form-group">
-                              <div class="radio">
-                                <label class="control-label"><input type="radio" name="options">{{respuesta}}</label>
-                              </div>
-                            </div>
-                          </div>
-
-                        </div>
-
-                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.listaSeleccionMultiple">
-                          <label *ngFor="let respuesta of itemLista.valores_posibles">
-                            <input type="checkbox" name="options">{{respuesta}}</label><br/>
-                        </div>
-                        <div *ngIf="itemLista?.id_tipo_item == tiposItemEnum.archivo">
-                          <input type="file">
-                        </div>
-                      </td>
-                    </tr>
-                  </table>
-                  <!--Alex refactor-->
-
-              </div>
-            </div>
-          </div>
-        </div>
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
         <!--Fin formulario-->
 
         <br>
 
-        <div class="row" align="right">
-          <br>
-          <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
-          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)">Terminar Etapa
-          </button>
-
+        <div class="row top-buffer" align="right">
+          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)"><span class="glyphicon glyphicon-ok"></span> Terminar Etapa</button>
+          <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
         </div>
       </div>
     </div>

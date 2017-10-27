@@ -168,6 +168,13 @@ export class CreacionOfertaComponent implements OnInit {
 
   valorSeleccionadoTipoOferta = 0;
 
+  removerItemLista(e, indiceItem){
+    e.preventDefault();
+    if(indiceItem > -1){
+      this.listaItems.splice(indiceItem, 1);
+    }
+  }
+
 }
 
 
