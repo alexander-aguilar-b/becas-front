@@ -51,6 +51,10 @@ export class LoginBecasComponent implements OnInit {
 
   asignarSesion(sesion:JSON,status:number)
   {
+    console.log(sesion);
+    console.log('perfil:' + sesion['rol']);
+    console.log('token:' + sesion['token']);
+    console.log('idUsuario:' + sesion['idUsuario']);
 
     let respuesta=sesion;
 

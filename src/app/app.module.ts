@@ -61,6 +61,7 @@ import {ServicioInstitucionEducacionBasica} from "./services/institucion.educaci
 import {ServicioInstitucionEducacionSuperior} from "./services/institucion.educacion.superior.servicio";
 import {ServicioNivelIdioma} from "./services/nivel.idioma.service";
 import {InformacionIdiomaComponent} from "./solicitante/informacion-idioma/informacion-idioma.component";
+import { BsDatepickerModule } from 'ngx-bootstrap';
 
 declare let jQuery : Object;
 
@@ -107,7 +108,8 @@ declare let jQuery : Object;
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    BsDatepickerModule.forRoot()
   ],
   providers: [ListadoSolicitanteService,
     SolicitanteService,
@@ -136,7 +138,7 @@ declare let jQuery : Object;
     ServicioNivelIdioma,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }

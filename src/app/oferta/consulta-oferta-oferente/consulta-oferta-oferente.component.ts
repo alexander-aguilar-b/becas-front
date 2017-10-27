@@ -7,6 +7,7 @@ import {ServicioOferta} from "../../services/oferta.servicio";
 import {IOfertaConsulta} from "../../models/oferta.model";
 import {Router} from "@angular/router";
 import {TipoCriterioBusquedaOferta} from "../../enums/criterio.busqueda.oferta.enum";
+import {AutenticacionService} from "../../services/autenticacion.service";
 
 
 @Component({
@@ -24,12 +25,24 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
   ofertas : IOfertaConsulta[];
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private router : Router, private servicioOferta : ServicioOferta){
+  constructor(private servicioAutenticacion : AutenticacionService, private router : Router, private servicioOferta : ServicioOferta){
   }
 
   /***Metodo de Inicialización del componente */
   ngOnInit(){
     this.valorSeleccionadoCriterioBusqueda = 0;
+    let idOferente = this.servicioAutenticacion.obtenerCookie('idUsuario');
+    console.log("idOferente");
+    console.log(idOferente);
+
+    let perfil = this.servicioAutenticacion.obtenerCookie('perfil');
+    let token = this.servicioAutenticacion.obtenerCookie('token');
+
+    console.log("perfil");
+    console.log(perfil);
+
+    console.log("token");
+    console.log(token);
   }
 
 
@@ -53,3 +66,4 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
     this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ]);
   }
 }
+

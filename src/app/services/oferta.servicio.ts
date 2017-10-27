@@ -47,6 +47,7 @@ export class ServicioOferta extends ServicioBase {
 
   consultarOfertasOferente(codigoConvocatoria) : Observable<IOfertaConsulta[]> {
     let idOferente = this.autenticacionService.obtenerCookie('idUsuario');
+    console.log("idOferente");
     console.log(idOferente);
     return this.http.get(this.configuracion.baseUrl +  "announcements/offerers/" + idOferente +  "/" + codigoConvocatoria, this.obtenerOpcionesPeticion()).map((response : Response) => {
       return <IOfertaConsulta[]> response.json();

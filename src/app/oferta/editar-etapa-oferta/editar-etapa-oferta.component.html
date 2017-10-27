@@ -30,17 +30,23 @@
         <div class="form-group">
           <label class="col-sm-2">Fecha Inicio</label>
           <div class="col-sm-4">
-            <input class="form-control" type="date" [(ngModel)]="etapaOferta.fechaInicio" name="fechaInicio" required>
-            <!--<input class="form-control" type="date" [ngModel]="etapaOferta.fechaInicio | date:'shortDate'"-->
-                   <!--(ngModelChange)="etapaOferta.fechaInicio=$event"-->
-                   <!--name="fechaInicio" required>-->
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaInicio" name="fechaInicio" required bsDatepicker placeholder="Seleccione una fecha...">
+            <!--<span class="input-group-btn">-->
+              <!--<button class="btn btn-default">-->
+                <!--<i class="glyphicon glyphicon-calendar"></i>-->
+              <!--</button>-->
+            <!--</span>-->
+            <input [ngModel]="etapaOferta.fechaInicio | date:'shortDate'"
+                   (ngModelChange)="etapaOferta.fechaInicio=$event" name="fechaInicio" type="hidden" />
 
           </div>
           <label class="col-sm-2">Fecha Fin</label>
           <div class="col-sm-4">
-            <input class="form-control" type="date" [(ngModel)]="etapaOferta.fechaFin" name="fechaFin" required>
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaFin" name="fechaFin" required bsDatepicker placeholder="Seleccione una fecha...">
             <!--<input class="form-control" type="text" class="datepicker" [ngModel]="etapaOferta.fechaFin | date:'shortDate'"-->
                    <!--(ngModelChange)="etapaOferta.fechaFin=$event" name="fechaFin" required>-->
+            <input [ngModel]="etapaOferta.fechaFin | date:'shortDate'"
+                   (ngModelChange)="etapaOferta.fechaFin=$event" name="fechaFin" type="hidden" />
           </div>
         </div>
       </div>
