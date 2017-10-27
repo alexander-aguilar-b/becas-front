@@ -284,8 +284,8 @@
           <td>{{informacionAcademicaBasica.ano_fin }}</td>
           <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
           <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
-          <td>{{informacionAcademicaBasica.pruebas_saber }}</td>
-          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber == true ? 'Si': 'No' }}</td>
+          <td>{{informacionAcademicaBasica.pruebas_saber == true ? 'Si': 'No' }}</td>
+          <td>{{informacionAcademicaBasica.calificacion_pruebas_saber  }}</td>
         </tr>
         </tbody>
       </table>
@@ -303,7 +303,7 @@
     <div  class="table-responsive top-buffer">
       <table *ngIf="listadoInformacionAcademicaSuperior && listadoInformacionAcademicaSuperior.length" class="table table-bordered">
         <thead>
-        <tr class="info">
+        <tr>
           <!--<tr>-->
           <th>Institución</th>
           <th>Año Inicio</th>
@@ -319,7 +319,6 @@
         </thead>
         <tbody>
         <tr *ngFor='let informacionAcademicaSuperior of listadoInformacionAcademicaSuperior'>
-          <td></td>
           <td>{{informacionAcademicaSuperior.institucionAcademicaSuperior?.nombre}}</td>
           <td>{{informacionAcademicaSuperior.ano_inicio }}</td>
           <td>{{informacionAcademicaSuperior.ano_fin }}</td>
@@ -342,7 +341,7 @@
   <div class="container">
     <div class="row top-buffer" >
       <div class="col-sm-offset-8 col-sm-4">
-        <button type="button" class="btn btn-primary btn-block" modal-trigger="informacionNivelIdioma"><span class="glyphicon glyphicon-plus"></span> Agregar Información Idioma</button>
+        <button type="button" class="btn btn-primary btn-block" modal-trigger="informacionIdioma"><span class="glyphicon glyphicon-plus"></span> Agregar Información Idioma</button>
       </div>
     </div>
     <div  class="table-responsive top-buffer">
@@ -355,7 +354,6 @@
         </thead>
         <tbody>
         <tr *ngFor='let informacionNivelIdioma of listadoInformacionNivelIdioma'>
-          <td></td>
           <td>{{informacionNivelIdioma?.idioma.descripcion}}</td>
           <td>{{informacionNivelIdioma?.nivelIdioma.descripcion }}</td>
         </tr>
@@ -412,7 +410,7 @@
   </div>
 
   <div>
-    <informacion-academica-superior-modal (informacionAcademicaBasicaAgregada)="agregarInformacionAcademicaSuperior($event)"></informacion-academica-superior-modal>
+    <informacion-academica-superior-modal (informacionAcademicaSuperiorAgregada)="agregarInformacionAcademicaSuperior($event)"></informacion-academica-superior-modal>
   </div>
 
   <div>

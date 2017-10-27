@@ -6,9 +6,9 @@
           <div class="top-buffer-sm">
             <label class="col-sm-4 col-form-label">Idioma</label>
             <div class="col-sm-5">
-              <select class="form-control" [(ngModel)]="informacionAcademicaBasica.id_institucion_academica_basica" name="institucionEducacionBasica" required id="institucionEducacionBasica">
+              <select class="form-control" [(ngModel)]="informacionIdioma.id_idioma" name="idioma" required id="idioma">
                 <option value="0">-- Seleccione --</option>
-                <option *ngFor="let institucionEducacionBasica of  institucionesEducacionBasica" [ngValue]="institucionEducacionBasica.id">{{institucionEducacionBasica.nombre}}</option>
+                <option *ngFor="let idioma of idiomas" [ngValue]="idioma.id">{{idioma.descripcion}}</option>
               </select>
 
               <!--<input  class="form-control" type="text" [(ngModel)]=" experienciaLaboral.nombre_empresa" required>-->
@@ -19,64 +19,16 @@
         </div>
         <div class="row">
           <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Año Inicio</label>
+            <label class="col-sm-4 col-form-label">Nivel Idioma</label>
             <!--<label class="col-sm-4 col-form-label" >Fecha Inicio</label>-->
             <div class="col-sm-5">
-              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaBasica.ano_inicio">
-              <!--<div class="form-control alert-danger" *ngIf="formOferente.controls.nombre?.invalid && (formOferente.controls.nombre?.touched)">El nombre es requerido</div>-->
+              <select class="form-control" [(ngModel)]="informacionIdioma.id_nivel_idioma" name="nivelIdioma" required id="nivelIdioma">
+                <option value="0">-- Seleccione --</option>
+                <option *ngFor="let nivelIdioma of nivelesIdioma" [ngValue]="nivelIdioma.id">{{nivelIdioma.descripcion}}</option>
+              </select>
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Año Fin</label>
-            <div class="col-sm-5">
-              <input class="form-control" type="number"  [(ngModel)]="informacionAcademicaBasica.ano_fin">
-              <!--<input class="form-control" type="date" >-->
-              <!--<div class="form-control alert-danger" *ngIf="formOferente.controls.nombre?.invalid && (formOferente.controls.nombre?.touched)">El nombre es requerido</div>-->
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Fecha Graduación</label>
-            <div class="col-sm-5">
-              <input class="form-control" type="date" [(ngModel)]="informacionAcademicaBasica.fecha_grado">
-              <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Último Grado Escolar</label>
-            <div class="col-sm-5">
-              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaBasica.ultimo_grado_escolar">
-              <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Prueba Saber</label>
-            <div class="col-sm-5 checkbox">
-              <input type="checkbox" [(ngModel)]="informacionAcademicaBasica.pruebas_saber">
-              <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="top-buffer-sm">
-            <label class="col-sm-4 col-form-label">Calificación Prueba Saber</label>
-            <div class="col-sm-5">
-              <input class="form-control" type="number" [(ngModel)]="informacionAcademicaBasica.calificacion_pruebas_saber">
-              <!--<input class="form-control" type="text" [(ngModel)]="cargo">-->
-            </div>
-          </div>
-        </div>
-
 
         <div class="top-buffer">
           <!--<input type="button" class="btn btn-secondary" />-->

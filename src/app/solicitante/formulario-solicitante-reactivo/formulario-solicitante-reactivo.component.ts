@@ -157,7 +157,7 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     this.listadoInformacionAcademicaSuperior.push(informacionAcademicaSuperior);
   }
 
-  agregarInformacionNivelIdioma(informacionNivelIdioma : IInformacionNivelIdioma){
+  agregarInformacionIdioma(informacionNivelIdioma : IInformacionNivelIdioma){
     this.listadoInformacionNivelIdioma.push(informacionNivelIdioma);
   }
 

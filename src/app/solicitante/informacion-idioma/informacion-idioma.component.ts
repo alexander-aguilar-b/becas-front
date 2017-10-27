@@ -47,7 +47,7 @@ export class InformacionIdiomaComponent implements OnInit {
     this.informacionIdioma.nivelIdioma = null;
     this.informacionIdioma.idioma = null;
 
-    $('#informacionAcademicaBasica').modal('toggle');
+    $('#informacionIdioma').modal('toggle');
   }
 
   ngOnInit() {
@@ -56,8 +56,8 @@ export class InformacionIdiomaComponent implements OnInit {
     this.servicioNivelIdioma.obtenerNivelesIdioma().subscribe(nivelesIdioma => this.nivelesIdioma = nivelesIdioma);
 
     this.informacionIdioma = {
-      id_idioma : null,
-      id_nivel_idioma : null,
+      id_idioma : 0,
+      id_nivel_idioma : 0,
       idioma : null,
       nivelIdioma : null
     };
