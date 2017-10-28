@@ -6,6 +6,7 @@ import {Component, Input} from "@angular/core";
 import {IEtapa, IEtapaConsulta} from "../../models/etapa.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
+import {AutenticacionService} from "../../services/autenticacion.service";
 
 
 @Component({
@@ -22,11 +23,11 @@ export class EtapasOfertaOferenteComponent{
   etapaEliminadaCorectamente : boolean = false;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private activatedRouter : ActivatedRoute, private router : Router, private servicioEtapasOferta : ServicioEtapasOferta){
+  constructor(private activatedRouter : ActivatedRoute, private router : Router, private servicioEtapasOferta : ServicioEtapasOferta, private servicioAutenticacion : AutenticacionService){
   }
 
   ngOnInit(){
-
+    this.servicioAutenticacion.validarAutorizacion('oferta/consulta-oferta-oferente');
     this.idOferta = this.activatedRouter.snapshot.paramMap.get('idOferta');
     console.log(this.idOferta);
     //this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);

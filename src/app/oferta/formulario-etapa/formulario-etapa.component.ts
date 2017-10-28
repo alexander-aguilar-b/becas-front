@@ -7,10 +7,11 @@ import {DefincionItemFormulario} from "../../models/definicion.item.formulario.m
 import {IItemFormulario, IItemFormularioConsulta, Item, ItemFormulario} from "../../models/item.model";
 import {Respuesta} from "../../models/respuesta.model";
 import {ServicioTipoItemFormulario} from "../../services/tipo.item.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {IFormularioConsulta, IFormultario} from "../../models/formulario.model";
 import {ServicioFormularioEtapa} from "../../services/formulario.etapa.servicio";
 import {isNullOrUndefined} from "util";
+import {AutenticacionService} from "../../services/autenticacion.service";
 
 @Component({
   selector: 'app-formulario-etapa',
@@ -47,11 +48,12 @@ export class FormularioEtapaComponent implements OnInit {
 
 
 
-  constructor(private activatedRouter : ActivatedRoute, private servicioTipoItems : ServicioTipoItemFormulario, private servicioFormularioEtapa : ServicioFormularioEtapa) {
+  constructor(private router : Router, private activatedRouter : ActivatedRoute, private servicioTipoItems : ServicioTipoItemFormulario, private servicioFormularioEtapa : ServicioFormularioEtapa, private servicioAutenticacion : AutenticacionService) {
   }
 
   ngOnInit() {
 
+    this.servicioAutenticacion.validarAutorizacion('oferta/consulta-oferta-oferente');
     this.datosFormulario = {
       id : 0,
       idEtapa : 0,
@@ -192,6 +194,8 @@ export class FormularioEtapaComponent implements OnInit {
     this.servicioFormularioEtapa.registrarFormularioEtapa(nuevoFormulario).subscribe(formularioCreado => {
         if(formularioCreado.id != 0){
           alert('El formulario ha sido registrado correctamente');
+          this.router.navigate(['/oferta/editar-etapa-oferta/', this.idOferta, this.datosFormulario.idEtapa]);
+          //oferta/editar-etapa-oferta/3/29
         }
     });
   }

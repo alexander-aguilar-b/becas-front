@@ -5,6 +5,7 @@ import {ServicioEtapasOferta} from "../../services/etapas.oferta.servicio";
 import {JQ_TOKEN} from "../../comun/jquery.service";
 import {IFormularioConsulta} from "../../models/formulario.model";
 import {ServicioFormularioEtapa} from "../../services/formulario.etapa.servicio";
+import {AutenticacionService} from "../../services/autenticacion.service";
 /**
  * Created by edgaguil on 21/10/2017.
  */
@@ -31,11 +32,12 @@ export class EditarEtapaOfertaComponent implements OnInit {
   datosFormulariosDisponibles : boolean = false;
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private activatedRouter : ActivatedRoute, private router : Router,  private servicioEtapasOferta : ServicioEtapasOferta, private servicioFormularioEtapa : ServicioFormularioEtapa,  @Inject(JQ_TOKEN) private $ : any){
+  constructor(private activatedRouter : ActivatedRoute, private servicioAutenticacion : AutenticacionService, private router : Router,  private servicioEtapasOferta : ServicioEtapasOferta, private servicioFormularioEtapa : ServicioFormularioEtapa,  @Inject(JQ_TOKEN) private $ : any){
     this.$('#msgActualizacionEtapa').on("close.bs.alert", function(){ this.$('#msgActualizacionEtapa').hide(); return false; } );
   }
 
   ngOnInit(){
+    this.servicioAutenticacion.validarAutorizacion('oferta/consulta-oferta-oferente');
     this.idEtapaOferta = Number(this.activatedRouter.snapshot.paramMap.get('idEtapa'));
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
     //this.etapaOferta = this.servicioEtapasOferta.obtenerEtapaOferta(idEtapaOferta);

@@ -16,13 +16,13 @@ export class ServicioMenu {
 
       case "SOLICITANTE":
         menu = [
-          {
-            nombre_menu: "Crear cuenta",
-            ruta: "formulario-solicitante"
-          },
+          // {
+          //   nombre_menu: "Crear cuenta",
+          //   ruta: "formulario-solicitante"
+          // },
           {
             nombre_menu: "Consultar Oferta",
-            ruta: "oferta/consulta-oferta-solicitante"
+            ruta: "oferta/consulta-oferta"
           }
         ];
 
@@ -30,11 +30,14 @@ export class ServicioMenu {
 
       case "ADMIN":
         menu = [
-
           {
             ruta: 'administrador/formulario-administrador',
             nombre_menu: "Crear administrador"
           },
+          {
+            nombre_menu: "Consultar Oferta",
+            ruta: "oferta/consulta-oferta"
+          }
         ];
 
         break;

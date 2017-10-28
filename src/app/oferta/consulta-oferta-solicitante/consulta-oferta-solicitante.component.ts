@@ -22,11 +22,12 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
 
 
   /** Constructor- Se inyectan las dependencias requeridas*/
-  constructor(private router : Router, private servicioOferta : ServicioOferta){
+  constructor(private router : Router, private servicioOferta : ServicioOferta, private autenticacionService : AutenticacionService){
   }
 
   /***Metodo de Inicialización del componente */
   ngOnInit(){
+    this.autenticacionService.validarAutorizacion('oferta/consulta-oferta');
     this.valorSeleccionadoCriterioBusqueda = 0;
   }
 

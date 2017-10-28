@@ -124,7 +124,7 @@ const routes: Routes = [
     component : FormularioEtapaComponent
   },
   {
-    path: 'oferta/consulta-oferta-solicitante',
+    path: 'oferta/consulta-oferta',
     component : ConsultarOfertaSolicitanteComponent
   },
   {

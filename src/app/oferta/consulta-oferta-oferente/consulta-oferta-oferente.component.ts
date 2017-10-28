@@ -30,6 +30,7 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
 
   /***Metodo de Inicialización del componente */
   ngOnInit(){
+    this.servicioAutenticacion.validarAutorizacion('oferta/consulta-oferta-oferente');
     this.valorSeleccionadoCriterioBusqueda = 0;
     let idOferente = this.servicioAutenticacion.obtenerCookie('idUsuario');
     console.log("idOferente");
