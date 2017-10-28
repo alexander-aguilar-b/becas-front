@@ -47,4 +47,10 @@ export  class ServicioFormularioEtapa extends ServicioBase {
       return <IFormularioConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
+
+  actuaizarFormularioEtapa(idFormulario : number, formulario : IFormultario) : Observable<IFormularioConsulta> {
+    return this.http.put(this.configuracion.baseUrl + 'applicationform/' + idFormulario, JSON.stringify(formulario), this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <IFormularioConsulta[]> response.json();
+    }).catch(this.manejadorError);
+  }
 }

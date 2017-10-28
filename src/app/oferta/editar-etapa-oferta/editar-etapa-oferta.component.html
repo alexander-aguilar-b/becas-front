@@ -9,9 +9,10 @@
     <div class="container">
       <div class="row">
         <div class="form-group">
-          <label class="col-sm-2">Nombre: </label>
+          <label class="col-sm-2">Nombre </label>
           <div class="col-sm-10">
-            <input class="form-control" type="text" [(ngModel)]="etapaOferta.nombre" name="nombre">
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.nombre" name="nombre" required>
+            <div class="form-control alert-danger" *ngIf="formEditarEtapaOferta.controls.nombre?.invalid && (formEditarEtapaOferta.controls.nombre?.touched)">El nombre de la etapa es requerida</div>
           </div>
         </div>
       </div>
@@ -30,7 +31,8 @@
         <div class="form-group">
           <label class="col-sm-2">Fecha Inicio</label>
           <div class="col-sm-4">
-            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaInicio" name="fechaInicio" required bsDatepicker placeholder="Seleccione una fecha...">
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaInicio" name="fechaInicio" required bsDatepicker placeholder="Seleccione una fecha..." required>
+            <div class="form-control alert-danger" *ngIf="formEditarEtapaOferta.controls.fechaInicio?.invalid && (formEditarEtapaOferta.controls.fechaInicio?.touched)">La fecha de inicio de la etapa es requerida</div>
             <!--<span class="input-group-btn">-->
               <!--<button class="btn btn-default">-->
                 <!--<i class="glyphicon glyphicon-calendar"></i>-->
@@ -42,7 +44,8 @@
           </div>
           <label class="col-sm-2">Fecha Fin</label>
           <div class="col-sm-4">
-            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaFin" name="fechaFin" required bsDatepicker placeholder="Seleccione una fecha...">
+            <input class="form-control" type="text" [(ngModel)]="etapaOferta.fechaFin" name="fechaFin" required bsDatepicker placeholder="Seleccione una fecha..." required>
+            <div class="form-control alert-danger" *ngIf="formEditarEtapaOferta.controls.fechaFin?.invalid && (formEditarEtapaOferta.controls.fechaFin?.touched)">La fecha de fin de la etapa es requerida</div>
             <!--<input class="form-control" type="text" class="datepicker" [ngModel]="etapaOferta.fechaFin | date:'shortDate'"-->
                    <!--(ngModelChange)="etapaOferta.fechaFin=$event" name="fechaFin" required>-->
             <input [ngModel]="etapaOferta.fechaFin | date:'shortDate'"
@@ -55,8 +58,9 @@
         <div class="form-group">
           <label class="col-sm-2">Cantidad a seleccionar</label>
           <div class="col-sm-4">
-            <input class="form-control" type="text" [(ngModel)]="etapaOferta.cantidadASeleccionar"
+            <input class="form-control" type="number" [(ngModel)]="etapaOferta.cantidadASeleccionar"
                    name="cantidadASeleccionar" required>
+            <div class="form-control alert-danger" *ngIf="formEditarEtapaOferta.controls.cantidadASeleccionar?.invalid && (formEditarEtapaOferta.controls.cantidadASeleccionar?.touched)">La cantidad a seleccionar es requerida</div>
           </div>
         </div>
       </div>
@@ -64,17 +68,21 @@
 
   </div>
 
-  <div class="row top-buffer" align="right">
-    <button type="button" class="btn btn-primary" (click)="actualizarEtapaOferta()"><span class="glyphicon glyphicon-ok"></span> Actualizar Etapa</button>
+  <div class="row top-buffer">
+    <div class="container">
+      <button type="button" class="btn btn-primary" (click)="actualizarEtapaOferta()"><span class="glyphicon glyphicon-ok"></span> Actualizar Etapa</button>
+      <a class="btn btn-primary" [routerLink]="['/oferta/etapas-oferta-oferente', idOferta]" role="button"><span class="glyphicon glyphicon-menu-left"></span> Atrás</a>
+    </div>
 
-    <a class="btn btn-primary" [routerLink]="['/oferta/etapas-oferta-oferente', idOferta]" role="button"><span class="glyphicon glyphicon-menu-left"></span> Atrás</a>
   </div>
 
   <div class="top-buffer">
     <h4>Formularios Etapa</h4>
     <hr class="sep-tt top-buffer">
-    <div class="row top-buffer" align="right">
-    <button type="button" class="btn btn-primary" (click)="agregarFormulario($event)"><span class="glyphicon glyphicon-plus"></span> Agregar Formulario</button>
+    <div class="row top-buffer">
+      <div class="container">
+          <button type="button" class="btn btn-primary" (click)="agregarFormulario($event)"><span class="glyphicon glyphicon-plus"></span> Agregar Formulario</button>
+      </div>
   </div>
 
 

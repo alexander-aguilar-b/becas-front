@@ -56,17 +56,17 @@ export class AgregarEtapaOfertaComponent implements OnInit{
     this.servicioEtapasOferta.agregarEtapaOferta(this.etapaOferta)
       .subscribe(event => {
         alert('La etapa se ha agregado exitosamente a la oferta');
+
+        // this.etapaOferta = {
+        //   id_convocatoria : this.idOferta,
+        //   nombre : '',
+        //   descripcion : '',
+        //   fecha_inicio : null,
+        //   fecha_fin : null,
+        //   cantidad_a_seleccionar : null
+        // };
+
         this.router.navigate(['/oferta/etapas-oferta-oferente/', this.idOferta]);
       });
-
-    this.etapaOferta = {
-      id_convocatoria : this.idOferta,
-      nombre : '',
-      descripcion : '',
-      fecha_inicio : null,
-      fecha_fin : null,
-      cantidad_a_seleccionar : null
-    };
-
   }
 }

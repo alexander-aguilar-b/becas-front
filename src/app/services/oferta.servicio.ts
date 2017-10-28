@@ -35,7 +35,16 @@ export class ServicioOferta extends ServicioBase {
     if(codigoConvocatoria > 0)
     {
       return this.http.get(this.configuracion.baseUrl +  "announcements/" + codigoConvocatoria, this.obtenerOpcionesPeticion()).map((response : Response) => {
-        return <IOfertaConsulta[]> response.json();
+        let resultado : IOfertaConsulta[] = [];
+        console.log(response.text());
+
+        if(response.text()){
+          let ofertaEncontrada : IOfertaConsulta = <IOfertaConsulta> response.json();
+          resultado.push(ofertaEncontrada);
+        }
+
+        //return <IOfertaConsulta[]> response.json();
+        return resultado;
       }).catch(this.manejadorError);
     }
     else{

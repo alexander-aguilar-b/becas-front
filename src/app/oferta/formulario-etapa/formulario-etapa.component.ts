@@ -159,6 +159,21 @@ export class FormularioEtapaComponent implements OnInit {
     console.log(this.listaItems);
     console.log("this.datosFormulario");
     console.log(this.datosFormulario);
+    let formularioEditado : IFormultario;
+
+    formularioEditado = {
+      id_etapa : this.datosFormulario.idEtapa,
+      nombre : this.datosFormulario.nombre,
+      descripcion : this.datosFormulario.descripcion,
+      items : this.listaItems
+    };
+
+    this.servicioFormularioEtapa.actuaizarFormularioEtapa(this.datosFormulario.id,  formularioEditado).subscribe(formularioCreado => {
+      if(formularioCreado.id != 0){
+        alert('El formulario ha sido actualizado correctamente');
+      }
+    });
+
   }
 
   crearFormulario(){
