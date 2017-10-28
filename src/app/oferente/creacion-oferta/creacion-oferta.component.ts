@@ -115,6 +115,8 @@ export class CreacionOfertaComponent implements OnInit {
     this.oferta.etapas.push(etapa);
 
     $('#tabs a[href="#finalizar"]').tab('show');
+
+    //this.formCrearOferta.reset();
   }
 
   crearOferta(oferta) {
@@ -162,6 +164,8 @@ export class CreacionOfertaComponent implements OnInit {
       this.defincionEtapaFormulario.opciones = "";
       this.defincionEtapaFormulario.requerido = false;
       this.defincionEtapaFormulario.tamanoMaximo = null;
+
+      this
 
     }
   }

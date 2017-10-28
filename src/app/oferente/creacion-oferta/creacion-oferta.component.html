@@ -32,6 +32,7 @@
             <label class="col-sm-2">Nombre</label>
             <div class="col-sm-10">
               <input id="nombre" (ngModel)="oferta.nombre" required class="form-control" type="text" name="nombre">
+              <div class="form-control alert-danger" *ngIf="formCrearOferta.controls.nombre?.invalid && (formCrearOferta.controls.nombre?.touched)">El nombre es requerido</div>
             </div>
           </div>
         </div>
@@ -52,10 +53,12 @@
             <label class="col-sm-2">Fecha Inicio</label>
             <div class="col-sm-4">
               <input class="form-control" type="date" (ngModel)="oferta.fecha_inicio" name="fecha_inicio" required>
+              <div class="form-control alert-danger" *ngIf="formCrearOferta.controls.fecha_inicio?.invalid && (formCrearOferta.controls.fecha_inicio?.touched)">La fecha de inicio es requerida</div>
             </div>
             <label class="col-sm-2">Fecha Fin</label>
             <div class="col-sm-4">
               <input class="form-control" type="date" (ngModel)="oferta.fecha_fin" name="fecha_fin" required>
+              <div class="form-control alert-danger" *ngIf="formCrearOferta.controls.fecha_fin?.invalid && (formCrearOferta.controls.fecha_fin?.touched)">La fecha de fin es requerida</div>
             </div>
           </div>
         </div>
@@ -68,6 +71,7 @@
                       required>
                 <option *ngFor="let tipoOferta of tiposOferta" [ngValue]="tipoOferta.id">{{tipoOferta.nombre}}
                 </option>
+                <div class="form-control alert-danger" *ngIf="((formCrearOferta.controls.id_tipo_convocatoria?.invalid && formCrearOferta.controls.id_tipo_convocatoria?.touched) || (formCrearOferta.controls.id_tipo_convocatoria?.touched && valorSeleccionadoTipoOferta == 0))">La fecha de fin es requerida</div>
               </select>
             </div>
           </div>
@@ -79,6 +83,7 @@
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.requisitos" name="requisitos"
                   required></textarea>
+              <div class="form-control alert-danger" *ngIf="formCrearOferta.controls.requisitos?.invalid && (formCrearOferta.controls.requisitos?.touched)">Los requisitos son obligatorios</div>
             </div>
           </div>
         </div>
@@ -89,6 +94,7 @@
             <div class="col-sm-10">
         <textarea rows="5" class="form-control" type="text" (ngModel)="oferta.condiciones" name="condiciones"
                   required></textarea>
+              <div class="form-control alert-danger" *ngIf="formCrearOferta.controls.condiciones?.invalid && (formCrearOferta.controls.condiciones?.touched)">Las condiciones son obligatorias</div>
             </div>
           </div>
         </div>
@@ -126,7 +132,8 @@
             <div class="col-sm-10">
               <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.nombre_etapa"
                      name="nombre_etapa"
-                     id="id_nombre_etapa">
+                     id="id_nombre_etapa" required>
+              <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.nombre_etapa?.invalid && (formCrearOferta.controls.nombre_etapa?.touched)">El nombre de la etapa es requerido</div>-->
             </div>
           </div>
         </div>
@@ -149,11 +156,13 @@
             <div class="col-sm-4">
               <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_inicio_etapa"
                      name="fecha_inicio_etapa" required>
+              <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.fecha_inicio_etapa?.invalid && (formCrearOferta.controls.fecha_inicio_etapa?.touched)">La fecha de inicio de la etapa es requerida</div>-->
             </div>
             <label class="col-sm-2">Fecha Fin</label>
             <div class="col-sm-4">
               <input class="form-control" type="date" [(ngModel)]="defincionEtapaFormulario.fecha_fin_etapa"
                      name="fecha_fin_etapa" required>
+              <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.fecha_fin_etapa?.invalid && (formCrearOferta.controls.fecha_fin_etapa?.touched)">La fecha fin de la etapa es requerida</div>-->
             </div>
           </div>
         </div>
@@ -166,6 +175,7 @@
               <input class="form-control" type="number" [(ngModel)]="defincionEtapaFormulario.cantidad_seleccionar"
                      name="cantidad_seleccionar"
                      required>
+              <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.cantidad_seleccionar?.invalid && (formCrearOferta.controls.cantidad_seleccionar?.touched)">La cantidad a seleccionar es requerida</div>-->
             </div>
           </div>
         </div>
@@ -176,7 +186,7 @@
           </button>
           <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span
             class="glyphicon glyphicon-remove"></span> Cancelar</a>
-          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value)"><span
+          <button type="button" class="btn btn-primary" (click)="agregarEtapa(formCrearOferta.value);formCrearOferta.reset()"><span
             class="glyphicon glyphicon-ok"></span> Terminar Etapa
           </button>
         </div>
@@ -198,7 +208,8 @@
               <div class="form-group">
                 <label class="col-sm-2">Nombre:</label>
                 <div class="col-sm-4">
-                  <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre">
+                  <input class="form-control" type="text" [(ngModel)]="defincionEtapaFormulario.formulario_nombre" name="formulario_nombre" required>
+                  <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.formulario_nombre?.invalid && (formCrearOferta.controls.formulario_nombre?.touched)">La nombre del formulario es requerido</div>-->
                 </div>
               </div>
             </div>
@@ -226,10 +237,7 @@
                 <div class="col-sm-4">
                   <input type="text" class="form-control" [(ngModel)]="defincionEtapaFormulario.nombreItem" id="nombreItem"
                          name="nombreItem" required>
-                  <!--<div class="form-control alert-danger"-->
-                       <!--*ngIf="formCrearFormulario.controls.nombreItem?.invalid && (formCrearFormulario.controls.nombreItem?.touched)">-->
-                    <!--El nombre del item es requerido-->
-                  <!--</div>-->
+                  <!--<div class="form-control alert-danger" *ngIf="formCrearOferta.controls.nombreItem?.invalid && (formCrearOferta.controls.nombreItem?.touched)">La nombre del item es requerido</div>-->
                 </div>
               </div>
             </div>
@@ -243,8 +251,8 @@
                     <option *ngFor="let tipoItem of listaTiposItem" [ngValue]="tipoItem.id">{{tipoItem.nombre}}</option>
                   </select>
                   <!--<div class="form-control alert-danger"-->
-                       <!--*ngIf="(formCrearFormulario.controls.tipoControl?.invalid && formCrearFormulario.controls.tipoControl.touched) || (formCrearFormulario.controls.tipoControl?.touched && definicionItemFormulario.tipoControl == 0)">-->
-                    <!--El criterio de búsqueda es requerido-->
+                       <!--*ngIf="(formCrearOferta.controls.tipoControl?.invalid && formCrearOferta.controls.tipoControl.touched) || (formCrearOferta.controls.tipoControl?.touched && defincionEtapaFormulario.tipoControl == 0)">-->
+                    <!--El tipo de control es requerido-->
                   <!--</div>-->
                 </div>
               </div>
@@ -298,7 +306,8 @@
                     <!--class="glyphicon glyphicon-plus"></span> Agregar-->
                     <!--Item-->
                   <!--</button>-->
-                  <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)"><span class="glyphicon glyphicon-plus"></span> Agregar Item</button>
+                  <button type="button" class="btn btn-primary" (click)="agregarItem(formCrearOferta.value)"
+                          [disabled]="!(defincionEtapaFormulario.nombreItem != ''   && defincionEtapaFormulario.tipoControl != 0)"><span class="glyphicon glyphicon-plus"></span> Agregar Item</button>
 
                 </div>
               </div>
