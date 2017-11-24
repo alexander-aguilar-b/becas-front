@@ -35,6 +35,10 @@ export class ServicioMenu {
             nombre_menu: "Crear administrador"
           },
           {
+            ruta: 'oferente/formulario-oferente',
+            nombre_menu: "Solicitar cuenta Oferente"
+          },
+          {
             nombre_menu: "Consultar Oferta",
             ruta: "oferta/consulta-oferta"
           }
