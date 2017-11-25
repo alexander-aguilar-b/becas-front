@@ -67,6 +67,8 @@ import {ServicioUsuario} from "./services/servicio.usuario";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 
 declare let jQuery: Object;
+
+
 @NgModule({
   declarations: [
     AppComponent,

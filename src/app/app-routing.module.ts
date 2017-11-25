@@ -28,11 +28,6 @@ import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
 
 const routes: Routes = [
   {
@@ -152,3 +147,9 @@ const routes: Routes = [
     component : AgregarEtapaOfertaComponent
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
