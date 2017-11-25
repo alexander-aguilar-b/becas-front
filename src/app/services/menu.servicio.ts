@@ -41,7 +41,11 @@ export class ServicioMenu {
           {
             nombre_menu: "Consultar Oferta",
             ruta: "oferta/consulta-oferta"
-          }
+          },
+          {
+            ruta: 'administrador/consultar-usuario',
+            nombre_menu: "Consultar Usuario"
+          },
         ];
 
         break;

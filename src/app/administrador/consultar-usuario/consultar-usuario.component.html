@@ -1,0 +1,44 @@
+<form #formConsultarUsuario="ngForm"  class="form-horizontal">
+  <h3>Consultar Usuario</h3>
+  <br/>
+  <div class="container">
+    <div class="row">
+      <div class="form-group">
+        <label class="col-sm-2">Nombre Usuario</label>
+        <div class="col-sm-4">
+          <input id="nombreUsuario" required class="form-control" type="text" [(ngModel)]="nombreUsuario" name="nombreUsuario">
+          <div class="form-control alert-danger" *ngIf="formConsultarUsuario.controls.nombreUsuario?.invalid && (formConsultarUsuario.controls.nombreUsuario?.touched)">El nombre de usuario es requerido</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <button type="button" class="btn btn-primary" (click)="consultarUsuario1(nombreUsuario)" [disabled]="(formConsultarUsuario.invalid)" >Buscar</button>
+    </div>
+
+    <div *ngIf="informacionUsuarioEncontrada">
+      <span>User info goes here!</span>
+    </div>
+
+
+    <div class="form-group top-buffer">
+      <button type="button" class="btn btn-primary" (click)="eliminarUsuario()" [disabled]="!informacionUsuarioEncontrada">
+        <span class="glyphicon glyphicon-trash"></span> Eliminar
+      </button>
+      <button type="button" class="btn btn-primary" (click)="cancelarEliminarUsuario()">
+        <span class="glyphicon glyphicon-remove"></span> Cancelar
+      </button>
+    </div>
+
+
+  </div>
+
+</form>
+
+
+<!--Angular1 : {{ formConsultarOferta.value | json}}-->
+<!--Angular1 : {{ valorSeleccionadoCriterioBusqueda | json}}-->
+<!--Angular1 : {{ formConsultarOferta.invalid | json}}-->
+Angular1 : {{ ofertas | json}}
+<!--Angular1 : {{ ofertas.length }}-->
+

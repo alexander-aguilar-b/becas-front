@@ -25,6 +25,7 @@ import {FormularioEtapaComponent} from "./oferta/formulario-etapa/formulario-eta
 import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-solicitante/consulta-oferta-solicitante.component";
 import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferente/consulta-oferta-oferente.component";
 import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
+import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 
 const routes: Routes = [
   {
@@ -80,6 +81,10 @@ const routes: Routes = [
     component : FormularioAdministradorComponent
   },
   {
+    path: 'administrador/consultar-usuario',
+    component : ConsultarUsuarioComponent
+  },
+  {
     path: 'oferente/creacion-oferta',
     component : CreacionOfertaComponent
   },
@@ -101,7 +106,7 @@ const routes: Routes = [
   },
   {
     path: 'oferta/detalle-oferta-solicitante/:id',
-    component :DetalleOfertaSolicitanteComponent
+    component : DetalleOfertaSolicitanteComponent
   },
   {
     path: 'oferta/etapas-oferta-solicitante/:idOferta',

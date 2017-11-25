@@ -11,10 +11,10 @@ import {Observable} from "rxjs/Observable";
 @Injectable()
 export class ServicioBase {
 
-  constructor(protected autenticacionService : AutenticacionService){
+  constructor(protected autenticacionService: AutenticacionService){
   }
 
-  protected obtenerOpcionesPeticion() : RequestOptions
+  protected obtenerOpcionesPeticion(): RequestOptions
   {
     let token =  this.autenticacionService.obtenerCookie('token');
     let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});

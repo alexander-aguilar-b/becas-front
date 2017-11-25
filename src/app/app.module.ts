@@ -62,10 +62,10 @@ import {ServicioInstitucionEducacionSuperior} from "./services/institucion.educa
 import {ServicioNivelIdioma} from "./services/nivel.idioma.service";
 import {InformacionIdiomaComponent} from "./solicitante/informacion-idioma/informacion-idioma.component";
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
+import {ServicioUsuario} from "./services/servicio.usuario";
 
-declare let jQuery : Object;
-
-
+declare let jQuery: Object;
 @NgModule({
   declarations: [
     AppComponent,
@@ -101,7 +101,8 @@ declare let jQuery : Object;
     AgregarEtapaOfertaComponent,
     InformacionAcademicaBasicaComponent,
     InformacionAcademicaSuperiorComponent,
-    InformacionIdiomaComponent
+    InformacionIdiomaComponent,
+    ConsultarUsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -136,6 +137,7 @@ declare let jQuery : Object;
     ServicioInstitucionEducacionBasica,
     ServicioInstitucionEducacionSuperior,
     ServicioNivelIdioma,
+    ServicioUsuario,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent],

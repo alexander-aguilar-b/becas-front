@@ -2,10 +2,11 @@
  * Created by edgaguil on 21/10/2017.
  */
 import {Component} from "@angular/core";
-import {IOferta, IOfertaConsulta} from "../../models/oferta.model";
+//import {IOferta, IOfertaConsulta} from "../../models/oferta.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioOferta} from "../../services/oferta.servicio";
 import {AutenticacionService} from "../../services/autenticacion.service";
+import {IOfertaConsulta} from "../../models/oferta.model";
 
 @Component({
   selector: 'app-detalle-oferta-oferente',
