@@ -26,6 +26,13 @@ import {ConsultarOfertaSolicitanteComponent} from "./oferta/consulta-oferta-soli
 import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferente/consulta-oferta-oferente.component";
 import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
+import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
 
 const routes: Routes = [
   {
@@ -85,6 +92,10 @@ const routes: Routes = [
     component : ConsultarUsuarioComponent
   },
   {
+    path: 'administrador/consultar-solicitudes-oferentes',
+    component : ConsultarSolicitudesOferentesComponent
+  },
+  {
     path: 'oferente/creacion-oferta',
     component : CreacionOfertaComponent
   },
@@ -141,9 +152,3 @@ const routes: Routes = [
     component : AgregarEtapaOfertaComponent
   }
 ];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }

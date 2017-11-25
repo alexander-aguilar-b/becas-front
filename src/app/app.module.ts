@@ -64,6 +64,7 @@ import {InformacionIdiomaComponent} from "./solicitante/informacion-idioma/infor
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 import {ServicioUsuario} from "./services/servicio.usuario";
+import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 
 declare let jQuery: Object;
 @NgModule({
@@ -103,6 +104,7 @@ declare let jQuery: Object;
     InformacionAcademicaSuperiorComponent,
     InformacionIdiomaComponent,
     ConsultarUsuarioComponent,
+    ConsultarSolicitudesOferentesComponent,
   ],
   imports: [
     BrowserModule,

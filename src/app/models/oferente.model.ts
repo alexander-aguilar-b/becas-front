@@ -9,31 +9,24 @@ import {IPais} from "./pais.model";
 /**
  * Created by edgaguil on 29/07/2017.
  */
-export interface IOferente
-{
-  id : number,
-  correoElectronico : string,
-  contrasena : string,
-  nombre : string,
-  idEstadoSistema : IEstadoSistema,
-  rol : IRol
-  infoUsuario : {
-    nit : string,
-    descripcion : string,
-    fechaCreacion : Date,
-    tipoEntidad : ITipoEntidad,
-    pais : IPais
-  }
-  //usuario : IUsuario
-
-  nit : string,
-  descripcion: string,
-  //fechaCreacion : Date,
-  tipoEntidad : ITipoEntidad,
-  estadoSistema : IEstadoSistema
-  //pais : IPais,
-
-  //ng
+export interface IOferente {
+  id: number;
+  correoElectronico: string;
+  contrasena?: string;
+  nombre: string;
+  idEstadoSistema: IEstadoSistema;
+  rol: IRol;
+  infoUsuario: {
+    nit: string,
+    descripcion: string,
+    fechaCreacion: Date,
+    tipoEntidad: ITipoEntidad,
+    pais: IPais
+  };
+  nit: string;
+  descripcion: string;
+  tipoEntidad: ITipoEntidad;
+  estadoSistema: IEstadoSistema;
 }
 
 // export class Oferente implements  IOferente

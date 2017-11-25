@@ -46,6 +46,12 @@ export class ServicioMenu {
             ruta: 'administrador/consultar-usuario',
             nombre_menu: "Consultar Usuario"
           },
+          //
+          {
+            ruta: 'administrador/consultar-solicitudes-oferentes',
+            nombre_menu: "Consultar Solicitudes Oferentes"
+          },
+
         ];
 
         break;

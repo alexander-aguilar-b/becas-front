@@ -4,8 +4,8 @@
 
 export interface IEstadoSistema
 {
-  id: number,
-  descripcion : string
+  id: number;
+  descripcion: string;
 }
 
 export class EstadoSistema implements IEstadoSistema
