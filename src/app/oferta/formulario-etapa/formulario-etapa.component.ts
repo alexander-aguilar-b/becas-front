@@ -21,9 +21,9 @@ import {AutenticacionService} from "../../services/autenticacion.service";
 
 export class FormularioEtapaComponent implements OnInit {
 
-  idOferta : number;
-  idFormulario : number;
-  idEtapaOferta : number;
+  idOferta: number;
+  idFormulario: number;
+  idEtapaOferta: number;
 
   datosFormulario : IFormularioConsulta;
   datosItemsFormulario : IItemFormularioConsulta[];
@@ -48,7 +48,7 @@ export class FormularioEtapaComponent implements OnInit {
 
 
 
-  constructor(private router : Router, private activatedRouter : ActivatedRoute, private servicioTipoItems : ServicioTipoItemFormulario, private servicioFormularioEtapa : ServicioFormularioEtapa, private servicioAutenticacion : AutenticacionService) {
+  constructor(private router: Router, private activatedRouter: ActivatedRoute, private servicioTipoItems: ServicioTipoItemFormulario, private servicioFormularioEtapa: ServicioFormularioEtapa, private servicioAutenticacion: AutenticacionService) {
   }
 
   ngOnInit() {
@@ -68,22 +68,18 @@ export class FormularioEtapaComponent implements OnInit {
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
     this.datosFormulario.idEtapa = this.idEtapaOferta;
 
-    if(this.idFormulario == 0)
-    {
-      this.titulo = "Crear Formulario"
+    if(this.idFormulario === 0) {
+      this.titulo = 'Crear Formulario'
       this.numeroItems = 0;
       this.listaItems =  [];
-
-    }
-    else{
-      this.titulo = "Editar Formulario";
+    } else {
+      this.titulo = 'Editar Formulario';
       this.servicioFormularioEtapa.obtenerFormulario(this.idFormulario).subscribe(datosFormulario => {
         this.datosFormulario = datosFormulario;
+        console.log('Datos Formulario');
         console.log(datosFormulario);
       });
-
-
-      //this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => this.datosItemsFormulario = datosItemsFormulario);
+      // this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => this.datosItemsFormulario = datosItemsFormulario);
 
       this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => {
         this.listaItems =  [];
@@ -102,7 +98,7 @@ export class FormularioEtapaComponent implements OnInit {
     }
 
     this.definicionItemFormulario = new DefincionItemFormulario();
-    this.definicionItemFormulario.tipoControl = "0";
+    this.definicionItemFormulario.tipoControl = '0';
     this.servicioTipoItems.obtenerTiposItem().subscribe(tiposItem => this.listaTiposItem = tiposItem);
 
     console.log(this.tiposItemEnum.archivo);
@@ -116,7 +112,7 @@ export class FormularioEtapaComponent implements OnInit {
     let item: ItemFormulario = new ItemFormulario();
 
     let opciones : string =  definicionItemFormulario.opciones ? definicionItemFormulario.opciones.trim() : '';
-    let tipoDelimitador : string = definicionItemFormulario.tipoDelimitador;
+    let tipoDelimitador: string = definicionItemFormulario.tipoDelimitador;
 
     item.descripcion = definicionItemFormulario.nombreItem;
     item.id_tipo_item = parseInt(definicionItemFormulario.tipoControl);
@@ -156,12 +152,10 @@ export class FormularioEtapaComponent implements OnInit {
     }
   }
 
-  actualizarFormulario(){
-    console.log("this.listaItems");
+  actualizarFormulario() {
     console.log(this.listaItems);
-    console.log("this.datosFormulario");
     console.log(this.datosFormulario);
-    let formularioEditado : IFormultario;
+    let formularioEditado: IFormultario;
 
     formularioEditado = {
       id_etapa : this.datosFormulario.idEtapa,
@@ -171,28 +165,31 @@ export class FormularioEtapaComponent implements OnInit {
     };
 
     this.servicioFormularioEtapa.actuaizarFormularioEtapa(this.datosFormulario.id,  formularioEditado).subscribe(formularioCreado => {
-      if(formularioCreado.id != 0){
+      if(formularioCreado.id !== 0) {
         alert('El formulario ha sido actualizado correctamente');
       }
     });
 
   }
 
-  crearFormulario(){
+  crearFormulario() {
     console.log(this.listaItems);
     console.log(this.datosFormulario);
-    let nuevoFormulario : IFormultario;
-    let formularioCreado : IFormularioConsulta;
+    let nuevoFormulario: IFormultario;
+    let formularioCreado: IFormularioConsulta;
 
     nuevoFormulario = {
       id_etapa : this.datosFormulario.idEtapa,
+      id_convocatoria: this.idOferta,
       nombre : this.datosFormulario.nombre,
       descripcion : this.datosFormulario.descripcion,
       items : this.listaItems
     };
 
+    console.log(nuevoFormulario);
+
     this.servicioFormularioEtapa.registrarFormularioEtapa(nuevoFormulario).subscribe(formularioCreado => {
-        if(formularioCreado.id != 0){
+        if (formularioCreado.id !== 0) {
           alert('El formulario ha sido registrado correctamente');
           this.router.navigate(['/oferta/editar-etapa-oferta/', this.idOferta, this.datosFormulario.idEtapa]);
           //oferta/editar-etapa-oferta/3/29

@@ -42,7 +42,7 @@ export class EditarEtapaOfertaComponent implements OnInit {
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
     //this.etapaOferta = this.servicioEtapasOferta.obtenerEtapaOferta(idEtapaOferta);
 
-    this.servicioEtapasOferta.obtenerEtapaOferta(this.idEtapaOferta).subscribe(etapaOferta =>  {
+    this.servicioEtapasOferta.obtenerEtapaOferta(this.idEtapaOferta, this.idOferta).subscribe(etapaOferta =>  {
       this.etapaOferta = etapaOferta;
       console.log(etapaOferta);
       this.datosEtapaDisponibles = true;
@@ -68,10 +68,9 @@ export class EditarEtapaOfertaComponent implements OnInit {
     return false;
   }
 
-  actualizarEtapaOferta(){
-    //console.log(datosEtapaOferta);
+  actualizarEtapaOferta() {
     console.log(this.etapaOferta);
-    let datosEtapa : IEtapa;
+    let datosEtapa: IEtapa;
     datosEtapa = {
       id_convocatoria : this.idOferta,
       nombre : this.etapaOferta.nombre,

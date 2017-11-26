@@ -12,14 +12,13 @@ export class Formulario
   constructor(){}
 }
 
-export interface IFormultario
-{
-  id?: number; /*Validar -->  se modifica para la actualizacion */
-  id_etapa? : number;
+export interface IFormultario {
+  id?: number;
+  id_etapa?: number;
+  id_convocatoria?: number;
   nombre: string;
   descripcion: string;
-  //items: IItem[]; /* Modificado para no crear modelos ligeramente diferentes (Modificado para ciclo 2 - valdiar funcionalidades ciclo 1)*/
-  items : IItemFormulario[]
+  items: IItemFormulario[];
 }
 
 export interface IFormularioConsulta{

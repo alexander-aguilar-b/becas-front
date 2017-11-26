@@ -26,7 +26,7 @@ export  class ServicioFormularioEtapa extends ServicioBase {
 
   eliminarFormularioEtapa(idFormulario) : Observable<boolean> {
     return this.http.delete(this.configuracion.baseUrl + 'applicationform/' + idFormulario, this.obtenerOpcionesPeticion()).map((response: Response) => {
-      return <boolean>response.ok
+      return <boolean>response.ok;
     }).catch(this.manejadorError);
   }
 

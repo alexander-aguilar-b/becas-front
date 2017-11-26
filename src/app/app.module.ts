@@ -75,8 +75,6 @@ import {SiNoPipe} from "./custom-pipe/custom-pipe";
 
 declare let jQuery: Object;
 
-
-
 @NgModule({
   declarations: [
     AppComponent,

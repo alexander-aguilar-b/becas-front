@@ -30,27 +30,37 @@ export class ServicioEtapasOferta extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
-  obtenerEtapaOferta(idEtapaOferta): Observable<IEtapaConsulta> {
+  /*obtenerEtapaOferta(idEtapaOferta): Observable<IEtapaConsulta> {
     return this.http.get(this.configuracion.baseUrl + "phase/" + idEtapaOferta, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <IEtapaConsulta[]> response.json();
+    }).catch(this.manejadorError);
+  }*/
+
+  obtenerEtapaOferta(idEtapaOferta: number, idOferta: number): Observable<IEtapaConsulta> {
+    return this.http.get(this.configuracion.baseUrl + 'phases/phase/' + idEtapaOferta + /announcement/ + idOferta,
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
       return <IEtapaConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
 
   eliminarEtapaOferta(idEtapaOferta): Observable<boolean> {
-    return this.http.delete(this.configuracion.baseUrl + 'phase/' + idEtapaOferta, this.obtenerOpcionesPeticion()).map((response: Response) => {
-      return <boolean>response.ok
+    return this.http.delete(this.configuracion.baseUrl + 'phase/' + idEtapaOferta,
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <boolean>response.ok;
     }).catch(this.manejadorError);
   }
 
-  agregarEtapaOferta(etapaOferta: IEtapa) : Observable<IEtapaConsulta> {
-    return this.http.post(this.configuracion.baseUrl + 'phase/', JSON.stringify(etapaOferta), this.obtenerOpcionesPeticion()).map((response: Response) => {
-      return response.text() ? response.json() : {}
+  agregarEtapaOferta(etapaOferta: IEtapa): Observable<IEtapaConsulta> {
+    return this.http.post(this.configuracion.baseUrl + 'phases/', JSON.stringify(etapaOferta),
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return response.text() ? response.json() : {};
     }).catch(this.manejadorError);
   }
 
-  actualizarEtapaOferta(idEtapa : number, etapaOferta: IEtapa) : Observable<IEtapaConsulta> {
-    return this.http.put(this.configuracion.baseUrl + 'phase/' + idEtapa, JSON.stringify(etapaOferta), this.obtenerOpcionesPeticion()).map((response: Response) => {
-      return response.text() ? response.json() : {}
+  actualizarEtapaOferta(idEtapa: number, etapaOferta: IEtapa): Observable<IEtapaConsulta> {
+    return this.http.put(this.configuracion.baseUrl + 'phases/' + idEtapa,
+      JSON.stringify(etapaOferta), this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return response.text() ? response.json() : {};
     }).catch(this.manejadorError);
   }
 
