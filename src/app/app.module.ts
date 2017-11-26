@@ -70,8 +70,11 @@ import {DatosSolicitanteComponent} from "./solicitante/datos-solicitante/datos-s
 import {DatosOferenteComponent} from "./oferente/datos-oferente/datos-oferente.component";
 import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
 import {ServicioAplicacionOferta} from "./services/servicio.aplicacion.oferta";
+import {ModalEtapaOfertaComponent} from "./oferta/modal-etapa-oferta/modal-etapa-oferta.component";
+import {SiNoPipe} from "./custom-pipe/custom-pipe";
 
 declare let jQuery: Object;
+
 
 
 @NgModule({
@@ -115,7 +118,9 @@ declare let jQuery: Object;
     DatosAdministradorComponent,
     DatosSolicitanteComponent,
     DatosOferenteComponent,
-    ModificarEstadoSolicitudOferenteComponent
+    ModificarEstadoSolicitudOferenteComponent,
+    ModalEtapaOfertaComponent,
+    SiNoPipe,
   ],
   imports: [
     BrowserModule,

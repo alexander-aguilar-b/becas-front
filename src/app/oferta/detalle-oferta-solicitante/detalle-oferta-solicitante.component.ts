@@ -49,16 +49,21 @@ export class DetalleOfertaSolicitanteComponent implements OnInit {
         idConvocatoria : this.detalleOferta.id,
         idSolicitante : idSolicitante
       };
+      /*
       this.aplicacionOfertaRealizada = true;
       alert('La solicitud de aplicación a la convocatoria "' + this.detalleOferta.nombre.toUpperCase() + '" ha sido registrada correctamente. ' +
         'Por favor revise la información que debe diligenciar para cada una de las etapas');
-      /*
-      this.servicioAplicacionOferta.aplicarOferta(solicitudAplicacion).subscribe(event => {
-        this.aplicacionOfertaRealizada = true;
-        alert('La etapa solicitud de aplicación ha sido registrada correctamente. ' +
-          'Por favor revise la información que debe diligenciar para cada una de las etapas');
+        */
+
+      this.servicioAplicacionOferta.aplicarOferta(solicitudAplicacion).subscribe(aplicacionOferta => {
+        console.log(aplicacionOferta);
+        if (aplicacionOferta.id > 0) {
+          this.aplicacionOfertaRealizada = true;
+          alert('La solicitud de aplicación a la convocatoria "' + this.detalleOferta.nombre.toUpperCase()
+            + '" ha sido registrada correctamente. ' +
+            'Por favor revise la información que debe diligenciar para cada una de las etapas');
+        }
       });
-      */
     }
   }
 

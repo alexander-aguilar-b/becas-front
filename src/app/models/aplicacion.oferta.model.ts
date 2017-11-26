@@ -5,6 +5,6 @@ export interface IAplicacionOferta {
   idSolicitante: number;
   idConvocatoria: number;
   fechaAplicacion: Date;
-  estadoAplicacion: IEstadoAplicacion;
+  estadoAplicacion: string;
   fechaEstadoAplicacion: Date;
 }

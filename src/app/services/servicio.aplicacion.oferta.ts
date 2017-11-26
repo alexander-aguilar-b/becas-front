@@ -22,6 +22,7 @@ export class ServicioAplicacionOferta extends ServicioBase {
   aplicarOferta(solicitudAplicacion: ISolicitudAplicacion): Observable<IAplicacionOferta>  {
     return this.http.post(this.configuracion.baseUrl +  'application/', JSON.stringify(solicitudAplicacion),
       this.obtenerOpcionesPeticion()).map((response: Response) => {
+      console.log(<IAplicacionOferta> response.json());
       return <IAplicacionOferta> response.json();
     }).catch(this.manejadorError);
   }

@@ -20,7 +20,12 @@ export class ServicioEtapasOferta extends ServicioBase {
   }
 
   obtenerEtapasOferta(idOferta): Observable<IEtapaConsulta[]> {
+    /*
     return this.http.get(this.configuracion.baseUrl + "phase/applicantforms/" + idOferta, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <IEtapaConsulta[]> response.json();
+    }).catch(this.manejadorError);
+    */
+    return this.http.get(this.configuracion.baseUrl + "phases/announcement/" + idOferta, this.obtenerOpcionesPeticion()).map((response: Response) => {
       return <IEtapaConsulta[]> response.json();
     }).catch(this.manejadorError);
   }
