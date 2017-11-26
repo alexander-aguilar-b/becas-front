@@ -69,8 +69,10 @@ import {DatosAdministradorComponent} from "./administrador/datos-administrador/d
 import {DatosSolicitanteComponent} from "./solicitante/datos-solicitante/datos-solicitante.component";
 import {DatosOferenteComponent} from "./oferente/datos-oferente/datos-oferente.component";
 import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
+import {ServicioAplicacionOferta} from "./services/servicio.aplicacion.oferta";
 
 declare let jQuery: Object;
+
 
 @NgModule({
   declarations: [
@@ -149,6 +151,7 @@ declare let jQuery: Object;
     ServicioInstitucionEducacionSuperior,
     ServicioNivelIdioma,
     ServicioUsuario,
+    ServicioAplicacionOferta,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent],

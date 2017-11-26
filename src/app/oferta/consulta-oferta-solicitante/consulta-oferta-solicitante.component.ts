@@ -27,7 +27,7 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
 
   /***Metodo de Inicialización del componente */
   ngOnInit(){
-    this.autenticacionService.validarAutorizacion('oferta/consulta-oferta');
+    //this.autenticacionService.validarAutorizacion('oferta/consulta-oferta');
     this.valorSeleccionadoCriterioBusqueda = 0;
   }
 
@@ -48,6 +48,7 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
 
   /** Consulta el detalle de la oferta */
   consultarDetalleOferta(idOferta){
+    console.log('consultarDetalleOferta: ' + idOferta);
     this.router.navigate(['/oferta/detalle-oferta-solicitante', idOferta ]);
   }
 }
