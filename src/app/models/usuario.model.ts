@@ -31,7 +31,7 @@ export interface IConsultaUsuario {
   id: number;
   username?: string;
   correoElectronico: string;
-  contrasena: string;
+  contrasena?: string;
   nombre?: string;
   estadoSistema?: {
     valor: string;

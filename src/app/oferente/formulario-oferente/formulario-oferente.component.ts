@@ -47,17 +47,26 @@ export class FormularioOferenteComponent implements OnInit {
   }
 
 
-  crearOferente(formValues){
+  crearOferente(formValues) {
     console.log(formValues);
-    let datosOferente : IRegistroOferente;
-    datosOferente = formValues;
+    let datosOferente: IRegistroOferente;
+     datosOferente = {
+       correoElectronico : formValues.correoElectronico,
+       contrasena : formValues.contrasena,
+       nit : formValues.nit,
+       descripcion : formValues.descripcion,
+       tipoEntidad : formValues.tipoEntidad,
+       pais : formValues.pais,
+       nombre : formValues.nombre,
+       username : formValues.username
+     };
     datosOferente.contrasena = this.administradorForm.controls.contrasena.value;
     datosOferente.username = formValues.login;
-    console.log("Oferente");
+    console.log('Oferente');
     console.log(datosOferente);
     this.servicioOferente.crearOferente(datosOferente)
-    //.finally(() => this.router.navigate(['/oferente/confirmacion-creacion-oferente'])).subscribe();
-    .subscribe(event => { this.router.navigate(['/oferente/confirmacion-creacion-oferente']) })
+    // .finally(() => this.router.navigate(['/oferente/confirmacion-creacion-oferente'])).subscribe();
+    .subscribe(event => { this.router.navigate(['/oferente/confirmacion-creacion-oferente'])});
   }
 
   //#region Validaciones

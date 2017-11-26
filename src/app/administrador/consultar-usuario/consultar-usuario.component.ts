@@ -38,22 +38,6 @@ export class ConsultarUsuarioComponent implements OnInit {
       this.informacionUsuarioEncontrada = this.usuarioEncontrado.id > 0;
     });
   }
-
-  consultarUsuario1x(nombreUsuario) {
-    console.log('consultar');
-    this.usuarioEncontrado = this.servicioUsuario.obtenerUsuario1(nombreUsuario);
-    console.log(this.usuarioEncontrado);
-    this.informacionUsuarioEncontrada = this.usuarioEncontrado.id > 0;
-  }
-
-  /*
-  consultarUsuario(filtroBusqueda) {
-    console.log('consultar');
-    this.usuarioEncontrado = this.servicioUsuario.obtenerUsuario(filtroBusqueda.nombreUsuario);
-    console.log(this.usuarioEncontrado);
-    this.informacionUsuarioEncontrada = this.usuarioEncontrado.id > 0;
- }
- */
   eliminarUsuario() {
     if (confirm('Esta seguro de que desea eliminar el usuario?')) {
       console.log(this.usuarioEncontrado);

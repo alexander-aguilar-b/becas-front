@@ -67,8 +67,10 @@ import {ServicioUsuario} from "./services/servicio.usuario";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 import {DatosAdministradorComponent} from "./administrador/datos-administrador/datos-admin.component";
 import {DatosSolicitanteComponent} from "./solicitante/datos-solicitante/datos-solicitante.component";
+import {DatosOferenteComponent} from "./oferente/datos-oferente/datos-oferente.component";
 
 declare let jQuery: Object;
+
 
 
 @NgModule({
@@ -110,7 +112,8 @@ declare let jQuery: Object;
     ConsultarUsuarioComponent,
     ConsultarSolicitudesOferentesComponent,
     DatosAdministradorComponent,
-    DatosSolicitanteComponent
+    DatosSolicitanteComponent,
+    DatosOferenteComponent
   ],
   imports: [
     BrowserModule,
