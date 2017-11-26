@@ -72,10 +72,6 @@ import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modific
 
 declare let jQuery: Object;
 
-
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

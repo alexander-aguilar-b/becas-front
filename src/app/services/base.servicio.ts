@@ -21,6 +21,13 @@ export class ServicioBase {
     return options;
   }
 
+  protected obtenerHeaderAutorizacion(): RequestOptions {
+    let token =  this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Authorization': 'Basic ' + token, 'Access-Control-Allow-Origin' : '*', 'Access-Control-Allow-Methods' : 'PATCH'});
+    let options = new RequestOptions({headers: headers});
+    return options;
+  }
+
   protected manejadorError(error: Response) {
     console.log(error);
     return Observable.throw(error.statusText);

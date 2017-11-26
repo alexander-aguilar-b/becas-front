@@ -39,8 +39,17 @@ export class ServicioOferente extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
+  activarCuentaOferente(idOferente: number): Observable<boolean> {
+    console.log(this.obtenerOpcionesPeticion());
+    return this.http.put(this.configuracion.baseUrl + 'offerers/activate/' + idOferente, null, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return true;
+    }).catch(this.manejadorError);
+  }
+
   obtenerOferentesPendientesActivacion(): Observable<IOferenteConsulta[]> {
+
     return this.http.get(this.configuracion.baseUrl + 'offerers/requests', this.obtenerOpcionesPeticion()).map((response: Response) => {
+      console.log(this.obtenerOpcionesPeticion());
       return response.text() ? <IOferenteConsulta[]>response.json() : {};
     }).catch(this.manejadorError);
   }
