@@ -68,8 +68,11 @@ import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-
 import {DatosAdministradorComponent} from "./administrador/datos-administrador/datos-admin.component";
 import {DatosSolicitanteComponent} from "./solicitante/datos-solicitante/datos-solicitante.component";
 import {DatosOferenteComponent} from "./oferente/datos-oferente/datos-oferente.component";
+import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
 
 declare let jQuery: Object;
+
+
 
 
 
@@ -113,7 +116,8 @@ declare let jQuery: Object;
     ConsultarSolicitudesOferentesComponent,
     DatosAdministradorComponent,
     DatosSolicitanteComponent,
-    DatosOferenteComponent
+    DatosOferenteComponent,
+    ModificarEstadoSolicitudOferenteComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ServicioOferente} from "../../services/oferente.servicio";
-import {IOferente} from "../../models/oferente.model";
+import {IOferente, IOferenteConsulta} from "../../models/oferente.model";
 
 @Component({
   selector: 'app-buscar-oferente',
@@ -9,7 +9,7 @@ import {IOferente} from "../../models/oferente.model";
 })
 export class BuscarOferenteComponent implements OnInit {
 
-  oferente : IOferente;
+  oferente : IOferenteConsulta;
   busquedaRealizada : boolean;
 
   constructor(private servicioOferente : ServicioOferente) { }

@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h3>Detalle de la Soliciutd de Creación de Cuenta de Oferente</h3>
+</div>
+
+<div *ngIf="activacionOferenteOk || rechazoOferenteOk">
+  <div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+    </button>
+    <span *ngIf="activacionOferenteOk">La solicitud de activación del oferente se ha realizado exitosamente.</span>
+    <span *ngIf="rechazoOferenteOk">La solicitud de rechazo de la activación del oferente se ha realizado exitosamente.</span>
+  </div>
+</div>
+
+<div *ngIf="datosOferenteDisponibles">
+  <app-datos-oferente [usuario]="oferentePendienteActivacion"></app-datos-oferente>
+</div>
+
+<div class="form-group top-buffer" *ngIf="datosOferenteDisponibles">
+  <button type="button" class="btn btn-primary" (click)="aceptarSolicitud()" [disabled]="activacionOferenteOk || rechazoOferenteOk">
+    <span class="glyphicon glyphicon-ok"></span> Aceptar Solicitud
+  </button>
+  <button type="button" class="btn btn-primary" (click)="rechazarSolicitud()" [disabled]="activacionOferenteOk || rechazoOferenteOk">
+    <span class="glyphicon glyphicon-remove"></span> Rechazar Solicitud
+  </button>
+
+  <a class="btn btn-primary" [routerLink]="['/administrador/consultar-solicitudes-oferentes']" role="button"><span
+    class="glyphicon glyphicon-menu-left"></span> Atrás</a>
+
+</div>

@@ -27,6 +27,7 @@ import {ConsultarOfertaOferenteComponent} from "./oferta/consulta-oferta-oferent
 import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar-etapa-oferta.component";
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
+import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
 
 
 const routes: Routes = [
@@ -89,6 +90,10 @@ const routes: Routes = [
   {
     path: 'administrador/consultar-solicitudes-oferentes',
     component : ConsultarSolicitudesOferentesComponent
+  },
+  {
+    path: 'administrador/modificar-estado-solicitud-oferente/:idOferente',
+    component : ModificarEstadoSolicitudOferenteComponent
   },
   {
     path: 'oferente/creacion-oferta',

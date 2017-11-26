@@ -1,38 +1,51 @@
 import {Injectable} from "@angular/core";
-import {IOferente} from "../models/oferente.model";
+import {IOferente, IOferenteConsulta} from "../models/oferente.model";
 import { Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {IRegistroOferente} from "../models/registro.oferente.model";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 import {AutenticacionService} from "./autenticacion.service";
+import {ServicioBase} from "./base.servicio";
 /**
  * Created by edgaguil on 8/08/2017.
  */
 
 @Injectable()
-export class ServicioOferente {
+export class ServicioOferente extends ServicioBase {
 
-  constructor(private http: Http, private configuracion: ConfiguracionServicio, private autenticacionService: AutenticacionService)
-  {
+  constructor(private http: Http, private configuracion: ConfiguracionServicio, autenticacionService: AutenticacionService) {
+    super(autenticacionService);
   }
 
-  crearOferente(oferente: IRegistroOferente): Observable<IOferente>
-  {
-    let token = this.autenticacionService.obtenerCookie('token');
-    let headers= new Headers({'Content-Type' : 'application/json', 'Authorization' : 'Basic ' + token});
-    let options = new RequestOptions({ headers : headers});
-    return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferente), options).map((response : Response) => {
-      return response.json()
+  crearOferente(oferente: IRegistroOferente): Observable<IOferente> {
+    return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferente),
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return response.json();
     }).catch(this.manejadorError);
   }
 
-  obtenerOferente(id: number): Observable<IOferente> {
-    return this.http.get(this.configuracion.baseUrl + 'offerers/' + id).map((response: Response) => {
-      return response.text() ? <IOferente>response.json() : {}
+  // obtenerOferente(id: number): Observable<IOferente> {
+  //   return this.http.get(this.configuracion.baseUrl + 'offerers/' + id).map((response: Response) => {
+  //     return response.text() ? <IOferente>response.json() : {};
+  //   }).catch(this.manejadorError);
+  // }
+
+  obtenerOferente(id: number): Observable<IOferenteConsulta> {
+    console.log('obtenerOferente');
+    return this.http.get(this.configuracion.baseUrl + 'offerers/offerer?id=' + id, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      console.log(<IOferenteConsulta>response.json());
+      return response.text() ? <IOferenteConsulta>response.json() : {};
+
     }).catch(this.manejadorError);
   }
 
-  obtenerOferentesInactivos(): IOferente[] {
+  obtenerOferentesPendientesActivacion(): Observable<IOferenteConsulta[]> {
+    return this.http.get(this.configuracion.baseUrl + 'offerers/requests', this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return response.text() ? <IOferenteConsulta[]>response.json() : {};
+    }).catch(this.manejadorError);
+  }
+  /*
+  obtenerOferentesInactivos1(): IOferente[] {
     let oferentes: IOferente[] = [];
     let oferente1: IOferente;
     let oferente2: IOferente;
@@ -108,6 +121,7 @@ export class ServicioOferente {
     return  oferentes;
 
   };
+  */
 
   /*
   obtenerSolicitantes(): Observable<ISolicitante[]> {
@@ -116,9 +130,4 @@ export class ServicioOferente {
      }).catch(this.manejadorError);
    };
    */
-
-  private manejadorError(error: Response) {
-    console.log(error);
-    return Observable.throw(error.statusText);
-  }
 }

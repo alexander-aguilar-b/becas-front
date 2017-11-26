@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h3>Solicitudes de Activación Oferentes</h3>
+</div>
+<div *ngIf="oferentesPendientesActivacion && oferentesPendientesActivacion.length">
+  <div  class="table-responsive top-buffer">
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Nombre o Razón Social</th>
+        <th>NIT</th>
+        <th>Correo Electrónico</th>
+        <th>Fecha Solicitud</th>
+        <th>Opciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table" *ngFor="let oferentePendienteActivacion of oferentesPendientesActivacion">
+        <td>{{ oferentePendienteActivacion.nombre }}</td>
+        <td>{{ oferentePendienteActivacion.infoUsuario?.nit }}</td>
+        <td>{{ oferentePendienteActivacion.correoElectronico }}</td>
+        <td>{{ oferentePendienteActivacion.estadoSistema?.fechaEstado | date:'shortDate' }}</td>
+        <td>
+          <button title="Ver" class="btn btn-primary" (click)="consultarDetalleOferente(oferentePendienteActivacion.id)">
+            <span class="glyphicon glyphicon-search"></span>
+            Ver Detalle</button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="alert alert-info" *ngIf="!oferentesPendientesActivacion">
+  <span>Por el momento no hay solicitudes de activación de cuenta de oferente registradas en el sistema.</span>
+</div>
+
+
+<!--<div class="panel panel-default" *ngIf="!oferentesPendientesActivacion">-->
+  <!--<div class="panel-body">-->
+    <!--<span>Por el momento no hay solicitudes de activación de cuenta de oferente registradas en el sistema.</span>-->
+  <!--</div>-->
+<!--</div>-->
+
+
+
