@@ -65,6 +65,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 import {ServicioUsuario} from "./services/servicio.usuario";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
+import {DatosAdministradorComponent} from "./administrador/datos-administrador/datos-admin.component";
+import {DatosSolicitanteComponent} from "./solicitante/datos-solicitante/datos-solicitante.component";
 
 declare let jQuery: Object;
 
@@ -107,6 +109,8 @@ declare let jQuery: Object;
     InformacionIdiomaComponent,
     ConsultarUsuarioComponent,
     ConsultarSolicitudesOferentesComponent,
+    DatosAdministradorComponent,
+    DatosSolicitanteComponent
   ],
   imports: [
     BrowserModule,

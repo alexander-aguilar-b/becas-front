@@ -13,10 +13,20 @@ import {IConsultaUsuario} from "../models/usuario.model";
  */
 @Injectable()
 export class ServicioUsuario extends ServicioBase {
-  constructor(private servicioAutenticacion: AutenticacionService) {
+  constructor(private servicioAutenticacion: AutenticacionService, private http: Http, private configuracion: ConfiguracionServicio) {
     super(servicioAutenticacion);
   }
-  obtenerUsuario(nombreUuario: string): IConsultaUsuario {
+
+  obtenerUsuario(nombreUuario: string): Observable<IConsultaUsuario> {
+    return this.http.get(this.configuracion.baseUrl + 'users/user?username=' + nombreUuario,
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      console.log(<IConsultaUsuario[]> response.json());
+      return <IConsultaUsuario[]> response.json();
+    }).catch(this.manejadorError);
+
+  }
+
+  obtenerUsuario1(nombreUuario: string): IConsultaUsuario {
     console.log('Invocacion metodo');
     let usuario: IConsultaUsuario;
     usuario = {

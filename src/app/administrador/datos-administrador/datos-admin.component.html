@@ -1,0 +1,61 @@
+<h4>Datos Usuario</h4>
+<hr class="sep-tt">
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2">Usuario</label>
+      <label class="col-sm-4 normal-label">{{usuario.username}}</label>
+      <label class="col-sm-2">Correo Electrónico</label>
+      <label class="col- col-sm-4 normal-label">{{usuario.correoElectronico}}</label>
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group">
+      <label class="col-sm-2">Tipo Usuario</label>
+      <label class="col-sm-4 normal-label">{{usuario.rol.descripcion}}</label>
+    </div>
+  </div>
+  <br>
+</div>
+
+<h4>Detalle Usuario</h4>
+<hr class="sep-tt">
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Nombre</label>
+      <label class="col-sm-4 normal-label">{{usuario.nombre}}</label>
+      <label class="col-sm-2 col-form-label">Apellidos</label>
+      <label class="col-sm-4 normal-label">{{usuario.infoUsuario?.apellidos}}</label>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Tipo de documento</label>
+      <label class="col-sm-4 normal-label">{{usuario.infoUsuario?.id_tipo_documento?.descripcion}}</label>
+
+      <label class="col-sm-2 col-form-label">Número de documento</label>
+      <div class="col-sm-4">
+        <label class="normal-label">{{usuario.infoUsuario?.numero_documento}}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">Sede</label>
+      <div class="col-sm-4">
+        <label class="normal-label">{{usuario.infoUsuario?.sede}}</label>
+      </div>
+      <label class="col-sm-2 col-form-label">Cargo</label>
+      <div class="col-sm-4">
+        <label class="normal-label">{{usuario.infoUsuario?.cargo}}</label>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+</div>

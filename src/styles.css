@@ -44,4 +44,8 @@
   font-weight: bold;
 }
 
+.normal-label {
+  font-weight: normal !important;
+}
+
 bs-datepicker-container { z-index: 9999 !important; }

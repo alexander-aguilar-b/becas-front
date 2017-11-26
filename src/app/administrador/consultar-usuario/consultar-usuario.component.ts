@@ -13,6 +13,12 @@ export class ConsultarUsuarioComponent implements OnInit {
   usuarioEncontrado: IConsultaUsuario;
   nombreUsuario: string;
   informacionUsuarioEncontrada: boolean;
+  rolUsuario  = {
+    ADMIN :  'ADMIN',
+    SOLICITANTE : 'SOLICITANTE',
+    OFERENTE : 'OFERENTE'
+  }
+
   @ViewChild('formConsultarUsuario') public userFrm: NgForm;
   constructor(private servicioUsuario: ServicioUsuario) {
 
@@ -23,9 +29,19 @@ export class ConsultarUsuarioComponent implements OnInit {
     this.nombreUsuario = '';
     this.informacionUsuarioEncontrada = false;
   }
-  consultarUsuario1(nombreUsuario) {
+
+  consultarUsuario(nombreUsuario) {
     console.log('consultar');
-    this.usuarioEncontrado = this.servicioUsuario.obtenerUsuario(nombreUsuario);
+    this.servicioUsuario.obtenerUsuario(nombreUsuario).subscribe(usuarioEncontrado => {
+      this.usuarioEncontrado = usuarioEncontrado;
+      console.log(usuarioEncontrado);
+      this.informacionUsuarioEncontrada = this.usuarioEncontrado.id > 0;
+    });
+  }
+
+  consultarUsuario1x(nombreUsuario) {
+    console.log('consultar');
+    this.usuarioEncontrado = this.servicioUsuario.obtenerUsuario1(nombreUsuario);
     console.log(this.usuarioEncontrado);
     this.informacionUsuarioEncontrada = this.usuarioEncontrado.id > 0;
   }
@@ -50,6 +66,7 @@ export class ConsultarUsuarioComponent implements OnInit {
 
   cancelarEliminarUsuario() {
     this.limpiarBusqueda();
+    this.usuarioEncontrado = null;
   }
 
   limpiarBusqueda() {

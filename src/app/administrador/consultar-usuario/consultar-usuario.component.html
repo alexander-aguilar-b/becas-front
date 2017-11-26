@@ -13,15 +13,25 @@
     </div>
 
     <div class="form-group">
-      <button type="button" class="btn btn-primary" (click)="consultarUsuario1(nombreUsuario)" [disabled]="(formConsultarUsuario.invalid)" >Buscar</button>
+      <button type="button" class="btn btn-primary" (click)="consultarUsuario(nombreUsuario)" [disabled]="(formConsultarUsuario.invalid)" >Buscar</button>
     </div>
 
     <div *ngIf="informacionUsuarioEncontrada">
       <span>User info goes here!</span>
+      <div *ngIf="usuarioEncontrado.rol.nombre == rolUsuario.ADMIN">
+        <app-datos-admin [usuario]="usuarioEncontrado"></app-datos-admin>
+      </div>
+      <div *ngIf="usuarioEncontrado.rol.nombre == rolUsuario.OFERENTE">
+        USUARIO OFERENTE
+      </div>
+      <div *ngIf="usuarioEncontrado.rol.nombre == rolUsuario.SOLICITANTE">
+        <app-datos-solicitante [usuario]="usuarioEncontrado"></app-datos-solicitante>
+      </div>
+
     </div>
 
 
-    <div class="form-group top-buffer">
+    <div class="form-group top-buffer" *ngIf="usuarioEncontrado != null">
       <button type="button" class="btn btn-primary" (click)="eliminarUsuario()" [disabled]="!informacionUsuarioEncontrada">
         <span class="glyphicon glyphicon-trash"></span> Eliminar
       </button>
@@ -39,6 +49,6 @@
 <!--Angular1 : {{ formConsultarOferta.value | json}}-->
 <!--Angular1 : {{ valorSeleccionadoCriterioBusqueda | json}}-->
 <!--Angular1 : {{ formConsultarOferta.invalid | json}}-->
-Angular1 : {{ ofertas | json}}
+<!--Angular1 : {{ ofertas | json}}-->
 <!--Angular1 : {{ ofertas.length }}-->
 

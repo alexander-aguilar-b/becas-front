@@ -50,6 +50,8 @@ export interface IConsultaUsuario {
     id_tipo_poblacion?: number;
     pais_nacimiento?: IPais;
     pais_residencia?: IPais;
+    sede?: string;
+    cargo?: string;
     experiencia_laboral?: IConsultaExperienciaLaboral[];
     informacion_academica_basica?: IInformacionAcademicaBasicaConsulta[];
     informacion_academica_superior?: IInformacionAcademicaSuperiorConsulta[];
