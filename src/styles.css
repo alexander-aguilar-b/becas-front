@@ -9,7 +9,9 @@
   /*#e4e4e4;*/
   display: block;
 }
-
+.tabla90{
+  width: 95% !important;
+}
 .gr-container {
   max-width: 1500px;
   margin: auto;

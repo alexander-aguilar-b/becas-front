@@ -1,0 +1,128 @@
+<div class="page-header">
+  <h3>Detalle de Postulación a Oferta</h3>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading font-bold"><span class="glyphicon glyphicon-info-sign"></span>Información Básica de la Oferta</div>
+  <div class="panel-body">
+    <div class="row">
+      <label class="col-sm-2">Nombre</label>
+      <label class="col-sm-10 normal-label">{{aplicacionOferta?.convocatoria.nombre}}</label>
+    </div>
+
+    <div class="row">
+      <label class="col-sm-2">Tipo Oferta</label>
+      <label class="col-sm-3 normal-label">{{aplicacionOferta?.convocatoria?.tipoOferta.nombre}}</label>
+    </div>
+
+    <div class="row">
+      <label class="col-sm-2">Fecha Inicio</label>
+      <label class="col-sm-3 normal-label">{{aplicacionOferta?.convocatoria?.fechaInicio | date:'shortDate'}}</label>
+    </div>
+
+    <div class="row">
+      <label class="col-sm-2">Fecha Fin</label>
+      <label class="col-sm-3 normal-label">{{aplicacionOferta?.convocatoria?.fechaFin | date:'shortDate'}}</label>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading font-bold"><span class="glyphicon glyphicon-info-sign"></span>Información Básica del Solicitante</div>
+  <div class="panel-body">
+    <div class="row">
+      <label class="col-sm-2">Nombre</label>
+      <label class="col-sm-10 normal-label">{{aplicacionOferta?.usuario.nombre}} {{aplicacionOferta?.usuario?.infoUsuario.apellidos}}</label>
+
+    </div>
+
+    <div class="row">
+      <label class="col-sm-2">Correo</label>
+      <label class="col-sm-3 normal-label">{{aplicacionOferta?.usuario?.correoElectronico}}</label>
+    </div>
+
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading font-bold"><span class="glyphicon glyphicon-info-sign"></span>Información Postulación</div>
+  <div class="panel-body">
+    <div class="row">
+      <label class="col-sm-2">Fecha Postulación</label>
+      <label class="col-sm-10">{{aplicacionOferta?.fechaAplicacion | date:'shortDate'}}</label>
+    </div>
+    <div class="row">
+      <label class="col-sm-2">Estado Postulación</label>
+      <label class="col-sm-3 normal-label">{{aplicacionOferta?.estadoAplicacion}}</label>
+    </div>
+
+    <div *ngFor="let etapaAplicacion of aplicacionOferta.etapasAplicacion">
+    <div class="panel panel-default top-buffer">
+      <div class="panel-heading font-bold">Etapa: {{etapaAplicacion?.etapa?.nombre}}</div>
+      <div class="panel-body">
+
+          <div class="row">
+            <label class="col-sm-2">Descripcion</label>
+            <label class="col-sm-10 normal-label">{{etapaAplicacion?.etapa?.descripcion}}</label>
+          </div>
+        <div class="row">
+          <label class="col-sm-2">Fecha Inicio</label>
+          <label class="col-sm-10 normal-label">{{etapaAplicacion?.etapa?.fechaInicio | date:'shortDate'}}</label>
+        </div>
+        <div class="row">
+          <label class="col-sm-2">Fecha Fin</label>
+          <label class="col-sm-10 normal-label">{{etapaAplicacion?.etapa?.fechaFin | date:'shortDate'}}</label>
+        </div>
+        <hr/>
+        <div *ngIf="etapaAplicacion?.resultadosFormularioEtapa && etapaAplicacion?.resultadosFormularioEtapa.length">
+          <h5>Formularios</h5>
+
+          <div  class="table-responsive top-buffer">
+            <table class='table table-bordered'>
+              <thead>
+              <tr>
+                <th>ID</th>
+                <th>Estado</th>
+                <th>Fecha Envio</th>
+                <th>Opciones</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="table" *ngFor="let resultadoFormularioEtapa of etapaAplicacion?.resultadosFormularioEtapa">
+                <td>{{ resultadoFormularioEtapa.id }}</td>
+                <td>{{ resultadoFormularioEtapa.estadoFormulario }}</td>
+                <td>{{ resultadoFormularioEtapa.fechaEnvioFormulario | date:'shortDate'}}</td>
+                <td>
+                  <button title="Ver" class="btn btn-primary" (click)="consultarDetalleFormularioAplicacion(resultadoFormularioEtapa.id, aplicacionOferta.id)">
+                    <span class="glyphicon glyphicon-search"></span>
+                    Ver Detalle</button>
+                </td>
+
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+        </div>
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+  </div>
+  </div>
+
+</div>
+
+
+
+

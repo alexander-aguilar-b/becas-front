@@ -75,8 +75,10 @@ import {SiNoPipe} from "./custom-pipe/custom-pipe";
 import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-solicitante/detalle-etapa-solicitante.component";
 import {DatosFormularioComponent} from "./formulario/datos-formulario/datos-formulario.component";
 import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-solicitante/formulario-etapa-solicitante.component";
-
-
+import {ConsultarPostulacionesOfertaComponent} from "./oferente/consultar-postulaciones-oferta/consultar-postulaciones-oferta.component";
+import {ConsultarDetallePostulacionComponent} from "./oferente/consultar-detalle-postulacion/consultar-detalle-postulacion.component";
+import {ServicioDatosAplicacionOferta} from "./services/servicio.datos.aplicacion";
+import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
 
 declare let jQuery: Object;
 
@@ -127,6 +129,9 @@ declare let jQuery: Object;
     DetalleEtapaOfertaSolicitanteComponent,
     DatosFormularioComponent,
     FormularioEtapaSolicitanteComponent,
+    ConsultarPostulacionesOfertaComponent,
+    ConsultarDetallePostulacionComponent,
+    ConsultarFormularioDiligenciadoComponent
   ],
   imports: [
     BrowserModule,
@@ -163,6 +168,7 @@ declare let jQuery: Object;
     ServicioNivelIdioma,
     ServicioUsuario,
     ServicioAplicacionOferta,
+    ServicioDatosAplicacionOferta,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent],

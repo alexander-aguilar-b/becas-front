@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h3>Postulaciones a Oferta</h3>
+</div>
+<div *ngIf="postulacionesOferta && postulacionesOferta.length">
+  <div  class="table-responsive top-buffer">
+    <table class='table table-bordered'>
+      <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Correo Electrónico</th>
+        <th>Fecha Aplicación</th>
+        <th>Estado Aplicación</th>
+        <th>Opciones</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="table" *ngFor="let postulacionOferta of postulacionesOferta">
+        <td>{{ postulacionOferta.usuario?.nombre }}</td>
+        <td>{{ postulacionOferta.usuario?.infoUsuario?.apellidos }}</td>
+        <td>{{ postulacionOferta.usuario?.correoElectronico }}</td>
+        <td>{{ postulacionOferta.fechaAplicacion | date:'shortDate' }}</td>
+        <td>{{ postulacionOferta.estadoAplicacion }}</td>
+        <td>
+          <button title="Ver" class="btn btn-primary" (click)="consultarDetalleAplicacion(postulacionOferta.id)">
+            <span class="glyphicon glyphicon-search"></span>
+            Ver Detalle</button>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+<div class="alert alert-info" *ngIf="!postulacionesOferta || !postulacionesOferta.length > 0">
+  <span>Por el momento no hay postulaciones para la oferta seleccionada.</span>
+</div>

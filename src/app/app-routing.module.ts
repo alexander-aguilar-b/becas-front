@@ -30,6 +30,9 @@ import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-
 import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
 import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-solicitante/detalle-etapa-solicitante.component";
 import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-solicitante/formulario-etapa-solicitante.component";
+import {ConsultarPostulacionesOfertaComponent} from "./oferente/consultar-postulaciones-oferta/consultar-postulaciones-oferta.component";
+import {ConsultarDetallePostulacionComponent} from "./oferente/consultar-detalle-postulacion/consultar-detalle-postulacion.component";
+import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
 
 
 const routes: Routes = [
@@ -160,6 +163,18 @@ const routes: Routes = [
   {
     path: 'oferta/agregar-etapa-oferta/:idOferta',
     component : AgregarEtapaOfertaComponent
+  },
+  {
+    path: 'oferente/consultar-postulaciones-oferta/:idOferta',
+    component : ConsultarPostulacionesOfertaComponent
+  },
+  {
+    path: 'oferente/consultar-detalle-postulacion/:idAplicacionOferta',
+    component : ConsultarDetallePostulacionComponent
+  },
+  {
+    path: 'oferente/consultar-formulario-diligenciado/:idFormulario/:idAplicacionOferta',
+    component : ConsultarFormularioDiligenciadoComponent
   }
 ];
 

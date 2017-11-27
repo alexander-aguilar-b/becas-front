@@ -32,7 +32,7 @@
 
     <div  *ngIf="ofertas && ofertas.length" class="table-responsive top-buffer">
       <h4>Resultados de la Búsqueda</h4>
-      <table class="table table striped table-bordered">
+      <table class="table table striped table-bordered tabla90">
         <thead class="thead-inverse">
         <tr>
           <th>Cód. Convocatoria</th>
@@ -49,9 +49,22 @@
           <td>{{oferta.fechaInicio | date:'shortDate' }}</td>
           <td>{{oferta.fechaFin | date:'shortDate'}}</td>
           <td>
-            <button title="Ver" class="btn btn-primary" (click)="consultarDetalleOferta(oferta.id)">
-              <span class="glyphicon glyphicon-search"></span>
-              Ver Detalle</button>
+            <!--<button title="Ver" class="btn btn-primary" (click)="consultarDetalleOferta(oferta.id)">-->
+              <!--<span class="glyphicon glyphicon-search"></span>-->
+              <!--Ver Detalle</button>-->
+            <div class="dropdown">
+              <button class="btn" data-toggle="dropdown">Acciones <span class="caret"></span></button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="#" tabindex="-1" (click)="consultarDetalleOferta($event, oferta.id)">Ver Detalle</a>
+                </li>
+                <li>
+                  <a href="#" tabindex="-1"
+                     (click)="consultarPostulaciones($event, oferta.id)">Ver Postulaciones</a>
+                </li>
+              </ul>
+            </div>
+
           </td>
         </tr>
         </tbody>

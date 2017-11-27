@@ -53,9 +53,9 @@ export interface IItemFormulario
 }
 
 export interface IItemFormularioConsulta {
-  id: number;
+  id?: number;
   idFormulario?: number;
-  nombre: string;
+  nombre?: string;
   descripcion: string;
   tamanio: number;
   obligatorio: boolean;
@@ -63,5 +63,9 @@ export interface IItemFormularioConsulta {
   tipoItem: ITipoItem;
 }
 
+export interface IItemResultado {
+  item: IItemFormularioConsulta;
+  value: string[];
+}
 
 

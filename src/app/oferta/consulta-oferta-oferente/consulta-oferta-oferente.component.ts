@@ -48,7 +48,7 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
 
 
   /** Consulta de las ofertas*/
-  consultarOfertas(filtroBusqueda){
+  consultarOfertas(filtroBusqueda) {
     console.log(filtroBusqueda);
     //this.ofertas = this.servicioOferta.consultarOfertas(filtroBusqueda.codigoConvocatoria);
     filtroBusqueda.codigoConvocatoria = filtroBusqueda.tipoCriterioBusquedaOferta == TipoCriterioBusquedaOferta.todas ?  0 : filtroBusqueda.codigoConvocatoria;
@@ -63,8 +63,14 @@ export class ConsultarOfertaOferenteComponent implements OnInit {
   }
 
   /** Consulta el detalle de la oferta */
-  consultarDetalleOferta(idOferta){
+  consultarDetalleOferta(e, idOferta) {
+    e.preventDefault();
     this.router.navigate(['/oferta/detalle-oferta-oferente', idOferta ]);
+  }
+  consultarPostulaciones(e, idOferta) {
+    e.preventDefault();
+    this.router.navigate(['/oferente/consultar-postulaciones-oferta', idOferta ]);
+
   }
 }
 
