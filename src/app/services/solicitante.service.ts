@@ -6,6 +6,8 @@ import {ISolicitante} from "../models/solicitante.model";
 import { Subject, Observable} from 'rxjs/Rx';
 import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
+import {IFormularioRegistro} from "../models/formulario.model";
+import {AutenticacionService} from "./autenticacion.service";
 /**
  * Created by edgaguil on 28/07/2017.
  */
@@ -14,7 +16,7 @@ import {ConfiguracionServicio} from "./configuracion.servicio";
 @Injectable()
 export class SolicitanteService {
 
-  constructor(private http : Http, private configuracion : ConfiguracionServicio)
+  constructor(private http : Http, private configuracion : ConfiguracionServicio, private autenticacionService: AutenticacionService)
   {}
 
   obtenerListadoSolicitantes()
@@ -30,6 +32,7 @@ export class SolicitanteService {
 
   private manejadorError(error : Response)
   {
+      console.log('Error en la app:' + error);
       return Observable.throw(error.statusText);
   }
 
@@ -41,6 +44,16 @@ export class SolicitanteService {
       return response.json()
     }).catch(this.manejadorError);
   }
+  registrarInformacionFormulario(datosFormulario: IFormularioRegistro) {
+    let token =  this.autenticacionService.obtenerCookie('token');
+    let headers = new Headers({'Content-Type': 'application/json', 'Authorization': 'Basic ' + token});
+    let options = new RequestOptions({headers: headers});
+    return this.http.post(this.configuracion.baseUrl +  'applicationform/fill', JSON.stringify(datosFormulario), options).map((response: Response) => {
+      return response.json();
+    }).catch(this.manejadorError);
+
+  }
+
 }
 
 const solicitantes : ISolicitante[] = [{

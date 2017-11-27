@@ -76,8 +76,9 @@ import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-sol
 import {DatosFormularioComponent} from "./formulario/datos-formulario/datos-formulario.component";
 import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-solicitante/formulario-etapa-solicitante.component";
 
-declare let jQuery: Object;
 
+
+declare let jQuery: Object;
 
 @NgModule({
   declarations: [

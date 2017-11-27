@@ -49,7 +49,6 @@ export class DetalleEtapaOfertaSolicitanteComponent implements OnInit {
   }
 
   diligenciarFormulario(idformulario: number) {
-    //path: 'oferta/formulario-etapa-solicitante/:idFormulario',
-    this.router.navigate(['/oferta/formulario-etapa-solicitante', idformulario]);
+    this.router.navigate(['/oferta/formulario-etapa-solicitante', this.idOferta, this.idEtapaOferta, idformulario]);
   }
 }

@@ -40,12 +40,15 @@ export interface IFormularioConsulta {
 
 export interface IFormularioRegistro {
   id_usuario: number;
+  id_convocatoria: number;
   id_etapa: number;
   id_formulario: number;
-  valoresFormulario: [{
-    id: number;
-    valor: string;
-  }];
+  valoresFormulario: IValoresFormulario[];
+}
+
+export interface IValoresFormulario {
+  id: number;
+  values: string[];
 }
 
 /*

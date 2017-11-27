@@ -168,10 +168,12 @@ export class GestionarFormularioComponent implements OnInit {
   }
 
   guardarFormulario(){
+    /*
     console.log(this.formularioDinamico);
     console.log(JSON.stringify(this.formularioDinamico.value));
     console.log(this.listaItems);
-    console.log(this.datosFormulario.get('3'));
+    console.log(this.datosFormulario.get('3'));*/
+    console.log(this.formularioDinamico.value.controlesDinamicos);
   }
 
   archivoSeleccionado($event, controlName) {

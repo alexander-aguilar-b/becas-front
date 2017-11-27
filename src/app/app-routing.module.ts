@@ -146,7 +146,7 @@ const routes: Routes = [
     component : FormularioEtapaComponent
   },
   {
-    path: 'oferta/formulario-etapa-solicitante/:idFormulario',
+    path: 'oferta/formulario-etapa-solicitante/:idOferta/:idEtapa/:idFormulario',
     component : FormularioEtapaSolicitanteComponent
   },
   {
