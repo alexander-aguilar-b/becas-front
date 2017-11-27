@@ -25,7 +25,10 @@ export class ServicioUsuario extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
-  eliminarUsuario(idUsuario: number): boolean {
-    return true;
+  eliminarUsuario(idUsuario: number): Observable<boolean> {
+    return this.http.delete(this.configuracion.baseUrl + 'users/user/' + idUsuario,
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <boolean>response.ok;
+    }).catch(this.manejadorError);
   }
 }

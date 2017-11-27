@@ -41,10 +41,13 @@ export class ConsultarUsuarioComponent implements OnInit {
   eliminarUsuario() {
     if (confirm('Esta seguro de que desea eliminar el usuario?')) {
       console.log(this.usuarioEncontrado);
-      if (this.servicioUsuario.eliminarUsuario(this.usuarioEncontrado.id)) {
-        alert('El usuario ha sido eliminado del sistema');
-        this.limpiarBusqueda();
-      }
+      this.servicioUsuario.eliminarUsuario(this.usuarioEncontrado.id).subscribe(respuesta => {
+        if (respuesta) {
+          alert('El usuario ha sido eliminado del sistema');
+          this.limpiarBusqueda();
+        }
+      });
+
     }
   }
 
