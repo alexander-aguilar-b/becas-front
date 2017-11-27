@@ -43,8 +43,8 @@ export class ServicioEtapasOferta extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
-  eliminarEtapaOferta(idEtapaOferta): Observable<boolean> {
-    return this.http.delete(this.configuracion.baseUrl + 'phase/' + idEtapaOferta,
+  eliminarEtapaOferta(idEtapaOferta: number, idOferta: number): Observable<boolean> {
+    return this.http.delete(this.configuracion.baseUrl + 'phases/phase/' + idEtapaOferta + '/announcement/' + idOferta,
       this.obtenerOpcionesPeticion()).map((response: Response) => {
       return <boolean>response.ok;
     }).catch(this.manejadorError);

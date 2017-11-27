@@ -137,7 +137,11 @@
       <div class="container">
         <div class="row" *ngFor="let itemLista of listaItems; let i = index" [attr.data-index]="i">
           <div class="form-group">
-            <label *ngIf="(itemLista?.id_tipo_item !=  tiposItemEnum.titulo)" class="col-sm-2">
+            <label *ngIf="(itemLista?.id_tipo_item !=  tiposItemEnum.titulo && itemLista?.id_tipo_item !=  tiposItemEnum.etiqueta)" class="col-sm-2">
+              {{itemLista?.descripcion}}
+            </label>
+
+            <label class="normal-label" *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta" class="col-sm-5">
               {{itemLista?.descripcion}}
             </label>
 
@@ -148,7 +152,7 @@
             <div *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.titulo)" class="col-sm-1">
             </div>
 
-            <div *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" class="col-sm-4">
+            <div *ngIf="(itemLista?.id_tipo_item ==  tiposItemEnum.etiqueta)" class="col-sm-1">
             </div>
 
             <div *ngIf="itemLista?.id_tipo_item ==  tiposItemEnum.textoEntrada" class="col-sm-4">

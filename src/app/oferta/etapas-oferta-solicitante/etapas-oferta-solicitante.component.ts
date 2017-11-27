@@ -32,10 +32,14 @@ export class EtapasOfertaSolicitanteComponet implements OnInit {
     //this.etapasOferta = this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta);
     this.servicioEtapasOferta.obtenerEtapasOferta(this.idOferta).subscribe(etapas =>{
       this.etapasOferta = etapas;
-      console.log(etapas)
+      console.log(etapas);
     });
 
     console.log(this.etapasOferta);
+  }
+
+  consultarDetalleEtapa(idEtapa) {
+    this.router.navigate(['/oferta/detalle-etapa-solicitante',  this.idOferta, idEtapa]);
   }
 }
 

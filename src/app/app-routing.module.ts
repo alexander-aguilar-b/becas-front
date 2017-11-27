@@ -28,6 +28,7 @@ import {AgregarEtapaOfertaComponent} from "./oferta/agregar-etapa-oferta/agregar
 import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consultar-usuario.component";
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
+import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-solicitante/detalle-etapa-solicitante.component";
 
 
 const routes: Routes = [
@@ -134,6 +135,10 @@ const routes: Routes = [
   {
     path: 'oferta/editar-etapa-oferta/:idOferta/:idEtapa',
     component : EditarEtapaOfertaComponent
+  },
+  {
+    path: 'oferta/detalle-etapa-solicitante/:idOferta/:idEtapa',
+    component : DetalleEtapaOfertaSolicitanteComponent
   },
   {
     path: 'oferta/formulario-etapa/:idOferta/:idEtapa/:idFormulario',

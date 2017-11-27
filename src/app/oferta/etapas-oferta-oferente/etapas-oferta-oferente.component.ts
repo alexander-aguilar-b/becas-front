@@ -38,13 +38,12 @@ export class EtapasOfertaOferenteComponent{
   }
 
 
-  eliminarEtapa(e, idEtapa)
-  {
+  eliminarEtapa(e, idEtapa) {
     e.preventDefault();
     console.log(e);
-    if(confirm('Esta seguro de que desea eliminar la etapa?')){
-      console.log("Eliminar etapa:" + idEtapa);
-      this.servicioEtapasOferta.eliminarEtapaOferta(idEtapa).subscribe(etapaEliminadaCorectamente => {
+    if (confirm('Esta seguro de que desea eliminar la etapa?')) {
+      console.log('Eliminar etapa:' + idEtapa);
+      this.servicioEtapasOferta.eliminarEtapaOferta(idEtapa, Number.parseInt(this.idOferta)).subscribe(etapaEliminadaCorectamente => {
         this.etapaEliminadaCorectamente = etapaEliminadaCorectamente
         if(etapaEliminadaCorectamente){
           console.log('Etapa eliminada');

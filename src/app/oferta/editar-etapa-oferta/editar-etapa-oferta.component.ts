@@ -54,7 +54,7 @@ export class EditarEtapaOfertaComponent implements OnInit {
   }
 
 
-  cargarFormulariosEtapa(idEtapaOferta){
+  cargarFormulariosEtapa(idEtapaOferta) {
     this.servicioFormularioEtapa.obtenerFormulariosEtapa(idEtapaOferta).subscribe(formulariosEtapa =>{
       this.formulariosEtapa = formulariosEtapa;
       this.datosFormulariosDisponibles = true;
