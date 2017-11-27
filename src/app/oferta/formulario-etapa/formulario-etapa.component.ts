@@ -78,10 +78,27 @@ export class FormularioEtapaComponent implements OnInit {
         this.datosFormulario = datosFormulario;
         console.log('Datos Formulario');
         console.log(datosFormulario);
+        console.log(this.datosFormulario);
+
+        this.listaItems =  [];
+        for (let itemFormulario of this.datosFormulario.items) {
+          let item: ItemFormulario = new ItemFormulario();
+          item.descripcion = itemFormulario.descripcion;
+          item.id_tipo_item = itemFormulario.tipoItem.id;
+          item.obligatorio = itemFormulario.obligatorio;
+          item.tamanio = itemFormulario.tamanio;
+          item.valores_posibles = itemFormulario.valoresPosibles;
+          this.listaItems.push(item);
+        }
+        console.log(this.listaItems);
       });
       // this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => this.datosItemsFormulario = datosItemsFormulario);
 
+      /*
       this.servicioFormularioEtapa.obtenerItemsFormulario(this.idFormulario).subscribe(datosItemsFormulario => {
+        console.log('datosItemsFormulario');
+        console.log(datosItemsFormulario);
+
         this.listaItems =  [];
         for (let itemFormulario of datosItemsFormulario) {
           let item: ItemFormulario = new ItemFormulario();
@@ -94,7 +111,8 @@ export class FormularioEtapaComponent implements OnInit {
         }
         console.log(this.listaItems);
 
-      });
+      });*/
+
     }
 
     this.definicionItemFormulario = new DefincionItemFormulario();
@@ -163,6 +181,8 @@ export class FormularioEtapaComponent implements OnInit {
       descripcion : this.datosFormulario.descripcion,
       items : this.listaItems
     };
+
+    console.log(formularioEditado);
 
     this.servicioFormularioEtapa.actuaizarFormularioEtapa(this.datosFormulario.id,  formularioEditado).subscribe(formularioCreado => {
       if(formularioCreado.id !== 0) {

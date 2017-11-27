@@ -47,4 +47,9 @@ export class DetalleEtapaOfertaSolicitanteComponent implements OnInit {
       console.log(formulariosEtapa);
     });
   }
+
+  diligenciarFormulario(idformulario: number) {
+    //path: 'oferta/formulario-etapa-solicitante/:idFormulario',
+    this.router.navigate(['/oferta/formulario-etapa-solicitante', idformulario]);
+  }
 }

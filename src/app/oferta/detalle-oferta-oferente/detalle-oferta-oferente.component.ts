@@ -37,7 +37,15 @@ export class DetalleOfertaOferenteComponent {
   }
 
   eliminarOferta() {
-
+    const msgEliminar = 'Esta seguro de que desea eliminar la información de la oferta? Esto borrará la información de las etapas y formularios asociados';
+    if (confirm(msgEliminar)) {
+      this.servicioOferta.eliminarOferta(this.detalleOferta.id).subscribe(respuesta => {
+        if (respuesta) {
+          alert('La información de la oferta (etapas y formularios) ha sido borrada del sistema');
+          this.router.navigate(['/oferta/consulta-oferta-oferente']);
+        }
+      });
+    }
   }
 
   consultarEtapasOferta(idOferta) {

@@ -29,6 +29,7 @@ import {ConsultarUsuarioComponent} from "./administrador/consultar-usuario/consu
 import {ConsultarSolicitudesOferentesComponent} from "./administrador/consultar-solicitudes-oferentes/consultar-solicitudes-oferentes.component";
 import {ModificarEstadoSolicitudOferenteComponent} from "./administrador/modificar-estado-solicitud-oferente/modificar-estado-solicitud-oferente.component";
 import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-solicitante/detalle-etapa-solicitante.component";
+import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-solicitante/formulario-etapa-solicitante.component";
 
 
 const routes: Routes = [
@@ -143,6 +144,10 @@ const routes: Routes = [
   {
     path: 'oferta/formulario-etapa/:idOferta/:idEtapa/:idFormulario',
     component : FormularioEtapaComponent
+  },
+  {
+    path: 'oferta/formulario-etapa-solicitante/:idFormulario',
+    component : FormularioEtapaSolicitanteComponent
   },
   {
     path: 'oferta/consulta-oferta',

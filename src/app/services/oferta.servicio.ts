@@ -70,6 +70,12 @@ export class ServicioOferta extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
+  eliminarOferta(idOferta: number): Observable<boolean> {
+    return this.http.delete(this.configuracion.baseUrl + 'announcements/' + idOferta, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return <boolean>response.ok;
+    }).catch(this.manejadorError);
+  }
+
 
   /*
   consultarOfertasBK(codigoConvocatoria): IOferta[] {

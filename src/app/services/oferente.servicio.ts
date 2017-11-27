@@ -53,6 +53,15 @@ export class ServicioOferente extends ServicioBase {
       return response.text() ? <IOferenteConsulta[]>response.json() : {};
     }).catch(this.manejadorError);
   }
+
+  rechazarCuentaOferente(idOferente: number): Observable<boolean> {
+    console.log(this.obtenerOpcionesPeticion());
+    return this.http.put(this.configuracion.baseUrl + 'offerers/reject/' + idOferente,
+      null, this.obtenerOpcionesPeticion()).map((response: Response) => {
+      return true;
+    }).catch(this.manejadorError);
+  }
+
   /*
   obtenerOferentesInactivos1(): IOferente[] {
     let oferentes: IOferente[] = [];

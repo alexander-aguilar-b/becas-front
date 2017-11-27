@@ -73,6 +73,8 @@ import {ServicioAplicacionOferta} from "./services/servicio.aplicacion.oferta";
 import {ModalEtapaOfertaComponent} from "./oferta/modal-etapa-oferta/modal-etapa-oferta.component";
 import {SiNoPipe} from "./custom-pipe/custom-pipe";
 import {DetalleEtapaOfertaSolicitanteComponent} from "./oferta/detalle-etapa-solicitante/detalle-etapa-solicitante.component";
+import {DatosFormularioComponent} from "./formulario/datos-formulario/datos-formulario.component";
+import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-solicitante/formulario-etapa-solicitante.component";
 
 declare let jQuery: Object;
 
@@ -122,6 +124,8 @@ declare let jQuery: Object;
     ModalEtapaOfertaComponent,
     SiNoPipe,
     DetalleEtapaOfertaSolicitanteComponent,
+    DatosFormularioComponent,
+    FormularioEtapaSolicitanteComponent,
   ],
   imports: [
     BrowserModule,

@@ -52,14 +52,16 @@ export interface IItemFormulario
   valores_posibles : string[]
 }
 
-export interface IItemFormularioConsulta{
+export interface IItemFormularioConsulta {
   id: number;
-  idFormulario: number;
-  nombre : string,
-  descripcion : string;
-  tamanio : number;
-  obligatorio : boolean;
-  valoresPosibles : string[];
-  tipoItem :ITipoItem;
+  idFormulario?: number;
+  nombre: string;
+  descripcion: string;
+  tamanio: number;
+  obligatorio: boolean;
+  valoresPosibles: string[];
+  tipoItem: ITipoItem;
 }
+
+
 

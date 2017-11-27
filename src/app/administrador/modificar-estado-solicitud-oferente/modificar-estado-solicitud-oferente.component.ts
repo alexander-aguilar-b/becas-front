@@ -39,7 +39,10 @@ export class ModificarEstadoSolicitudOferenteComponent implements OnInit {
 
   rechazarSolicitud() {
     console.log('rechazarSolicitud');
-    this.rechazoOferenteOk = true;
+    this.servicioOferente.rechazarCuentaOferente(this.oferentePendienteActivacion.id).subscribe(resultado => {
+      this.activacionOferenteOk = resultado;
+    });
+    //this.rechazoOferenteOk = true;
   }
 
   // consultarDetalleOferente(idOferente) {
