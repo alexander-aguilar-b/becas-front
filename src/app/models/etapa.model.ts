@@ -37,4 +37,12 @@ export interface IEtapaConsulta {
   fechaInicio: Date;
   fechaFin: Date;
   cantidadASeleccionar: number;
+  status?: string;
+}
+
+export interface IEtapaCambioEstado{
+  idAplicacion: number;
+  idEtapa: number;
+  estadoAnterior: string;
+  estadoActual: string;
 }

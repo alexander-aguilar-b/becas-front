@@ -169,7 +169,7 @@ const routes: Routes = [
     component : ConsultarPostulacionesOfertaComponent
   },
   {
-    path: 'oferente/consultar-detalle-postulacion/:idAplicacionOferta',
+    path: 'oferente/consultar-detalle-postulacion/:idOferta/:idAplicacionOferta',
     component : ConsultarDetallePostulacionComponent
   },
   {

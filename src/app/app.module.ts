@@ -79,6 +79,8 @@ import {ConsultarPostulacionesOfertaComponent} from "./oferente/consultar-postul
 import {ConsultarDetallePostulacionComponent} from "./oferente/consultar-detalle-postulacion/consultar-detalle-postulacion.component";
 import {ServicioDatosAplicacionOferta} from "./services/servicio.datos.aplicacion";
 import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
+import {ServicioSolicitudPostulacion} from "./services/servicio.solicitud.postulacion";
+import {CambiarEstadoEtapaComponent} from "./oferente/cambiar-estado/cambiar-estado.component";
 
 declare let jQuery: Object;
 
@@ -131,7 +133,9 @@ declare let jQuery: Object;
     FormularioEtapaSolicitanteComponent,
     ConsultarPostulacionesOfertaComponent,
     ConsultarDetallePostulacionComponent,
-    ConsultarFormularioDiligenciadoComponent
+    ConsultarFormularioDiligenciadoComponent,
+    CambiarEstadoEtapaComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -169,6 +173,7 @@ declare let jQuery: Object;
     ServicioUsuario,
     ServicioAplicacionOferta,
     ServicioDatosAplicacionOferta,
+    ServicioSolicitudPostulacion,
     { provide : JQ_TOKEN, useValue : jQuery}
   ],
   bootstrap: [AppComponent],

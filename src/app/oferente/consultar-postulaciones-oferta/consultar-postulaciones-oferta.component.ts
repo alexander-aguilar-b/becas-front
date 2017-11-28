@@ -27,16 +27,9 @@ export class ConsultarPostulacionesOfertaComponent implements OnInit {
       console.log(postulacionesOferta);
     });
   }
-  // get data(): IConsultaAplicacionOferta{
-  //   return this.servicioDatosAplicacionOferta.datosAplicacionOferta;
-  // }
-  // set data(value: IConsultaAplicacionOferta){
-  //   this.servicioDatosAplicacionOferta.datosAplicacionOferta = value;
-  // }
 
   consultarDetalleAplicacion(idAplicacionOferta: number) {
-    //this.servicioDatosAplicacionOferta.datosAplicacionOferta = postulacionOferta;
     console.log(idAplicacionOferta);
-    this.router.navigate(['/oferente/consultar-detalle-postulacion', idAplicacionOferta]);
+    this.router.navigate(['/oferente/consultar-detalle-postulacion', this.idOferta, idAplicacionOferta]);
   }
 }
