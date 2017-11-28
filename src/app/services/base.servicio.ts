@@ -3,6 +3,7 @@ import {AutenticacionService} from "./autenticacion.service";
 import {Headers, RequestOptions} from "@angular/http";
 import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
+import {IErrorServicio} from "../models/error.servicio.model";
 /**
  * Created by edgaguil on 20/10/2017.
  */
@@ -29,7 +30,12 @@ export class ServicioBase {
   }
 
   protected manejadorError(error: Response) {
-    console.log(error);
-    return Observable.throw(error.statusText);
+    console.log('*********error**********');
+    console.log(error.text());
+    console.log('*********error1112**********');
+    console.log(<IErrorServicio><any>error.json());
+
+    //return Observable.throw(error.statusText);
+    return Observable.throw(error);
   }
 }

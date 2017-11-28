@@ -1,233 +1,245 @@
-<h4>Datos de Usuario</h4>
-<hr class="sep-tt">
-<div class="container">
-  <br>
-  <div class="row">
-    <div class="form-group">
-      <label class="col-sm-2">Usuario</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario.username}}</label>
-      </div>
-      <label class="col-sm-2">Correo Electrónico</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario.correoElectronico}}</label>
-        <div>
+<div *ngIf="usuario">
+  <h4>Datos de Usuario</h4>
+  <hr class="sep-tt">
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="form-group">
+        <label class="col-sm-2">Usuario</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario.username}}</label>
+        </div>
+        <label class="col-sm-2">Correo Electrónico</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario.correoElectronico}}</label>
+          <div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-<br/>
-<h4>Detalle Usuario</h4>
-<hr class="sep-tt">
-<div class="container">
-  <br>
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Número Documento</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.numero_documento}}</label>
-      </div>
+  <br/>
+  <h4>Detalle Usuario</h4>
+  <hr class="sep-tt">
+  <div class="container">
+    <br>
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Número Documento</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.numero_documento}}</label>
+        </div>
 
-      <label class="col-sm-2 col-form-label">Tipo Documento</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.id_tipo_documento?.descripcion}}</label>
+        <label class="col-sm-2 col-form-label">Tipo Documento</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.id_tipo_documento?.descripcion}}</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Nombres</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario.nombre}}</label>
+        </div>
+
+
+        <label class="col-sm-2 col-form-label">Apellidos</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.apellidos}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Dirección</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.direccion}}</label>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Teléfono</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.telefono}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Género</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.sexo.descripcion}}</label>
+        </div>
+        <label class="col-sm-2 col-form-label">Estrato</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.estrato}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Tipo Población</label>
+        <div class="col-sm-4">
+          <label></label>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.fecha_nacimiento | date:'shortDate'}}</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Pais Nacimiento</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.pais_nacimiento?.nombre}}</label>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Pais Residencia</label>
+        <div class="col-sm-4">
+          <label class="normal-label">{{usuario?.infoUsuario?.pais_residencia?.nombre}}</label>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="usuario?.infoUsuario?.informacion_academica_basica && usuario?.infoUsuario?.informacion_academica_basica.length">
+    <h4>Información Académica Básica</h4>
+    <hr class="sep-tt">
+    <div class="container">
+      <div  class="table-responsive top-buffer">
+        <table *ngIf="usuario?.infoUsuario?.informacion_academica_basica && usuario?.infoUsuario?.informacion_academica_basica.length" class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Institución</th>
+            <th>Año Inicio</th>
+            <th>Año Fin</th>
+            <th>Fecha Grado</th>
+            <th>Último Grado Escolar</th>
+            <th>Prueba Saber</th>
+            <th>Calificación Prueba Saber</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor='let informacionAcademicaBasica of usuario.infoUsuario.informacion_academica_basica'>
+            <td>{{ informacionAcademicaBasica?.id_institucion_academica_basica.nombre}}</td>
+            <td>{{informacionAcademicaBasica.ano_inicio}}</td>
+            <td>{{informacionAcademicaBasica.ano_fin }}</td>
+            <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
+            <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
+            <td>{{informacionAcademicaBasica.pruebas_saber == true ? 'Si': 'No' }}</td>
+            <td>{{informacionAcademicaBasica.calificacion_pruebas_saber  }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Nombres</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario.nombre}}</label>
-      </div>
-
-
-      <label class="col-sm-2 col-form-label">Apellidos</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.apellidos}}</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Dirección</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.direccion}}</label>
-      </div>
-
-      <label class="col-sm-2 col-form-label">Teléfono</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.telefono}}</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Género</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.sexo.descripcion}}</label>
-      </div>
-      <label class="col-sm-2 col-form-label">Estrato</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.estrato}}</label>
+  <div *ngIf="usuario?.infoUsuario?.informacion_academica_superior && usuario?.infoUsuario?.informacion_academica_superior.length">
+    <h4>Información Académica Superior</h4>
+    <hr class="sep-tt">
+    <div class="container">
+      <div  class="table-responsive top-buffer">
+        <table *ngIf="usuario?.infoUsuario?.informacion_academica_superior && usuario?.infoUsuario?.informacion_academica_superior.length" class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Institución</th>
+            <th>Año Inicio</th>
+            <th>Año Fin</th>
+            <th>Fecha Grado</th>
+            <th>Programa</th>
+            <th>Título Obtenido</th>
+            <th>Semestres Programa</th>
+            <th>Semestres Cursados</th>
+            <th>Créditos</th>
+            <th>Registro Calificado</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor='let informacionAcademicaSuperior of usuario?.infoUsuario?.informacion_academica_superior'>
+            <td>{{informacionAcademicaSuperior.id_institucion_academica_superior?.nombre}}</td>
+            <td>{{informacionAcademicaSuperior.ano_inicio }}</td>
+            <td>{{informacionAcademicaSuperior.ano_fin }}</td>
+            <td>{{informacionAcademicaSuperior.fecha_grado | date:'shortDate'}}</td>
+            <td>{{informacionAcademicaSuperior.nombre_programa }}</td>
+            <td>{{informacionAcademicaSuperior.titulo_obtenido }}</td>
+            <td>{{informacionAcademicaSuperior.semestres_programa }}</td>
+            <td>{{informacionAcademicaSuperior.semestres_cursados }}</td>
+            <td>{{informacionAcademicaSuperior.cantidad_creditos }}</td>
+            <td>{{informacionAcademicaSuperior.registro_calificado == true ? 'Si': 'No' }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Tipo Población</label>
-      <div class="col-sm-4">
-        <label></label>
-      </div>
-
-      <label class="col-sm-2 col-form-label">Fecha Nacimiento</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.fecha_nacimiento | date:'shortDate'}}</label>
-      </div>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="form-group row">
-      <label class="col-sm-2 col-form-label">Pais Nacimiento</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.pais_nacimiento?.nombre}}</label>
-      </div>
-
-      <label class="col-sm-2 col-form-label">Pais Residencia</label>
-      <div class="col-sm-4">
-        <label class="normal-label">{{usuario?.infoUsuario?.pais_residencia?.nombre}}</label>
+  <div *ngIf="usuario?.infoUsuario?.idioma_solicitante && usuario?.infoUsuario?.idioma_solicitante.length">
+    <h4>Información Idiomas</h4>
+    <hr class="sep-tt">
+    <div class="container">
+      <div  class="table-responsive top-buffer">
+        <table *ngIf="usuario?.infoUsuario?.idioma_solicitante && usuario?.infoUsuario?.idioma_solicitante.length" class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Idioma</th>
+            <th>Nivel</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor='let informacionNivelIdioma of usuario.infoUsuario.idioma_solicitante'>
+            <td>{{informacionNivelIdioma?.id_idioma.descripcion}}</td>
+            <td>{{informacionNivelIdioma?.id_nivel_idioma.descripcion }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
 
-</div>
+  <div *ngIf="usuario?.infoUsuario?.experiencia_laboral && usuario?.infoUsuario?.experiencia_laboral.length">
+    <h4>Experiencia Laboral</h4>
+    <hr class="sep-tt">
+    <div class="container">
+      <div  class="top-buffer table-responsive">
+        <table *ngIf="usuario?.infoUsuario?.experiencia_laboral && usuario?.infoUsuario?.experiencia_laboral.length" class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>Cargo</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor='let experienciaLaboralSolicitante of usuario.infoUsuario.experiencia_laboral'>
+            <td>{{experienciaLaboralSolicitante.nombre}}</td>
+            <td>{{experienciaLaboralSolicitante.cargo}}</td>
+            <td>{{experienciaLaboralSolicitante.fecha_inicio | date:'shortDate'}}</td>
+            <td>{{experienciaLaboralSolicitante.fecha_fin | date:'shortDate'}}</td>
+          </tr>
+          </tbody>
 
+        </table>
 
-<h4>Información Académica Básica</h4>
-<hr class="sep-tt">
-<div class="container">
-  <div  class="table-responsive top-buffer">
-    <table *ngIf="usuario?.infoUsuario?.informacion_academica_basica && usuario?.infoUsuario?.informacion_academica_basica.length" class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Institución</th>
-        <th>Año Inicio</th>
-        <th>Año Fin</th>
-        <th>Fecha Grado</th>
-        <th>Último Grado Escolar</th>
-        <th>Prueba Saber</th>
-        <th>Calificación Prueba Saber</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor='let informacionAcademicaBasica of usuario.infoUsuario.informacion_academica_basica'>
-        <td>{{ informacionAcademicaBasica?.id_institucion_academica_basica.nombre}}</td>
-        <td>{{informacionAcademicaBasica.ano_inicio}}</td>
-        <td>{{informacionAcademicaBasica.ano_fin }}</td>
-        <td>{{informacionAcademicaBasica.fecha_grado | date:'shortDate'}}</td>
-        <td>{{informacionAcademicaBasica.ultimo_grado_escolar }}</td>
-        <td>{{informacionAcademicaBasica.pruebas_saber == true ? 'Si': 'No' }}</td>
-        <td>{{informacionAcademicaBasica.calificacion_pruebas_saber  }}</td>
-      </tr>
-      </tbody>
-    </table>
+      </div>
+
+    </div>
   </div>
-</div>
-
-<h4>Información Académica Superior</h4>
-<hr class="sep-tt">
-<div class="container">
-  <div  class="table-responsive top-buffer">
-    <table *ngIf="usuario?.infoUsuario?.informacion_academica_superior && usuario?.infoUsuario?.informacion_academica_superior.length" class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Institución</th>
-        <th>Año Inicio</th>
-        <th>Año Fin</th>
-        <th>Fecha Grado</th>
-        <th>Programa</th>
-        <th>Título Obtenido</th>
-        <th>Semestres Programa</th>
-        <th>Semestres Cursados</th>
-        <th>Créditos</th>
-        <th>Registro Calificado</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor='let informacionAcademicaSuperior of usuario?.infoUsuario?.informacion_academica_superior'>
-        <td>{{informacionAcademicaSuperior.id_institucion_academica_superior?.nombre}}</td>
-        <td>{{informacionAcademicaSuperior.ano_inicio }}</td>
-        <td>{{informacionAcademicaSuperior.ano_fin }}</td>
-        <td>{{informacionAcademicaSuperior.fecha_grado | date:'shortDate'}}</td>
-        <td>{{informacionAcademicaSuperior.nombre_programa }}</td>
-        <td>{{informacionAcademicaSuperior.titulo_obtenido }}</td>
-        <td>{{informacionAcademicaSuperior.semestres_programa }}</td>
-        <td>{{informacionAcademicaSuperior.semestres_cursados }}</td>
-        <td>{{informacionAcademicaSuperior.cantidad_creditos }}</td>
-        <td>{{informacionAcademicaSuperior.registro_calificado == true ? 'Si': 'No' }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-
-<h4>Información Idiomas</h4>
-<hr class="sep-tt">
-<div class="container">
-  <div  class="table-responsive top-buffer">
-    <table *ngIf="usuario?.infoUsuario?.idioma_solicitante && usuario?.infoUsuario?.idioma_solicitante.length" class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Idioma</th>
-        <th>Nivel</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor='let informacionNivelIdioma of usuario.infoUsuario.idioma_solicitante'>
-        <td>{{informacionNivelIdioma?.id_idioma.descripcion}}</td>
-        <td>{{informacionNivelIdioma?.id_nivel_idioma.descripcion }}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
-
-<h4>Experiencia Laboral</h4>
-<hr class="sep-tt">
-<div class="container">
-  <div  class="top-buffer table-responsive">
-    <table *ngIf="usuario?.infoUsuario?.experiencia_laboral && usuario?.infoUsuario?.experiencia_laboral.length" class="table table-bordered">
-      <thead>
-      <tr>
-        <th>Empresa</th>
-        <th>Cargo</th>
-        <th>Fecha Inicio</th>
-        <th>Fecha Fin</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor='let experienciaLaboralSolicitante of usuario.infoUsuario.experiencia_laboral'>
-        <td>{{experienciaLaboralSolicitante.nombre}}</td>
-        <td>{{experienciaLaboralSolicitante.cargo}}</td>
-        <td>{{experienciaLaboralSolicitante.fecha_inicio | date:'shortDate'}}</td>
-        <td>{{experienciaLaboralSolicitante.fecha_fin | date:'shortDate'}}</td>
-      </tr>
-      </tbody>
-
-    </table>
-
-  </div>
+  <hr class="sep-tt">
 
 </div>
 
-<hr class="sep-tt">
+<div *ngIf="!usuario">
+  <app-mensaje-busqueda-sin-resultados></app-mensaje-busqueda-sin-resultados>
+</div>
 
 

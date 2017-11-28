@@ -16,6 +16,10 @@
       <button type="button" class="btn btn-primary" (click)="consultarUsuario(nombreUsuario)" [disabled]="(formConsultarUsuario.invalid)" >Buscar</button>
     </div>
     <br/>
+    <div *ngIf="usuarioNoEncontrado">
+      <app-mensaje-busqueda-sin-resultados></app-mensaje-busqueda-sin-resultados>
+    </div>
+
     <div class="top-buffer" *ngIf="informacionUsuarioEncontrada">
       <div *ngIf="usuarioEncontrado.rol.nombre == rolUsuario.ADMIN">
         <app-datos-admin [usuario]="usuarioEncontrado"></app-datos-admin>
@@ -26,17 +30,20 @@
       <div *ngIf="usuarioEncontrado.rol.nombre == rolUsuario.SOLICITANTE">
         <app-datos-solicitante [usuario]="usuarioEncontrado"></app-datos-solicitante>
       </div>
+
+      <br/>
+      <div class="form-group top-buffer" *ngIf="usuarioEncontrado != null">
+        <button type="button" class="btn btn-primary" (click)="eliminarUsuario()" [disabled]="!informacionUsuarioEncontrada">
+          <span class="glyphicon glyphicon-trash"></span> Eliminar
+        </button>
+        <button type="button" class="btn btn-primary" (click)="cancelarEliminarUsuario()">
+          <span class="glyphicon glyphicon-remove"></span> Cancelar
+        </button>
+      </div>
+
     </div>
 
-    <br/>
-    <div class="form-group top-buffer" *ngIf="usuarioEncontrado != null">
-      <button type="button" class="btn btn-primary" (click)="eliminarUsuario()" [disabled]="!informacionUsuarioEncontrada">
-        <span class="glyphicon glyphicon-trash"></span> Eliminar
-      </button>
-      <button type="button" class="btn btn-primary" (click)="cancelarEliminarUsuario()">
-        <span class="glyphicon glyphicon-remove"></span> Cancelar
-      </button>
-    </div>
+
   </div>
 
 </form>

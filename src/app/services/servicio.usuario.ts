@@ -20,7 +20,10 @@ export class ServicioUsuario extends ServicioBase {
   obtenerUsuario(nombreUuario: string): Observable<IConsultaUsuario> {
     return this.http.get(this.configuracion.baseUrl + 'users/user?username=' + nombreUuario,
       this.obtenerOpcionesPeticion()).map((response: Response) => {
-      console.log(<IConsultaUsuario[]> response.json());
+      //console.log(<IConsultaUsuario[]> response.json());
+      console.log('Respues servicio usuario');
+      console.log(response.text());
+      //return response.text() ? <IConsultaUsuario[]> response.json() : {}
       return <IConsultaUsuario[]> response.json();
     }).catch(this.manejadorError);
   }
