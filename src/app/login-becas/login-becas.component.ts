@@ -63,8 +63,8 @@ export class LoginBecasComponent implements OnInit {
     this.autenticacionService.crearCookie('idUsuario',sesion['idUsuario']);
     this.autenticacionService.crearCookie('status',status.toString());
 
-    this.router.navigate(['']);
-    window.location.reload();
+    this.router.navigate(['bienvenida']);
+    //window.location.reload();
 
   }
 

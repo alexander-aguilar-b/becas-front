@@ -15,7 +15,7 @@
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
                 <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
-                <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.maxlength">El campo excede la longitud máxima.({{itemLista.tamanoMaximo}} caracteres ).</span>
+                <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.maxlength">El campo excede la longitud máxima.({{itemLista.tamanio}} caracteres ).</span>
               </div>
             </div>
             <!--Caja de Texto-->

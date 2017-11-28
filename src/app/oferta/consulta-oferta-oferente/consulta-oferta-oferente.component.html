@@ -30,6 +30,12 @@
       <button type="submit" class="btn btn-primary" [disabled]="(formConsultarOferta.invalid)  || (valorSeleccionadoCriterioBusqueda == 0) || (codigoConvocatoria == 0)" >Buscar</button>
     </div>
 
+    <div *ngIf="busquedaRelizada" class="top-buffer">
+      <div *ngIf="(ofertas == null) || (ofertas != null && ofertas.length == 0)">
+        <app-mensaje-busqueda-sin-resultados></app-mensaje-busqueda-sin-resultados>
+      </div>
+    </div>
+
     <div  *ngIf="ofertas && ofertas.length" class="table-responsive top-buffer">
       <h4>Resultados de la Búsqueda</h4>
       <table class="table table striped table-bordered tabla90">

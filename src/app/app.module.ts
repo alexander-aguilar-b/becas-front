@@ -81,8 +81,12 @@ import {ServicioDatosAplicacionOferta} from "./services/servicio.datos.aplicacio
 import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
 import {ServicioSolicitudPostulacion} from "./services/servicio.solicitud.postulacion";
 import {CambiarEstadoEtapaComponent} from "./oferente/cambiar-estado/cambiar-estado.component";
+import {MensajeBusquedaSinResultadosComponent} from "./comun/mensajes/mensaje-busqueda-sin-resultados/mensaje-busqueda-sin-resultados.component";
+import {BienvenidaComponent} from "./comun/bienvenida/bienvenida-component";
 
 declare let jQuery: Object;
+
+
 
 @NgModule({
   declarations: [
@@ -135,6 +139,8 @@ declare let jQuery: Object;
     ConsultarDetallePostulacionComponent,
     ConsultarFormularioDiligenciadoComponent,
     CambiarEstadoEtapaComponent,
+    MensajeBusquedaSinResultadosComponent,
+    BienvenidaComponent,
 
   ],
   imports: [

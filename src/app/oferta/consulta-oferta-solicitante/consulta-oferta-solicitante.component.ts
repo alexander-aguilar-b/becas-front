@@ -19,6 +19,8 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
   valorSeleccionadoCriterioBusqueda : number;
   //ofertas : IOferta[];
   ofertas : IOfertaConsulta[];
+  busquedaRelizada : boolean;
+
 
 
   /** Constructor- Se inyectan las dependencias requeridas*/
@@ -29,6 +31,7 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
   ngOnInit(){
     //this.autenticacionService.validarAutorizacion('oferta/consulta-oferta');
     this.valorSeleccionadoCriterioBusqueda = 0;
+    this.busquedaRelizada = false;
   }
 
   /** Consulta de las ofertas*/
@@ -39,6 +42,7 @@ export class ConsultarOfertaSolicitanteComponent implements OnInit {
 
     this.servicioOferta.consultarOfertasSolicitante(filtroBusqueda.codigoConvocatoria).subscribe(ofertas => {
       this.ofertas = ofertas;
+      this.busquedaRelizada = true;
       console.log(ofertas);
     });
 

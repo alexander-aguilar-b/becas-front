@@ -101,8 +101,8 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     this.valorSeleccionadoPaisNacimiento = 0;
     this.valorSeleccionadoPaisResidencia = 0;
 
-    this.contrasena = new FormControl('', [Validators.required]);
-    this.confirmarcontrasena = new FormControl('', [Validators.required]);
+    this.contrasena = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    this.confirmarcontrasena = new FormControl('', [Validators.required, Validators.minLength(6)]);
   }
 
 

@@ -33,6 +33,7 @@ import {FormularioEtapaSolicitanteComponent} from "./oferta/formulario-etapa-sol
 import {ConsultarPostulacionesOfertaComponent} from "./oferente/consultar-postulaciones-oferta/consultar-postulaciones-oferta.component";
 import {ConsultarDetallePostulacionComponent} from "./oferente/consultar-detalle-postulacion/consultar-detalle-postulacion.component";
 import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
+import {BienvenidaComponent} from "./comun/bienvenida/bienvenida-component";
 
 
 const routes: Routes = [
@@ -175,7 +176,12 @@ const routes: Routes = [
   {
     path: 'oferente/consultar-formulario-diligenciado/:idFormulario/:idAplicacionOferta',
     component : ConsultarFormularioDiligenciadoComponent
-  }
+  },
+  {
+    path: 'bienvenida',
+    component : BienvenidaComponent
+  },
+
 ];
 
 @NgModule({
