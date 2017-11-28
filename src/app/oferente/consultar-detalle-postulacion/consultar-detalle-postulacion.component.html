@@ -106,7 +106,7 @@
                 <td>{{ resultadoFormularioEtapa.estadoFormulario }}</td>
                 <td>{{ resultadoFormularioEtapa.fechaEnvioFormulario | date:'shortDate'}}</td>
                 <td>
-                  <button title="Ver" class="btn btn-primary" (click)="consultarDetalleFormularioAplicacion(resultadoFormularioEtapa.id, aplicacionOferta.id)">
+                  <button title="Ver" class="btn btn-primary" (click)="consultarDetalleFormularioAplicacion(resultadoFormularioEtapa.id, aplicacionOferta.id, idOferta)">
                     <span class="glyphicon glyphicon-search"></span>
                     Ver Detalle</button>
                 </td>

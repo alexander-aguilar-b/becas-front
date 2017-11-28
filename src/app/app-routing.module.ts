@@ -174,7 +174,7 @@ const routes: Routes = [
     component : ConsultarDetallePostulacionComponent
   },
   {
-    path: 'oferente/consultar-formulario-diligenciado/:idFormulario/:idAplicacionOferta',
+    path: 'oferente/consultar-formulario-diligenciado/:idFormulario/:idAplicacionOferta/:idOferta',
     component : ConsultarFormularioDiligenciadoComponent
   },
   {

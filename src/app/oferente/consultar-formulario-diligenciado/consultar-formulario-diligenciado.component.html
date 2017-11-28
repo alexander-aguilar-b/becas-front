@@ -11,7 +11,7 @@
 
             <!--Caja de Texto-->
             <div *ngSwitchCase="tiposItemEnum.textoEntrada">
-              <input class="form-control" type="text" formControlName="{{i}}" id="{{i}}"/>
+              <input class="form-control" type="text" formControlName="{{i}}" id="{{i}}" disabled="disabled"/>
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
                 <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
@@ -22,7 +22,7 @@
 
             <!--Numero Entrada-->
             <div *ngSwitchCase="tiposItemEnum.entradaNumerica">
-              <input class="form-control" type="number" formControlName="{{i}}" id="{{i}}"/>
+              <input class="form-control" type="number" formControlName="{{i}}" id="{{i}}" disabled="disabled"/>
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
                 <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
@@ -32,7 +32,7 @@
 
             <!--Fecha Entrada-->
             <div *ngSwitchCase="tiposItemEnum.fecha">
-              <input class="form-control" type="date" formControlName="{{i}}" id="{{i}}"/>
+              <input class="form-control" type="date" formControlName="{{i}}" id="{{i}}" disabled="disabled"/>
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
                 <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
@@ -42,7 +42,7 @@
 
             <!--Lista Desplegable-->
             <div *ngSwitchCase="tiposItemEnum.listaSeleccionable">
-              <select class="form-control" formControlName="{{i}}" id="{{i}}">
+              <select class="form-control" formControlName="{{i}}" id="{{i}}" disabled="disabled">
                 <option>-- Seleccione --</option>
                 <option value="{{j}}" *ngFor="let respuesta of itemLista?.item.valoresPosibles; let j = index">{{respuesta}}</option>
               </select>
@@ -58,7 +58,7 @@
               <div class="row">
                 <!--<div class="form-group">-->
                   <div class="radio" *ngFor="let respuesta of itemLista.item.valoresPosibles">
-                    <label><input type="radio" value="{{respuesta}}" formControlName="{{i}}" id="{{i}}" name="{{i}}">{{respuesta}}</label>
+                    <label><input type="radio" value="{{respuesta}}" formControlName="{{i}}" id="{{i}}" name="{{i}}" disabled="disabled">{{respuesta}}</label>
                   </div>
                 <!--</div>-->
               </div>
@@ -75,7 +75,7 @@
               <div class="row">
                 <!--<div class="form-group">-->
                   <div class="checkbox" *ngFor="let respuesta of itemLista.item.valoresPosibles; let j = index">
-                    <label class="control-label"><input type="checkbox" value="{{respuesta}}" formControlName="{{j}}" >{{respuesta}}</label>
+                    <label class="control-label"><input type="checkbox" value="{{respuesta}}" formControlName="{{j}}" disabled="disabled">{{respuesta}}</label>
                     <!--<label class="control-label"><input type="checkbox" value="{{respuesta.respuesta}}" formControlName="control_{{i}}_opcion_{{j}}" id="control_{{i}}_opcion_{{j}}" name="control_{{i}}_opcion_{{j}}" >{{respuesta.respuesta}}</label>-->
                   </div>
                 <!--</div>-->
@@ -90,7 +90,7 @@
             <!--Input File-->
             <div *ngSwitchCase="tiposItemEnum.archivo">
               <div class="form-control">
-                <input type="file" formControlName="{{i}}" id="{{i}}" (change)="archivoSeleccionado($event, i)" />
+                <input type="file" disabled="disabled" formControlName="{{i}}" id="{{i}}" (change)="archivoSeleccionado($event, i)" />
                 <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                      [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
                   <span *ngIf="formularioDinamico.controls.controlesDinamicos.controls[i].errors.required">El campo es requerido.</span>
@@ -105,6 +105,11 @@
     </div>
     <!--{{ formularioDinamico.value | json }}-->
 
+  </div>
+
+  <div class="top-buffer">
+    <a class="btn btn-primary" [routerLink]="['/oferente/consultar-detalle-postulacion/' + idOferta + '/' + idAplicacion]" role="button"><span
+      class="glyphicon glyphicon-menu-left"></span>Atrás</a>
   </div>
 
 </form>

@@ -55,8 +55,8 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     $('#modificarEtadoEtapa').modal('toggle');
   }
 
-  consultarDetalleFormularioAplicacion(idFormulario: number, idAplicacionOferta: number) {
-    this.router.navigate(['/oferente/consultar-formulario-diligenciado', idFormulario, idAplicacionOferta]);
+  consultarDetalleFormularioAplicacion(idFormulario: number, idAplicacionOferta: number, idOferta: number) {
+    this.router.navigate(['/oferente/consultar-formulario-diligenciado', idFormulario, idAplicacionOferta, idOferta]);
   }
 
   modifcarEstadoEtapa(estado){

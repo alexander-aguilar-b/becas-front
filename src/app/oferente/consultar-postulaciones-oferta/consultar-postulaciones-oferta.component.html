@@ -33,6 +33,16 @@
   </div>
 
 </div>
-<div class="alert alert-info" *ngIf="!postulacionesOferta || !postulacionesOferta.length > 0">
-  <span>Por el momento no hay postulaciones para la oferta seleccionada.</span>
+<div class="alert-info" *ngIf="!postulacionesOferta || !postulacionesOferta.length > 0">
+  <div class="bs-callout bs-callout-primary">
+    <h4>Resultados Postulaciones</h4>
+    Por el momento no hay postulaciones para la oferta seleccionada.
+  </div>
 </div>
+
+<div class="top-buffer">
+  <a class="btn btn-primary" [routerLink]="['/oferta/consulta-oferta-oferente']" role="button"><span
+    class="glyphicon glyphicon-menu-left"></span>Atrás</a>
+</div>
+
+

@@ -51,6 +51,7 @@ export class ConsultarFormularioDiligenciadoComponent implements OnInit {
     this.datosFormularioDisponibles = false;
     this.idAplicacion = Number.parseInt(this.activatedRouter.snapshot.paramMap.get('idAplicacionOferta'));
     this.idFormulario = Number.parseInt(this.activatedRouter.snapshot.paramMap.get('idFormulario'));
+    this.idOferta = Number.parseInt(this.activatedRouter.snapshot.paramMap.get('idOferta'));
     this.datosFormulario = new FormData();
 
     this.servicioAplicacionOferta.obtenerFormularioDiligenciado(this.idFormulario, this.idAplicacion).subscribe(resultadoFormularioDiligenciado => {
@@ -157,9 +158,5 @@ export class ConsultarFormularioDiligenciadoComponent implements OnInit {
 
       this.datosFormularioDisponibles = true;
     });
-  }
-
-  regresar(){
-    this.router.navigate(['/oferente/consultar-detalle-postulacion', this.idAplicacion]);
   }
 }
