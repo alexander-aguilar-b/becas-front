@@ -31,14 +31,14 @@
       <div class="form-group" [formGroup]="administradorForm">
         <label class="col-sm-2">Contraseña</label>
         <div class="col-sm-4">
-          <input formControlName="contrasena" class="form-control" type="text" (ngModel)="contrasena" name="contrasena" id="contrasena">
+          <input formControlName="contrasena" class="form-control" type="password" (ngModel)="contrasena" name="contrasena" id="contrasena">
           <div *ngIf="!validarContrasenia()" class="form-control alert-danger">
             <em>Es requerido</em>
           </div>
         </div>
         <label class="col-sm-2">Confirmar Contraseña</label>
         <div class="col-sm-4">
-          <input formControlName="confirmarcontrasena" id="confirmarcontrasena" class="form-control" type="text" name="confirmarcontrasena">
+          <input formControlName="confirmarcontrasena" id="confirmarcontrasena" class="form-control" type="password" name="confirmarcontrasena">
           <div *ngIf="!validarConfirmacionContrasenia() || !validarMismaContrasenia()" class="form-control alert-danger">
             <em *ngIf="!validarConfirmacionContrasenia()">Es requerido</em>
             <em *ngIf="!validarMismaContrasenia() && validarConfirmacionContrasenia()">

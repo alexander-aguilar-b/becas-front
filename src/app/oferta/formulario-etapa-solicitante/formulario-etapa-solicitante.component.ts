@@ -8,6 +8,8 @@ import {AutenticacionService} from "../../services/autenticacion.service";
 import {IFormularioRegistro, IValoresFormulario} from "../../models/formulario.model";
 import {isArray, isNullOrUndefined} from "util";
 import {SolicitanteService} from "../../services/solicitante.service";
+import {IErrorServicio} from "../../models/error.servicio.model";
+import {CodigosErrorServicio} from "../../constantes/codigos.error.servicio";
 
 @Component({
   selector: 'app-formulario-etapa-solicitante',
@@ -162,6 +164,13 @@ export class FormularioEtapaSolicitanteComponent implements OnInit {
     this.servicioSolicitante.registrarInformacionFormulario(formularioRegistro).subscribe(respuesta => {
       alert('La información del formulario ha sido registrada correctamente');
       this.router.navigate(['/oferta/detalle-etapa-solicitante/', this.idOferta, this.idEtapa]);
-    });
+    },
+      error => {
+        const errorServicio: IErrorServicio = <IErrorServicio><any>error.json();
+        if (errorServicio.code === CodigosErrorServicio.APLICACION_NO_EXISTE) {
+          alert('Para poder registrar la información del formulario es necesario que previamente realice la aplicación a la oferta.');
+          this.router.navigate(['/oferta/detalle-oferta-solicitante', this.idOferta]);
+        }
+        });
   }
 }

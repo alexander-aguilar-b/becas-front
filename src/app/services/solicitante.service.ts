@@ -8,6 +8,7 @@ import {Http, Response, Headers, RequestOptions} from "@angular/http";
 import {ConfiguracionServicio} from "./configuracion.servicio";
 import {IFormularioRegistro} from "../models/formulario.model";
 import {AutenticacionService} from "./autenticacion.service";
+import {IErrorServicio} from "../models/error.servicio.model";
 /**
  * Created by edgaguil on 28/07/2017.
  */
@@ -16,11 +17,10 @@ import {AutenticacionService} from "./autenticacion.service";
 @Injectable()
 export class SolicitanteService {
 
-  constructor(private http : Http, private configuracion : ConfiguracionServicio, private autenticacionService: AutenticacionService)
-  {}
+  constructor(private http: Http, private configuracion: ConfiguracionServicio, private autenticacionService: AutenticacionService) {
+  }
 
-  obtenerListadoSolicitantes()
-  {
+  obtenerListadoSolicitantes(){
     return solicitantes;
   };
 
@@ -30,10 +30,17 @@ export class SolicitanteService {
     }).catch(this.manejadorError);
   };
 
-  private manejadorError(error : Response)
-  {
-      console.log('Error en la app:' + error);
-      return Observable.throw(error.statusText);
+  // private manejadorError(error : Response)
+  // {
+  //     console.log('Error en la app:' + error);
+  //     return Observable.throw(error.statusText);
+  // }
+
+  private manejadorError(error: Response) {
+    console.log(error.text());
+    console.log('*********error**********');
+    console.log(<IErrorServicio><any>error.json());
+    return Observable.throw(error);
   }
 
   crearSolicitante(solicitante) : Observable<ISolicitante>

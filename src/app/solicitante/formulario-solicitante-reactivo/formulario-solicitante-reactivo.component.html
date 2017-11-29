@@ -48,14 +48,18 @@
       <div class="form-group" [formGroup]="administradorForm">
         <label class="col-sm-2">Contraseña</label>
         <div class="col-sm-4">
-          <input formControlName="contrasena" class="form-control" type="text" (ngModel)="solicitante.usuario.contrasena" name="contrasena" id="contrasena">
+          <input formControlName="contrasena" class="form-control" type="password" (ngModel)="solicitante.usuario.contrasena" name="contrasena" id="contrasena" minlength="6">
           <div *ngIf="!validarContrasenia()" class="form-control alert-danger">
             El campo es requerido
           </div>
+          <!--<div *ngIf="validarLongitudContrasena()" class="form-control alert-danger">-->
+            <!--La contraseña debe ser de minimo 6 caracteres.-->
+          <!--</div>-->
+
         </div>
         <label class="col-sm-2">Confirmar Contraseña</label>
         <div class="col-sm-4">
-          <input formControlName="confirmarcontrasena" id="confirmarcontrasena" class="form-control" type="text" name="confirmarcontrasena">
+          <input formControlName="confirmarcontrasena" id="confirmarcontrasena" class="form-control" type="password" name="confirmarcontrasena" minlength="6">
           <div *ngIf="!validarConfirmacionContrasenia() || !validarMismaContrasenia()" class="form-control alert-danger">
             <div *ngIf="!validarConfirmacionContrasenia()">El campo es requerido</div>
             <div *ngIf="!validarMismaContrasenia() && validarConfirmacionContrasenia()">

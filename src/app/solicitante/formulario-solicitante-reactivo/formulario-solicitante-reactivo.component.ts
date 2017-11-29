@@ -101,8 +101,8 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
     this.valorSeleccionadoPaisNacimiento = 0;
     this.valorSeleccionadoPaisResidencia = 0;
 
-    this.contrasena = new FormControl('', [Validators.required, Validators.minLength(6)]);
-    this.confirmarcontrasena = new FormControl('', [Validators.required, Validators.minLength(6)]);
+    this.contrasena = new FormControl('', [Validators.required]);
+    this.confirmarcontrasena = new FormControl('', [Validators.required]);
   }
 
 
@@ -212,8 +212,8 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
 
   //#region Validaciones
   validarContrasenia() {
-    return this.administradorForm.controls.contrasena.valid ||
-      this.administradorForm.controls.contrasena.untouched
+    return (this.administradorForm.controls.contrasena.valid ||
+      this.administradorForm.controls.contrasena.untouched);
   }
 
   validarConfirmacionContrasenia() {
@@ -224,6 +224,10 @@ export class FormularioSolicitanteReactivoComponent implements OnInit {
   validarMismaContrasenia() {
     return (this.administradorForm.valid && this.administradorForm.controls.confirmarcontrasena.valid)
       || this.administradorForm.controls.confirmarcontrasena.untouched;
+  }
+
+  validarLongitudContrasena(){
+    return (this.administradorForm.controls.confirmarcontrasena.touched && this.administradorForm.controls.contrasena.errors.minlength);
   }
 
   private confirmarContrasenia(group: FormGroup): { [key: string]: any } {

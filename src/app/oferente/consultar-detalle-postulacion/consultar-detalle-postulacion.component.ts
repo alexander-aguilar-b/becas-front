@@ -27,24 +27,15 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
               private servicioSolicitudPostulacion: ServicioSolicitudPostulacion) {
   }
   ngOnInit() {
-    console.log('Dentro del Componete');
-    console.log('Datos Aplicacion');
-    //console.log(this.servicioDatosAplicacionOferta.datosAplicacionOferta);
-    //this.aplicacionOferta = this.servicioDatosAplicacionOferta.datosAplicacionOferta;
-
     this.idAplicacion = Number(this.activatedRouter.snapshot.paramMap.get('idAplicacionOferta'));
     this.idOferta = Number(this.activatedRouter.snapshot.paramMap.get('idOferta'));
+    this.cargarDatosFormulario();
+  }
+  cargarDatosFormulario() {
     this.servicioAplicacionOferta.obtenerAplicacion(this.idAplicacion).subscribe(respuesta => {
       this.aplicacionOferta = respuesta;
-      console.log('this.aplicacionOferta');
-      console.log(this.aplicacionOferta);
     });
-
-    $('#modificarEtadoEtapa').on('shown.bs.modal', function(){
-      alert('opening');
-    } );
   }
-
   cambiarEstadoEtapa(idAplicacionOferta, idEtapa, estadoEtapa) {
     this.servicioDatosAplicacionOferta.datosCambioEstadoEtapa = {
       idEtapa : idEtapa,
@@ -85,8 +76,9 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     console.log(estadoEtapaAntesCambio);
     this.servicioSolicitudPostulacion.cambiarEtadoEtapaAplicacion(nuveoEstadoEtapa,
       estadoEtapaAntesCambio.idAplicacion, estadoEtapaAntesCambio.idEtapa).subscribe(respuesta => {
+      this.cargarDatosFormulario();
        alert('La información de la etapa se ha modificado');
-       this.router.navigate(['/oferente/consultar-detalle-postulacion/', this.idOferta, this.idAplicacion]);
+       // this.router.navigate(['/oferente/consultar-detalle-postulacion/', this.idOferta, this.idAplicacion]);
     });
   }
 
@@ -97,6 +89,7 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     console.log(estadoPostulacionAntesCambio);
     this.servicioSolicitudPostulacion.cambiarEstadoPostulacion(nuevoEstadoPostulacion,
       estadoPostulacionAntesCambio.idAplicacion).subscribe(respuesta => {
+      this.cargarDatosFormulario();
       alert('La información de la postulación se ha modificado');
     });
   }
