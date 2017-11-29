@@ -54,13 +54,11 @@
             <!--Lista Desplegable-->
 
             <!--Lista Radio Button-->
-            <div *ngSwitchCase="tiposItemEnum.listaRadioButton">
-              <div class="row" *ngFor="let respuesta of itemLista.valoresPosibles">
-                <div class="form-group">
-                  <div class="radio">
-                    <label class="control-label"><input type="radio" value="{{respuesta}}" formControlName="{{i}}" id="{{i}}" name="{{i}}">{{respuesta}}</label>
+            <div *ngSwitchCase="tiposItemEnum.listaRadioButton" class="col-sm-4">
+              <div class="row">
+                  <div class="radio" *ngFor="let respuesta of itemLista.valoresPosibles">
+                    <label><input type="radio" value="{{respuesta}}" formControlName="{{i}}" id="{{i}}" name="{{i}}">{{respuesta}}</label>
                   </div>
-                </div>
               </div>
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">
@@ -70,15 +68,13 @@
             <!--Lista Radio Button-->
 
             <!--Lista Check Boxes-->
-            <div *ngSwitchCase="tiposItemEnum.listaSeleccionMultiple" [formArrayName]="i">
+            <div *ngSwitchCase="tiposItemEnum.listaSeleccionMultiple" [formArrayName]="i" class="col-sm-4">
               <!--<div *ngSwitchCase="7" [formGroupName]="i">-->
               <div class="row" *ngFor="let respuesta of itemLista.valoresPosibles; let j = index">
-                <div class="form-group">
                   <div class="checkbox">
                     <label class="control-label"><input type="checkbox" value="{{respuesta}}" formControlName="{{j}}" >{{respuesta}}</label>
                     <!--<label class="control-label"><input type="checkbox" value="{{respuesta.respuesta}}" formControlName="control_{{i}}_opcion_{{j}}" id="control_{{i}}_opcion_{{j}}" name="control_{{i}}_opcion_{{j}}" >{{respuesta.respuesta}}</label>-->
                   </div>
-                </div>
               </div>
               <div class="form-control" *ngIf="(formularioDinamico.controls.controlesDinamicos.controls[i].touched || formularioDinamico.controls.controlesDinamicos.controls[i].dirty) && formularioDinamico.controls.controlesDinamicos.controls[i].errors"
                    [ngClass]="{'alert-danger': formularioDinamico.controls.controlesDinamicos.controls[i].touched  && !formularioDinamico.controls.controlesDinamicos.controls[i].valid }">

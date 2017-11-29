@@ -25,7 +25,7 @@ export class BienvenidaComponent implements OnInit {
       this.contenido = 'En el portal Centralizado de Becas podras realizar búsquedas de las distintas ofertas (becas, pasantias, créditos condonables) dentro y fuera del pais, las cuales han sido registradas por distinos tipos de entidades oferentes.';
     }
     if (perfil == this.perfil.oferente){
-      this.contenido = 'Señor oferente, el portal Centralizado de Becas es una herramienta que le permitirá realizar el registro y seguimiento de ofertas (becas, pasantias, créditos condonables) con las cuales quiera beneficiar a la apoblación Colombiana';
+      this.contenido = 'Señor oferente, el portal Centralizado de Becas es una herramienta que le permitirá realizar el registro y seguimiento de ofertas (becas, pasantias, créditos condonables) con las cuales quiera beneficiar a la población Colombiana.';
     }
     if (perfil == this.perfil.admin){
       this.contenido = 'Señor Administrador, el portal Centralizado de Becas es una herramienta que le permitirá realizar la administración de los distintos tipos de usuarios soportados por el mismo';

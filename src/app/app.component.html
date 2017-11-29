@@ -2,7 +2,7 @@
   <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Portal de Becas</a>
+        <a class="navbar-brand" [routerLink]="['/bienvenida']">Portal de Becas</a>
       </div>
       <ul class="nav navbar-nav">
         <li *ngFor="let menu of menus"><a href="{{menu.ruta}}">{{menu.nombre_menu}}</a></li>
@@ -19,7 +19,7 @@
     <br>
     <br>
     <footer>
-      <div class="gr-container">
+      <div class="pull-right gr-container">
           2017 | ECOS  | CraftTech
       </div>
 

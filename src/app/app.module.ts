@@ -83,9 +83,9 @@ import {ServicioSolicitudPostulacion} from "./services/servicio.solicitud.postul
 import {CambiarEstadoEtapaComponent} from "./oferente/cambiar-estado/cambiar-estado.component";
 import {MensajeBusquedaSinResultadosComponent} from "./comun/mensajes/mensaje-busqueda-sin-resultados/mensaje-busqueda-sin-resultados.component";
 import {BienvenidaComponent} from "./comun/bienvenida/bienvenida-component";
+import {CambiarEstadoPostulacionComponent} from "./oferente/cambiar-estado-postulacion/cambiar-estado-postulacion.component";
 
 declare let jQuery: Object;
-
 
 
 
@@ -144,7 +144,7 @@ declare let jQuery: Object;
     CambiarEstadoEtapaComponent,
     MensajeBusquedaSinResultadosComponent,
     BienvenidaComponent,
-
+    CambiarEstadoPostulacionComponent,
   ],
   imports: [
     BrowserModule,

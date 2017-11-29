@@ -34,8 +34,10 @@
 <!--<div class="alert alert-info" *ngIf="!oferentesPendientesActivacion || !oferentesPendientesActivacion.length > 0">-->
   <!--<span>Por el momento no hay solicitudes de activación de cuenta de oferente registradas en el sistema.</span>-->
 <!--</div>-->
+<div *ngIf="!oferentesPendientesActivacion || !oferentesPendientesActivacion.length > 0">
+  <app-mensaje-busqueda-sin-resultados></app-mensaje-busqueda-sin-resultados>
+</div>
 
-<app-mensaje-busqueda-sin-resultados></app-mensaje-busqueda-sin-resultados>
 
 <!--<div class="panel panel-default" *ngIf="!oferentesPendientesActivacion">-->
   <!--<div class="panel-body">-->

@@ -59,18 +59,45 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     $('#modificarEtadoEtapa').modal('toggle');
   }
 
+  cambiarEstadoPostulacion(idAplicacionOferta, estadoPostulacion){
+    this.servicioDatosAplicacionOferta.datosCambioEstadoPostulacion = {
+      idEtapa : 0,
+      idAplicacion: idAplicacionOferta,
+      estadoAnterior: estadoPostulacion,
+      estadoActual : ''
+    };
+
+    console.log(this.servicioDatosAplicacionOferta.datosCambioEstadoPostulacion);
+    console.log('Antes modal');
+    $('#estadoActualPostulacionModal').text(estadoPostulacion);
+    $('#estadoPostulacionSeleccionado').val(-1);
+    $('#modificarEstadoPostulacion').modal('toggle');
+  }
+
   consultarDetalleFormularioAplicacion(idFormulario: number, idAplicacionOferta: number, idOferta: number) {
     this.router.navigate(['/oferente/consultar-formulario-diligenciado', idFormulario, idAplicacionOferta, idOferta]);
   }
 
   modifcarEstadoEtapa(nuveoEstadoEtapa){
-    let estadoEtapaAntesCambio: IEtapaCambioEstado = this.servicioDatosAplicacionOferta.datosCambioEstadoEtapa;
+    const estadoEtapaAntesCambio: IEtapaCambioEstado = this.servicioDatosAplicacionOferta.datosCambioEstadoEtapa;
     console.log('El nuevo estado es');
     console.log(nuveoEstadoEtapa);
     console.log(estadoEtapaAntesCambio);
-     this.servicioSolicitudPostulacion.cambiarEtadoEtapaAplicacion(nuveoEstadoEtapa, estadoEtapaAntesCambio.idAplicacion, estadoEtapaAntesCambio.idEtapa).subscribe(respuesta => {
+    this.servicioSolicitudPostulacion.cambiarEtadoEtapaAplicacion(nuveoEstadoEtapa,
+      estadoEtapaAntesCambio.idAplicacion, estadoEtapaAntesCambio.idEtapa).subscribe(respuesta => {
        alert('La información de la etapa se ha modificado');
        this.router.navigate(['/oferente/consultar-detalle-postulacion/', this.idOferta, this.idAplicacion]);
+    });
+  }
+
+  modificarEstadoAplicacion(nuevoEstadoPostulacion) {
+    const estadoPostulacionAntesCambio: IEtapaCambioEstado = this.servicioDatosAplicacionOferta.datosCambioEstadoPostulacion;
+    console.log('El nuevo estado es');
+    console.log(nuevoEstadoPostulacion);
+    console.log(estadoPostulacionAntesCambio);
+    this.servicioSolicitudPostulacion.cambiarEstadoPostulacion(nuevoEstadoPostulacion,
+      estadoPostulacionAntesCambio.idAplicacion).subscribe(respuesta => {
+      alert('La información de la postulación se ha modificado');
     });
   }
 }

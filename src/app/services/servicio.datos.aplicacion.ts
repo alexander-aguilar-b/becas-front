@@ -8,4 +8,5 @@ import {IEtapaCambioEstado} from "../models/etapa.model";
 export class ServicioDatosAplicacionOferta {
   datosAplicacionOferta: IConsultaAplicacionOferta;
   datosCambioEstadoEtapa: IEtapaCambioEstado;
+  datosCambioEstadoPostulacion: IEtapaCambioEstado;
 }

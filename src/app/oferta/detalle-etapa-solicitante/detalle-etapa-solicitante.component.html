@@ -68,10 +68,10 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor='let formularioEtapa of formulariosEtapa'>
+        <tr class="table" *ngFor='let formularioEtapa of formulariosEtapa'>
           <td>{{formularioEtapa.nombre}}</td>
           <td>{{formularioEtapa.descripcion}}</td>
-          <td>
+          <td width="10%">
             <button title="Ver" class="btn btn-primary" (click)="diligenciarFormulario(formularioEtapa.id)">
               <span class="glyphicon glyphicon-pencil"></span>
               Diligenciar Formulario</button>

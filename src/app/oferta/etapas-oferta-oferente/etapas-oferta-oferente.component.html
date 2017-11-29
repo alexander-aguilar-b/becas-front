@@ -6,8 +6,8 @@
   <button class="btn btn-primary" (click)="agregarEtapaOferta()"><span class="glyphicon glyphicon-plus"></span> Agregar Etapa</button>
 </div>
 
-<div *ngIf="etapasOferta && etapasOferta.length">
-<table class="table table striped table-bordered top-buffer">
+<div *ngIf="etapasOferta && etapasOferta.length" class="top-buffer">
+<table class="table table-bordered">
   <thead class="thead-inverse">
   <tr>
     <th>Nombre</th>
@@ -19,7 +19,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor='let etapaOferta of etapasOferta'>
+  <tr class="table" *ngFor='let etapaOferta of etapasOferta'>
     <td>{{etapaOferta.nombre}}</td>
     <td>{{etapaOferta.descripcion}}</td>
     <td>{{etapaOferta.fechaInicio | date:'shortDate'}}</td>

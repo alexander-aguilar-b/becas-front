@@ -32,7 +32,7 @@
       </div>
 
       <br/>
-      <div class="form-group top-buffer" *ngIf="usuarioEncontrado != null">
+      <div class="row top-buffer" *ngIf="usuarioEncontrado != null">
         <button type="button" class="btn btn-primary" (click)="eliminarUsuario()" [disabled]="!informacionUsuarioEncontrada">
           <span class="glyphicon glyphicon-trash"></span> Eliminar
         </button>

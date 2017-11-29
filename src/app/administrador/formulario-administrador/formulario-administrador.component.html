@@ -131,9 +131,9 @@
       </div>
     </div>
     <br>
-    <button type="submit" class="btn btn-primary" [disabled]="administradorForm.invalid || formRegistroAdministrador.invalid">Crear</button>
+    <button type="submit" class="btn btn-primary" [disabled]="administradorForm.invalid || formRegistroAdministrador.invalid"><span class="glyphicon glyphicon-ok"></span> Crear</button>
 
-    <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+    <a class="btn btn-primary" [routerLink]="['/bienvenida']" role="button"><span class="glyphicon glyphicon-remove"></span> Cancelar</a>
   </div>
   <br>
 </form>

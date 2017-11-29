@@ -123,8 +123,9 @@
         </div>
       </div>
 
-      <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" (click)="crearOferente(formOferente.value)" [disabled]="formOferente.invalid" >Crear</button></span>
-      <a class="btn btn-secondary" [routerLink]="['/listado-solicitante']" role="button">Cancelar</a>
+      <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" (click)="crearOferente(formOferente.value)" [disabled]="formOferente.invalid" >
+        <span class="glyphicon glyphicon-ok"></span> Crear</button></span>
+      <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
 
 
     </div>

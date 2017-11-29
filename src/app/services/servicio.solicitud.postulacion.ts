@@ -27,4 +27,18 @@ export class ServicioSolicitudPostulacion extends ServicioBase {
     }).catch(this.manejadorError);
   }
 
+  cambiarEstadoPostulacion(nuevoEstadoEtapa: string, idAplicacion: number) {
+    console.log(this.obtenerOpcionesPeticion());
+    return this.http.put(this.configuracion.baseUrl + 'application/' + idAplicacion + '/status?value=' + nuevoEstadoEtapa,
+      null,
+      this.obtenerOpcionesPeticion()).map((response: Response) => {
+      console.log('respuesta es:')
+      console.log(response);
+      return true;
+    }).catch(this.manejadorError);
+
+  }
+
+
+
 }

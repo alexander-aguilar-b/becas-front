@@ -57,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor='let oferta of ofertas'>
+        <tr class="table" *ngFor='let oferta of ofertas'>
           <td>{{oferta.id}}</td>
           <td>{{oferta.nombre}}</td>
           <td>{{oferta.fechaInicio | date:'shortDate' }}</td>

@@ -32,16 +32,16 @@ export class ServicioMenu {
         menu = [
           {
             ruta: 'administrador/formulario-administrador',
-            nombre_menu: "Crear administrador"
+            nombre_menu: "Crear Administrador"
           },
           {
             ruta: 'oferente/formulario-oferente',
-            nombre_menu: "Solicitar cuenta Oferente"
+            nombre_menu: "Solicitar Cuenta Oferente"
           },
-          {
-            nombre_menu: "Consultar Oferta",
-            ruta: "oferta/consulta-oferta"
-          },
+          // {
+          //   nombre_menu: "Consultar Oferta",
+          //   ruta: "oferta/consulta-oferta"
+          // },
           {
             ruta: 'administrador/consultar-usuario',
             nombre_menu: "Consultar Usuario"
@@ -59,7 +59,7 @@ export class ServicioMenu {
       case "OFERENTE":
         menu = [
           {
-            nombre_menu: "Crear oferta",
+            nombre_menu: "Crear Oferta",
             ruta: "oferente/creacion-oferta"
           },
           {
