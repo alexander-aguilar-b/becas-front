@@ -2,11 +2,13 @@
 
 
   <div class="container">
-    <div class="row" style="margin-left: 15px">
-      <h3>Bienvenido al Portal Unico de Becas</h3>
-      <h4>Iniciar Sesión</h4>
-    </div>
+
     <div class="col-md-4">
+      <div class="row" style="margin-left: -5px">
+        <h3>Bienvenido al Portal Unico de Becas</h3>
+        <h4>Iniciar Sesión</h4>
+      </div>
+
       <div class="form-group">
         <label for="login">Login:</label>
         <!--<em *ngIf="loginForm.controls.login?.invalid && (loginForm.controls.login?.touched || mouseoverLogin)">Required</em>-->
@@ -25,6 +27,17 @@
       <!--<span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" >Iniciar Sesión</button></span>-->
       <button type="submit" class="btn btn-primary" [disabled]="loginForm.invalid">Iniciar Sesión</button>
       <!--<button type="button" class="btn btn-default" (click)="cancel()">Cancelar</button>-->
+
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+
+      <div class="cointenedorUsuarios">
+        <h4>Señor Usuario:</h4>
+        <p>Si desea consultar el listado de ofertas vigentes, puede hacerlo dando clic en la siguiente opción</p>
+          <a class="btn btn-primary btn-lg" role="button" [routerLink]="['/consultar-oferta-usuario']">Consultar</a>
+
+      </div>
 
     </div>
   </div>

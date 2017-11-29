@@ -34,6 +34,8 @@ import {ConsultarPostulacionesOfertaComponent} from "./oferente/consultar-postul
 import {ConsultarDetallePostulacionComponent} from "./oferente/consultar-detalle-postulacion/consultar-detalle-postulacion.component";
 import {ConsultarFormularioDiligenciadoComponent} from "./oferente/consultar-formulario-diligenciado/consultar-formulario-diligenciado.component";
 import {BienvenidaComponent} from "./comun/bienvenida/bienvenida-component";
+import {ConsultarOfertaUsuarioComponent} from "./oferta/consultar-oferta-usuario/consultar-oferta-usuario.component";
+import {RegistroComponent} from "./comun/registro/registro-component";
 
 
 const routes: Routes = [
@@ -181,7 +183,14 @@ const routes: Routes = [
     path: 'bienvenida',
     component : BienvenidaComponent
   },
-
+  {
+    path: 'consultar-oferta-usuario',
+    component : ConsultarOfertaUsuarioComponent
+  },
+  {
+    path: 'registro',
+    component : RegistroComponent
+  }
 ];
 
 @NgModule({

@@ -21,6 +21,11 @@ export class ServicioBase {
     let options = new RequestOptions({headers: headers});
     return options;
   }
+  protected obtenerOpcionesPeticionSinAutenticacion(): RequestOptions {
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    return options;
+  }
 
   protected obtenerHeaderAutorizacion(): RequestOptions {
     let token =  this.autenticacionService.obtenerCookie('token');

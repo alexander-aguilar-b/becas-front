@@ -84,6 +84,8 @@ import {CambiarEstadoEtapaComponent} from "./oferente/cambiar-estado/cambiar-est
 import {MensajeBusquedaSinResultadosComponent} from "./comun/mensajes/mensaje-busqueda-sin-resultados/mensaje-busqueda-sin-resultados.component";
 import {BienvenidaComponent} from "./comun/bienvenida/bienvenida-component";
 import {CambiarEstadoPostulacionComponent} from "./oferente/cambiar-estado-postulacion/cambiar-estado-postulacion.component";
+import {ConsultarOfertaUsuarioComponent} from "./oferta/consultar-oferta-usuario/consultar-oferta-usuario.component";
+import {RegistroComponent} from "./comun/registro/registro-component";
 
 declare let jQuery: Object;
 
@@ -145,6 +147,8 @@ declare let jQuery: Object;
     MensajeBusquedaSinResultadosComponent,
     BienvenidaComponent,
     CambiarEstadoPostulacionComponent,
+    ConsultarOfertaUsuarioComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,

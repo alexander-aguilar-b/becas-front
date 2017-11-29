@@ -1,5 +1,5 @@
 <form #formOferente="ngForm"  class="form-horizontal" (ngSubmit)="crearOferente(formOferente.value)">
-  <h3>Creación de Cuenta : Oferente </h3>
+  <h3>Solicitud de Cuenta : Oferente </h3>
   <h4>Datos de Usuario</h4>
   <hr class="sep-tt">
   <div class="container">
@@ -125,7 +125,7 @@
 
       <span (mouseenter)="mouseoverLogin=true" (mouseleave)="mouseoverLogin=false"><button type="submit" class="btn btn-primary" (click)="crearOferente(formOferente.value)" [disabled]="formOferente.invalid" >
         <span class="glyphicon glyphicon-ok"></span> Crear</button></span>
-      <a class="btn btn-primary" [routerLink]="['/listado-solicitante']" role="button"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
+      <a class="btn btn-primary" [routerLink]="['/registro']" role="button"><span class="glyphicon glyphicon-remove"></span>Cancelar</a>
 
 
     </div>

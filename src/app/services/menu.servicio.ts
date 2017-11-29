@@ -34,10 +34,10 @@ export class ServicioMenu {
             ruta: 'administrador/formulario-administrador',
             nombre_menu: "Crear Administrador"
           },
-          {
-            ruta: 'oferente/formulario-oferente',
-            nombre_menu: "Solicitar Cuenta Oferente"
-          },
+          // {
+          //   ruta: 'oferente/formulario-oferente',
+          //   nombre_menu: "Solicitar Cuenta Oferente"
+          // },
           // {
           //   nombre_menu: "Consultar Oferta",
           //   ruta: "oferta/consulta-oferta"
@@ -62,10 +62,10 @@ export class ServicioMenu {
             nombre_menu: "Crear Oferta",
             ruta: "oferente/creacion-oferta"
           },
-          {
-            ruta: 'oferente/formulario-oferente',
-            nombre_menu: "Solicitar cuenta"
-          },
+          // {
+          //   ruta: 'oferente/formulario-oferente',
+          //   nombre_menu: "Solicitar cuenta"
+          // },
           {
             ruta: 'oferta/consulta-oferta-oferente',
             nombre_menu: "Consultar Ofertas"

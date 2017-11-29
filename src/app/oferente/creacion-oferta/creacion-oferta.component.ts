@@ -11,6 +11,8 @@ import {DefincionEtapaFormulario} from "../../models/definicion.etapa.formulario
 import {AutenticacionService} from "../../services/autenticacion.service";
 import { ServicioTipoItemFormulario} from "../../services/tipo.item.service";
 import {ITipoItem} from "../../models/tipo.item.model";
+import {IErrorServicio} from "../../models/error.servicio.model";
+import {CodigosErrorServicio} from "../../constantes/codigos.error.servicio";
 declare var $: any;
 
 @Component({
@@ -141,7 +143,16 @@ export class CreacionOfertaComponent implements OnInit {
      this.servicioOferta.crearOfertaConvocatoria(this.oferta)
       .subscribe(event => {
          this.router.navigate(['/oferta/confirmacion-creacion-oferta'])
-       });
+       },
+        error => {
+          const   errorServicio: IErrorServicio = <IErrorServicio><any>error.json();
+          if (errorServicio.code === CodigosErrorServicio.FECHA_FIN_INVALIDA) {
+            alert('La fecha de fin no es válida');
+          }
+          if (errorServicio.code === CodigosErrorServicio.FECHA_INICIO_INVALIDA) {
+            alert('La fecha de inicio no es válida');
+          }
+          });
 
   }
 
