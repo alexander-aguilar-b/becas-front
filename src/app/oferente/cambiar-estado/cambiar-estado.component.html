@@ -8,7 +8,6 @@
             <div class="col-sm-5">
               <label class="normal-label" id="estadoActualEtapaModal"></label>
             </div>
-            </div>
           </div>
         </div>
         <div class="row">
@@ -16,23 +15,27 @@
             <label class="col-sm-4 col-form-label">Nuevo Estado</label>
             <!--<label class="col-sm-4 col-form-label" >Fecha Inicio</label>-->
             <div class="col-sm-5">
-              <select class="form-control" [(ngModel)]="estadoEstapaSeleccionado" name="estadoEtapa" required id="estadoEtapa">
-                <option value="0">-- Seleccione --</option>
-                <option value="1">APROBADA</option>
-                <option value="2">EN_ESPERA</option>
-                <option value="3">RECHAZADA</option>
-                <option value="4">EN_REVISION</option>
+              <select class="form-control" [(ngModel)]="estadoEstapaSeleccionado" name="estadoEstapaSeleccionado" required
+                      id="estadoEstapaSeleccionado">
+                <option value="-1">-- Seleccione --</option>
+                <option value="0">APROBADA</option>
+                <option value="1">EN_ESPERA</option>
+                <option value="2">RECHAZADA</option>
+                <option value="3">EN_REVISION</option>
               </select>
             </div>
           </div>
         </div>
-
         <div class="top-buffer">
           <!--<input type="button" class="btn btn-secondary" />-->
-          <button type="button" class="btn btn-primary" (click)="modificarEstadoEtapa()"><span class="glyphicon glyphicon-ok"></span> Agregar</button>
-          <button type="button" class="btn btn-primary" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="modificarEstadoEtapa()"><span
+            class="glyphicon glyphicon-ok"></span> Agregar
+          </button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal"><span
+            class="glyphicon glyphicon-remove"></span> Cancelar
+          </button>
         </div>
       </div>
-
     </div>
+  </div>
 </simple-modal>

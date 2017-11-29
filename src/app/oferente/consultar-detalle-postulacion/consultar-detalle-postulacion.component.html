@@ -57,7 +57,7 @@
       <label class="col-sm-3 normal-label">{{aplicacionOferta?.estadoAplicacion}}</label>
     </div>
 
-    <div *ngFor="let etapaAplicacion of aplicacionOferta.etapasAplicacion">
+    <div *ngFor="let etapaAplicacion of aplicacionOferta?.etapasAplicacion">
     <div class="panel panel-default top-buffer">
       <div class="panel-heading font-bold">Etapa: {{etapaAplicacion?.etapa?.nombre}}</div>
       <div class="panel-body">
@@ -76,7 +76,7 @@
         </div>
         <div class="row">
           <label class="col-sm-2">Estado</label>
-          <label class="col-sm-10 normal-label">{{etapaAplicacion?.etapa?.status}}</label>
+          <label class="col-sm-10 normal-label">{{etapaAplicacion?.estadoAplicacionEtapa}}</label>
         </div>
         <div class="row">
           <div class="form-group">
@@ -128,7 +128,7 @@
   </div>
 </div>
 <div>
-  <cambiar-estado-etapa-modal (estadoModificado)="agregarExperienciaLaboral($event)"></cambiar-estado-etapa-modal>
+  <cambiar-estado-etapa-modal (estadoModificado)="modifcarEstadoEtapa($event)"></cambiar-estado-etapa-modal>
 </div>
 
 

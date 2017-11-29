@@ -4,6 +4,8 @@ import {ServicioDatosAplicacionOferta} from "../../services/servicio.datos.aplic
 import {IConsultaAplicacionOferta} from "../../models/aplicacion.oferta.model";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioAplicacionOferta} from "../../services/servicio.aplicacion.oferta";
+import {ServicioSolicitudPostulacion} from "../../services/servicio.solicitud.postulacion";
+import {IEtapaCambioEstado} from "../../models/etapa.model";
 
 declare var $: any;
 
@@ -21,7 +23,8 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
   constructor(private servicioDatosAplicacionOferta: ServicioDatosAplicacionOferta,
               private servicioAplicacionOferta: ServicioAplicacionOferta,
               private router: Router,
-              private activatedRouter: ActivatedRoute) {
+              private activatedRouter: ActivatedRoute,
+              private servicioSolicitudPostulacion: ServicioSolicitudPostulacion) {
   }
   ngOnInit() {
     console.log('Dentro del Componete');
@@ -51,7 +54,8 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     };
     console.log(this.servicioDatosAplicacionOferta.datosCambioEstadoEtapa);
     console.log('Antes modal');
-    $('#estadoActualEtapaModal').val('estadoEtapa');
+    $('#estadoActualEtapaModal').text(estadoEtapa);
+    $('#estadoEstapaSeleccionado').val(-1);
     $('#modificarEtadoEtapa').modal('toggle');
   }
 
@@ -59,9 +63,14 @@ export class ConsultarDetallePostulacionComponent implements OnInit {
     this.router.navigate(['/oferente/consultar-formulario-diligenciado', idFormulario, idAplicacionOferta, idOferta]);
   }
 
-  modifcarEstadoEtapa(estado){
-
+  modifcarEstadoEtapa(nuveoEstadoEtapa){
+    let estadoEtapaAntesCambio: IEtapaCambioEstado = this.servicioDatosAplicacionOferta.datosCambioEstadoEtapa;
+    console.log('El nuevo estado es');
+    console.log(nuveoEstadoEtapa);
+    console.log(estadoEtapaAntesCambio);
+     this.servicioSolicitudPostulacion.cambiarEtadoEtapaAplicacion(nuveoEstadoEtapa, estadoEtapaAntesCambio.idAplicacion, estadoEtapaAntesCambio.idEtapa).subscribe(respuesta => {
+       alert('La información de la etapa se ha modificado');
+       this.router.navigate(['/oferente/consultar-detalle-postulacion/', this.idOferta, this.idAplicacion]);
+    });
   }
-
-
 }
