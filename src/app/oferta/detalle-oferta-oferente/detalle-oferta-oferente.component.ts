@@ -7,6 +7,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ServicioOferta} from "../../services/oferta.servicio";
 import {AutenticacionService} from "../../services/autenticacion.service";
 import {IOfertaConsulta} from "../../models/oferta.model";
+import {IErrorServicio} from "../../models/error.servicio.model";
+import {CodigosErrorServicio} from "../../constantes/codigos.error.servicio";
 
 @Component({
   selector: 'app-detalle-oferta-oferente',
@@ -44,7 +46,13 @@ export class DetalleOfertaOferenteComponent {
           alert('La información de la oferta (etapas y formularios) ha sido borrada del sistema');
           this.router.navigate(['/oferta/consulta-oferta-oferente']);
         }
-      });
+      },
+        error => {
+          let errorServicio: IErrorServicio =<IErrorServicio><any>error.json();
+          if(errorServicio.code == CodigosErrorServicio.EXISTE_APLICACION_A_OFERTA) {
+            alert('No es posible eliminar la oferta especificada, debido a que cuenta con aplicaciones en curso');
+          }
+          });
     }
   }
 

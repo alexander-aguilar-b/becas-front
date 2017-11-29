@@ -1,4 +1,5 @@
 export class CodigosErrorServicio{
   static  USUARIO_NO_EXISTE= 'USUARIO_NO_EXISTE';
+  static EXISTE_APLICACION_A_OFERTA='EXISTE_APLICACION_A_OFERTA';
 
 }
