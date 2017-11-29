@@ -18,6 +18,8 @@ export class ServicioOferente extends ServicioBase {
   }
 
   crearOferente(oferente: IRegistroOferente): Observable<IOferente> {
+    console.log('Oferente a crear');
+    console.log(JSON.stringify(oferente));
     return this.http.post(this.configuracion.baseUrl +  'offerers/', JSON.stringify(oferente),
       this.obtenerOpcionesPeticion()).map((response: Response) => {
       return response.json();
